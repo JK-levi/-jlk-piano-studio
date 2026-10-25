@@ -1,4 +1,4 @@
-from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence
+from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression
 """Full default-progression graph/transport and scoped-feedback regression test."""
 import json
 import math
@@ -68,21 +68,21 @@ with sync_playwright() as p:
     before=page.evaluate('__events.length');page.wait_for_timeout(250);assert page.evaluate('__events.length')==before
     # Broken pattern, loop, tempo and metronome remain available.
     open_settings(page)
-    page.tap('#clear-progression');open_chord_editor(page);page.tap('#add-chord');page.select_option('#pattern','broken');page.check('#sequence-loop');page.check('#metronome')
+    page.tap('#clear-progression');open_chord_editor(page);page.tap('#add-chord');open_settings(page);page.select_option('#pattern','broken');page.check('#metronome');close_tasks(page);page.check('#sequence-loop')
     page.tap('#sequence-play');page.wait_for_timeout(1700)
     assert 'Loop' in page.locator('#position').inner_text()
     page.tap('#sequence-stop');page.uncheck('#sequence-loop')
     # A context interruption fails inline and is not relabeled Stopped by the
     # subscriber, footer, a recovery operation, or unrelated success feedback.
-    page.tap('#sequence-play');page.wait_for_selector('.key.sounding')
+    page.tap('#sequence-play');inspect_progression(page);page.wait_for_selector('.key.sounding')
     page.evaluate("() => {const c=__contexts.at(-1);c.simulatedState='interrupted';c.onstatechange();}")
     assert page.locator('#position').inner_text()=='Failed'
     error=page.locator('#sequence-feedback [role=alert]');assert error.is_visible()
     assert 'Recover audio' in error.inner_text()
     page.tap('#sequence-stop');assert error.is_visible()
     open_sound(page)
-    page.tap('#recover-audio');assert error.is_visible()
-    page.tap('#sequence-play');page.wait_for_selector('.key.sounding')
+    page.tap('#recover-audio');close_tasks(page);inspect_progression(page);assert error.is_visible()
+    page.tap('#sequence-play');inspect_progression(page);page.wait_for_selector('.key.sounding')
     assert page.locator('#sequence-feedback [role=alert]').count()==0
     page.tap('#sequence-stop')
     # Suspended context with a deferred resume: Stop must invalidate the tap.
@@ -103,6 +103,7 @@ with sync_playwright() as p:
     page.wait_for_timeout(100);assert page.locator('#sequence-feedback [role=alert]').count()==1
     page.locator('#sequence-feedback button',has_text='Dismiss').tap();assert page.locator('#sequence-feedback [role=alert]').count()==0
     # Invalid/missing input is not silently clamped or defaulted.
+    close_tasks(page)
     for value in ['', '39', '181', '80.5']:
         page.fill('#tempo',value);page.tap('#sequence-play')
         assert 'Invalid tempo' in page.locator('#sequence-feedback').inner_text()
@@ -110,7 +111,7 @@ with sync_playwright() as p:
     page.fill('#tempo','80');page.locator('#tempo').dispatch_event('change')
     assert page.locator('#sequence-feedback [role=alert]').count()==0
     open_settings(page)
-    page.tap('#clear-progression');assert page.locator('#sequence-play').is_disabled()
+    page.tap('#clear-progression');close_tasks(page);assert page.locator('#sequence-play').is_disabled()
     assert page.locator('#sequence-empty').is_visible()
     assert 'No chords loaded' in page.locator('#sequence-empty').inner_text()
     open_save(page)
@@ -125,6 +126,7 @@ with sync_playwright() as p:
     assert page.locator('#save-feedback [role=alert]').count()==0
     assert 'saved on this device' in page.locator('#save-feedback').inner_text()
     # Reuse the same severity/message semantics beside study and practice actions.
+    close_tasks(page)
     page.get_by_role('button',name='Explore',exact=True).tap()
     page.fill('#study-tempo','0');page.tap('#play-arpeggio')
     assert 'Invalid tempo' in page.locator('#study-feedback [role=alert]').inner_text()

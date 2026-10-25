@@ -1,4 +1,4 @@
-from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence
+from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression
 """Optional Chromium integration checks; run alongside the static preview server."""
 import functools
 import http.server
@@ -39,13 +39,16 @@ with sync_playwright() as p:
     page.wait_for_function("""() => { const data = new Float32Array(window.__analyser.fftSize); window.__analyser.getFloatTimeDomainData(data); return data.some(value => Math.abs(value) > .0001); }""")
     page.evaluate('window.__contexts.at(-1).suspend()')
     page.wait_for_function("window.__contexts.at(-1).state === 'suspended'")
+    close_tasks(page)
     page.tap('#play-chord')
     page.wait_for_function("window.__contexts.at(-1).state === 'running'")
     page.wait_for_selector('.key.sounding')
+    close_tasks(page)
     page.tap('#study-stop')
     assert page.locator('.sounding').count() == 0
     # Simulate Safari resolving resume while remaining interrupted.
     page.evaluate("""() => { const c=window.__contexts.at(-1); c.simulatedState='interrupted'; c.blockResume=true; }""")
+    close_tasks(page)
     page.tap('#play-chord')
     page.wait_for_function("!!document.querySelector('#study-feedback [role=alert]')")
     assert 'Recover audio' in page.locator('#study-feedback').inner_text()
@@ -56,6 +59,7 @@ with sync_playwright() as p:
     open_sound(page)
     page.tap('#test-sound')
     page.wait_for_function("document.querySelector('#audio-feedback').textContent.includes('Test notes scheduled')")
+    close_tasks(page)
     page.tap('#study-stop')
     page.fill('#study-tempo', '180');page.locator('#study-tempo').dispatch_event('change')
     page.tap('#play-arpeggio')
@@ -75,13 +79,14 @@ with sync_playwright() as p:
     page.check('#study-loop');page.tap('#replay')
     page.wait_for_timeout(1800)
     assert 'Loop' in page.locator('#study-position').inner_text()
+    close_tasks(page)
     page.tap('#study-stop');assert page.locator('.sounding').count() == 0
     page.uncheck('#study-loop')
     page.tap('#bach');page.tap('#play-bach')
     page.wait_for_selector('#bach-notation .notehead.sounding')
     assert page.locator('#bach-notation svg').count() == 2
     page.screenshot(path=str(Path(tempfile.gettempdir())/'jlk-v11-mobile.png'), full_page=True)
-    page.tap('#study-stop')
+    page.tap('#stop-bach');close_tasks(page)
     page.get_by_role('button',name='Practice',exact=True).tap()
     page.tap('#practice-hint');assert 'C4' in page.locator('#practice-progress').inner_text()
     page.locator('.key[data-midi="61"]').tap()
@@ -91,13 +96,13 @@ with sync_playwright() as p:
     assert page.locator('.key.selected').count() == 0
     page.tap('#practice-reset');assert '0 of 3' in page.locator('#practice-progress').inner_text()
     page.get_by_role('button',name='Progressions',exact=True).tap()
-    open_settings(page)
-    open_chord_editor(page)
+    open_save(page)
     page.select_option('#preset','4');page.tap('#load-preset')
     assert page.locator('.roman').all_text_contents() == ['i','VI','iv','V7']
+    close_tasks(page)
     page.fill('#tempo','180');page.locator('#tempo').dispatch_event('change')
     open_settings(page)
-    page.tap('#clear-progression');open_chord_editor(page);page.tap('#add-chord');page.check('#sequence-loop')
+    page.tap('#clear-progression');open_chord_editor(page);page.tap('#add-chord');close_tasks(page);page.check('#sequence-loop')
     page.tap('#sequence-play');page.wait_for_timeout(1800)
     assert 'Loop' in page.locator('#position').inner_text()
     assert not page.locator('#sequence-pause').is_disabled()
@@ -144,7 +149,7 @@ with sync_playwright() as p:
           const deadline=Date.now()+10000;
           async function check() {
             const keys=await caches.keys();
-            if(keys.includes('jlk-studio-v1.2')&&!keys.includes('jlk-studio-v1'))return resolve();
+            if(keys.includes('jlk-studio-v1.2.1')&&!keys.includes('jlk-studio-v1'))return resolve();
             if(Date.now()>deadline)return reject(new Error('New worker did not finish cache cleanup'));
             setTimeout(check,25);
           }
@@ -152,7 +157,7 @@ with sync_playwright() as p:
         })""")
         fresh=upgrade.new_page();fresh.goto(url)
         fresh.wait_for_selector('#test-sound',state='attached')
-        fresh.wait_for_function("caches.keys().then(keys=>keys.includes('jlk-studio-v1.2')&&!keys.includes('jlk-studio-v1'))")
+        fresh.wait_for_function("caches.keys().then(keys=>keys.includes('jlk-studio-v1.2.1')&&!keys.includes('jlk-studio-v1'))")
         fresh.get_by_role('button',name='Progressions',exact=True).click()
         assert fresh.locator('#saved option').all_text_contents() == ['Choose a saved progression','From version 1']
         open_save(fresh);fresh.select_option('#saved','0');fresh.click('#load-saved')

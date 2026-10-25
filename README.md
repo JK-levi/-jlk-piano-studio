@@ -1,4 +1,4 @@
-# JLK Piano Studio · 1.2
+# JLK Piano Studio · 1.2.1
 
 A focused, mobile-first piano studio with charcoal cards, ivory notation, and three dedicated experiences: Explore, Progressions, and Practice. Plain HTML, CSS, and JavaScript modules. No build, runtime dependencies, accounts, tracking, backend, or paid services.
 
@@ -14,8 +14,8 @@ Open the site through that HTTP server in your browser. Alternatively, `npm run 
 
 ## Use the studio
 
-- **Explore:** open the Chord editor (or the score’s ellipsis), then choose a root (including alternate sharp/flat spellings), one of 13 chord qualities, inversion, root octave, and close/open voicing. The warm-white grand staff and keyboard follow the exact same notes. Note-name and key-label switches persist locally. Tap or focus and press a piano key to hear it. Sound starts only after interaction.
-- **Progressions:** add the current explorer chord, select a chord to inspect it; Edit chords reveals duplicate, remove, and move buttons. Progression settings contains patterns, metronome, key and transposition. Save / Open reveals device-local saves. Load a sample or build your own sequence. Play at 40–180 BPM, four beats per chord, with block or eighth-note broken chords, an optional metronome, and a Loop progression switch. A defined major/minor analysis key shows Roman numerals; choose No defined key to hide them. Cadence and minor-key examples complement the original three presets. Pause silences playback; Resume begins the paused chord again. Stop returns to the beginning. Changing playback settings stops playback before applying them.
+- **Explore:** tap the score’s ellipsis to open the dedicated Chord Editor, then choose a root (including alternate sharp/flat spellings), one of 13 chord qualities, inversion, root octave, and close/open voicing. The warm-white grand staff and keyboard follow the exact same notes. Note-name and key-label switches persist locally. Tap or focus and press a piano key to hear it. Sound starts only after interaction.
+- **Progressions:** add the current explorer chord, select a chord to inspect it; Edit chords reveals duplicate, remove, and move buttons. Edit sequence opens the dedicated editing view for patterns, metronome, key and transposition. Library / Save opens presets and device-local saves. View selected chord opens the shared score/keys when needed during playback. Load a sample or build your own sequence. Play at 40–180 BPM, four beats per chord, with block or eighth-note broken chords, an optional metronome, and a Loop progression switch. A defined major/minor analysis key shows Roman numerals; choose No defined key to hide them. Cadence and minor-key examples complement the original three presets. Pause silences playback; Resume begins the paused chord again. Stop returns to the beginning. Changing playback settings stops playback before applying them.
 - **Transpose:** shifts the entire progression by a semitone. Smooth inversions chooses nearby close voicings after the first chord; turn it off to keep existing inversion and octave settings. Root choices favor flats in flat keys. Transposition preserves pitch classes; crossing a pitch-class boundary may change the root's octave rather than shift every voice literally by one semitone.
 - **Save:** name a progression and save it on this device (up to 50 saves, 64 chords each). Saving the same name replaces that named save. Loading a preset replaces the working sequence, leaving named saves intact. The working sequence also survives reload. No data syncs between devices; clearing browser/site data removes it.
 - **Practice:** read the chord and staff, try it on your own instrument, then reveal the keyboard. Next chord gives another prompt. On-screen attempts track each exact written pitch and octave, accept notes in any order, and never count a repeated note twice. Hint identifies the next missing note; Try again resets the attempt. External-instrument practice is still self-guided, with no microphone or MIDI permission.
@@ -188,3 +188,26 @@ python3 tests/browser_design.py
 This tests navigation, controls, disclosures, synchronization, actual practice progress, data preservation, responsive widths, keyboard/reduced-motion behavior and offline use, and refreshes six screenshots in `docs/screenshots/`. `JLK_BASE_URL` selects a repository-subpath server; `JLK_SCREENSHOT_DIR` chooses another screenshot destination.
 
 Physical iPhone validation of this visual release still remains: Safari/Home Screen safe areas, touch responsiveness, larger text/VoiceOver, audio/recovery/loops during navigation and after app switching, and offline updates. The user's successful audio verification applies to the preceding working version; it is not a claim that this visual patch has been tested on their device. No merge or deployment is performed by this task.
+
+
+## Version 1.2.1 — focused navigation
+
+[Navigation review and iPhone-sized screenshots](docs/navigation-review.md) documents the current screens and return behavior. Explore now contains only the musical workspace, compact playback and links to secondary tasks. Editing, theory, Bach, library/save and sound diagnostics each have a dedicated task view rather than a scrolling section. Progressions shows its sequence/transport normally; editing and optional notation/keyboard inspection have their own views. Practice contains its actual exercise and controls only.
+
+The chord ellipsis opens the editor directly. **Back** and **Done** return to the previous workspace or parent task, restoring focus and scroll; browser Back/Forward and Escape use the same task stack. Chord changes apply immediately to the existing state/preferences. Adding from a nested progression editor returns to editing. There is one set of controls, notation, keyboard and audio state, moved between views as needed.
+
+The audio engine, scheduler, music theory, exercise plans and storage module remain unchanged. Existing saves and preferences are retained. The new offline cache is **jlk-studio-v1.2.1**. Native task views use the same cached HTML/modules and work offline after installation/update.
+
+Run the existing checks as before:
+
+```sh
+npm test
+python3 tests/browser_smoke.py
+python3 tests/browser_v11.py
+python3 tests/browser_progression.py
+python3 tests/browser_design.py
+```
+
+The updated design/navigation suite captures Explore, Chord Editor, Progressions, Practice and Bach Study in `docs/screenshots/v1.2.1/`. It covers nested returns, focus/scroll restoration, browser Back/Forward, state preservation, playback, library operations, responsiveness and offline use. `JLK_BASE_URL` selects another server or GitHub Pages-style repository path; `JLK_SCREENSHOT_DIR` changes the capture destination.
+
+Physical iPhone testing of this patch remains required, particularly VoiceOver, native form controls and keyboard sizing, safe areas, back gestures, Safari/Home Screen audio recovery and offline updates. No merge or deployment is performed automatically.

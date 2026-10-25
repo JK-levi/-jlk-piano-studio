@@ -1496,3 +1496,237 @@ input:not([type=checkbox]),select{
     grid-row:4
   }
 }
+/* 1.2.1: focused task views reuse the approved surfaces and typography. */
+.musical-visuals{
+  display:grid;
+  gap:14px;
+  min-width:0
+}
+#visuals-home{
+  min-width:0;
+  grid-column:1/-1
+}
+#workspace>.practice-banner{
+  margin:0
+}
+.workspace-links{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:12px
+}
+.workspace-links button{
+  background:transparent;
+  border-color:#9c968b;
+  color:var(--ink);
+  font-size:.76rem
+}
+.sequence-choices{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:16px 0
+}
+.task-view{
+  padding:0;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:var(--panel);
+  color:var(--text);
+  width:min(820px,calc(100% - 48px));
+  max-width:100%;
+  max-height:90vh;
+  max-height:90dvh;
+  height:auto;
+  box-shadow:var(--shadow);
+  overflow:hidden
+}
+.task-view::backdrop{
+  background:#1b1b1a99
+}
+.task-header{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:12px;
+  padding:18px 22px;
+  border-bottom:1px solid var(--border-soft);
+  background:var(--panel)
+}
+.task-header h2{
+  text-align:center;
+  font-size:1.45rem
+}
+.task-header button{
+  font-size:.8rem
+}
+.task-body{
+  overflow:auto;
+  overscroll-behavior:contain;
+  max-height:calc(90vh - 84px);
+  max-height:calc(90dvh - 84px);
+  padding:24px;
+  scrollbar-gutter:stable
+}
+.task-panel{
+  min-width:0
+}
+.task-panel>.eyebrow{
+  margin-bottom:14px
+}
+.task-panel>.subtle{
+  margin:12px 0 18px
+}
+.task-panel .controls{
+  padding:22px 0;
+  grid-template-columns:1fr 1fr
+}
+.task-panel .controls>label:last-child{
+  grid-column:span 2
+}
+.editor-preview{
+  font-family:var(--serif);
+  font-size:1.9rem;
+  line-height:1.4
+}
+.task-panel .editor-footer{
+  padding:16px 0 0
+}
+.task-panel .theory-panel{
+  padding:12px 0 0
+}
+.library-presets{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  align-items:end;
+  border-bottom:1px solid var(--border-soft);
+  padding:18px 0 24px;
+  margin-bottom:24px
+}
+.task-panel .save-row{
+  grid-template-columns:1fr auto;
+  gap:14px
+}
+.task-panel .save-row label:nth-of-type(2){
+  grid-column:1/-1
+}
+#progression-settings{
+  border-top:1px solid var(--border-soft);
+  margin-top:24px;
+  padding-top:10px
+}
+#edit-cards-slot .progression{
+  grid-template-columns:repeat(2,minmax(0,1fr))
+}
+#edit-cards-slot .chord-actions{
+  display:grid
+}
+#sequence-editor>#new-progression-chord{
+  margin:4px 0 0
+}
+#voicing-transport-slot{
+  margin-top:18px
+}
+#voicing-edit{
+  margin-top:16px
+}
+#bach-panel{
+  margin:0;
+  padding:0;
+  border:0;
+  background:none;
+  box-shadow:none
+}
+#bach-panel>h3{
+  font-size:2rem
+}
+#bach-panel>#bach-keyboard-slot{
+  margin:16px 0
+}
+#bach-panel .keyboard-panel{
+  box-shadow:none
+}
+#bach-transport-slot .study-transport{
+  margin:0;
+  padding:16px;
+  display:block
+}
+body[data-task=bach-panel] #play-chord,body[data-task=bach-panel] #play-arpeggio,body[data-task=bach-panel] #study-stop,body[data-task=bach-panel] #study-position{
+  display:none
+}
+body[data-task=bach-panel] .play-actions{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr
+}
+body[data-task=bach-panel] .exercise-tools{
+  margin-top:14px
+}
+#sound-settings{
+  box-shadow:none;
+  margin:0;
+  padding:0;
+  max-width:none
+}
+body.task-open{
+  position:fixed;
+  left:0;
+  right:0;
+  width:100%;
+  overflow:hidden
+}
+@media(min-width:700px){
+  .musical-visuals{
+    grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+    gap:18px
+  }
+  #voicing-view .musical-visuals{
+    grid-template-columns:1fr
+  }
+  #edit-cards-slot .progression{
+    grid-template-columns:repeat(4,minmax(0,1fr))
+  }
+}
+@media(max-width:699px){
+  .task-view{
+    width:100%;
+    max-width:100%;
+    height:100%;
+    height:100dvh;
+    max-height:100%;
+    max-height:100dvh;
+    border:0;
+    border-radius:0;
+    margin:0
+  }
+  .task-header{
+    padding:max(14px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) 14px max(14px,env(safe-area-inset-left));
+    gap:10px
+  }
+  .task-header h2{
+    font-size:1.2rem
+  }
+  .task-header button{
+    padding:10px 12px
+  }
+  .task-body{
+    padding:20px max(18px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left));
+    height:calc(100% - 80px - env(safe-area-inset-top));
+    max-height:none;
+    scrollbar-gutter:auto
+  }
+  .task-panel .editor-footer{
+    flex-direction:column;
+    align-items:stretch
+  }
+  .task-panel .editor-footer .fine-print{
+    max-width:none
+  }
+  #sound-settings .audio-panel>div{
+    flex-basis:100%
+  }
+  #voicing-view .music-panel{
+    margin-bottom:14px
+  }
+}
