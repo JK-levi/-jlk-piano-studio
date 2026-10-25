@@ -45,3 +45,14 @@ test('reports state changes and uses output timestamp or latency-adjusted audio 
   contexts[0].getOutputTimestamp=()=>({contextTime:9,performanceTime:900});assert.equal(engine.audibleTime(),9.1);
   contexts[0].state='interrupted';contexts[0].onstatechange();assert.match(status.at(-1).message,/interrupted/);
 });
+test('running contexts are reused without another resume, and invalid output timestamps cannot run ahead',async()=>{
+  const {engine,contexts,log}=fixture();await engine.unlock();const count=log.filter(e=>e==='resume').length;
+  await engine.unlock();assert.equal(log.filter(e=>e==='resume').length,count);
+  for(const stamp of [{contextTime:100,performanceTime:900},{contextTime:9,performanceTime:-10000},{contextTime:NaN,performanceTime:950}]){
+    contexts[0].getOutputTimestamp=()=>stamp;assert.equal(engine.audibleTime(),9.98);
+  }
+});
+test('a newly constructed running context is still primed synchronously on its first gesture',async()=>{
+  const {engine,log}=fixture({state:'running'});const ready=engine.unlock();
+  assert.deepEqual(log,['construct','prime','resume']);await ready;
+});

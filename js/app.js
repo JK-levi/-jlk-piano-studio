@@ -6,6 +6,7 @@ import { Playback } from './playback.js';
 import { chordPlan, bachPlan, bachNotes, brokenEvents, progressionPlan } from './exercises.js';
 import { Practice } from './practice.js';
 import { PRESETS, romanNumeral } from './progressions.js';
+import { Feedback, validTempo } from './feedback.js';
 const $ = id => document.getElementById(id);
 const base = {root:'C',quality:'major',octave:4,inversion:0,voicing:'close'};
 const prefs=read('preferences',{});
@@ -19,7 +20,26 @@ let playing=false, paused=false, activeIndex=-1, audioRequest=0;
 let studyKind='chord', activePlayback=null, pausedChord=0, practiceSignature='', hintMidi=null;
 const practice=new Practice();
 const player=new Playback({audio});
-function message(text){$('status').textContent=text;}
+const feedback=new Feedback();
+let activeScope=null,pendingScope=null;
+const playbackStates=new Map();
+function message(text,{scope=mode==='studio'?'studio':mode==='practice'?'practice':'study',kind='info',id='notice'}={}){feedback.show(scope,{kind,id,text});}
+function playbackStatus(scope,state,detail=''){
+  playbackStates.set(scope,state);
+  const target={sequence:'position',study:'study-position',bach:'bach-position',practice:'practice-position',audio:'audio-playback-status'}[scope];
+  if(target){$(target).textContent=state+(detail?' · '+detail:'');$(target).dataset.state=state;}
+}
+function checkTempo(field,scope){
+  if(validTempo($(field).value)){feedback.clear(scope,'tempo');return true;}
+  feedback.show(scope,{id:'tempo',kind:'error',text:'Invalid tempo. Enter a whole-number value between 40 and 180 BPM.',field});
+  return false;
+}
+function playbackFailure(error,scope=activeScope||pendingScope||'study'){
+  audioRequest++;player.stop();playing=false;paused=false;activePlayback=null;activeScope=null;pendingScope=null;activeIndex=-1;
+  transport();renderProgression();playbackStatus(scope,'Failed');
+  feedback.show(scope,{id:'audio',kind:'error',text:`Unable to start or continue audio. Tap Recover audio, then try Play again. ${error.message}`});
+}
+
 function option(value,label){const n=document.createElement('option');n.value=value;n.textContent=label;return n;}
 ROOTS.forEach(r=>$('root').append(option(r,pretty(r))));
 $('preset').replaceChildren(...PRESETS.map((p,i)=>option(i,p.name)));
@@ -31,10 +51,10 @@ for(const id of ['staff-labels','key-labels','metronome','voice-leading','study-
 if(Number.isFinite(prefs?.tempo)) $('tempo').value=Math.min(180,Math.max(40,prefs.tempo));
 if(Number.isFinite(prefs?.studyTempo)) $('study-tempo').value=Math.min(180,Math.max(40,prefs.studyTempo));
 if(['block','broken'].includes(prefs?.pattern)) $('pattern').value=prefs.pattern;
-function persistPrefs(){const data={spec,tempo:tempo(),pattern:$('pattern').value,studyTempo:studyTempo()};for(const id of ['staff-labels','key-labels','metronome','voice-leading','study-loop','sequence-loop'])data[id]=$(id).checked;write('preferences',data);}
-function persistSession(){write('session-key',$('analysis-key').value);if(!write('session',progression))message('Device storage is unavailable. This session still works, but changes will not survive a reload.');}
-function tempo(){return Math.min(180,Math.max(40,Number($('tempo').value)||80));}
-function studyTempo(){return Math.min(180,Math.max(40,Number($('study-tempo').value)||80));}
+function persistPrefs(){const data={spec,tempo:validTempo($('tempo').value)?tempo():read('preferences',{}).tempo||80,pattern:$('pattern').value,studyTempo:validTempo($('study-tempo').value)?studyTempo():read('preferences',{}).studyTempo||80};for(const id of ['staff-labels','key-labels','metronome','voice-leading','study-loop','sequence-loop'])data[id]=$(id).checked;write('preferences',data);}
+function persistSession(){write('session-key',$('analysis-key').value);if(!write('session',progression))message('Device storage is unavailable. This session still works, but changes will not survive a reload.',{kind:'warning',id:'storage'});}
+function tempo(){return Number($('tempo').value);}
+function studyTempo(){return Number($('study-tempo').value);}
 function syncControls(){
   $('root').value=spec.root;$('quality').value=spec.quality;$('octave').value=spec.octave;$('voicing').value=spec.voicing;
   $('inversion').replaceChildren(...QUALITIES[spec.quality].steps.map((_,i)=>option(i,i===0?'Root position':`${['','1st','2nd','3rd','4th'][i]} inversion`)));
@@ -81,7 +101,7 @@ function renderKeyboard(notes){
     button.addEventListener('click',()=>{
       stop({silent:true});
       if(mode==='practice') { const correct=practice.attempt(midi);hintMidi=null;updatePractice(correct?'Good note.':'Try another key; match the written octave.');renderKeyboard(chord(spec).notes); }
-      withAudio(()=>startPlayback({beats:1,events:[{notes:[{midi}],beat:0,duration:1}]},'key'));
+      withAudio(()=>startPlayback({beats:1,events:[{notes:[{midi}],beat:0,duration:1}]},'key',{scope:mode==='practice'?'practice':'keyboard'}),{scope:mode==='practice'?'practice':'keyboard'});
     });
     fragment.append(button);
   }
@@ -89,17 +109,19 @@ function renderKeyboard(notes){
   $('keyboard-range').textContent=`${midiName(start)} — ${midiName(end)}`;
   $('keyboard-hint').textContent=highlighted?'Chord tones · tap any key to listen':'Keys hidden · find the chord on your piano';
 }
-function withAudio(fn,options={}){
-  if(player.running&&!audio.isRunning())stop({silent:true});
-  const ticket=++audioRequest;
-  // unlock is invoked immediately, not after an await, timer, or animation.
-  audio.unlock(options).then(()=>{if(ticket===audioRequest&&!document.hidden)fn();}).catch(error=>{$('audio-status').textContent=error.message;$('audio-status').classList.add('audio-error');message(`Sound could not start: ${error.message}`);});
+function withAudio(fn,{scope=mode==='practice'?'practice':'study',reset=false}={}){
+  stop({silent:true});
+  const ticket=++audioRequest;pendingScope=scope;playbackStatus(scope,'Starting');
+  const ready=()=>{if(ticket!==audioRequest||document.hidden)return;pendingScope=null;fn();};
+  const failed=error=>{if(ticket===audioRequest)playbackFailure(error,scope);};
+  // A running engine can schedule synchronously during the tap. Only a suspended
+  // engine waits for resume; state notifications must not cancel that request.
+  if(audio.isRunning()&&!reset){try{ready();}catch(error){failed(error);}return;}
+  audio.unlock({reset}).then(ready).catch(failed);
 }
 audio.subscribe(status=>{
-  if(status.state==='running'&&status.message.startsWith('Audio engine ready')&&$('audio-status').textContent.startsWith('Test signal sent'))return;
   $('audio-status').textContent=status.message;
-  $('audio-status').classList.toggle('audio-error',status.error);
-  if(status.state!=='running'&&player.running) stop({silent:true});
+  if(status.state!=='running'&&player.running)playbackFailure(new Error(status.message),activeScope);
 });
 function clearHighlights(){document.querySelectorAll('.sounding').forEach(node=>node.classList.remove('sounding'));}
 function syncHighlights(events){
@@ -121,50 +143,72 @@ function renderSheet(notes=chord(spec).notes){
 function updatePractice(feedback=''){
   $('practice-progress').textContent=practice.progress+(feedback?' · '+feedback:'');
 }
-function startPlayback(plan,kind,{fromBeat=0}={}){
-  activePlayback=kind;
+function startPlayback(plan,kind,{fromBeat=0,scope=kind==='progression'?'sequence':kind==='bach'?'bach':kind==='key'?'keyboard':mode==='practice'?'practice':'study'}={}){
+  activePlayback=kind;activeScope=scope;
   const isSequence=kind==='progression';
   const loop=kind!=='key'&&(isSequence?$('sequence-loop').checked:$('study-loop').checked);
   player.start(plan,{bpm:kind==='key'?100:isSequence?tempo():studyTempo(),loop,fromBeat,
+    onScheduled({count}){if(count===1){feedback.clear(scope,'audio');playbackStatus(scope,'Playing','Events scheduled; device output unverified');}},
     onFrame(events,beat){
       if(beat===null){clearHighlights();return;}
       if(isSequence){
         const index=Math.min(progression.length-1,Math.floor(beat/4));pausedChord=index;
         if(index!==activeIndex){activeIndex=index;selected=index;spec={...progression[index]};render();renderProgression();}
-        $('position').textContent=`Chord ${index+1} of ${progression.length} · Beat ${Math.floor(beat%4)+1}${loop?' · Loop':''}`;
-      }else if(kind!=='key')$('study-position').textContent=`Beat ${Math.floor(beat%4)+1}${loop?' · Loop':''}`;
+        if(player.scheduled)playbackStatus(scope,'Playing',`Chord ${index+1} of ${progression.length} · Beat ${Math.floor(beat%4)+1}${loop?' · Loop':''}`);
+      }else if(kind!=='key'&&player.scheduled)playbackStatus(scope,'Playing',`Beat ${Math.floor(beat%4)+1}${loop?' · Loop':''}`);
       syncHighlights(events);
     },
-    onEnd(){if(kind==='bach')renderKeyboard(chord(spec).notes);playing=false;activePlayback=null;activeIndex=-1;transport();renderProgression();if(isSequence)$('position').textContent='Complete';else $('study-position').textContent='Complete';},
-    onError(error){playing=false;paused=false;activePlayback=null;activeIndex=-1;transport();renderProgression();$('audio-status').textContent=error.message;$('audio-status').classList.add('audio-error');message(error.message);}
+    onEnd(){if(kind==='bach')renderKeyboard(chord(spec).notes);playing=false;activePlayback=null;activeScope=null;activeIndex=-1;transport();renderProgression();playbackStatus(scope,'Complete');},
+    onError(error){playbackFailure(error,scope);}
   });
+  return player.running;
 }
+
 function playStudy(kind){
   stop({silent:true});studyKind=kind;
   if(kind==='bach'){$('bach-panel').hidden=false;renderKeyboard(bachNotes);renderExercise($('bach-notation'),bachPlan().events,{labels:$('staff-labels').checked});}
   else render();
   startPlayback(kind==='bach'?bachPlan():chordPlan(chord(spec).notes,kind==='arpeggio'),kind);
 }
-function transport(){ $('sequence-play').disabled=playing||!progression.length;$('sequence-play').textContent=paused?'Resume':'Play';$('sequence-pause').disabled=!playing; }
-function stop({silent=false}={}){audioRequest++;player.stop();playing=false;paused=false;activePlayback=null;activeIndex=-1;clearHighlights();transport();renderProgression();$('position').textContent='Ready to play';$('study-position').textContent='Ready';if(!silent)message('Playback stopped.');}
-$('test-sound').addEventListener('click',()=>{stop({silent:true});withAudio(()=>{startPlayback({beats:2,events:[{notes:[{midi:60}],beat:0,duration:1},{notes:[{midi:64}],beat:1,duration:1}]},'key');$('audio-status').textContent='Test signal sent: C4 then E4. If silent, check volume/output and Recover audio.';});});
-$('recover-audio').addEventListener('click',()=>{stop({silent:true});withAudio(()=>{$('audio-status').textContent='Audio engine recreated. Tap Test Sound to check your output.';},{reset:true});});
-$('study-stop').addEventListener('click',()=>{stop();renderKeyboard(chord(spec).notes);});
-$('replay').addEventListener('click',()=>withAudio(()=>playStudy(studyKind)));
-for(const id of ['study-tempo','study-loop','sequence-loop'])$(id).addEventListener('change',()=>{stop({silent:true});$('study-tempo').value=studyTempo();persistPrefs();});
+function transport(){
+  $('sequence-play').disabled=playing||!progression.length||pendingScope==='sequence';
+  $('sequence-play').textContent=paused?'Resume':'Play';$('sequence-pause').disabled=!playing;
+  $('sequence-empty').hidden=progression.length>0;
+  $('sequence-play').setAttribute('aria-describedby',progression.length?'position':'sequence-empty position');
+}
+function stop({silent=false}={}){
+  const scope=activeScope||pendingScope;
+  audioRequest++;player.stop();playing=false;paused=false;activePlayback=null;activeScope=null;pendingScope=null;activeIndex=-1;
+  clearHighlights();transport();renderProgression();
+  if(scope&&(!silent||playbackStates.get(scope)!=='Failed'))playbackStatus(scope,'Stopped');
+}
+$('test-sound').addEventListener('click',()=>withAudio(()=>{
+  if(startPlayback({beats:2,events:[{notes:[{midi:60}],beat:0,duration:1},{notes:[{midi:64}],beat:1,duration:1}]},'key',{scope:'audio'}))
+    message('Test notes scheduled: C4 then E4. If silent, check media volume and output route.',{scope:'audio',id:'test'});
+},{scope:'audio'}));
+$('recover-audio').addEventListener('click',()=>withAudio(()=>{feedback.clear('audio','audio');playbackStatus('audio','Stopped');message('Audio engine running. Tap Test Sound to check your output; device audibility is unverified.',{scope:'audio',kind:'success'});},{scope:'audio',reset:true}));
+$('study-stop').addEventListener('click',()=>{stop();playbackStatus(studyKind==='bach'?'bach':mode==='practice'?'practice':'study','Stopped');renderKeyboard(chord(spec).notes);});
+function requestStudy(kind){
+  const scope=kind==='bach'?'bach':mode==='practice'?'practice':'study';
+  if(!checkTempo('study-tempo',scope))return;
+  withAudio(()=>playStudy(kind),{scope});
+}
+$('replay').addEventListener('click',()=>requestStudy(studyKind));
+$('study-tempo').addEventListener('change',()=>{stop({silent:true});if(checkTempo('study-tempo','study'))persistPrefs();});
+for(const id of ['study-loop','sequence-loop'])$(id).addEventListener('change',()=>{stop({silent:true});persistPrefs();});
 $('analysis-key').addEventListener('change',()=>{stop({silent:true});persistSession();renderProgression();});
 $('practice-hint').addEventListener('click',()=>{hintMidi=practice.hint?.midi??null;updatePractice(practice.hint?`Try ${pretty(practice.hint.fullName)}.`:'All notes found.');renderKeyboard(chord(spec).notes);});
 $('practice-reset').addEventListener('click',()=>{stop({silent:true});practice.reset(chord(spec).notes);hintMidi=null;revealed=false;render();});
 function changeSpec(){stop({silent:true});spec={root:$('root').value,quality:$('quality').value,octave:Number($('octave').value),inversion:Number($('inversion').value),voicing:$('voicing').value};spec.inversion=Math.min(spec.inversion,QUALITIES[spec.quality].steps.length-1);revealed=false;studyKind='chord';persistPrefs();render();}
 for(const id of ['root','quality','inversion','octave','voicing'])$(id).addEventListener('change',changeSpec);
 for(const id of ['staff-labels','key-labels'])$(id).addEventListener('change',()=>{stop({silent:true});persistPrefs();render();renderExercise($('bach-notation'),bachPlan().events,{labels:$('staff-labels').checked});});
-for(const id of ['tempo','pattern','metronome','voice-leading'])$(id).addEventListener('change',()=>{if(id==='tempo')$('tempo').value=tempo();if(playing||paused)stop({silent:true});persistPrefs();});
+for(const id of ['tempo','pattern','metronome','voice-leading'])$(id).addEventListener('change',()=>{stop({silent:true});if(id!=='tempo'||checkTempo('tempo','sequence'))persistPrefs();});
 function setMode(value){stop({silent:true});mode=value;revealed=false;studyKind='chord';practiceSignature='';document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===mode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});$('practice-banner').hidden=mode!=='practice';$('studio-panel').hidden=mode!=='studio';render();}
 document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
 $('reveal').addEventListener('click',()=>{revealed=!revealed;render();});
 $('next-chord').addEventListener('click',()=>{stop({silent:true});practiceSignature='';const keys=Object.keys(QUALITIES);spec={...spec,root:ROOTS[Math.floor(Math.random()*ROOTS.length)],quality:keys[Math.floor(Math.random()*keys.length)],inversion:0};revealed=false;persistPrefs();render();});
-$('play-chord').addEventListener('click',()=>withAudio(()=>playStudy('chord')));
-$('play-arpeggio').addEventListener('click',()=>withAudio(()=>playStudy('arpeggio')));
+$('play-chord').addEventListener('click',()=>requestStudy('chord'));
+$('play-arpeggio').addEventListener('click',()=>requestStudy('arpeggio'));
 function actionButton(text,label,fn,disabled=false){const b=document.createElement('button');b.textContent=text;b.setAttribute('aria-label',label);b.disabled=disabled;b.addEventListener('click',fn);return b;}
 function renderProgression(){
   $('progression').replaceChildren();
@@ -173,39 +217,48 @@ function renderProgression(){
     const pick=actionButton(pretty(chord(s).symbol),`Select chord ${i+1}: ${pretty(chord(s).symbol)}`,()=>{stop({silent:true});selected=i;spec={...s};revealed=false;render();renderProgression();});pick.className='chord-select';pick.setAttribute('aria-pressed',i===selected);const count=document.createElement('span');count.textContent=String(i+1).padStart(2,'0');pick.append(count);const roman=document.createElement('small');roman.className='roman';roman.textContent=romanNumeral(s,$('analysis-key').value);pick.append(roman);
     const actions=document.createElement('div');actions.className='chord-actions';
     const edit=fn=>{stop({silent:true});fn();selected=Math.min(selected,progression.length-1);persistSession();renderProgression();};
-    actions.append(actionButton('←',`Move chord ${i+1} earlier`,()=>edit(()=>{[progression[i-1],progression[i]]=[progression[i],progression[i-1]];selected=i-1;}),i===0),actionButton('→',`Move chord ${i+1} later`,()=>edit(()=>{[progression[i+1],progression[i]]=[progression[i],progression[i+1]];selected=i+1;}),i===progression.length-1),actionButton('⧉',`Duplicate chord ${i+1}`,()=>edit(()=>{if(progression.length<64)progression.splice(i+1,0,{...s});else message('A progression can contain up to 64 chords.');})),actionButton('×',`Remove chord ${i+1}`,()=>edit(()=>progression.splice(i,1))));
+    actions.append(actionButton('←',`Move chord ${i+1} earlier`,()=>edit(()=>{[progression[i-1],progression[i]]=[progression[i],progression[i-1]];selected=i-1;}),i===0),actionButton('→',`Move chord ${i+1} later`,()=>edit(()=>{[progression[i+1],progression[i]]=[progression[i],progression[i+1]];selected=i+1;}),i===progression.length-1),actionButton('⧉',`Duplicate chord ${i+1}`,()=>edit(()=>{if(progression.length<64)progression.splice(i+1,0,{...s});else message('A progression can contain up to 64 chords. Remove a chord before adding another.',{scope:'studio',kind:'warning',id:'limit'});})),actionButton('×',`Remove chord ${i+1}`,()=>edit(()=>progression.splice(i,1))));
     li.append(pick,actions);$('progression').append(li);
   });
   if(!progression.length){const li=document.createElement('li');li.textContent='Choose a chord above, then add it here.';li.style.padding='16px';li.style.gridColumn='1 / -1';$('progression').append(li);}
   transport();
 }
-$('add-chord').addEventListener('click',()=>{if(progression.length>=64)return message('A progression can contain up to 64 chords.');stop({silent:true});progression.push({...spec});selected=progression.length-1;persistSession();setMode('studio');renderProgression();message(`${pretty(chord(spec).symbol)} added to your progression.`);});
-$('load-preset').addEventListener('click',()=>{stop({silent:true});progression=structuredClone(presets[Number($('preset').value)]);setKey(PRESETS[Number($('preset').value)].key);selected=0;spec={...progression[0]};persistSession();render();renderProgression();message('Starting point loaded. Your named saves are unchanged.');});
+$('add-chord').addEventListener('click',()=>{if(progression.length>=64)return message('A progression can contain up to 64 chords. Remove a chord before adding another.',{scope:'studio',kind:'warning',id:'limit'});stop({silent:true});progression.push({...spec});selected=progression.length-1;persistSession();setMode('studio');renderProgression();message(`${pretty(chord(spec).symbol)} added to your progression.`,{scope:'studio',kind:'success'});});
+$('load-preset').addEventListener('click',()=>{stop({silent:true});progression=structuredClone(presets[Number($('preset').value)]);setKey(PRESETS[Number($('preset').value)].key);selected=0;spec={...progression[0]};persistSession();render();renderProgression();feedback.clear('save','chords');feedback.clear('sequence','empty');message('Starting point loaded. Your named saves are unchanged.',{scope:'studio',kind:'success'});});
 $('clear-progression').addEventListener('click',()=>{stop({silent:true});progression=[];selected=0;persistSession();renderProgression();});
 function transposition(amount){stop({silent:true});const key=$('analysis-key').value;if(key){const minor=key.endsWith('m');setKey(transpose({...base,root:minor?key.slice(0,-1):key},amount).root+(minor?'m':''));}let previous=null;progression=progression.map(s=>{let next=transpose(s,amount);if($('voice-leading').checked)next=voiceLead(next,previous);previous=chord(next).notes;return next;});spec={...(progression[selected]||transpose(spec,amount))};persistSession();persistPrefs();render();renderProgression();message(`Progression transposed ${amount>0?'up':'down'} one semitone.`);}
 $('transpose-up').addEventListener('click',()=>transposition(1));$('transpose-down').addEventListener('click',()=>transposition(-1));
-$('sequence-play').addEventListener('click',()=>withAudio(()=>{
-  if(!progression.length||playing)return;
+$('sequence-play').addEventListener('click',()=>{
+  if(!progression.length){feedback.show('sequence',{kind:'warning',id:'empty',text:'No chords loaded. Choose a progression and tap Load to begin.'});return;}
+  if(!checkTempo('tempo','sequence')||playing)return;
+  feedback.clear('sequence','empty');
   const fromBeat=paused?pausedChord*4:0;
-  stop({silent:true});playing=true;paused=false;studyKind='chord';activeIndex=-1;transport();
-  startPlayback(progressionPlan(progression,{broken:$('pattern').value==='broken',metronome:$('metronome').checked}),'progression',{fromBeat});
-}));
-$('sequence-pause').addEventListener('click',()=>{if(!playing)return;audioRequest++;player.stop();playing=false;paused=true;activePlayback=null;activeIndex=-1;transport();renderProgression();$('position').textContent='Paused · resumes this chord';message('Paused. Resume starts the current chord again.');});
-$('sequence-stop').addEventListener('click',()=>{stop();renderKeyboard(chord(spec).notes);});
+  withAudio(()=>{
+    playing=true;paused=false;studyKind='chord';activeIndex=-1;transport();
+    startPlayback(progressionPlan(progression,{broken:$('pattern').value==='broken',metronome:$('metronome').checked}),'progression',{fromBeat});
+  },{scope:'sequence'});
+  transport();
+});
+$('sequence-pause').addEventListener('click',()=>{
+  if(!playing)return;audioRequest++;player.stop();playing=false;paused=true;activePlayback=null;activeScope=null;activeIndex=-1;
+  transport();renderProgression();playbackStatus('sequence','Paused','Resume restarts this chord');
+});
+$('sequence-stop').addEventListener('click',()=>{stop();playbackStatus('sequence','Stopped');renderKeyboard(chord(spec).notes);});
 function renderSaved(){const selectedValue=$('saved').value;$('saved').replaceChildren(option('','Choose a saved progression'),...saved.map((p,i)=>option(i,p.name)));if(saved[Number(selectedValue)]&&selectedValue!=='')$('saved').value=selectedValue;}
 $('save-progression').addEventListener('click',()=>{
-  const name=$('save-name').value.trim();if(!name)return message('Give your progression a name first.');if(!progression.length)return message('Add a chord before saving.');
+  const name=$('save-name').value.trim();if(!name)return feedback.show('save',{id:'name',kind:'error',text:'Name required. Enter a name before saving your progression.',field:'save-name'});feedback.clear('save','name');if(!progression.length)return feedback.show('save',{id:'chords',kind:'warning',text:'No chords to save. Load a starting point or add a chord above.'});
+  feedback.clear('save','name');feedback.clear('save','chords');
   const entry={name,key:$('analysis-key').value,chords:structuredClone(progression)},index=saved.findIndex(p=>p.name===name);
-  if(index===-1&&saved.length>=50)return message('Your device has 50 saved progressions. Delete one before adding another.');
+  if(index===-1&&saved.length>=50)return message('Your device has 50 saved progressions. Delete one before adding another.',{scope:'save',kind:'warning',id:'limit'});
   const updated=structuredClone(saved);if(index<0)updated.push(entry);else updated[index]=entry;
-  if(write('progressions',updated)){saved=updated;renderSaved();$('saved').value=index<0?saved.length-1:index;message(`“${name}” saved on this device.`);}else message('Unable to save. Your browser may have disabled local storage.');
+  if(write('progressions',updated)){saved=updated;renderSaved();$('saved').value=index<0?saved.length-1:index;feedback.clear('save','storage');feedback.clear('save','limit');message(`“${name}” saved on this device.`,{scope:'save',kind:'success'});}else feedback.show('save',{id:'storage',kind:'error',text:'Unable to save. Allow this site to use local storage, then try again. Your current progression is still available.'});
 });
-$('load-saved').addEventListener('click',()=>{const p=$('saved').value===''?null:saved[Number($('saved').value)];if(!p)return message('Choose a saved progression first.');stop({silent:true});progression=structuredClone(p.chords);setKey(p.key||'');spec={...progression[0]};selected=0;$('save-name').value=p.name;persistSession();render();renderProgression();message(`Opened “${p.name}”.`);});
-$('delete-saved').addEventListener('click',()=>{if($('saved').value==='')return message('Choose a saved progression first.');const index=Number($('saved').value),updated=saved.filter((_,i)=>i!==index);if(write('progressions',updated)){saved=updated;renderSaved();message('Saved progression deleted. The current progression remains available.');}else message('Unable to update device storage.');});
+$('load-saved').addEventListener('click',()=>{const p=$('saved').value===''?null:saved[Number($('saved').value)];if(!p)return message('Choose a saved progression first.',{scope:'save',kind:'warning',id:'selection'});stop({silent:true});progression=structuredClone(p.chords);setKey(p.key||'');spec={...progression[0]};selected=0;$('save-name').value=p.name;persistSession();render();renderProgression();feedback.clear('save','selection');message(`Opened “${p.name}”.`,{scope:'save',kind:'success'});});
+$('delete-saved').addEventListener('click',()=>{if($('saved').value==='')return message('Choose a saved progression first.',{scope:'save',kind:'warning',id:'selection'});const index=Number($('saved').value),updated=saved.filter((_,i)=>i!==index);if(write('progressions',updated)){saved=updated;renderSaved();feedback.clear('save','storage');feedback.clear('save','selection');message('Saved progression deleted. The current progression remains available.',{scope:'save',kind:'success'});}else feedback.show('save',{id:'storage',kind:'error',text:'Unable to delete the saved progression. Allow local storage and try again.'});});
 renderExercise($('bach-notation'),bachPlan().events);
 $('bach').addEventListener('click',()=>{$('bach-panel').hidden=!$('bach-panel').hidden;if($('bach-panel').hidden&&activePlayback==='bach'){stop({silent:true});renderKeyboard(chord(spec).notes);}if(!$('bach-panel').hidden)$('bach-panel').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});});
 $('close-bach').addEventListener('click',()=>{if(activePlayback==='bach')stop({silent:true});$('bach-panel').hidden=true;$('bach').focus();renderKeyboard(chord(spec).notes);});
-$('play-bach').addEventListener('click',()=>withAudio(()=>playStudy('bach')));
+$('play-bach').addEventListener('click',()=>requestStudy('bach'));
 window.addEventListener('pageshow',()=>audio.refreshStatus());
 window.addEventListener('pagehide',()=>stop({silent:true}));
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop({silent:true});else audio.refreshStatus();});
@@ -213,11 +266,11 @@ window.addEventListener('blur',()=>document.querySelectorAll('.key.pressed').for
 let installPrompt;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('install').hidden=false;});
 $('install').addEventListener('click',async()=>{if(installPrompt){await installPrompt.prompt();installPrompt=null;$('install').hidden=true;}});
-window.addEventListener('appinstalled',()=>{$('install').hidden=true;message('Studio installed.');});
+window.addEventListener('appinstalled',()=>{$('install').hidden=true;message('Studio installed.',{scope:'app',kind:'success'});});
 const connection=()=>{$('connection').textContent=navigator.onLine?'PERSONAL STUDIO':'OFFLINE STUDIO';};
 window.addEventListener('online',connection);window.addEventListener('offline',connection);connection();
 if('serviceWorker' in navigator)navigator.serviceWorker.register(new URL('../service-worker.js',import.meta.url),{scope:new URL('../',import.meta.url).href,updateViaCache:'none'}).then(registration=>{
-  const notify=()=>{if(registration.waiting)message('Studio update downloaded. Close all Studio windows and Home Screen instances, then reopen to use it.');};
+  const notify=()=>{if(registration.waiting)message('Studio update downloaded. Close all Studio windows and Home Screen instances, then reopen to use it.',{scope:'app'});};
   notify();registration.addEventListener('updatefound',()=>registration.installing?.addEventListener('statechange',notify));
-}).catch(()=>message('Offline caching is unavailable. The studio still works while this page is open.'));
+}).catch(()=>message('Offline caching is unavailable. Stay online or reload this page to retry installation.',{scope:'app',kind:'warning'}));
 render();renderProgression();renderSaved();
