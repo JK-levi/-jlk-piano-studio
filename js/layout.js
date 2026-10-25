@@ -5,7 +5,7 @@ const CONTENT={
   studio:['THE PROGRESSION STUDIO','Let one chord lead.','A sequence, a tempo, a little room to play.'],
   practice:['YOUR PRACTICE SPACE','A little more familiar.','Read the notes. Find each key. Take your time.']
 };
-const TITLES={'chord-editor':'Chord editor','theory-details':'Theory & intervals','bach-panel':'Bach study','sequence-editor':'Edit progression','save-panel':'Progression library','sound-settings':'Sound settings','voicing-view':'Selected chord'};
+const TITLES={'chord-editor':'Chord editor','theory-details':'Theory & intervals','bach-panel':'Guided studies','sequence-editor':'Edit progression','save-panel':'Progression library','sound-settings':'Sound settings','voicing-view':'Selected chord','browse-panel':'Browse & Play'};
 const $=id=>document.getElementById(id);
 let frames=[],registry=new Map(),serial=0,loans=[],returnScroll=0,returnFocus=null,rootURL,session,closing=false;
 export const currentView=()=>frames.at(-1)?.id||null;
@@ -35,6 +35,7 @@ function mount(next){
   if(frame){
     $('task-title').textContent=TITLES[id];$('task-body').append($(id));
     if(id==='sequence-editor'){loan('progression',$('edit-cards-slot'));loan('studio-feedback',$('edit-feedback-slot'));}
+    if(id==='browse-panel')loan('studio-feedback',$('browse-feedback-slot'));
     if(id==='save-panel')loan('studio-feedback',$('library-feedback-slot'));
     if(id==='voicing-view'){loan('musical-visuals',$('voicing-visuals-slot'));loan('sequence-transport',$('voicing-transport-slot'));}
     if(id==='bach-panel'){
@@ -68,6 +69,7 @@ export function openView(id){
   history.pushState({...history.state,jlkTaskSession:session,jlkTasks:next.map(f=>f.key)},'',`${rootURL}#${id}`);
   mount(next);
 }
+export function returnToWorkspace(){if(frames.length&&!closing){closing=true;history.go(-frames.length);}}
 export function closeView(){if(frames.length&&!closing){closing=true;history.back();}}
 export function setExperience(mode){
   document.body.dataset.experience=mode;
@@ -96,7 +98,7 @@ export function bindLayout(){
     if(event.shiftKey&&(active===first||!$('task-view').contains(active))){event.preventDefault();last?.focus();}
     else if(!event.shiftKey&&(active===last||!$('task-view').contains(active))){event.preventDefault();first?.focus();}
   });
-  for(const [button,view] of Object.entries({'edit-chord':'chord-editor','theory-open':'theory-details','bach':'bach-panel','toggle-edit':'sequence-editor','open-save':'save-panel','sound-settings-toggle':'sound-settings','view-voicing':'voicing-view','new-progression-chord':'chord-editor','voicing-edit':'chord-editor'}))
+  for(const [button,view] of Object.entries({'browse-open':'browse-panel','edit-chord':'chord-editor','theory-open':'theory-details','bach':'bach-panel','toggle-edit':'sequence-editor','open-save':'save-panel','sound-settings-toggle':'sound-settings','view-voicing':'voicing-view','new-progression-chord':'chord-editor','voicing-edit':'chord-editor'}))
     $(button).addEventListener('click',()=>openView(view));
   document.addEventListener('studio-feedback',event=>{
     const region=event.detail.region;

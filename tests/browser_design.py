@@ -3,9 +3,9 @@ import json
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-from browser_helpers import close_tasks,open_chord_editor,open_settings,open_save,open_sound,inspect_progression
+from browser_helpers import close_tasks,open_chord_editor,open_settings,open_save,open_sound,inspect_progression,choose_preset
 ROOT=Path(__file__).resolve().parents[1]
-OUTPUT=Path(os.environ.get('JLK_SCREENSHOT_DIR',str(ROOT/'docs'/'screenshots'/'v1.2.1')))
+OUTPUT=Path(os.environ.get('JLK_SCREENSHOT_DIR',str(ROOT/'docs'/'screenshots'/'v1.3-a'/'navigation')))
 OUTPUT.mkdir(parents=True,exist_ok=True)
 BASE=os.environ.get('JLK_BASE_URL','http://127.0.0.1:8000/')
 with sync_playwright() as p:
@@ -51,12 +51,12 @@ with sync_playwright() as p:
     page.wait_for_selector('#notation .notehead.sounding');page.tap('#study-stop')
     page.check('#study-loop');page.tap('#replay');page.wait_for_selector('.key.sounding');page.tap('#study-stop');page.uncheck('#study-loop')
     # Bach has its own score, the one shared keyboard and all study controls.
-    page.tap('#bach');assert page.locator('#task-title').inner_text()=='Bach study'
+    page.tap('#bach');page.select_option('#study-picker','bach');assert page.locator('#task-title').inner_text()=='Guided studies'
     assert page.locator('#task-body #keyboard-panel').count()==1
     assert page.locator('#task-body #study-tempo').is_visible()
     page.screenshot(path=str(OUTPUT/'bach-study-mobile.png'))
     page.locator('#bach-transport-slot').scroll_into_view_if_needed();page.screenshot(path=str(OUTPUT/'bach-playback-mobile.png'))
-    page.tap('#play-bach');page.wait_for_selector('#bach-notation .notehead.sounding')
+    page.tap('#play-bach');page.wait_for_selector('#bach-notation .score-sounding')
     page.evaluate('__contexts.at(-1).suspend()')
     page.wait_for_selector('#bach-feedback [role=alert]')
     assert page.locator('#bach-position').inner_text()=='Failed'
@@ -65,7 +65,7 @@ with sync_playwright() as p:
     page.tap('#recover-audio');page.wait_for_function("document.querySelector('#audio-feedback').textContent.includes('Audio engine running')")
     page.tap('#task-back');page.wait_for_function("document.body.dataset.task==='bach-panel'")
     assert page.locator('#bach-feedback [role=alert]').is_visible()
-    page.tap('#play-bach');page.wait_for_selector('#bach-notation .notehead.sounding')
+    page.tap('#play-bach');page.wait_for_selector('#bach-notation .score-sounding')
     assert page.locator('#bach-feedback [role=alert]').count()==0
     page.tap('#stop-bach');page.tap('#task-done');page.wait_for_function("!document.querySelector('#task-view').open")
     assert 'Cmaj7' in page.locator('#chord-heading').inner_text()
@@ -94,7 +94,7 @@ with sync_playwright() as p:
     close_tasks(page);open_settings(page);page.tap('#clear-progression');close_tasks(page)
     assert page.locator('#sequence-play').is_disabled() and page.locator('#sequence-empty').is_visible()
     open_save(page);page.tap('#load-saved');assert page.locator('.chord-select').count()==5
-    page.select_option('#preset','0');page.tap('#load-preset');page.tap('#delete-saved');assert page.locator('#saved option').count()==1
+    choose_preset(page,'0');page.tap('#delete-saved');assert page.locator('#saved option').count()==1
     page.fill('#save-name','Saved for tomorrow');page.tap('#save-progression');close_tasks(page)
     page.fill('#tempo','180');page.locator('#tempo').dispatch_event('change')
     # Inspecting a playing chord does not interrupt the sequence. Its one
@@ -134,9 +134,9 @@ with sync_playwright() as p:
     open_chord_editor(page);page.select_option('#root','Bb');page.select_option('#quality','minor9');close_tasks(page)
     page.tap('#play-chord');page.wait_for_selector('.key.sounding');page.tap('#study-stop')
     open_save(page);assert 'Saved for tomorrow' in page.locator('#saved').inner_text();page.select_option('#saved','0');page.tap('#load-saved');close_tasks(page)
-    page.get_by_role('button',name='Explore',exact=True).click();page.tap('#bach');page.tap('#play-bach');page.wait_for_selector('#bach-notation .notehead.sounding');page.tap('#stop-bach');close_tasks(page)
+    page.get_by_role('button',name='Explore',exact=True).click();page.tap('#bach');page.select_option('#study-picker','bach');page.tap('#play-bach');page.wait_for_selector('#bach-notation .score-sounding');page.tap('#stop-bach');close_tasks(page)
     page.reload();page.wait_for_selector('.key');assert page.locator('#root').input_value()=='Bb' and page.locator('#quality').input_value()=='minor9'
-    assert page.evaluate("caches.keys().then(keys=>keys.includes('jlk-studio-v1.2.1'))")
+    assert page.evaluate("caches.keys().then(keys=>keys.includes('jlk-studio-v1.3-a'))")
     assert not errors,errors
     print(json.dumps({'navigation':'full-screen tasks, Back/Done, Escape, browser Back/Forward, nested recovery and editor return','state':'focus/scroll/chord/preferences/attempts and legacy saves preserved; single DOM owners','playback':'block/arpeggio/loop, Bach, progression inspection/pause/resume/stop, offline audio','screenshots':'Explore, Chord Editor, Progressions, Practice, Bach Study at 390px','layout':'320/390/430/768/1440px without page or task overflow','page_errors':errors},indent=2))
     context.close();browser.close()

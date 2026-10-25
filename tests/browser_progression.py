@@ -1,4 +1,4 @@
-from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression
+from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression, choose_preset
 """Full default-progression graph/transport and scoped-feedback regression test."""
 import json
 import math
@@ -120,7 +120,7 @@ with sync_playwright() as p:
     assert page.locator('#save-name').get_attribute('aria-invalid')=='true'
     page.fill('#save-name','My practice');page.tap('#save-progression')
     assert 'No chords to save' in page.locator('#save-feedback').inner_text()
-    page.tap('#load-preset');page.evaluate('window.__denyStorage=true');page.tap('#save-progression')
+    choose_preset(page,'0');page.evaluate('window.__denyStorage=true');page.tap('#save-progression')
     assert 'Unable to save' in page.locator('#save-feedback [role=alert]').inner_text()
     page.evaluate('window.__denyStorage=false');page.tap('#save-progression')
     assert page.locator('#save-feedback [role=alert]').count()==0
