@@ -66,13 +66,13 @@ with sync_playwright() as p:
     page.wait_for_function("document.querySelector('#position').textContent==='Complete'",timeout=5000)
     page.reload();page.wait_for_selector('.key');assert page.locator('.chord-select').count()==1
     page.get_by_role('button',name='Progression studio',exact=True).click();page.select_option('#saved','0');page.click('#load-saved');assert page.locator('.chord-select').count()==5
-    page.click('#bach');page.click('#play-bach');assert page.locator('#bach-notation svg').count()==1
+    page.click('#bach');page.click('#play-bach');assert page.locator('#bach-notation svg').count()==2
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':320,'height':740})
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':390,'height':844})
     page.wait_for_function('!!navigator.serviceWorker.controller')
-    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1' in cache
+    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.1' in cache
     context.set_offline(True);page.reload();page.wait_for_selector('.key');assert page.locator('.key').count()>20
     assert 'OFFLINE' in page.locator('#connection').inner_text()
     context.set_offline(False)
