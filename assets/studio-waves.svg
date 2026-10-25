@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1800" preserveAspectRatio="xMidYMid slice">
+<defs>
+ <linearGradient id="paper" x2=".8" y2="1"><stop stop-color="#f0eeeb"/><stop offset=".55" stop-color="#d6d4d1"/><stop offset="1" stop-color="#eceae7"/></linearGradient>
+ <linearGradient id="fold" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#777774" stop-opacity=".44"/><stop offset=".47" stop-color="#faf9f6" stop-opacity=".8"/><stop offset=".57" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#7c7b79" stop-opacity=".22"/></linearGradient>
+ <linearGradient id="edge" x1="0" x2="1" y2="1"><stop stop-color="#525352" stop-opacity=".3"/><stop offset=".53" stop-color="#f9f8f5" stop-opacity=".6"/><stop offset="1" stop-color="#c4c2bf" stop-opacity="0"/></linearGradient>
+</defs>
+<path fill="url(#paper)" d="M0 0h1600v1800H0z"/>
+<path fill="url(#fold)" d="M-200 100C350 70 560 680 1100 500S1610 100 1850 260V800C1270 530 1020 1090 460 720S-90 620-200 720Z"/>
+<path fill="url(#edge)" d="M-200 780C260 730 660 1380 1150 1050S1630 890 1810 1050V1510C1300 1110 1040 1660 510 1320S-80 1200-200 1270Z"/>
+<path fill="url(#fold)" opacity=".55" d="M-160 1340C300 1190 780 1950 1710 1430V1800H-160Z"/>
+</svg>

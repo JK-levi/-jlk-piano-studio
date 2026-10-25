@@ -16,17 +16,17 @@ function clef(svg,type,x,y) {
   }
 }
 export function renderNotation(container,notes,{labels=true,figure=false}={}) {
-  const svg=el('svg',{viewBox:'0 0 660 268',role:'img','aria-label':`${figure?'Broken chord':'Grand staff'}: ${notes.map(n=>pretty(n.fullName)).join(', ')}`});
+  const svg=el('svg',{viewBox:'0 0 540 268',role:'img','aria-label':`${figure?'Broken chord':'Grand staff'}: ${notes.map(n=>pretty(n.fullName)).join(', ')}`});
   const highest = Math.min(0, ...notes.map(n=>staffPosition(n,n.midi<60?'bass':'treble')-38));
-  svg.setAttribute('viewBox', `0 ${highest} 660 ${268-highest}`);
+  svg.setAttribute('viewBox', `0 ${highest} 540 ${268-highest}`);
   svg.append(el('title',{},`${notes.map(n=>pretty(n.fullName)).join(', ')}. Middle C is C4.`));
   for(const [type,top] of [['treble',66],['bass',166]]) {
-    for(let i=0;i<5;i++) svg.append(el('line',{x1:32,x2:628,y1:top+10*i,y2:top+10*i,stroke:'#8b908e','stroke-width':0.9}));
+    for(let i=0;i<5;i++) svg.append(el('line',{x1:32,x2:508,y1:top+10*i,y2:top+10*i,stroke:'#8b908e','stroke-width':0.9}));
     clef(svg,type,43,top);
   }
   svg.append(el('path',{d:'M 26 63 Q 8 91 26 132 Q 8 171 26 209',fill:'none',stroke:'#25303b','stroke-width':2}));
   svg.append(el('line',{x1:32,x2:32,y1:66,y2:206,stroke:'#25303b'}));
-  svg.append(el('line',{x1:628,x2:628,y1:66,y2:206,stroke:'#25303b'}));
+  svg.append(el('line',{x1:508,x2:508,y1:66,y2:206,stroke:'#25303b'}));
   const groups={treble:[],bass:[]};
   notes.forEach((n,i)=>groups[n.midi<60?'bass':'treble'].push({...n,i}));
   for (const [type,items] of Object.entries(groups)) {
@@ -35,19 +35,19 @@ export function renderNotation(container,notes,{labels=true,figure=false}={}) {
     sorted.forEach((note,index)=>{
       const y=staffPosition(note,type);
       shifted=Math.abs(prevY-y)<10?!shifted:false; prevY=y;
-      const x=figure?134+note.i*100:340+(shifted?12:0);
+      const x=figure?134+note.i*100:280+(shifted?12:0);
       const top=type==='treble'?66:166, bottom=top+40;
       for(let ly=bottom+10;ly<=y;ly+=10) svg.append(el('line',{x1:x-13,x2:x+13,y1:ly,y2:ly,stroke:'#25303b','stroke-width':1.1}));
       for(let ly=top-10;ly>=y;ly-=10) svg.append(el('line',{x1:x-13,x2:x+13,y1:ly,y2:ly,stroke:'#25303b','stroke-width':1.1}));
       if(note.accidental) {
         const sign=note.accidental>0?'♯'.repeat(note.accidental):'♭'.repeat(-note.accidental);
-        svg.append(el('text',{x:figure?x-20:305-index*19,y:y+6,'font-size':23,'text-anchor':'end',fill:'#25303b','font-family':'Georgia, serif'},sign));
+        svg.append(el('text',{x:figure?x-20:245-index*19,y:y+6,'font-size':23,'text-anchor':'end',fill:'#25303b','font-family':'Georgia, serif'},sign));
       }
       svg.append(el('ellipse',{'data-midi':note.midi,class:'notehead',cx:x,cy:y,rx:7.1,ry:4.7,transform:`rotate(-18 ${x} ${y})`,fill:'#25303b'}));
       svg.append(el('line',{x1:x+6,x2:x+6,y1:y,y2:y-30,stroke:'#25303b','stroke-width':1.4}));
       if(labels) {
         // A separate, aligned reading guide avoids labels obscuring stacked notes.
-        const labelX=figure?x:158+note.i*(340/Math.max(notes.length-1,1));
+        const labelX=figure?x:130+note.i*(290/Math.max(notes.length-1,1));
         svg.append(el('text',{x:labelX,y:figure?35:244,'text-anchor':'middle','font-size':15,'font-family':'system-ui',fill:'#685440'},pretty(note.fullName)));
         if(!figure) svg.append(el('text',{x:labelX,y:261,'text-anchor':'middle','font-size':9,'font-family':'system-ui',fill:'#737b80'},String(note.i+1)));
       }

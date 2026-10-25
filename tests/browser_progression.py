@@ -1,3 +1,4 @@
+from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence
 """Full default-progression graph/transport and scoped-feedback regression test."""
 import json
 import math
@@ -25,7 +26,7 @@ with sync_playwright() as p:
     page=context.new_page();errors=[]
     page.on('pageerror',lambda error:errors.append(str(error)))
     page.goto(os.environ.get('JLK_BASE_URL','http://127.0.0.1:8000/'))
-    page.get_by_role('button',name='Progression studio',exact=True).tap()
+    page.get_by_role('button',name='Progressions',exact=True).tap()
     assert page.locator('.chord-select').count()==4
     assert page.evaluate('__contexts.length')==0
     page.fill('#tempo','180');page.locator('#tempo').dispatch_event('change')
@@ -66,7 +67,8 @@ with sync_playwright() as p:
     assert page.locator('.sounding').count()==0
     before=page.evaluate('__events.length');page.wait_for_timeout(250);assert page.evaluate('__events.length')==before
     # Broken pattern, loop, tempo and metronome remain available.
-    page.tap('#clear-progression');page.tap('#add-chord');page.select_option('#pattern','broken');page.check('#sequence-loop');page.check('#metronome')
+    open_settings(page)
+    page.tap('#clear-progression');open_chord_editor(page);page.tap('#add-chord');page.select_option('#pattern','broken');page.check('#sequence-loop');page.check('#metronome')
     page.tap('#sequence-play');page.wait_for_timeout(1700)
     assert 'Loop' in page.locator('#position').inner_text()
     page.tap('#sequence-stop');page.uncheck('#sequence-loop')
@@ -78,6 +80,7 @@ with sync_playwright() as p:
     error=page.locator('#sequence-feedback [role=alert]');assert error.is_visible()
     assert 'Recover audio' in error.inner_text()
     page.tap('#sequence-stop');assert error.is_visible()
+    open_sound(page)
     page.tap('#recover-audio');assert error.is_visible()
     page.tap('#sequence-play');page.wait_for_selector('.key.sounding')
     assert page.locator('#sequence-feedback [role=alert]').count()==0
@@ -96,9 +99,9 @@ with sync_playwright() as p:
     assert page.locator('#position').inner_text()=='Failed'
     page.locator('#sequence-feedback').scroll_into_view_if_needed()
     page.screenshot(path=str(Path(tempfile.gettempdir())/'jlk-progression-error.png'))
-    assert page.locator('#sequence-feedback button').is_visible()
+    assert page.locator('#sequence-feedback button',has_text='Dismiss').is_visible()
     page.wait_for_timeout(100);assert page.locator('#sequence-feedback [role=alert]').count()==1
-    page.locator('#sequence-feedback button').tap();assert page.locator('#sequence-feedback [role=alert]').count()==0
+    page.locator('#sequence-feedback button',has_text='Dismiss').tap();assert page.locator('#sequence-feedback [role=alert]').count()==0
     # Invalid/missing input is not silently clamped or defaulted.
     for value in ['', '39', '181', '80.5']:
         page.fill('#tempo',value);page.tap('#sequence-play')
@@ -106,9 +109,11 @@ with sync_playwright() as p:
         assert page.locator('#tempo').get_attribute('aria-invalid')=='true'
     page.fill('#tempo','80');page.locator('#tempo').dispatch_event('change')
     assert page.locator('#sequence-feedback [role=alert]').count()==0
+    open_settings(page)
     page.tap('#clear-progression');assert page.locator('#sequence-play').is_disabled()
     assert page.locator('#sequence-empty').is_visible()
     assert 'No chords loaded' in page.locator('#sequence-empty').inner_text()
+    open_save(page)
     page.fill('#save-name','');page.tap('#save-progression')
     assert page.locator('#save-feedback [role=alert]').is_visible()
     assert page.locator('#save-name').get_attribute('aria-invalid')=='true'
@@ -120,7 +125,7 @@ with sync_playwright() as p:
     assert page.locator('#save-feedback [role=alert]').count()==0
     assert 'saved on this device' in page.locator('#save-feedback').inner_text()
     # Reuse the same severity/message semantics beside study and practice actions.
-    page.get_by_role('button',name='Chord explorer',exact=True).tap()
+    page.get_by_role('button',name='Explore',exact=True).tap()
     page.fill('#study-tempo','0');page.tap('#play-arpeggio')
     assert 'Invalid tempo' in page.locator('#study-feedback [role=alert]').inner_text()
     page.get_by_role('button',name='Practice',exact=True).tap()
