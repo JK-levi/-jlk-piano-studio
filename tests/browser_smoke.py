@@ -1,3 +1,4 @@
+from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence
 from playwright.sync_api import sync_playwright
 import json
 import os
@@ -30,6 +31,7 @@ with sync_playwright() as p:
     assert page.locator('#note-summary').inner_text()=='C4 · E4 · G4'
     page.screenshot(path=str(Path(tempfile.gettempdir())/'jlk-mobile.png'),full_page=True)
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+    open_chord_editor(page)
     page.select_option('#root','Bb');page.select_option('#quality','minor9')
     assert page.locator('#note-summary').inner_text()=='B♭4 · D♭5 · F5 · A♭5 · C6'
     assert page.locator('.key.selected').count()==5
@@ -44,35 +46,43 @@ with sync_playwright() as p:
     assert page.locator('.key.selected').count()==0
     page.click('#reveal');assert page.locator('.key.selected').count()==5
     page.click('#reveal');assert page.locator('.key.selected').count()==0
-    page.get_by_role('button',name='Progression studio',exact=True).click()
+    page.get_by_role('button',name='Progressions',exact=True).click()
     assert page.locator('.chord-select').count()==4
+    open_chord_editor(page)
     page.click('#add-chord');assert page.locator('.chord-select').count()==5
+    edit_sequence(page)
     page.get_by_role('button',name='Duplicate chord 1',exact=True).click();assert page.locator('.chord-select').count()==6
     page.get_by_role('button',name='Move chord 1 later',exact=True).click()
     page.get_by_role('button',name='Remove chord 6',exact=True).click();assert page.locator('.chord-select').count()==5
+    open_save(page)
     page.fill('#save-name','Evening <study>');page.click('#save-progression')
     assert 'saved on this device' in page.locator('#save-feedback').inner_text()
+    open_settings(page)
     page.click('#clear-progression');assert page.locator('.chord-select').count()==0
     page.click('#load-saved');assert page.locator('.chord-select').count()==5
+    open_settings(page)
     page.click('#transpose-down');page.click('#transpose-up')
     page.fill('#tempo','180');page.locator('#tempo').dispatch_event('change')
+    open_settings(page)
     page.check('#metronome');page.select_option('#pattern','broken')
     page.click('#sequence-play');page.wait_for_function("document.querySelector('#position').textContent.includes('Beat')")
     page.click('#sequence-pause');assert 'Paused' in page.locator('#position').inner_text()
     page.click('#sequence-play');page.wait_for_timeout(400);page.click('#sequence-stop')
     assert page.locator('#position').inner_text()=='Stopped'
     # A full single-chord playthrough at 180 BPM takes 1.34 seconds.
+    open_settings(page)
     page.click('#clear-progression');page.click('#add-chord');page.click('#sequence-play')
     page.wait_for_function("document.querySelector('#position').textContent==='Complete'",timeout=5000)
     page.reload();page.wait_for_selector('.key');assert page.locator('.chord-select').count()==1
-    page.get_by_role('button',name='Progression studio',exact=True).click();page.select_option('#saved','0');page.click('#load-saved');assert page.locator('.chord-select').count()==5
+    page.get_by_role('button',name='Progressions',exact=True).click();open_save(page);page.select_option('#saved','0');page.click('#load-saved');assert page.locator('.chord-select').count()==5
+    page.get_by_role('button',name='Explore',exact=True).click()
     page.click('#bach');page.click('#play-bach');assert page.locator('#bach-notation svg').count()==2
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':320,'height':740})
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':390,'height':844})
     page.wait_for_function('!!navigator.serviceWorker.controller')
-    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.1.1' in cache
+    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.2' in cache
     context.set_offline(True);page.reload();page.wait_for_selector('.key');assert page.locator('.key').count()>20
     assert 'OFFLINE' in page.locator('#connection').inner_text()
     context.set_offline(False)

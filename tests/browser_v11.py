@@ -1,3 +1,4 @@
+from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence
 """Optional Chromium integration checks; run alongside the static preview server."""
 import functools
 import http.server
@@ -30,6 +31,7 @@ with sync_playwright() as p:
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.goto(BASE)
     assert page.evaluate('window.__contexts.length') == 0
+    open_sound(page)
     page.tap('#test-sound')
     page.wait_for_function("document.querySelector('#audio-feedback').textContent.includes('Test notes scheduled')")
     # Observe a nonzero synthesized waveform, without claiming device audibility.
@@ -46,9 +48,12 @@ with sync_playwright() as p:
     page.evaluate("""() => { const c=window.__contexts.at(-1); c.simulatedState='interrupted'; c.blockResume=true; }""")
     page.tap('#play-chord')
     page.wait_for_function("!!document.querySelector('#study-feedback [role=alert]')")
-    assert 'interrupted' in page.locator('#study-feedback').inner_text()
+    assert 'Recover audio' in page.locator('#study-feedback').inner_text()
+    assert 'interrupted' in page.locator('#audio-status').inner_text()
+    open_sound(page)
     page.tap('#recover-audio')
     page.wait_for_function('window.__contexts.length === 2')
+    open_sound(page)
     page.tap('#test-sound')
     page.wait_for_function("document.querySelector('#audio-feedback').textContent.includes('Test notes scheduled')")
     page.tap('#study-stop')
@@ -85,11 +90,14 @@ with sync_playwright() as p:
     assert 'Chord complete' in page.locator('#practice-progress').inner_text()
     assert page.locator('.key.selected').count() == 0
     page.tap('#practice-reset');assert '0 of 3' in page.locator('#practice-progress').inner_text()
-    page.get_by_role('button',name='Progression studio',exact=True).tap()
+    page.get_by_role('button',name='Progressions',exact=True).tap()
+    open_settings(page)
+    open_chord_editor(page)
     page.select_option('#preset','4');page.tap('#load-preset')
     assert page.locator('.roman').all_text_contents() == ['i','VI','iv','V7']
     page.fill('#tempo','180');page.locator('#tempo').dispatch_event('change')
-    page.tap('#clear-progression');page.tap('#add-chord');page.check('#sequence-loop')
+    open_settings(page)
+    page.tap('#clear-progression');open_chord_editor(page);page.tap('#add-chord');page.check('#sequence-loop')
     page.tap('#sequence-play');page.wait_for_timeout(1800)
     assert 'Loop' in page.locator('#position').inner_text()
     assert not page.locator('#sequence-pause').is_disabled()
@@ -118,7 +126,7 @@ with sync_playwright() as p:
         old.goto(url);old.wait_for_function('!!navigator.serviceWorker.controller')
         legacy=[{'name':'From version 1','chords':[{'root':'C','quality':'major','octave':4,'inversion':0,'voicing':'close'}]}]
         old.evaluate('(saves)=>localStorage.setItem("jlk-studio-v1-progressions",JSON.stringify(saves))',legacy)
-        for name in ['index.html','styles.css','manifest.webmanifest','service-worker.js','js','icons']:
+        for name in ['index.html','styles.css','manifest.webmanifest','service-worker.js','js','icons','assets']:
             source=ROOT/name
             if source.is_dir(): shutil.copytree(source,dest/name,dirs_exist_ok=True)
             else: shutil.copy2(source,dest/name)
@@ -136,21 +144,21 @@ with sync_playwright() as p:
           const deadline=Date.now()+10000;
           async function check() {
             const keys=await caches.keys();
-            if(keys.includes('jlk-studio-v1.1.1')&&!keys.includes('jlk-studio-v1'))return resolve();
+            if(keys.includes('jlk-studio-v1.2')&&!keys.includes('jlk-studio-v1'))return resolve();
             if(Date.now()>deadline)return reject(new Error('New worker did not finish cache cleanup'));
             setTimeout(check,25);
           }
           check();
         })""")
         fresh=upgrade.new_page();fresh.goto(url)
-        fresh.wait_for_selector('#test-sound')
-        fresh.wait_for_function("caches.keys().then(keys=>keys.includes('jlk-studio-v1.1.1')&&!keys.includes('jlk-studio-v1'))")
-        fresh.get_by_role('button',name='Progression studio',exact=True).click()
+        fresh.wait_for_selector('#test-sound',state='attached')
+        fresh.wait_for_function("caches.keys().then(keys=>keys.includes('jlk-studio-v1.2')&&!keys.includes('jlk-studio-v1'))")
+        fresh.get_by_role('button',name='Progressions',exact=True).click()
         assert fresh.locator('#saved option').all_text_contents() == ['Choose a saved progression','From version 1']
-        fresh.select_option('#saved','0');fresh.click('#load-saved')
+        open_save(fresh);fresh.select_option('#saved','0');fresh.click('#load-saved')
         assert fresh.locator('.chord-select').count() == 1
-        upgrade.set_offline(True);fresh.reload();fresh.wait_for_selector('#test-sound')
-        fresh.click('#test-sound');fresh.wait_for_selector('.key.sounding')
+        upgrade.set_offline(True);fresh.reload();fresh.wait_for_selector('#test-sound',state='attached')
+        open_sound(fresh);fresh.click('#test-sound');fresh.wait_for_selector('.key.sounding')
         upgrade.close();server.shutdown();server.server_close()
     browser.close()
     print(json.dumps({'audio':'nonzero waveform, suspend/resume, rejected interrupted state and recovery', 'visuals':'staff/keyboard synchronized, repeat and stop cleanup', 'practice':'octave attempts, duplicate rejection, hints and reset', 'layout':'320/390/768/1440 px without page overflow', 'offline':'old worker update, new cache, legacy saves and offline audio', 'page_errors':errors},indent=2))

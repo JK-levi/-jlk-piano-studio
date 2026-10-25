@@ -7,6 +7,7 @@ import { chordPlan, bachPlan, bachNotes, brokenEvents, progressionPlan } from '.
 import { Practice } from './practice.js';
 import { PRESETS, romanNumeral } from './progressions.js';
 import { Feedback, validTempo } from './feedback.js';
+import { bindLayout, setExperience } from './layout.js';
 const $ = id => document.getElementById(id);
 const base = {root:'C',quality:'major',octave:4,inversion:0,voicing:'close'};
 const prefs=read('preferences',{});
@@ -21,6 +22,9 @@ let studyKind='chord', activePlayback=null, pausedChord=0, practiceSignature='',
 const practice=new Practice();
 const player=new Playback({audio});
 const feedback=new Feedback();
+bindLayout();
+let sequenceName=read('session-name',null);
+if(typeof sequenceName!=='string'||sequenceName.length>60)sequenceName=PRESETS.find(p=>JSON.stringify(p.chords)===JSON.stringify(progression))?.name.split(' · ')[0]||'Your progression';
 let activeScope=null,pendingScope=null;
 const playbackStates=new Map();
 function message(text,{scope=mode==='studio'?'studio':mode==='practice'?'practice':'study',kind='info',id='notice'}={}){feedback.show(scope,{kind,id,text});}
@@ -28,16 +32,19 @@ function playbackStatus(scope,state,detail=''){
   playbackStates.set(scope,state);
   const target={sequence:'position',study:'study-position',bach:'bach-position',practice:'practice-position',audio:'audio-playback-status'}[scope];
   if(target){$(target).textContent=state+(detail?' · '+detail:'');$(target).dataset.state=state;}
+  if(scope==='practice'){$('study-position').textContent=state+(detail?' · '+detail:'');$('study-position').dataset.state=state;}
 }
 function checkTempo(field,scope){
-  if(validTempo($(field).value)){feedback.clear(scope,'tempo');return true;}
+  if(validTempo($(field).value)){const invalid=$(field).hasAttribute('aria-invalid');feedback.clear(scope,'tempo');if(invalid&&!feedback.entries.has(`${scope}:audio`))playbackStatus(scope,'Stopped');return true;}
+  playbackStatus(scope,'Failed');
   feedback.show(scope,{id:'tempo',kind:'error',text:'Invalid tempo. Enter a whole-number value between 40 and 180 BPM.',field});
   return false;
 }
 function playbackFailure(error,scope=activeScope||pendingScope||'study'){
   audioRequest++;player.stop();playing=false;paused=false;activePlayback=null;activeScope=null;pendingScope=null;activeIndex=-1;
   transport();renderProgression();playbackStatus(scope,'Failed');
-  feedback.show(scope,{id:'audio',kind:'error',text:`Unable to start or continue audio. Tap Recover audio, then try Play again. ${error.message}`});
+  $('audio-status').textContent=error.message;
+  feedback.show(scope,{id:'audio',kind:'error',text:'Unable to start or continue audio. Open Sound settings, tap Recover audio, then try Play again.',action:{label:'Sound settings',run:()=>{$('sound-settings').hidden=false;$('sound-settings-toggle').setAttribute('aria-expanded','true');$('sound-settings').scrollIntoView({block:'start',behavior:'instant'});}}});
 }
 
 function option(value,label){const n=document.createElement('option');n.value=value;n.textContent=label;return n;}
@@ -52,7 +59,7 @@ if(Number.isFinite(prefs?.tempo)) $('tempo').value=Math.min(180,Math.max(40,pref
 if(Number.isFinite(prefs?.studyTempo)) $('study-tempo').value=Math.min(180,Math.max(40,prefs.studyTempo));
 if(['block','broken'].includes(prefs?.pattern)) $('pattern').value=prefs.pattern;
 function persistPrefs(){const data={spec,tempo:validTempo($('tempo').value)?tempo():read('preferences',{}).tempo||80,pattern:$('pattern').value,studyTempo:validTempo($('study-tempo').value)?studyTempo():read('preferences',{}).studyTempo||80};for(const id of ['staff-labels','key-labels','metronome','voice-leading','study-loop','sequence-loop'])data[id]=$(id).checked;write('preferences',data);}
-function persistSession(){write('session-key',$('analysis-key').value);if(!write('session',progression))message('Device storage is unavailable. This session still works, but changes will not survive a reload.',{kind:'warning',id:'storage'});}
+function persistSession(){write('session-name',sequenceName);write('session-key',$('analysis-key').value);if(!write('session',progression))message('Device storage is unavailable. This session still works, but changes will not survive a reload.',{kind:'warning',id:'storage'});}
 function tempo(){return Number($('tempo').value);}
 function studyTempo(){return Number($('study-tempo').value);}
 function syncControls(){
@@ -74,6 +81,7 @@ function render(){
   $('explanation').textContent=`${pretty(spec.root+c.quality.symbol)} = ${chord({...spec,inversion:0,voicing:'close'}).notes.map(n=>pretty(n.name)).join(', ')}. ${c.quality.description}`;
   renderKeyboard(c.notes);
   $('reveal').textContent=revealed?'Hide keys':'Reveal keys';
+  $('bach-tempo-description').textContent=`${$('study-tempo').value||'—'} BPM`;
 }
 function renderKeyboard(notes){
   const min=Math.min(...notes.map(n=>n.midi)),max=Math.max(...notes.map(n=>n.midi));
@@ -142,13 +150,14 @@ function renderSheet(notes=chord(spec).notes){
 }
 function updatePractice(feedback=''){
   $('practice-progress').textContent=practice.progress+(feedback?' · '+feedback:'');
+  $('practice-meter').max=practice.notes.length||1;$('practice-meter').value=practice.found.size;
 }
 function startPlayback(plan,kind,{fromBeat=0,scope=kind==='progression'?'sequence':kind==='bach'?'bach':kind==='key'?'keyboard':mode==='practice'?'practice':'study'}={}){
   activePlayback=kind;activeScope=scope;
   const isSequence=kind==='progression';
   const loop=kind!=='key'&&(isSequence?$('sequence-loop').checked:$('study-loop').checked);
   player.start(plan,{bpm:kind==='key'?100:isSequence?tempo():studyTempo(),loop,fromBeat,
-    onScheduled({count}){if(count===1){feedback.clear(scope,'audio');playbackStatus(scope,'Playing','Events scheduled; device output unverified');}},
+    onScheduled({count}){if(count===1){feedback.clear(scope,'audio');playbackStatus(scope,'Playing');}},
     onFrame(events,beat){
       if(beat===null){clearHighlights();return;}
       if(isSequence){
@@ -194,7 +203,7 @@ function requestStudy(kind){
   withAudio(()=>playStudy(kind),{scope});
 }
 $('replay').addEventListener('click',()=>requestStudy(studyKind));
-$('study-tempo').addEventListener('change',()=>{stop({silent:true});if(checkTempo('study-tempo','study'))persistPrefs();});
+$('study-tempo').addEventListener('change',()=>{stop({silent:true});if(checkTempo('study-tempo',mode==='practice'?'practice':'study'))persistPrefs();$('bach-tempo-description').textContent=`${$('study-tempo').value||'—'} BPM`;});
 for(const id of ['study-loop','sequence-loop'])$(id).addEventListener('change',()=>{stop({silent:true});persistPrefs();});
 $('analysis-key').addEventListener('change',()=>{stop({silent:true});persistSession();renderProgression();});
 $('practice-hint').addEventListener('click',()=>{hintMidi=practice.hint?.midi??null;updatePractice(practice.hint?`Try ${pretty(practice.hint.fullName)}.`:'All notes found.');renderKeyboard(chord(spec).notes);});
@@ -203,7 +212,7 @@ function changeSpec(){stop({silent:true});spec={root:$('root').value,quality:$('
 for(const id of ['root','quality','inversion','octave','voicing'])$(id).addEventListener('change',changeSpec);
 for(const id of ['staff-labels','key-labels'])$(id).addEventListener('change',()=>{stop({silent:true});persistPrefs();render();renderExercise($('bach-notation'),bachPlan().events,{labels:$('staff-labels').checked});});
 for(const id of ['tempo','pattern','metronome','voice-leading'])$(id).addEventListener('change',()=>{stop({silent:true});if(id!=='tempo'||checkTempo('tempo','sequence'))persistPrefs();});
-function setMode(value){stop({silent:true});mode=value;revealed=false;studyKind='chord';practiceSignature='';document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===mode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});$('practice-banner').hidden=mode!=='practice';$('studio-panel').hidden=mode!=='studio';render();}
+function setMode(value){stop({silent:true});mode=value;revealed=false;studyKind='chord';practiceSignature='';setExperience(mode);$('practice-banner').hidden=mode!=='practice';$('studio-panel').hidden=mode!=='studio';if(mode==='studio'&&progression[selected])spec={...progression[selected]};render();}
 document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
 $('reveal').addEventListener('click',()=>{revealed=!revealed;render();});
 $('next-chord').addEventListener('click',()=>{stop({silent:true});practiceSignature='';const keys=Object.keys(QUALITIES);spec={...spec,root:ROOTS[Math.floor(Math.random()*ROOTS.length)],quality:keys[Math.floor(Math.random()*keys.length)],inversion:0};revealed=false;persistPrefs();render();});
@@ -211,6 +220,9 @@ $('play-chord').addEventListener('click',()=>requestStudy('chord'));
 $('play-arpeggio').addEventListener('click',()=>requestStudy('arpeggio'));
 function actionButton(text,label,fn,disabled=false){const b=document.createElement('button');b.textContent=text;b.setAttribute('aria-label',label);b.disabled=disabled;b.addEventListener('click',fn);return b;}
 function renderProgression(){
+  $('studio-title').textContent=sequenceName;
+  const keyLabel=$('analysis-key').selectedOptions[0]?.textContent||'No defined key';
+  $('progression-key').textContent=`${keyLabel} · ${progression.length} ${progression.length===1?'chord':'chords'}`;
   $('progression').replaceChildren();
   progression.forEach((s,i)=>{
     const li=document.createElement('li');li.classList.toggle('current',i===selected);li.classList.toggle('sounding',i===activeIndex);
@@ -224,8 +236,8 @@ function renderProgression(){
   transport();
 }
 $('add-chord').addEventListener('click',()=>{if(progression.length>=64)return message('A progression can contain up to 64 chords. Remove a chord before adding another.',{scope:'studio',kind:'warning',id:'limit'});stop({silent:true});progression.push({...spec});selected=progression.length-1;persistSession();setMode('studio');renderProgression();message(`${pretty(chord(spec).symbol)} added to your progression.`,{scope:'studio',kind:'success'});});
-$('load-preset').addEventListener('click',()=>{stop({silent:true});progression=structuredClone(presets[Number($('preset').value)]);setKey(PRESETS[Number($('preset').value)].key);selected=0;spec={...progression[0]};persistSession();render();renderProgression();feedback.clear('save','chords');feedback.clear('sequence','empty');message('Starting point loaded. Your named saves are unchanged.',{scope:'studio',kind:'success'});});
-$('clear-progression').addEventListener('click',()=>{stop({silent:true});progression=[];selected=0;persistSession();renderProgression();});
+$('load-preset').addEventListener('click',()=>{stop({silent:true});progression=structuredClone(presets[Number($('preset').value)]);sequenceName=PRESETS[Number($('preset').value)].name.split(' · ')[0];setKey(PRESETS[Number($('preset').value)].key);selected=0;spec={...progression[0]};persistSession();render();renderProgression();feedback.clear('save','chords');feedback.clear('sequence','empty');feedback.clearSuccess('save');message('Starting point loaded. Your named saves are unchanged.',{scope:'studio',kind:'success'});});
+$('clear-progression').addEventListener('click',()=>{stop({silent:true});progression=[];sequenceName='Your progression';selected=0;persistSession();renderProgression();});
 function transposition(amount){stop({silent:true});const key=$('analysis-key').value;if(key){const minor=key.endsWith('m');setKey(transpose({...base,root:minor?key.slice(0,-1):key},amount).root+(minor?'m':''));}let previous=null;progression=progression.map(s=>{let next=transpose(s,amount);if($('voice-leading').checked)next=voiceLead(next,previous);previous=chord(next).notes;return next;});spec={...(progression[selected]||transpose(spec,amount))};persistSession();persistPrefs();render();renderProgression();message(`Progression transposed ${amount>0?'up':'down'} one semitone.`);}
 $('transpose-up').addEventListener('click',()=>transposition(1));$('transpose-down').addEventListener('click',()=>transposition(-1));
 $('sequence-play').addEventListener('click',()=>{
@@ -251,14 +263,15 @@ $('save-progression').addEventListener('click',()=>{
   const entry={name,key:$('analysis-key').value,chords:structuredClone(progression)},index=saved.findIndex(p=>p.name===name);
   if(index===-1&&saved.length>=50)return message('Your device has 50 saved progressions. Delete one before adding another.',{scope:'save',kind:'warning',id:'limit'});
   const updated=structuredClone(saved);if(index<0)updated.push(entry);else updated[index]=entry;
-  if(write('progressions',updated)){saved=updated;renderSaved();$('saved').value=index<0?saved.length-1:index;feedback.clear('save','storage');feedback.clear('save','limit');message(`“${name}” saved on this device.`,{scope:'save',kind:'success'});}else feedback.show('save',{id:'storage',kind:'error',text:'Unable to save. Allow this site to use local storage, then try again. Your current progression is still available.'});
+  if(write('progressions',updated)){sequenceName=name;persistSession();renderProgression();saved=updated;renderSaved();$('saved').value=index<0?saved.length-1:index;feedback.clear('save','storage');feedback.clear('save','limit');message(`“${name}” saved on this device.`,{scope:'save',kind:'success'});}else feedback.show('save',{id:'storage',kind:'error',text:'Unable to save. Allow this site to use local storage, then try again. Your current progression is still available.'});
 });
-$('load-saved').addEventListener('click',()=>{const p=$('saved').value===''?null:saved[Number($('saved').value)];if(!p)return message('Choose a saved progression first.',{scope:'save',kind:'warning',id:'selection'});stop({silent:true});progression=structuredClone(p.chords);setKey(p.key||'');spec={...progression[0]};selected=0;$('save-name').value=p.name;persistSession();render();renderProgression();feedback.clear('save','selection');message(`Opened “${p.name}”.`,{scope:'save',kind:'success'});});
+$('load-saved').addEventListener('click',()=>{const p=$('saved').value===''?null:saved[Number($('saved').value)];if(!p)return message('Choose a saved progression first.',{scope:'save',kind:'warning',id:'selection'});stop({silent:true});progression=structuredClone(p.chords);sequenceName=p.name;setKey(p.key||'');spec={...progression[0]};selected=0;$('save-name').value=p.name;persistSession();render();renderProgression();feedback.clear('save','selection');message(`Opened “${p.name}”.`,{scope:'save',kind:'success'});});
 $('delete-saved').addEventListener('click',()=>{if($('saved').value==='')return message('Choose a saved progression first.',{scope:'save',kind:'warning',id:'selection'});const index=Number($('saved').value),updated=saved.filter((_,i)=>i!==index);if(write('progressions',updated)){saved=updated;renderSaved();feedback.clear('save','storage');feedback.clear('save','selection');message('Saved progression deleted. The current progression remains available.',{scope:'save',kind:'success'});}else feedback.show('save',{id:'storage',kind:'error',text:'Unable to delete the saved progression. Allow local storage and try again.'});});
 renderExercise($('bach-notation'),bachPlan().events);
 $('bach').addEventListener('click',()=>{$('bach-panel').hidden=!$('bach-panel').hidden;if($('bach-panel').hidden&&activePlayback==='bach'){stop({silent:true});renderKeyboard(chord(spec).notes);}if(!$('bach-panel').hidden)$('bach-panel').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});});
 $('close-bach').addEventListener('click',()=>{if(activePlayback==='bach')stop({silent:true});$('bach-panel').hidden=true;$('bach').focus();renderKeyboard(chord(spec).notes);});
 $('play-bach').addEventListener('click',()=>requestStudy('bach'));
+$('stop-bach').addEventListener('click',()=>{stop();playbackStatus('bach','Stopped');renderKeyboard(chord(spec).notes);});
 window.addEventListener('pageshow',()=>audio.refreshStatus());
 window.addEventListener('pagehide',()=>stop({silent:true}));
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop({silent:true});else audio.refreshStatus();});
@@ -267,10 +280,10 @@ let installPrompt;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('install').hidden=false;});
 $('install').addEventListener('click',async()=>{if(installPrompt){await installPrompt.prompt();installPrompt=null;$('install').hidden=true;}});
 window.addEventListener('appinstalled',()=>{$('install').hidden=true;message('Studio installed.',{scope:'app',kind:'success'});});
-const connection=()=>{$('connection').textContent=navigator.onLine?'PERSONAL STUDIO':'OFFLINE STUDIO';};
+const connection=()=>{$('connection').textContent=navigator.onLine?'ON YOUR DEVICE':'OFFLINE';};
 window.addEventListener('online',connection);window.addEventListener('offline',connection);connection();
 if('serviceWorker' in navigator)navigator.serviceWorker.register(new URL('../service-worker.js',import.meta.url),{scope:new URL('../',import.meta.url).href,updateViaCache:'none'}).then(registration=>{
-  const notify=()=>{if(registration.waiting)message('Studio update downloaded. Close all Studio windows and Home Screen instances, then reopen to use it.',{scope:'app'});};
+  const notify=()=>{if(registration.waiting&&navigator.serviceWorker.controller&&registration.active)message('Studio update downloaded. Close all Studio windows and Home Screen instances, then reopen to use it.',{scope:'app'});};
   notify();registration.addEventListener('updatefound',()=>registration.installing?.addEventListener('statechange',notify));
 }).catch(()=>message('Offline caching is unavailable. Stay online or reload this page to retry installation.',{scope:'app',kind:'warning'}));
-render();renderProgression();renderSaved();
+setExperience(mode);render();renderProgression();renderSaved();

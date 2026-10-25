@@ -1,6 +1,6 @@
-# JLK Piano Studio · 1.1.1
+# JLK Piano Studio · 1.2
 
-A quiet, mobile-first space for learning piano chords through written notes, physical keys, and sound. Plain HTML, CSS, and JavaScript modules. No build, runtime dependencies, accounts, tracking, backend, or paid services.
+A focused, mobile-first piano studio with charcoal cards, ivory notation, and three dedicated experiences: Explore, Progressions, and Practice. Plain HTML, CSS, and JavaScript modules. No build, runtime dependencies, accounts, tracking, backend, or paid services.
 
 ## Preview
 
@@ -14,8 +14,8 @@ Open the site through that HTTP server in your browser. Alternatively, `npm run 
 
 ## Use the studio
 
-- **Chord explorer:** choose a root (including alternate sharp/flat spellings), one of 13 chord qualities, inversion, root octave, and close/open voicing. The warm-white grand staff and keyboard follow the exact same notes. Note-name and key-label switches persist locally. Tap or focus and press a piano key to hear it. Sound starts only after interaction.
-- **Progression studio:** add the current explorer chord, select a chord to inspect it, duplicate, remove, or move it using the arrow buttons. Load a sample or build your own sequence. Play at 40–180 BPM, four beats per chord, with block or eighth-note broken chords, an optional metronome, and a Loop progression switch. A defined major/minor analysis key shows Roman numerals; choose No defined key to hide them. Cadence and minor-key examples complement the original three presets. Pause silences playback; Resume begins the paused chord again. Stop returns to the beginning. Changing playback settings stops playback before applying them.
+- **Explore:** open the Chord editor (or the score’s ellipsis), then choose a root (including alternate sharp/flat spellings), one of 13 chord qualities, inversion, root octave, and close/open voicing. The warm-white grand staff and keyboard follow the exact same notes. Note-name and key-label switches persist locally. Tap or focus and press a piano key to hear it. Sound starts only after interaction.
+- **Progressions:** add the current explorer chord, select a chord to inspect it; Edit chords reveals duplicate, remove, and move buttons. Progression settings contains patterns, metronome, key and transposition. Save / Open reveals device-local saves. Load a sample or build your own sequence. Play at 40–180 BPM, four beats per chord, with block or eighth-note broken chords, an optional metronome, and a Loop progression switch. A defined major/minor analysis key shows Roman numerals; choose No defined key to hide them. Cadence and minor-key examples complement the original three presets. Pause silences playback; Resume begins the paused chord again. Stop returns to the beginning. Changing playback settings stops playback before applying them.
 - **Transpose:** shifts the entire progression by a semitone. Smooth inversions chooses nearby close voicings after the first chord; turn it off to keep existing inversion and octave settings. Root choices favor flats in flat keys. Transposition preserves pitch classes; crossing a pitch-class boundary may change the root's octave rather than shift every voice literally by one semitone.
 - **Save:** name a progression and save it on this device (up to 50 saves, 64 chords each). Saving the same name replaces that named save. Loading a preset replaces the working sequence, leaving named saves intact. The working sequence also survives reload. No data syncs between devices; clearing browser/site data removes it.
 - **Practice:** read the chord and staff, try it on your own instrument, then reveal the keyboard. Next chord gives another prompt. On-screen attempts track each exact written pitch and octave, accept notes in any order, and never count a repeated note twice. Hint identifies the next missing note; Try again resets the attempt. External-instrument practice is still self-guided, with no microphone or MIDI permission.
@@ -95,7 +95,7 @@ The sound is a lightweight synthesized piano-like tone, not a sampled Roland ins
 
 ## Version 1.1 audio and playback
 
-**Test Sound** sends C4 followed by E4; the feedback reports the engine state, not proof that your speakers are audible. **Recover audio** closes the old context and creates a fresh one inside the button gesture. No audio context is created on page load. Playback initializes or resumes a context immediately during the gesture when needed, primes a newly created context with a silent one-sample buffer, and verifies that a resumed context is actually `running`. A known-running engine is reused directly. Resolved-but-suspended, interrupted, rejected, and timed-out resume operations now produce visible errors instead of silently dropping notes.
+Open **Sound** in the header for diagnostics and recovery. **Test Sound** sends C4 followed by E4; the feedback reports the engine state, not proof that your speakers are audible. **Recover audio** closes the old context and creates a fresh one inside the button gesture. No audio context is created on page load. Playback initializes or resumes a context immediately during the gesture when needed, primes a newly created context with a silent one-sample buffer, and verifies that a resumed context is actually `running`. A known-running engine is reused directly. Resolved-but-suspended, interrupted, rejected, and timed-out resume operations now produce visible errors instead of silently dropping notes.
 
 The v1 failure could arise because `resume()` did not establish a running context and `tone()` silently returned, or from iOS output routing. This is a likely-path diagnosis, not reproduction of the user's physical device failure. On Safari versions that expose `navigator.audioSession`, the app requests the `playback` category. This is feature-detected and can fail without blocking other browsers. It cannot force a speaker route, bypass every OS mute policy, or verify the physical output.
 
@@ -111,7 +111,7 @@ python3 tests/browser_v11.py
 
 This optional Chromium suite checks gesture-triggered initialization, a nonzero generated waveform, real context suspend/resume, a simulated interrupted context that resolves resume without running, explicit recovery, staff/key synchronization, cleanup, replay/loops, practice attempts/hints, Roman numerals, and 320/390/768/1440px page widths. It also hosts an isolated previous-worker fixture, installs the v1.1 worker while the old tab is open, closes old clients, then verifies activation, removal of the old cache, legacy saves, and offline audio. The fixture changes no repository files. Both browser suites require the preview server and optional Python Playwright/Chromium described above.
 
-The service-worker cache is **jlk-studio-v1.1.1**. Local storage remains under **jlk-studio-v1-**, so existing preferences, working sequences, and named progressions remain compatible. An optional key field is additive; old saved progressions open with no defined analysis key. Close all old studio windows and Home Screen instances, then reopen online to activate the new worker before relying on updated offline assets.
+The service-worker cache is **jlk-studio-v1.2**. Local storage remains under **jlk-studio-v1-**, so existing preferences, working sequences, and named progressions remain compatible. An optional key field is additive; old saved progressions open with no defined analysis key. Close all old studio windows and Home Screen instances, then reopen online to activate the new worker before relying on updated offline assets.
 
 ### Physical iPhone release checks still required
 
@@ -169,3 +169,22 @@ The cache version is now **jlk-studio-v1.1.1** and includes the feedback module.
 - [ ] Activate the new cache online, reopen offline, and repeat progression playback with existing saved progressions.
 
 No physical iPhone audio verification was performed for this patch. A running engine, scheduled nodes, measured Chromium waveform, and passing automation cannot prove audibility or timing on the user's hardware.
+
+
+## Version 1.2 interface refinement
+
+[Design review and screenshots](docs/design-review.md) shows all three mobile and desktop screens and documents the reference interpretation, controls and checks. The main audio engine, scheduler, exercise plans, theory and storage implementation remain unchanged from the working 1.1.1 baseline. All existing controls remain available through focused screens and labeled disclosure panels, with one shared score/keyboard and no duplicated playback logic.
+
+The charcoal/ivory/champagne design uses system fonts and a small local SVG background, without new dependencies or decorative animation. Sound settings are compact by default; persistent errors remain visible beside the affected transport and can open recovery settings. Newly invalid tempo reports Failed rather than leaving an old Complete message. Existing saved data and preferences retain their storage keys; only optional working-sequence title metadata is added.
+
+The current worker cache is **jlk-studio-v1.2**. It includes the layout module and wave background; documentation screenshots are not runtime assets. Close old windows/Home Screen instances, reopen online to finish the update, then test offline.
+
+Run the redesigned UI checks (preview server required):
+
+```sh
+python3 tests/browser_design.py
+```
+
+This tests navigation, controls, disclosures, synchronization, actual practice progress, data preservation, responsive widths, keyboard/reduced-motion behavior and offline use, and refreshes six screenshots in `docs/screenshots/`. `JLK_BASE_URL` selects a repository-subpath server; `JLK_SCREENSHOT_DIR` chooses another screenshot destination.
+
+Physical iPhone validation of this visual release still remains: Safari/Home Screen safe areas, touch responsiveness, larger text/VoiceOver, audio/recovery/loops during navigation and after app switching, and offline updates. The user's successful audio verification applies to the preceding working version; it is not a claim that this visual patch has been tested on their device. No merge or deployment is performed by this task.
