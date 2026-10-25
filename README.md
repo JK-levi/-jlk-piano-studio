@@ -1,4 +1,4 @@
-# JLK Piano Studio · 1.1
+# JLK Piano Studio · 1.1.1
 
 A quiet, mobile-first space for learning piano chords through written notes, physical keys, and sound. Plain HTML, CSS, and JavaScript modules. No build, runtime dependencies, accounts, tracking, backend, or paid services.
 
@@ -71,7 +71,7 @@ Set `CHROMIUM_PATH` if Chromium is installed elsewhere. Set `JLK_BASE_URL` to te
 
 ### Validation in this environment
 
-- All 20 Node test groups passed, including exhaustive construction checks.
+- All 27 Node test groups passed, including exhaustive construction checks.
 - Chromium smoke tests passed at the site root and a GitHub Pages-style repository subpath, including 320px/390px overflow checks with no JavaScript page errors, including offline reload and persisted saves.
 - Actual iPhone Safari, VoiceOver, Home Screen installation, and subjective sound quality still need the manual checks above.
 
@@ -95,7 +95,7 @@ The sound is a lightweight synthesized piano-like tone, not a sampled Roland ins
 
 ## Version 1.1 audio and playback
 
-**Test Sound** sends C4 followed by E4; the feedback reports the engine state, not proof that your speakers are audible. **Recover audio** closes the old context and creates a fresh one inside the button gesture. No audio context is created on page load. Every playback entry point invokes initialization immediately during the gesture, primes a silent one-sample buffer, calls `resume()`, and verifies that the result is actually `running`. Resolved-but-suspended, interrupted, rejected, and timed-out resume operations now produce visible errors instead of silently dropping notes.
+**Test Sound** sends C4 followed by E4; the feedback reports the engine state, not proof that your speakers are audible. **Recover audio** closes the old context and creates a fresh one inside the button gesture. No audio context is created on page load. Playback initializes or resumes a context immediately during the gesture when needed, primes a newly created context with a silent one-sample buffer, and verifies that a resumed context is actually `running`. A known-running engine is reused directly. Resolved-but-suspended, interrupted, rejected, and timed-out resume operations now produce visible errors instead of silently dropping notes.
 
 The v1 failure could arise because `resume()` did not establish a running context and `tone()` silently returned, or from iOS output routing. This is a likely-path diagnosis, not reproduction of the user's physical device failure. On Safari versions that expose `navigator.audioSession`, the app requests the `playback` category. This is feature-detected and can fail without blocking other browsers. It cannot force a speaker route, bypass every OS mute policy, or verify the physical output.
 
@@ -111,7 +111,7 @@ python3 tests/browser_v11.py
 
 This optional Chromium suite checks gesture-triggered initialization, a nonzero generated waveform, real context suspend/resume, a simulated interrupted context that resolves resume without running, explicit recovery, staff/key synchronization, cleanup, replay/loops, practice attempts/hints, Roman numerals, and 320/390/768/1440px page widths. It also hosts an isolated previous-worker fixture, installs the v1.1 worker while the old tab is open, closes old clients, then verifies activation, removal of the old cache, legacy saves, and offline audio. The fixture changes no repository files. Both browser suites require the preview server and optional Python Playwright/Chromium described above.
 
-The service-worker cache is **jlk-studio-v1.1**. Local storage remains under **jlk-studio-v1-**, so existing preferences, working sequences, and named progressions remain compatible. An optional key field is additive; old saved progressions open with no defined analysis key. Close all old studio windows and Home Screen instances, then reopen online to activate the new worker before relying on updated offline assets.
+The service-worker cache is **jlk-studio-v1.1.1**. Local storage remains under **jlk-studio-v1-**, so existing preferences, working sequences, and named progressions remain compatible. An optional key field is additive; old saved progressions open with no defined analysis key. Close all old studio windows and Home Screen instances, then reopen online to activate the new worker before relying on updated offline assets.
 
 ### Physical iPhone release checks still required
 
@@ -122,3 +122,50 @@ The service-worker cache is **jlk-studio-v1.1**. Local storage remains under **j
 - [ ] Use VoiceOver, larger text, and portrait/landscape; confirm the two short Bach measures and practice feedback remain readable.
 
 No physical iPhone testing has been performed in this environment. Chromium's waveform and state tests establish that the engine generates a signal and handles the exercised states; they cannot establish audible output, OS routing, or exact timing on a physical iPhone.
+
+## Progression playback and feedback fix · 1.1.1
+
+The physical iPhone report established that Explorer played while the loaded C–Am–F–G progression was silent. The four-card preset is valid and generates C3/E3/G3, A3/C4/E4, F3/A3/C4, and G3/B3/D4 at four-beat intervals. An empty progression is not the explanation for that report. Chromium does not reproduce the physical-device silence, so the changes below address identified failure paths and small-speaker signal strength without claiming a verified device-specific root cause.
+
+### Playback trace and corrections
+
+1. The progression button validates its actual tempo and nonempty sequence before requesting audio. There is no silent default/clamp for missing, fractional, or out-of-range tempo.
+2. A known-running engine now schedules directly within the tap; it does not call `resume()` again. A suspended/interrupted engine still initializes/resumes synchronously during the gesture and waits for a confirmed running result. An explicit Stop, mode change, or newer action invalidates deferred requests so they cannot unexpectedly start later.
+3. Previously, a context interruption invoked a silent generic stop. It now ends the transport as **Failed** with a persistent inline error beside the controls. Engine status cannot erase this error, nor can a successful unrelated action. Recover audio resets the engine; successfully scheduling a retry resolves that transport's audio error.
+4. Audio scheduling now uses its own 25ms look-ahead timer with a 160ms horizon. Animation frames only update visual state. Expired events are skipped after a timer stall rather than emitted in a burst.
+5. The old output timestamp extrapolation could run ahead of `AudioContext.currentTime`, which could complete a sequence before its later chords were scheduled. Output timestamps are now checked for freshness and validity, with latency fallback and a render-clock clamp. The scheduler also independently prevents a future visual timestamp from completing playback early.
+6. The low-register preset relies on fundamentals around 131–330Hz. Those can be weak on a small speaker. Notes below C4 now retain their exact fundamental pitches but use stronger second/third/fourth partials, with the existing compressor limiting output. This is a signal-strength mitigation, not evidence about a physical speaker's loudness or route.
+
+Pause still silences the graph and resumes at the start of the current chord. Stop cancels both audio scheduling and animation and invalidates a pending resume. Loop, block/broken patterns, metronome, tempo, theory, saved progressions, and existing settings remain supported. An invalid temporary tempo does not overwrite the previously saved valid tempo.
+
+### Feedback conventions
+
+`js/feedback.js` provides reusable, control-scoped feedback. Errors use **Error**, an icon, contrasting border/background, `role="alert"`, and a Dismiss control. They do not auto-expire and cannot be overwritten by an unrelated message. Warnings identify missing prerequisites or capacity limits; restrained success confirmations expire after 4.5 seconds. User-provided text is rendered as text, never HTML. Invalid fields link to their message with `aria-describedby` and `aria-invalid`.
+
+Progression, study, Bach, practice, keyboard, engine recovery, and save/load controls have their own message regions. Transport status reports **Starting**, **Playing**, **Paused**, **Stopped**, **Complete**, or **Failed** nearby. **Playing** means audio events have successfully been scheduled, not proof that the device emitted audible sound. Engine-running status is separately reported in the audio panel. With no chords, Play is disabled and an adjacent warning explains how to load/add chords.
+
+### Regression checks
+
+```sh
+npm test
+python3 tests/browser_smoke.py
+python3 tests/browser_v11.py
+python3 tests/browser_progression.py
+```
+
+The Node suite has 27 passing tests, including all four default chords' pitches/onsets, full visual advancement, stale/future output timestamps, independent scheduling without animation frames, explicit graph failures, and invalid tempo.
+
+The new progression browser test starts from a fresh mobile session and taps Progression Play before using Explorer. It verifies 48 actual oscillator starts (12 notes × four partials), exact frequencies and four-beat timestamps for C3–Am3–F3–G3, a nonzero **post-compressor** high-passed signal for every card, synchronized visual advancement, pause/resume, stop and graph silence, broken-pattern looping/metronome, pending-start cancellation, simulated interruption/rejected resume, persistent local error feedback, empty states, save validation/storage failure, and readable 320/390px layouts. The existing browser suites still check offline installation/upgrades, old saves, and the rest of the application. `JLK_BASE_URL` supports testing the repository subpath, as before.
+
+The cache version is now **jlk-studio-v1.1.1** and includes the feedback module. Local storage keeps the v1 namespace. Close all old Studio windows and Home Screen instances, then reopen online to activate the updated worker before testing offline.
+
+### Physical iPhone verification still required
+
+- [ ] Fresh Safari tab and Home Screen app: load the original C–Am–F–G preset and confirm all four block chords are audible through the built-in speaker at 40, 80, and 180 BPM.
+- [ ] Compare low and upper root octaves, speaker versus headphones/Bluetooth, media volume, and Ring/Silent settings. Confirm the original low-register voicings are usefully audible without changing their pitches.
+- [ ] Verify pause/resume, stop, loop seams, metronome, and broken patterns match the audible notes and highlights.
+- [ ] Test after a call, app switching, screen lock, and returning to the Home Screen app. Interruptions should show **Failed** and an actionable error at the progression transport; recovery and a new tap should work.
+- [ ] Check error text, dismiss controls, required-name/tempo feedback, and disabled-Play remedy with VoiceOver and larger text.
+- [ ] Activate the new cache online, reopen offline, and repeat progression playback with existing saved progressions.
+
+No physical iPhone audio verification was performed for this patch. A running engine, scheduled nodes, measured Chromium waveform, and passing automation cannot prove audibility or timing on the user's hardware.

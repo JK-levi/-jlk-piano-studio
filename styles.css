@@ -33,3 +33,26 @@
 .practice-banner{gap:8px}
 .practice-banner button{flex-grow:1}
 .chord-select .roman{font-size:.7rem}}
+/* Scoped, persistent feedback: text and symbols communicate severity, not color alone. */
+.feedback{width:100%;min-width:0}
+.feedback:empty{display:none}
+.feedback-message{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;margin:12px 0;border:1px solid var(--border);border-left-width:4px;border-radius:6px;font-size:.84rem;line-height:1.55;overflow-wrap:anywhere}
+.feedback-message p{flex:1;min-width:0;margin:0;color:inherit;font-size:inherit;line-height:inherit}
+.feedback-icon{flex:none;display:grid;place-items:center;border:1px solid currentColor;border-radius:50%;width:22px;height:22px;font-size:.8rem;font-weight:700}
+.feedback-error{background:#42252c;color:#ffe4e1;border-color:#e6a090}
+.feedback-warning{background:#332d22;color:#f5dfac;border-color:#c2a36b}
+.feedback-success{background:#1e332e;color:#c9e8db;border-color:#6f9987}
+.feedback-info{background:#20323f;color:#d0e0ee;border-color:#7b9db4}
+.feedback-message button{background:transparent;color:inherit;border-color:currentColor;min-height:44px;padding:8px 12px;font-size:.75rem;flex:none}
+.sheet-feedback{width:auto;margin:0 28px}
+.playback-status{font-size:.85rem;font-weight:600;line-height:1.5;margin:12px 0;color:var(--bronze)}
+.playback-status[data-state=Failed]{color:#ffd7cc}
+.music-panel .playback-status{color:#655137}
+.empty-remedy{border-left:3px solid var(--bronze);padding:12px 14px;background:#332d22;color:#f5dfac;font-size:.85rem;margin-top:12px}
+input[aria-invalid=true]{outline:2px solid #e6a090;outline-offset:2px}
+.practice-banner .feedback{flex-basis:100%;flex-grow:1}
+.practice-banner .feedback-message p{color:inherit;margin:0}
+@media(max-width:760px){.feedback-message{padding:12px;flex-wrap:wrap}.feedback-message p{flex-basis:calc(100% - 36px)}.feedback-message button{margin-left:32px}.sheet-feedback{margin:0 18px}.playback-status{font-size:.8rem}}
+
+.music-panel .feedback-message button{background:transparent;color:inherit;border-color:currentColor}
+.empty-remedy{display:flex;align-items:flex-start;gap:10px}

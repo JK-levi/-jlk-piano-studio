@@ -51,7 +51,7 @@ with sync_playwright() as p:
     page.get_by_role('button',name='Move chord 1 later',exact=True).click()
     page.get_by_role('button',name='Remove chord 6',exact=True).click();assert page.locator('.chord-select').count()==5
     page.fill('#save-name','Evening <study>');page.click('#save-progression')
-    assert 'saved on this device' in page.locator('#status').inner_text()
+    assert 'saved on this device' in page.locator('#save-feedback').inner_text()
     page.click('#clear-progression');assert page.locator('.chord-select').count()==0
     page.click('#load-saved');assert page.locator('.chord-select').count()==5
     page.click('#transpose-down');page.click('#transpose-up')
@@ -60,7 +60,7 @@ with sync_playwright() as p:
     page.click('#sequence-play');page.wait_for_function("document.querySelector('#position').textContent.includes('Beat')")
     page.click('#sequence-pause');assert 'Paused' in page.locator('#position').inner_text()
     page.click('#sequence-play');page.wait_for_timeout(400);page.click('#sequence-stop')
-    assert page.locator('#position').inner_text()=='Ready to play'
+    assert page.locator('#position').inner_text()=='Stopped'
     # A full single-chord playthrough at 180 BPM takes 1.34 seconds.
     page.click('#clear-progression');page.click('#add-chord');page.click('#sequence-play')
     page.wait_for_function("document.querySelector('#position').textContent==='Complete'",timeout=5000)
@@ -72,7 +72,7 @@ with sync_playwright() as p:
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':390,'height':844})
     page.wait_for_function('!!navigator.serviceWorker.controller')
-    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.1' in cache
+    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.1.1' in cache
     context.set_offline(True);page.reload();page.wait_for_selector('.key');assert page.locator('.key').count()>20
     assert 'OFFLINE' in page.locator('#connection').inner_text()
     context.set_offline(False)

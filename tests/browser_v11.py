@@ -31,7 +31,7 @@ with sync_playwright() as p:
     page.goto(BASE)
     assert page.evaluate('window.__contexts.length') == 0
     page.tap('#test-sound')
-    page.wait_for_function("document.querySelector('#audio-status').textContent.includes('Test signal sent')")
+    page.wait_for_function("document.querySelector('#audio-feedback').textContent.includes('Test notes scheduled')")
     # Observe a nonzero synthesized waveform, without claiming device audibility.
     page.evaluate("""() => { const c = window.__contexts.at(-1); window.__analyser = c.createAnalyser(); c.output.connect(window.__analyser); }""")
     page.wait_for_function("""() => { const data = new Float32Array(window.__analyser.fftSize); window.__analyser.getFloatTimeDomainData(data); return data.some(value => Math.abs(value) > .0001); }""")
@@ -45,12 +45,12 @@ with sync_playwright() as p:
     # Simulate Safari resolving resume while remaining interrupted.
     page.evaluate("""() => { const c=window.__contexts.at(-1); c.simulatedState='interrupted'; c.blockResume=true; }""")
     page.tap('#play-chord')
-    page.wait_for_function("document.querySelector('#audio-status').classList.contains('audio-error')")
-    assert 'interrupted' in page.locator('#audio-status').inner_text()
+    page.wait_for_function("!!document.querySelector('#study-feedback [role=alert]')")
+    assert 'interrupted' in page.locator('#study-feedback').inner_text()
     page.tap('#recover-audio')
     page.wait_for_function('window.__contexts.length === 2')
     page.tap('#test-sound')
-    page.wait_for_function("document.querySelector('#audio-status').textContent.includes('Test signal sent')")
+    page.wait_for_function("document.querySelector('#audio-feedback').textContent.includes('Test notes scheduled')")
     page.tap('#study-stop')
     page.fill('#study-tempo', '180');page.locator('#study-tempo').dispatch_event('change')
     page.tap('#play-arpeggio')
@@ -136,7 +136,7 @@ with sync_playwright() as p:
           const deadline=Date.now()+10000;
           async function check() {
             const keys=await caches.keys();
-            if(keys.includes('jlk-studio-v1.1')&&!keys.includes('jlk-studio-v1'))return resolve();
+            if(keys.includes('jlk-studio-v1.1.1')&&!keys.includes('jlk-studio-v1'))return resolve();
             if(Date.now()>deadline)return reject(new Error('New worker did not finish cache cleanup'));
             setTimeout(check,25);
           }
@@ -144,7 +144,7 @@ with sync_playwright() as p:
         })""")
         fresh=upgrade.new_page();fresh.goto(url)
         fresh.wait_for_selector('#test-sound')
-        fresh.wait_for_function("caches.keys().then(keys=>keys.includes('jlk-studio-v1.1')&&!keys.includes('jlk-studio-v1'))")
+        fresh.wait_for_function("caches.keys().then(keys=>keys.includes('jlk-studio-v1.1.1')&&!keys.includes('jlk-studio-v1'))")
         fresh.get_by_role('button',name='Progression studio',exact=True).click()
         assert fresh.locator('#saved option').all_text_contents() == ['Choose a saved progression','From version 1']
         fresh.select_option('#saved','0');fresh.click('#load-saved')

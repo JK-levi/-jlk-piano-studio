@@ -41,9 +41,12 @@ export function createAudioEngine({ host = () => globalThis, timeout = 2500 } = 
         if (context) { context.onstatechange = null; context.close().catch(() => {}); }
         context = null;
       }
-      if (!context || context.state === 'closed') { pending = null; initialize(); }
+      let created=false;
+      if (!context || context.state === 'closed') { pending = null; initialize(); created=true; }
       if (pending) return pending;
       const current = context;
+      // Reusing a running engine avoids a redundant iOS resume transition.
+      if(current.state === 'running' && !created) return Promise.resolve(current);
       // Safari's legacy unlock also primes the destination with a silent buffer.
       const primer = current.createBufferSource();
       primer.buffer = current.createBuffer(1, 1, current.sampleRate);
@@ -71,11 +74,17 @@ export function createAudioEngine({ host = () => globalThis, timeout = 2500 } = 
     // Map animation to the output clock, not wall-clock timers. The timestamp API
     // accounts for output buffering; latency values are a fallback, not a promise
     // of exact Bluetooth/hardware latency on every device.
-    const stamp = context?.getOutputTimestamp?.();
-    if (stamp?.contextTime > 0 && stamp.performanceTime > 0)
-      return stamp.contextTime + Math.max(0, (host().performance.now() - stamp.performanceTime) / 1000);
-    return Math.max(0, now() - (context?.outputLatency || context?.baseLatency || 0));
+    const clock=now();
+    let stamp;
+    try { stamp=context?.getOutputTimestamp?.(); } catch { /* Optional browser API. */ }
+    const age=stamp ? (host().performance.now()-stamp.performanceTime)/1000 : Infinity;
+    if(Number.isFinite(stamp?.contextTime)&&stamp.contextTime>0&&age>=0&&age<=0.5){
+      const estimate=stamp.contextTime+age;
+      if(estimate<=clock+0.02)return Math.max(0,Math.min(clock,estimate));
+    }
+    return Math.max(0,clock-(context?.outputLatency||context?.baseLatency||0));
   }
+
   function tone(midi, when = now(), duration = 1.5, volume = 0.22) {
     if (!context || context.state !== 'running') throw new Error('Audio is not running. Tap Test Sound to resume.');
     if (![midi, when, duration, volume].every(Number.isFinite) || duration <= 0) throw new Error('Invalid audio event.');
@@ -88,7 +97,10 @@ export function createAudioEngine({ host = () => globalThis, timeout = 2500 } = 
     filter.frequency.exponentialRampToValueAtTime(Math.max(600, frequency * 2), when + duration);
     filter.Q.value = 0.4; filter.connect(master);
     let remaining = 4;
-    [1, 0.28, 0.1, 0.035].forEach((level, index) => {
+    // Keep fundamentals unchanged; stronger upper partials help low chords
+    // survive small-speaker bass roll-off without an unbounded gain increase.
+    const partials = midi < 60 ? [0.8, 0.5, 0.28, 0.12] : [1, 0.28, 0.1, 0.035];
+    partials.forEach((level, index) => {
       const source = context.createOscillator(), gain = context.createGain();
       source.type = 'sine'; source.frequency.value = frequency * (index + 1);
       const attack = Math.min(0.008, duration / 4);
