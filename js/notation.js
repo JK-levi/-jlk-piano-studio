@@ -43,7 +43,7 @@ export function renderNotation(container,notes,{labels=true,figure=false}={}) {
         const sign=note.accidental>0?'♯'.repeat(note.accidental):'♭'.repeat(-note.accidental);
         svg.append(el('text',{x:figure?x-20:305-index*19,y:y+6,'font-size':23,'text-anchor':'end',fill:'#25303b','font-family':'Georgia, serif'},sign));
       }
-      svg.append(el('ellipse',{cx:x,cy:y,rx:7.1,ry:4.7,transform:`rotate(-18 ${x} ${y})`,fill:'#25303b'}));
+      svg.append(el('ellipse',{'data-midi':note.midi,class:'notehead',cx:x,cy:y,rx:7.1,ry:4.7,transform:`rotate(-18 ${x} ${y})`,fill:'#25303b'}));
       svg.append(el('line',{x1:x+6,x2:x+6,y1:y,y2:y-30,stroke:'#25303b','stroke-width':1.4}));
       if(labels) {
         // A separate, aligned reading guide avoids labels obscuring stacked notes.
@@ -54,4 +54,48 @@ export function renderNotation(container,notes,{labels=true,figure=false}={}) {
     });
   }
   container.replaceChildren(svg);
+}
+
+// Deliberately small exercise engraver: one bar of eight beamed eighth notes per
+// responsive system. No horizontal score scrolling or miniature multi-bar page.
+export function renderExercise(container, events, { labels = true } = {}) {
+  const fragment = document.createDocumentFragment();
+  const bars = Math.ceil(events.length / 8);
+  for (let bar = 0; bar < bars; bar++) {
+    const slice = events.slice(bar * 8, bar * 8 + 8);
+    const notes = slice.map(event => event.notes[0]);
+    const highest = Math.min(0, ...notes.map(n => staffPosition(n,n.midi < 60 ? 'bass' : 'treble') - 55));
+    const svg = el('svg', { viewBox:`0 ${highest} 660 ${264-highest}`, role:'img', 'aria-label':`Measure ${bar+1}, 4/4, eight eighth notes: ${notes.map(n=>pretty(n.fullName)).join(', ')}` });
+    svg.append(el('title', {}, '4/4 • eighth-note study • four beats per measure'));
+    for (const [type, top] of [['treble',66],['bass',166]]) {
+      for (let line=0;line<5;line++) svg.append(el('line',{x1:32,x2:638,y1:top+line*10,y2:top+line*10,stroke:'#8b908e','stroke-width':0.9}));
+      clef(svg,type,40,top);
+      for (const y of [top+17,top+37]) svg.append(el('text',{x:96,y,'font-size':22,'font-weight':'bold','text-anchor':'middle',fill:'#25303b'},'4'));
+      if (!notes.some(note=>(note.midi<60?'bass':'treble')===type)) svg.append(el('rect',{x:331,y:top+10,width:16,height:5,fill:'#25303b'}));
+    }
+    for (const x of [32,638]) svg.append(el('line',{x1:x,x2:x,y1:66,y2:206,stroke:'#25303b'}));
+    svg.append(el('text',{x:36,y:highest+20,'font-size':11,fill:'#685440','font-family':'system-ui'},`MEASURE ${bar+1} · EIGHTH NOTES`));
+    const positions = notes.map((note,i) => ({x:147+i*64,y:staffPosition(note,note.midi<60?'bass':'treble'),note,i}));
+    // Beam pairs only within one clef. Clef crossings get individual flags.
+    for (let pair=0;pair<positions.length;pair+=2) {
+      const parts=positions.slice(pair,pair+2), same=parts.length===2&&(parts[0].note.midi<60)===(parts[1].note.midi<60);
+      const beamY=Math.min(...parts.map(p=>p.y))-30;
+      parts.forEach(({x,y,note,i})=>{
+        const group=el('g',{'data-event-index':bar*8+i});
+        const top=note.midi<60?166:66;
+        for(let ly=top+50;ly<=y;ly+=10)group.append(el('line',{x1:x-12,x2:x+12,y1:ly,y2:ly,stroke:'#25303b'}));
+        for(let ly=top-10;ly>=y;ly-=10)group.append(el('line',{x1:x-12,x2:x+12,y1:ly,y2:ly,stroke:'#25303b'}));
+        if(note.accidental) group.append(el('text',{x:x-12,y:y+6,'font-size':22,'text-anchor':'end',fill:'#25303b'},note.accidental>0?'♯'.repeat(note.accidental):'♭'.repeat(-note.accidental)));
+        group.append(el('ellipse',{'data-midi':note.midi,'data-event-index':bar*8+i,class:'notehead',cx:x,cy:y,rx:7,ry:4.7,transform:`rotate(-18 ${x} ${y})`,fill:'#25303b'}));
+        group.append(el('line',{x1:x+6,x2:x+6,y1:y,y2:same?beamY:y-30,stroke:'#25303b','stroke-width':1.4}));
+        if(!same)group.append(el('path',{d:`M ${x+6} ${y-30} q 16 8 3 20`,fill:'none',stroke:'#25303b','stroke-width':2}));
+        if(labels)group.append(el('text',{x,y:242,'text-anchor':'middle','font-size':14,fill:'#685440','font-family':'system-ui'},pretty(note.fullName)));
+        group.append(el('text',{x,y:260,'text-anchor':'middle','font-size':10,fill:'#737b80','font-family':'system-ui'},i%2===0?String(i/2+1):'&'));
+        svg.append(group);
+      });
+      if(same)svg.append(el('line',{x1:parts[0].x+6,x2:parts[1].x+6,y1:beamY,y2:beamY,stroke:'#25303b','stroke-width':4}));
+    }
+    fragment.append(svg);
+  }
+  container.replaceChildren(fragment);
 }
