@@ -1,4 +1,4 @@
-from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence
+from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression
 from playwright.sync_api import sync_playwright
 import json
 import os
@@ -39,6 +39,7 @@ with sync_playwright() as p:
     assert page.locator('#note-summary').inner_text()=='C6 · D♭6 · F6 · A♭6 · B♭6'
     assert page.evaluate('window.__audioProbe.contexts')==0
     # Unlock audio with actual buttons and inspect context errors through pageerror.
+    close_tasks(page)
     page.click('#play-chord');page.click('#play-arpeggio');page.locator('.key.white').first.click()
     assert page.evaluate('window.__audioProbe.starts.length')>0
     assert page.evaluate('window.__audioProbe.stops')>0
@@ -59,22 +60,25 @@ with sync_playwright() as p:
     assert 'saved on this device' in page.locator('#save-feedback').inner_text()
     open_settings(page)
     page.click('#clear-progression');assert page.locator('.chord-select').count()==0
-    page.click('#load-saved');assert page.locator('.chord-select').count()==5
+    open_save(page);page.click('#load-saved');assert page.locator('.chord-select').count()==5
     open_settings(page)
     page.click('#transpose-down');page.click('#transpose-up')
+    close_tasks(page)
     page.fill('#tempo','180');page.locator('#tempo').dispatch_event('change')
     open_settings(page)
     page.check('#metronome');page.select_option('#pattern','broken')
+    close_tasks(page)
     page.click('#sequence-play');page.wait_for_function("document.querySelector('#position').textContent.includes('Beat')")
     page.click('#sequence-pause');assert 'Paused' in page.locator('#position').inner_text()
     page.click('#sequence-play');page.wait_for_timeout(400);page.click('#sequence-stop')
     assert page.locator('#position').inner_text()=='Stopped'
     # A full single-chord playthrough at 180 BPM takes 1.34 seconds.
     open_settings(page)
-    page.click('#clear-progression');page.click('#add-chord');page.click('#sequence-play')
+    page.click('#clear-progression');open_chord_editor(page);page.click('#add-chord');close_tasks(page);page.click('#sequence-play')
     page.wait_for_function("document.querySelector('#position').textContent==='Complete'",timeout=5000)
     page.reload();page.wait_for_selector('.key');assert page.locator('.chord-select').count()==1
     page.get_by_role('button',name='Progressions',exact=True).click();open_save(page);page.select_option('#saved','0');page.click('#load-saved');assert page.locator('.chord-select').count()==5
+    close_tasks(page)
     page.get_by_role('button',name='Explore',exact=True).click()
     page.click('#bach');page.click('#play-bach');assert page.locator('#bach-notation svg').count()==2
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
@@ -82,7 +86,7 @@ with sync_playwright() as p:
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':390,'height':844})
     page.wait_for_function('!!navigator.serviceWorker.controller')
-    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.2' in cache
+    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.2.1' in cache
     context.set_offline(True);page.reload();page.wait_for_selector('.key');assert page.locator('.key').count()>20
     assert 'OFFLINE' in page.locator('#connection').inner_text()
     context.set_offline(False)
