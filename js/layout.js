@@ -82,6 +82,8 @@ export function setExperience(mode){
   ['experience-kicker','experience-title','experience-description'].forEach((id,i)=>{$(id).textContent=CONTENT[mode][i];});
 }
 export function bindLayout(){
+  document.addEventListener('pointerdown',()=>{document.body.dataset.input='pointer';},true);
+  document.addEventListener('keydown',event=>{if(!event.metaKey&&!event.ctrlKey&&!event.altKey)document.body.dataset.input='keyboard';},true);
   session=`jlk-${Date.now()}`;rootURL=location.pathname+location.search;
   history.replaceState({...history.state,jlkTaskSession:session,jlkTasks:[]},'',rootURL);
   window.addEventListener('popstate',event=>{

@@ -6,7 +6,7 @@ import { Playback } from './playback.js';
 import { chordPlan, bachPlan, bachNotes, brokenEvents, progressionPlan } from './exercises.js';
 import { Practice } from './practice.js';
 import { PRESETS, romanNumeral } from './progressions.js';
-import { setupComposer } from './composer.js';
+import { chordNavigation } from './chord-navigation.js';
 import { setupDiscover } from './discover.js';
 import { preserveSequence,latestDraft } from './sequence-drafts.js';
 import { Feedback, validTempo } from './feedback.js';
@@ -20,11 +20,12 @@ const presets=PRESETS.map(p=>p.chords);
 const restored=read('session',null);
 let progression=Array.isArray(restored)&&restored.length<=64&&restored.every(validSpec)?restored:structuredClone(presets[0]);
 let saved=savedProgressions();
-let playing=false, paused=false, activeIndex=-1, audioRequest=0;
+let playing=false, paused=false, activeIndex=-1, audioRequest=0, followProgression=true;
 let studyKind='chord', activePlayback=null, pausedChord=0, practiceSignature='', hintMidi=null;
 const practice=new Practice();
 const player=new Playback({audio});
 const feedback=new Feedback();
+const renderChordNavigation=chordNavigation({previous:$('detail-previous'),next:$('detail-next'),position:$('detail-position'),strip:$('detail-chords'),onSelect:(step,index)=>selectProgressionChord(index??selected+step)});
 bindLayout();
 let sequenceName=read('session-name',null);
 if(typeof sequenceName!=='string'||sequenceName.length>60)sequenceName=PRESETS.find(p=>JSON.stringify(p.chords)===JSON.stringify(progression))?.name.split(' · ')[0]||'Your progression';
@@ -166,7 +167,7 @@ function startPlayback(plan,kind,{fromBeat=0,scope=kind==='progression'?'sequenc
       if(beat===null){clearHighlights();return;}
       if(isSequence){
         const index=Math.min(progression.length-1,Math.floor(beat/4));pausedChord=index;
-        if(index!==activeIndex){activeIndex=index;selected=index;spec={...progression[index]};render();renderProgression();}
+        if(index!==activeIndex){activeIndex=index;if(followProgression){selected=index;spec={...progression[index]};render();}renderProgression();}
         if(player.scheduled)playbackStatus(scope,'Playing',`Chord ${index+1} of ${progression.length} · Beat ${Math.floor(beat%4)+1}${loop?' · Loop':''}`);
       }else if(kind!=='key'&&player.scheduled)playbackStatus(scope,'Playing',`Beat ${Math.floor(beat%4)+1}${loop?' · Loop':''}`);
       syncHighlights(events);
@@ -223,6 +224,12 @@ $('next-chord').addEventListener('click',()=>{stop({silent:true});practiceSignat
 $('play-chord').addEventListener('click',()=>requestStudy('chord'));
 $('play-arpeggio').addEventListener('click',()=>requestStudy('arpeggio'));
 function actionButton(text,label,fn,disabled=false){const b=document.createElement('button');b.textContent=text;b.setAttribute('aria-label',label);b.disabled=disabled;b.addEventListener('click',fn);return b;}
+function selectProgressionChord(index){
+  if(!progression[index])return;
+  if(currentView()!=='voicing-view')stop({silent:true});
+  followProgression=false;selected=index;spec={...progression[index]};revealed=false;
+  render();renderProgression();
+}
 function renderProgression(){
   $('studio-title').textContent=sequenceName;
   const keyLabel=$('analysis-key').selectedOptions[0]?.textContent||'No defined key';
@@ -230,14 +237,14 @@ function renderProgression(){
   $('progression').replaceChildren();
   progression.forEach((s,i)=>{
     const li=document.createElement('li');li.classList.toggle('current',i===selected);li.classList.toggle('sounding',i===activeIndex);
-    const pick=actionButton(pretty(chord(s).symbol),`Select chord ${i+1}: ${pretty(chord(s).symbol)}`,()=>{stop({silent:true});selected=i;spec={...s};revealed=false;render();renderProgression();});pick.className='chord-select';pick.setAttribute('aria-pressed',i===selected);const count=document.createElement('span');count.textContent=String(i+1).padStart(2,'0');pick.append(count);const roman=document.createElement('small');roman.className='roman';roman.textContent=romanNumeral(s,$('analysis-key').value);pick.append(roman);
+    const pick=actionButton(pretty(chord(s).symbol),`Select chord ${i+1}: ${pretty(chord(s).symbol)}`,()=>selectProgressionChord(i));pick.className='chord-select';pick.setAttribute('aria-pressed',i===selected);const count=document.createElement('span');count.textContent=String(i+1).padStart(2,'0');pick.append(count);const roman=document.createElement('small');roman.className='roman';roman.textContent=romanNumeral(s,$('analysis-key').value);pick.append(roman);
     const actions=document.createElement('div');actions.className='chord-actions';
     const edit=fn=>{stop({silent:true});fn();selected=Math.min(selected,progression.length-1);persistSession();renderProgression();};
     actions.append(actionButton('←',`Move chord ${i+1} earlier`,()=>edit(()=>{[progression[i-1],progression[i]]=[progression[i],progression[i-1]];selected=i-1;}),i===0),actionButton('→',`Move chord ${i+1} later`,()=>edit(()=>{[progression[i+1],progression[i]]=[progression[i],progression[i+1]];selected=i+1;}),i===progression.length-1),actionButton('⧉',`Duplicate chord ${i+1}`,()=>edit(()=>{if(progression.length<64)progression.splice(i+1,0,{...s});else message('A progression can contain up to 64 chords. Remove a chord before adding another.',{scope:'studio',kind:'warning',id:'limit'});})),actionButton('×',`Remove chord ${i+1}`,()=>edit(()=>progression.splice(i,1))));
     li.append(pick,actions);$('progression').append(li);
   });
   if(!progression.length){const li=document.createElement('li');li.textContent='Choose a chord above, then add it here.';li.style.padding='16px';li.style.gridColumn='1 / -1';$('progression').append(li);}
-  transport();
+  renderChordNavigation({progression,selected,activeIndex});transport();
 }
 $('add-chord').addEventListener('click',()=>{if(progression.length>=64)return message('A progression can contain up to 64 chords. Remove a chord before adding another.',{scope:'studio',kind:'warning',id:'limit'});stop({silent:true});progression.push({...spec});selected=progression.length-1;persistSession();setMode('studio');if(currentView()==='chord-editor')closeView();renderProgression();message(`${pretty(chord(spec).symbol)} added to your progression.`,{scope:'studio',kind:'success'});});
 function loadBuiltIn(index){
@@ -267,7 +274,7 @@ $('sequence-play').addEventListener('click',()=>{
   feedback.clear('sequence','empty');
   const fromBeat=paused?pausedChord*4:0;
   withAudio(()=>{
-    playing=true;paused=false;studyKind='chord';activeIndex=-1;transport();
+    playing=true;paused=false;followProgression=true;studyKind='chord';activeIndex=-1;transport();
     startPlayback(progressionPlan(progression,{broken:$('pattern').value==='broken',metronome:$('metronome').checked}),'progression',{fromBeat});
   },{scope:'sequence'});
   transport();
@@ -299,12 +306,24 @@ function audition({plan,bpm,loop=false,scope,onFrame=()=>{}}){
 }
 function stopExternal(scope){stop();playbackStatus(scope,'Stopped');}
 const guided=setupDiscover({audition,stop:stopExternal,feedback,renderKeyboard});
-const composer=setupComposer({audition,stop:stopExternal,feedback});
+let composerLoad;
+function openComposer(){
+  $('composition-loading').hidden=false;$('composition-content').hidden=true;
+  composerLoad ||= import('./composer.js').then(({setupComposer})=>setupComposer({audition,stop:stopExternal,feedback}));
+  composerLoad.then(composer=>{
+    composer.open();$('composition-content').hidden=false;$('composition-loading').hidden=true;
+    feedback.clear('composition','initialization');
+  }).catch(()=>{
+    $('composition-loading').hidden=true;
+    feedback.show('composition',{id:'initialization',kind:'error',text:'Unable to open Create Sheet Music. Your saved pieces and drafts have not been deleted. Close this view, save any other work, then reopen Studio online to finish its update and try again.'});
+  });
+}
 
 renderExercise($('bach-notation'),bachPlan().events);
 document.addEventListener('studio-view-change',event=>{
   const {previous,next}=event.detail;
-  if(next==='composition-panel')composer.open();
+  if(next==='composition-panel')openComposer();
+  if(next==='voicing-view')renderChordNavigation({progression,selected,activeIndex});
   if(next==='save-panel')updateSavedActions();
   // Viewing a playing progression's score is observational. Editing and
   // leaving a study stop through the existing transport, never a new engine.
