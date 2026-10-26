@@ -92,8 +92,8 @@ button.round-button{
   flex:none
 }
 :focus-visible{
-  outline:3px solid #c4a887;
-  outline-offset:4px
+  outline:2px solid #ddd8ce;
+  outline-offset:2px
 }
 button,summary,a,input,select{
   -webkit-tap-highlight-color:transparent
@@ -180,60 +180,12 @@ p{
   margin:auto;
   padding: max(22px,env(safe-area-inset-top)) max(18px,env(safe-area-inset-right)) max(22px,env(safe-area-inset-bottom)) max(18px,env(safe-area-inset-left))
 }
-.app-header{
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  gap:12px;
-  padding:0 0 20px;
-  color:var(--ink)
-}
-.header-motto{
-  font-size:.57rem;
-  letter-spacing:.27em;
-  line-height:1.9
-}
-.hairline{
-  display:block;
-  background:var(--ink);
-  height:1px;
-  width:24px;
-  margin-top:8px
-}
 .brand{
   display:flex;
   align-items:center;
   flex-direction:column;
   text-decoration:none;
   color:inherit
-}
-.brand-mark{
-  font-family:var(--serif);
-  font-size:3rem;
-  letter-spacing:.17em;
-  line-height:1.1;
-  padding-left:.17em
-}
-.brand-name{
-  font-size:.55rem;
-  letter-spacing:.34em;
-  text-transform:uppercase;
-  margin-top:7px
-}
-.header-button{
-  justify-self:end;
-  border-color:#888681;
-  color:var(--ink);
-  background:#efede76b;
-  padding:10px 14px;
-  font-size:.78rem
-}
-.header-button span{
-  font-size:1.1rem;
-  margin-left:6px
-}
-.header-button:hover{
-  background:#f7f5f0
 }
 .skip-link{
   position:absolute;
@@ -1090,18 +1042,6 @@ input[aria-invalid=true]{
   .app-shell{
     padding:32px 36px
   }
-  .app-header{
-    padding-bottom:24px
-  }
-  .brand-mark{
-    font-size:4.5rem
-  }
-  .brand-name{
-    font-size:.67rem
-  }
-  .header-motto{
-    font-size:.65rem
-  }
   .tabs{
     max-width:650px
   }
@@ -1292,15 +1232,6 @@ input[aria-invalid=true]{
     padding-left:max(12px,env(safe-area-inset-left));
     padding-right:max(12px,env(safe-area-inset-right))
   }
-  .brand-mark{
-    font-size:2.6rem
-  }
-  .header-motto{
-    font-size:.5rem
-  }
-  .header-button{
-    padding:9px 11px
-  }
   .intro h1{
     font-size:1.95rem
   }
@@ -1427,15 +1358,6 @@ input:not([type=checkbox]),select{
   font-size:16px
 }
 @media(max-width:699px){
-  .app-header{
-    padding-bottom:14px
-  }
-  .brand-mark{
-    font-size:2.5rem
-  }
-  .brand-name{
-    margin-top:5px
-  }
   .intro{
     padding-top:17px;
     padding-bottom:18px
@@ -1734,10 +1656,9 @@ body.task-open{
 #main:focus-visible{outline:none}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline-color:#ddd8ce}
 .catalogue{display:grid;gap:16px;margin-top:18px}.catalogue-card{border:1px solid var(--border);border-radius:12px;padding:18px}.catalogue-card h3{font-size:1.6rem;margin:10px 0}.catalogue-card>.subtle{margin:10px 0}.catalogue-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.catalogue-actions button{flex:1}.score-sounding ellipse{fill:#c79a61;stroke:#664820}.score-sounding.score-rest{opacity:.55}#guided-title{margin-top:18px}#browse-count{margin:10px 0}#save-panel .library-presets{display:block}#save-panel .library-presets summary{min-height:44px;cursor:pointer}#save-panel .library-presets label{margin:12px 0}.notation svg{break-inside:avoid}
-.header-actions{justify-self:end;display:flex;gap:8px}.header-actions .header-button{padding:10px;font-size:.74rem}
 .entry-panel{border:1px solid var(--border);border-radius:12px;padding:16px;margin:20px 0}.entry-panel h3{font-size:1.65rem;margin-bottom:10px}.entry-panel h4{font-weight:500;margin:22px 0 10px}.entry-panel>.subtle{margin-bottom:12px}.suggestions{display:grid;gap:10px}.suggestion-card{border-top:1px solid var(--border-soft);padding:14px 0}.suggestion-card p{font-size:.8rem;color:var(--muted);margin:7px 0}.suggestion-card button{margin-right:8px}.chosen-chord{border:1px solid #a69a87;padding:14px;border-radius:8px;margin:12px 0}.chosen-chord button{margin:8px 8px 8px 0}.entry-keyboard{display:flex;position:relative;height:150px;margin:16px 0;isolation:isolate}.entry-key{display:flex;align-items:end;justify-content:center;padding:0 0 12px;touch-action:manipulation;border-radius:0 0 4px 4px;font-size:.8rem}.entry-key.white{flex:1;background:#eeece5;color:#454239;z-index:1;border:1px solid #9f9c93}.entry-key.black{position:absolute;top:0;height:62%;background:#191917;color:#f0e8d9;z-index:2;font-size:.65rem}.entry-key:active{background:#c6ac8b}#composition-score-title{margin:24px 0 10px}#composition-score-meta{font-size:.8rem;color:var(--muted);margin-bottom:10px}#composition-score{margin:12px 0}#composition-cursor{font-size:.85rem;color:var(--accent)}#composition-panel .settings-grid{grid-template-columns:1fr 1fr}.score-event.score-sounding ellipse{fill:#bd945e}.score-event.score-sounding line{stroke:#986323}
 @media(min-width:700px){.suggestions{grid-template-columns:repeat(3,minmax(0,1fr))}.suggestion-card button{margin:6px 0;display:block;width:100%}}
-@media(max-width:370px){.header-actions{flex-direction:column;gap:4px}.header-actions .header-button{min-height:38px}.task-header h2{font-size:1.05rem}}
+@media(max-width:370px){.task-header h2{font-size:1.05rem}}
 @media print{
  @page{size:auto;margin:15mm}
  html,body,body.task-open{background:white!important;color:black!important;position:static!important;overflow:visible!important;width:auto!important;height:auto!important;min-width:0!important}
@@ -1745,7 +1666,8 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
  #task-view[open]{display:block!important;position:static!important;inset:auto!important;border:0!important;width:100%!important;max-width:none!important;max-height:none!important;height:auto!important;overflow:visible!important;box-shadow:none!important;background:white!important;color:black!important;margin:0!important;padding:0!important}
  #task-view::backdrop{display:none!important}
  #task-body{height:auto!important;max-height:none!important;overflow:visible!important;padding:0!important}
- #composition-panel>*:not(#composition-print-area){display:none!important}
+ #composition-panel>*:not(#composition-content),#composition-content>*:not(#composition-print-area){display:none!important}
+ #composition-content{display:block!important}
  #composition-print-area{display:block!important;color:black!important}
  #composition-score-meta{color:#333!important}
  #composition-score{background:white!important;border:0!important;overflow:visible!important}
@@ -1757,3 +1679,22 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,su
 @media print{#composition-score>svg{display:block!important}}
 
 #composition-panel label.switch{white-space:normal}
+
+/* Mobile corrections: identity, tool destinations and chord inspection. */
+.app-header{display:flex;justify-content:center;padding:8px 0 24px;color:var(--ink)}
+.brand{max-width:100%}.brand-mark{position:relative;font-family:var(--serif);font-size:clamp(3.5rem,9vw,5rem);letter-spacing:.17em;line-height:1.1;padding-left:.17em}
+.brand-name{font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;margin-top:8px}
+.brand-glint{position:absolute;right:-.03em;top:.05em;width:.23em;height:.23em;fill:#9e896e}
+.destination-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:0 auto 18px;max-width:650px}
+.destination-bar button{min-height:44px;color:var(--ink);background:#efede7cc;border-color:#92908a;white-space:normal}
+#composer-open{flex:2 1 11em}#sound-settings-toggle{flex:1 1 7em}
+.tabs{display:flex;flex-wrap:wrap}.tab{flex:1 1 7em}
+.chord-detail-nav{margin-bottom:18px}.chord-detail-step{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:10px;align-items:center}
+.chord-detail-step button{min-width:0;font-size:.82rem;padding:10px 8px}.chord-detail-step p{font-variant-numeric:tabular-nums;font-size:.85rem}
+.detail-chords{display:flex;gap:8px;overflow-x:auto;overscroll-behavior-x:contain;padding:6px 3px 10px;margin:12px 0;scroll-padding:4px}
+.detail-chord{flex:0 0 auto;min-width:76px;min-height:82px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 12px}
+.detail-chord strong{font:1.4rem var(--serif)}.detail-chord>span,.detail-chord small{font-size:.7rem}.detail-chord.current{background:#3b3832;border-color:var(--accent)}.detail-chord.playing small{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+body[data-input=pointer] .task-header button:focus-visible{outline:none}
+@media(max-width:699px){.task-view[open]{display:grid;grid-template-rows:auto minmax(0,1fr)}.task-body{height:auto;min-height:0}.task-header h2{min-width:0;overflow-wrap:anywhere}}
+
+.tool-icon{width:1em;height:1em;vertical-align:-.1em;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}

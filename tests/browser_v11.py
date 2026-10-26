@@ -149,7 +149,7 @@ with sync_playwright() as p:
           const deadline=Date.now()+10000;
           async function check() {
             const keys=await caches.keys();
-            if(keys.includes('jlk-studio-v1.3-b')&&!keys.includes('jlk-studio-v1'))return resolve();
+            if(keys.includes('jlk-studio-v1.3.1')&&!keys.includes('jlk-studio-v1'))return resolve();
             if(Date.now()>deadline)return reject(new Error('New worker did not finish cache cleanup'));
             setTimeout(check,25);
           }
@@ -157,7 +157,7 @@ with sync_playwright() as p:
         })""")
         fresh=upgrade.new_page();fresh.goto(url)
         fresh.wait_for_selector('#test-sound',state='attached')
-        fresh.wait_for_function("caches.keys().then(keys=>keys.includes('jlk-studio-v1.3-b')&&!keys.includes('jlk-studio-v1'))")
+        fresh.wait_for_function("caches.keys().then(keys=>keys.includes('jlk-studio-v1.3.1')&&!keys.includes('jlk-studio-v1'))")
         fresh.get_by_role('button',name='Progressions',exact=True).click()
         assert fresh.locator('#saved option').all_text_contents() == ['Choose a saved progression','From version 1']
         open_save(fresh);fresh.select_option('#saved','0');fresh.click('#load-saved')

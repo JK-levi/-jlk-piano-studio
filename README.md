@@ -225,3 +225,10 @@ Run `npm test`, the existing browser suites, and `python3 tests/browser_discover
 [Create & Assisted Composition review](docs/v1.3-stage-b.md). **Create** opens a real two-hand, eight-measure 4/4 editor. Enter notes, rests or simultaneous chords, audition optional **What Comes Next?** suggestions, then explicitly insert your choices. Save locally, reopen, back up as JSON and print a clean score. The original audio engine, scheduler, theory and progression saves are preserved. No runtime dependency or network service was added.
 
 Run `npm test` and all six browser suites (`browser_smoke.py`, `browser_v11.py`, `browser_progression.py`, `browser_design.py`, `browser_discover.py`, `browser_composer.py`). Composer tests additionally use `pdftotext` to inspect Chromium print output. Current full-release cache: `jlk-studio-v1.3-b`. Physical iPhone playback, touch accessibility, Home Screen updates and printing remain manual checks.
+
+
+## Mobile corrections — 1.3.1
+
+[Review and screenshots](docs/mobile-corrections.md). A centered JLK header separates **Create Sheet Music** and **Settings** from the identity. View Selected Chord adds previous/next navigation, a full scrollable sequence and separate selected/playing indicators. Create loads the existing editor with visible loading and failure feedback; worker lookups are isolated to `jlk-studio-v1.3.1`. Audio, composition and saved-data models are preserved.
+
+Run the six existing browser suites plus `tests/browser_mobile_corrections.py` and `tests/browser_mobile_update.py`. The latter upgrades the actual merged v1.3 fixture, retaining personal data and verifying offline composer use. Physical iPhone Safari/Home Screen, accessibility and printing remain manual release checks.
