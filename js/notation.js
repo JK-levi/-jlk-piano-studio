@@ -5,7 +5,7 @@ export function staffPosition(note,clef) {
   const step = note.octave*7+'CDEFGAB'.indexOf(note.letter);
   return (clef==='treble'?106:206)-5*(step-(clef==='treble'?4*7+2:2*7+4));
 }
-function clef(svg,type,x,y) {
+export function clef(svg,type,x,y) {
   if (type==='treble') {
     svg.append(el('path',{d:`M ${x+13} ${y+48} C ${x-8} ${y+36}, ${x+4} ${y+19}, ${x+17} ${y+14} C ${x+36} ${y+7}, ${x+27} ${y-16}, ${x+22} ${y-18} C ${x+7} ${y-5}, ${x+21} ${y+29}, ${x+23} ${y+52} C ${x+26} ${y+74}, ${x+7} ${y+72}, ${x+10} ${y+62} M ${x+11} ${y+43} C ${x-1} ${y+24}, ${x+35} ${y+22}, ${x+29} ${y+43} C ${x+24} ${y+56}, ${x+2} ${y+51}, ${x+3} ${y+37}`,fill:'none',stroke:'#25303b','stroke-width':2.7,'stroke-linecap':'round'}));
     svg.append(el('circle',{cx:x+11,cy:y+63,r:3,fill:'#25303b'}));

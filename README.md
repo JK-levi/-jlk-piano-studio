@@ -211,3 +211,10 @@ python3 tests/browser_design.py
 The updated design/navigation suite captures Explore, Chord Editor, Progressions, Practice and Bach Study in `docs/screenshots/v1.2.1/`. It covers nested returns, focus/scroll restoration, browser Back/Forward, state preservation, playback, library operations, responsiveness and offline use. `JLK_BASE_URL` selects another server or GitHub Pages-style repository path; `JLK_SCREENSHOT_DIR` changes the capture destination.
 
 Physical iPhone testing of this patch remains required, particularly VoiceOver, native form controls and keyboard sizing, safe areas, back gestures, Safari/Home Screen audio recovery and offline updates. No merge or deployment is performed automatically.
+
+
+## Version 1.3 Stage A
+
+[Discover & Learn review](docs/v1.3-stage-a.md). Progressions → Browse & Play offers 18 curated sequences with feel/difficulty filters, Hear previews and Play along. My progressions holds personal saves and recoverable unsaved drafts. Explore → Guided studies contains four developing two-hand examples; the Bach-inspired arrangement is labeled as an original simplified study. The existing audio engine/scheduler and saved-data keys remain unchanged.
+
+Run `npm test`, the existing browser suites, and `python3 tests/browser_discover.py`. Current cache: `jlk-studio-v1.3-a`. Close old app windows and reopen online before checking the updated offline version. Physical iPhone verification of this stage remains a manual release check.

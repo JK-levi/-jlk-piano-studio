@@ -1730,3 +1730,7 @@ body.task-open{
     margin-bottom:14px
   }
 }
+/* 1.3 discovery: keep containers quiet and keyboard focus explicit. */
+#main:focus-visible{outline:none}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline-color:#ddd8ce}
+.catalogue{display:grid;gap:16px;margin-top:18px}.catalogue-card{border:1px solid var(--border);border-radius:12px;padding:18px}.catalogue-card h3{font-size:1.6rem;margin:10px 0}.catalogue-card>.subtle{margin:10px 0}.catalogue-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.catalogue-actions button{flex:1}.score-sounding ellipse{fill:#c79a61;stroke:#664820}.score-sounding.score-rest{opacity:.55}#guided-title{margin-top:18px}#browse-count{margin:10px 0}#save-panel .library-presets{display:block}#save-panel .library-presets summary{min-height:44px;cursor:pointer}#save-panel .library-presets label{margin:12px 0}.notation svg{break-inside:avoid}

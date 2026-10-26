@@ -6,8 +6,10 @@ import { Playback } from './playback.js';
 import { chordPlan, bachPlan, bachNotes, brokenEvents, progressionPlan } from './exercises.js';
 import { Practice } from './practice.js';
 import { PRESETS, romanNumeral } from './progressions.js';
+import { setupDiscover } from './discover.js';
+import { preserveSequence,latestDraft } from './sequence-drafts.js';
 import { Feedback, validTempo } from './feedback.js';
-import { bindLayout, setExperience, openView, closeView, currentView } from './layout.js';
+import { bindLayout, setExperience, openView, closeView, currentView, returnToWorkspace } from './layout.js';
 const $ = id => document.getElementById(id);
 const base = {root:'C',quality:'major',octave:4,inversion:0,voicing:'close'};
 const prefs=read('preferences',{});
@@ -30,7 +32,7 @@ const playbackStates=new Map();
 function message(text,{scope=mode==='studio'?'studio':mode==='practice'?'practice':'study',kind='info',id='notice'}={}){feedback.show(scope,{kind,id,text});}
 function playbackStatus(scope,state,detail=''){
   playbackStates.set(scope,state);
-  const target={sequence:'position',study:'study-position',bach:'bach-position',practice:'practice-position',audio:'audio-playback-status'}[scope];
+  const target={sequence:'position',study:'study-position',bach:'bach-position',practice:'practice-position',audio:'audio-playback-status',browse:'browse-position',composition:'composition-position'}[scope];
   if(target){$(target).textContent=state+(detail?' · '+detail:'');$(target).dataset.state=state;}
   if(scope==='practice'){$('study-position').textContent=state+(detail?' · '+detail:'');$('study-position').dataset.state=state;}
 }
@@ -203,7 +205,7 @@ function requestStudy(kind){
   if(!checkTempo('study-tempo',scope))return;
   withAudio(()=>playStudy(kind),{scope});
 }
-$('replay').addEventListener('click',()=>requestStudy(studyKind));
+$('replay').addEventListener('click',()=>currentView()==='bach-panel'?guided.play():requestStudy(studyKind));
 $('study-tempo').addEventListener('change',()=>{stop({silent:true});if(checkTempo('study-tempo',currentView()==='bach-panel'?'bach':mode==='practice'?'practice':'study'))persistPrefs();$('bach-tempo-description').textContent=`${$('study-tempo').value||'—'} BPM`;});
 for(const id of ['study-loop','sequence-loop'])$(id).addEventListener('change',()=>{stop({silent:true});persistPrefs();});
 $('analysis-key').addEventListener('change',()=>{stop({silent:true});persistSession();renderProgression();});
@@ -237,7 +239,24 @@ function renderProgression(){
   transport();
 }
 $('add-chord').addEventListener('click',()=>{if(progression.length>=64)return message('A progression can contain up to 64 chords. Remove a chord before adding another.',{scope:'studio',kind:'warning',id:'limit'});stop({silent:true});progression.push({...spec});selected=progression.length-1;persistSession();setMode('studio');if(currentView()==='chord-editor')closeView();renderProgression();message(`${pretty(chord(spec).symbol)} added to your progression.`,{scope:'studio',kind:'success'});});
-$('load-preset').addEventListener('click',()=>{stop({silent:true});progression=structuredClone(presets[Number($('preset').value)]);sequenceName=PRESETS[Number($('preset').value)].name.split(' · ')[0];setKey(PRESETS[Number($('preset').value)].key);selected=0;spec={...progression[0]};persistSession();render();renderProgression();feedback.clear('save','chords');feedback.clear('sequence','empty');feedback.clearSuccess('save');message('Starting point loaded. Your named saves are unchanged.',{scope:'studio',kind:'success'});});
+function loadBuiltIn(index){
+ const backup=preserveSequence(progression,sequenceName,$('analysis-key').value,PRESETS,saved);
+ if(!backup.ok){feedback.show('studio',{id:'draft',kind:'error',text:'Your unsaved sequence could not be backed up. Save it in My progressions before loading another.'});return false;}
+ stop({silent:true});progression=structuredClone(PRESETS[index].chords);sequenceName=PRESETS[index].name.split(' · ')[0];setKey(PRESETS[index].key);selected=0;spec={...progression[0]};$('tempo').value=PRESETS[index].tempo;
+ persistSession();render();renderProgression();feedback.clear('studio','draft');
+ if(backup.preserved)feedback.show('studio',{id:'draft',kind:'info',text:'Your unsaved sequence is preserved in My progressions → Restore latest unsaved draft.'});
+ return true;
+}
+$('load-preset').addEventListener('click',()=>loadBuiltIn(Number($('preset').value)));
+$('restore-draft').addEventListener('click',()=>{const draft=latestDraft();if(!draft)return;
+ const backup=preserveSequence(progression,sequenceName,$('analysis-key').value,PRESETS,saved);if(!backup.ok){feedback.show('save',{id:'draft',kind:'error',text:'Save your current sequence before restoring a draft.'});return;}
+ stop({silent:true});progression=structuredClone(draft.chords);sequenceName=draft.name;setKey(draft.key||'');selected=0;spec={...progression[0]};persistSession();render();renderProgression();message('Draft restored.',{scope:'save',kind:'success'});
+});
+document.addEventListener('studio-use-preset',event=>withAudio(()=>{
+ if(!loadBuiltIn(event.detail.index))return;
+ document.addEventListener('studio-view-change',function ready(e){if(e.detail.next===null){document.removeEventListener('studio-view-change',ready);$('sequence-play').click();}});
+ returnToWorkspace();
+},{scope:'browse'}));
 $('clear-progression').addEventListener('click',()=>{stop({silent:true});progression=[];sequenceName='Your progression';selected=0;persistSession();renderProgression();});
 function transposition(amount){stop({silent:true});const key=$('analysis-key').value;if(key){const minor=key.endsWith('m');setKey(transpose({...base,root:minor?key.slice(0,-1):key},amount).root+(minor?'m':''));}let previous=null;progression=progression.map(s=>{let next=transpose(s,amount);if($('voice-leading').checked)next=voiceLead(next,previous);previous=chord(next).notes;return next;});spec={...(progression[selected]||transpose(spec,amount))};persistSession();persistPrefs();render();renderProgression();message(`Progression transposed ${amount>0?'up':'down'} one semitone.`);}
 $('transpose-up').addEventListener('click',()=>transposition(1));$('transpose-down').addEventListener('click',()=>transposition(-1));
@@ -257,28 +276,41 @@ $('sequence-pause').addEventListener('click',()=>{
   transport();renderProgression();playbackStatus('sequence','Paused','Resume restarts this chord');
 });
 $('sequence-stop').addEventListener('click',()=>{stop();playbackStatus('sequence','Stopped');renderKeyboard(chord(spec).notes);});
-function renderSaved(){const selectedValue=$('saved').value;$('saved').replaceChildren(option('','Choose a saved progression'),...saved.map((p,i)=>option(i,p.name)));if(saved[Number(selectedValue)]&&selectedValue!=='')$('saved').value=selectedValue;}
+function renderSaved(){const selectedValue=$('saved').value;$('saved').replaceChildren(option('','Choose a saved progression'),...saved.map((p,i)=>option(i,p.name)));if(saved[Number(selectedValue)]&&selectedValue!=='')$('saved').value=selectedValue;updateSavedActions();}
+function updateSavedActions(){const none=$('saved').value==='';$('load-saved').disabled=none;$('delete-saved').disabled=none;const draft=latestDraft();$('restore-draft').disabled=!draft;$('draft-description').textContent=draft?`Recoverable draft: ${draft.name}`:'No unsaved sequence drafts yet.';}
+$('saved').addEventListener('change',updateSavedActions);
 $('save-progression').addEventListener('click',()=>{
   const name=$('save-name').value.trim();if(!name)return feedback.show('save',{id:'name',kind:'error',text:'Name required. Enter a name before saving your progression.',field:'save-name'});feedback.clear('save','name');if(!progression.length)return feedback.show('save',{id:'chords',kind:'warning',text:'No chords to save. Load a starting point or add a chord above.'});
   feedback.clear('save','name');feedback.clear('save','chords');
   const entry={name,key:$('analysis-key').value,chords:structuredClone(progression)},index=saved.findIndex(p=>p.name===name);
   if(index===-1&&saved.length>=50)return message('Your device has 50 saved progressions. Delete one before adding another.',{scope:'save',kind:'warning',id:'limit'});
   const updated=structuredClone(saved);if(index<0)updated.push(entry);else updated[index]=entry;
-  if(write('progressions',updated)){sequenceName=name;persistSession();renderProgression();saved=updated;renderSaved();$('saved').value=index<0?saved.length-1:index;feedback.clear('save','storage');feedback.clear('save','limit');message(`“${name}” saved on this device.`,{scope:'save',kind:'success'});}else feedback.show('save',{id:'storage',kind:'error',text:'Unable to save. Allow this site to use local storage, then try again. Your current progression is still available.'});
+  if(write('progressions',updated)){sequenceName=name;persistSession();renderProgression();saved=updated;renderSaved();$('saved').value=index<0?saved.length-1:index;updateSavedActions();feedback.clear('save','storage');feedback.clear('save','limit');message(`“${name}” saved on this device.`,{scope:'save',kind:'success'});}else feedback.show('save',{id:'storage',kind:'error',text:'Unable to save. Allow this site to use local storage, then try again. Your current progression is still available.'});
 });
 $('load-saved').addEventListener('click',()=>{const p=$('saved').value===''?null:saved[Number($('saved').value)];if(!p)return message('Choose a saved progression first.',{scope:'save',kind:'warning',id:'selection'});stop({silent:true});progression=structuredClone(p.chords);sequenceName=p.name;setKey(p.key||'');spec={...progression[0]};selected=0;$('save-name').value=p.name;persistSession();render();renderProgression();feedback.clear('save','selection');message(`Opened “${p.name}”.`,{scope:'save',kind:'success'});});
 $('delete-saved').addEventListener('click',()=>{if($('saved').value==='')return message('Choose a saved progression first.',{scope:'save',kind:'warning',id:'selection'});const index=Number($('saved').value),updated=saved.filter((_,i)=>i!==index);if(write('progressions',updated)){saved=updated;renderSaved();feedback.clear('save','storage');feedback.clear('save','selection');message('Saved progression deleted. The current progression remains available.',{scope:'save',kind:'success'});}else feedback.show('save',{id:'storage',kind:'error',text:'Unable to delete the saved progression. Allow local storage and try again.'});});
+function audition({plan,bpm,loop=false,scope,onFrame=()=>{}}){
+ withAudio(()=>{activeScope=scope;activePlayback=scope;player.start(plan,{bpm,loop,
+  onScheduled:()=>{feedback.clear(scope,'audio');playbackStatus(scope,'Playing');},
+  onFrame:(events,beat)=>{onFrame(events,beat);if(beat!==null)playbackStatus(scope,'Playing',`Beat ${Math.floor(beat%4)+1}`);},
+  onEnd:()=>{activeScope=null;activePlayback=null;playbackStatus(scope,'Complete');},onError:error=>playbackFailure(error,scope)
+ });},{scope});
+}
+function stopExternal(scope){stop();playbackStatus(scope,'Stopped');}
+const guided=setupDiscover({audition,stop:stopExternal,feedback,renderKeyboard});
+
 renderExercise($('bach-notation'),bachPlan().events);
 document.addEventListener('studio-view-change',event=>{
   const {previous,next}=event.detail;
+  if(next==='save-panel')updateSavedActions();
   // Viewing a playing progression's score is observational. Editing and
   // leaving a study stop through the existing transport, never a new engine.
   if(next!=='voicing-view' && !(previous==='voicing-view'&&next===null))stop({silent:true});
-  if(next==='bach-panel'){studyKind='bach';renderKeyboard(bachNotes);}
+  if(next==='bach-panel'){studyKind='bach';guided.open();}
   else if(previous==='bach-panel'){studyKind='chord';render();}
 });
-$('play-bach').addEventListener('click',()=>requestStudy('bach'));
-$('stop-bach').addEventListener('click',()=>{stop();playbackStatus('bach','Stopped');renderKeyboard(bachNotes);});
+$('play-bach').addEventListener('click',()=>guided.play());
+$('stop-bach').addEventListener('click',()=>{stop();playbackStatus('bach','Stopped');guided.open();});
 window.addEventListener('pageshow',()=>audio.refreshStatus());
 window.addEventListener('pagehide',()=>stop({silent:true}));
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stop({silent:true});else audio.refreshStatus();});

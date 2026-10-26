@@ -29,7 +29,13 @@ def open_save(page):
     close_tasks(page)
     if page.locator('body').get_attribute('data-experience')!='studio':page.get_by_role('button',name='Progressions',exact=True).click()
     page.click('#open-save')
+
 def edit_sequence(page):open_settings(page)
 def inspect_progression(page):
     if task(page)=='voicing-view':return
     close_tasks(page);page.click('#view-voicing')
+
+def choose_preset(page,value):
+    previous=task(page);close_tasks(page);page.click('#browse-open');page.locator('#browse-panel .library-presets summary').click();page.select_option('#preset',value);page.click('#load-preset');close_tasks(page)
+    if previous=='save-panel':open_save(page)
+    elif previous=='sequence-editor':open_settings(page)

@@ -1,4 +1,4 @@
-from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression
+from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression, choose_preset
 from playwright.sync_api import sync_playwright
 import json
 import os
@@ -80,13 +80,13 @@ with sync_playwright() as p:
     page.get_by_role('button',name='Progressions',exact=True).click();open_save(page);page.select_option('#saved','0');page.click('#load-saved');assert page.locator('.chord-select').count()==5
     close_tasks(page)
     page.get_by_role('button',name='Explore',exact=True).click()
-    page.click('#bach');page.click('#play-bach');assert page.locator('#bach-notation svg').count()==2
+    page.click('#bach');page.select_option('#study-picker','bach');page.click('#play-bach');assert page.locator('#bach-notation svg').count()==4
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':320,'height':740})
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':390,'height':844})
     page.wait_for_function('!!navigator.serviceWorker.controller')
-    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.2.1' in cache
+    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.3-a' in cache
     context.set_offline(True);page.reload();page.wait_for_selector('.key');assert page.locator('.key').count()>20
     assert 'OFFLINE' in page.locator('#connection').inner_text()
     context.set_offline(False)
