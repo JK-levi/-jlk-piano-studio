@@ -6,6 +6,7 @@ import { Playback } from './playback.js';
 import { chordPlan, bachPlan, bachNotes, brokenEvents, progressionPlan } from './exercises.js';
 import { Practice } from './practice.js';
 import { PRESETS, romanNumeral } from './progressions.js';
+import { setupComposer } from './composer.js';
 import { setupDiscover } from './discover.js';
 import { preserveSequence,latestDraft } from './sequence-drafts.js';
 import { Feedback, validTempo } from './feedback.js';
@@ -298,10 +299,12 @@ function audition({plan,bpm,loop=false,scope,onFrame=()=>{}}){
 }
 function stopExternal(scope){stop();playbackStatus(scope,'Stopped');}
 const guided=setupDiscover({audition,stop:stopExternal,feedback,renderKeyboard});
+const composer=setupComposer({audition,stop:stopExternal,feedback});
 
 renderExercise($('bach-notation'),bachPlan().events);
 document.addEventListener('studio-view-change',event=>{
   const {previous,next}=event.detail;
+  if(next==='composition-panel')composer.open();
   if(next==='save-panel')updateSavedActions();
   // Viewing a playing progression's score is observational. Editing and
   // leaving a study stop through the existing transport, never a new engine.

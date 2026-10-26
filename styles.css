@@ -1734,3 +1734,26 @@ body.task-open{
 #main:focus-visible{outline:none}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline-color:#ddd8ce}
 .catalogue{display:grid;gap:16px;margin-top:18px}.catalogue-card{border:1px solid var(--border);border-radius:12px;padding:18px}.catalogue-card h3{font-size:1.6rem;margin:10px 0}.catalogue-card>.subtle{margin:10px 0}.catalogue-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.catalogue-actions button{flex:1}.score-sounding ellipse{fill:#c79a61;stroke:#664820}.score-sounding.score-rest{opacity:.55}#guided-title{margin-top:18px}#browse-count{margin:10px 0}#save-panel .library-presets{display:block}#save-panel .library-presets summary{min-height:44px;cursor:pointer}#save-panel .library-presets label{margin:12px 0}.notation svg{break-inside:avoid}
+.header-actions{justify-self:end;display:flex;gap:8px}.header-actions .header-button{padding:10px;font-size:.74rem}
+.entry-panel{border:1px solid var(--border);border-radius:12px;padding:16px;margin:20px 0}.entry-panel h3{font-size:1.65rem;margin-bottom:10px}.entry-panel h4{font-weight:500;margin:22px 0 10px}.entry-panel>.subtle{margin-bottom:12px}.suggestions{display:grid;gap:10px}.suggestion-card{border-top:1px solid var(--border-soft);padding:14px 0}.suggestion-card p{font-size:.8rem;color:var(--muted);margin:7px 0}.suggestion-card button{margin-right:8px}.chosen-chord{border:1px solid #a69a87;padding:14px;border-radius:8px;margin:12px 0}.chosen-chord button{margin:8px 8px 8px 0}.entry-keyboard{display:flex;position:relative;height:150px;margin:16px 0;isolation:isolate}.entry-key{display:flex;align-items:end;justify-content:center;padding:0 0 12px;touch-action:manipulation;border-radius:0 0 4px 4px;font-size:.8rem}.entry-key.white{flex:1;background:#eeece5;color:#454239;z-index:1;border:1px solid #9f9c93}.entry-key.black{position:absolute;top:0;height:62%;background:#191917;color:#f0e8d9;z-index:2;font-size:.65rem}.entry-key:active{background:#c6ac8b}#composition-score-title{margin:24px 0 10px}#composition-score-meta{font-size:.8rem;color:var(--muted);margin-bottom:10px}#composition-score{margin:12px 0}#composition-cursor{font-size:.85rem;color:var(--accent)}#composition-panel .settings-grid{grid-template-columns:1fr 1fr}.score-event.score-sounding ellipse{fill:#bd945e}.score-event.score-sounding line{stroke:#986323}
+@media(min-width:700px){.suggestions{grid-template-columns:repeat(3,minmax(0,1fr))}.suggestion-card button{margin:6px 0;display:block;width:100%}}
+@media(max-width:370px){.header-actions{flex-direction:column;gap:4px}.header-actions .header-button{min-height:38px}.task-header h2{font-size:1.05rem}}
+@media print{
+ @page{size:auto;margin:15mm}
+ html,body,body.task-open{background:white!important;color:black!important;position:static!important;overflow:visible!important;width:auto!important;height:auto!important;min-width:0!important}
+ body:before,.app-shell,#task-dock,.task-header,.no-print{display:none!important}
+ #task-view[open]{display:block!important;position:static!important;inset:auto!important;border:0!important;width:100%!important;max-width:none!important;max-height:none!important;height:auto!important;overflow:visible!important;box-shadow:none!important;background:white!important;color:black!important;margin:0!important;padding:0!important}
+ #task-view::backdrop{display:none!important}
+ #task-body{height:auto!important;max-height:none!important;overflow:visible!important;padding:0!important}
+ #composition-panel>*:not(#composition-print-area){display:none!important}
+ #composition-print-area{display:block!important;color:black!important}
+ #composition-score-meta{color:#333!important}
+ #composition-score{background:white!important;border:0!important;overflow:visible!important}
+ #composition-score svg{break-inside:avoid;page-break-inside:avoid;display:block!important;width:100%!important;margin-bottom:10mm}
+ #composition-score .score-sounding ellipse{fill:#30312f!important;stroke:#30312f!important}
+}
+.entry-key.sounding{background:#c6ac8b;color:#191917}
+#composition-score:not(.show-all)>svg:not(.active-measure){display:none}
+@media print{#composition-score>svg{display:block!important}}
+
+#composition-panel label.switch{white-space:normal}

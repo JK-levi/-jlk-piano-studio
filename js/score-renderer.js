@@ -17,11 +17,16 @@ export function renderScore(container,events,{measures=1,labels=true,title='4/4 
  for(let measure=0;measure<measures;measure++){
   const entries=events.filter(e=>e.beat>=measure*4&&e.beat<(measure+1)*4);
   const top=Math.min(0,...entries.filter(e=>e.hand==='right').flatMap(e=>e.pitches.map(p=>writtenY(p,'right')-45)));
-  const bottom=Math.max(315,...entries.filter(e=>e.hand==='left').flatMap(e=>e.pitches.map(p=>writtenY(p,'left')+55)));
-  const svg=node('svg',{viewBox:`0 ${top} 580 ${bottom-top+12}`,role:'img','aria-label':`${title}, measure ${measure+1}, treble right hand and bass left hand`});
+  const rightLabels=Math.max(130,...entries.filter(e=>e.hand==='right').flatMap(e=>e.pitches.map(p=>writtenY(p,'right')+23)));
+  const maxRight=Math.max(1,...entries.filter(e=>e.hand==='right').map(e=>e.pitches.length)),rightEnd=rightLabels+(maxRight-1)*11;
+  const leftMin=Math.min(190,...entries.filter(e=>e.hand==='left').flatMap(e=>e.pitches.map(p=>writtenY(p,'left'))));
+  const shift=Math.max(0,rightEnd+30-leftMin),leftLabels=Math.max(270+shift,...entries.filter(e=>e.hand==='left').flatMap(e=>e.pitches.map(p=>writtenY(p,'left')+shift+23)));
+  const maxLeft=Math.max(1,...entries.filter(e=>e.hand==='left').map(e=>e.pitches.length));
+  const bottom=Math.max(315+shift,leftLabels+maxLeft*11+10);
+  const svg=node('svg',{'data-measure':measure,viewBox:`0 ${top} 580 ${bottom-top+12}`,role:'img','aria-label':`${title}, measure ${measure+1}, treble right hand and bass left hand`});
   svg.append(node('title',{},`${title} — measure ${measure+1}. Each column is the same beat in both hands.`));
   svg.append(node('text',{x:24,y:top+18,'font-size':11,fill:'#655a49','font-family':'system-ui'},`MEASURE ${measure+1} · 4/4`));
-  for(const [hand,type,y] of [['right','treble',50],['left','bass',190]]){
+  for(const [hand,type,y] of [['right','treble',50],['left','bass',190+shift]]){
    for(let i=0;i<5;i++)svg.append(node('line',{x1:24,x2:562,y1:y+i*10,y2:y+i*10,stroke:'#96988f','stroke-width':.8}));
    clef(svg,type,31,y);
    for(const dy of [17,37])svg.append(node('text',{x:91,y:y+dy,'font-size':21,'font-weight':'bold',fill:'#30312f'},'4'));
@@ -30,28 +35,28 @@ export function renderScore(container,events,{measures=1,labels=true,title='4/4 
     const x=126+(event.beat-measure*4)*106;
     if(!event.pitches.length){rest(svg,x,y+20,event.duration,event.id);continue;}
     const pitches=[...event.pitches].sort((a,b)=>toMidi(a)-toMidi(b));
-    const down=pitches.reduce((sum,p)=>sum+writtenY(p,hand),0)/pitches.length<y+20;
-    let prior=null,shift=false;
+    const down=pitches.reduce((sum,p)=>sum+(writtenY(p,hand)+(hand==='left'?shift:0)),0)/pitches.length<y+20;
+    let prior=null,stagger=false;
     const group=node('g',{'data-score-event':event.id,class:'score-event'});
     pitches.forEach((pitch,i)=>{
-     const p=parseNote(pitch),ny=writtenY(pitch,hand);shift=prior!==null&&Math.abs(prior-ny)<10?!shift:false;prior=ny;
-     const nx=x+(shift?(down?-11:11):0);
+     const p=parseNote(pitch),ny=writtenY(pitch,hand)+(hand==='left'?shift:0);stagger=prior!==null&&Math.abs(prior-ny)<10?!stagger:false;prior=ny;
+     const nx=x+(stagger?(down?-11:11):0);
      for(let ly=y+50;ly<=ny;ly+=10)group.append(node('line',{x1:nx-12,x2:nx+12,y1:ly,y2:ly,stroke:'#30312f'}));
      for(let ly=y-10;ly>=ny;ly-=10)group.append(node('line',{x1:nx-12,x2:nx+12,y1:ly,y2:ly,stroke:'#30312f'}));
      const key=p.letter+p.octave,previous=accidentals.get(key)||0;
      if(p.accidental!==previous){group.append(node('text',{x:x-16-i*13,y:ny+6,'font-size':21,'text-anchor':'end',fill:'#30312f'},p.accidental===0?'♮':p.accidental>0?'♯'.repeat(p.accidental):'♭'.repeat(-p.accidental)));accidentals.set(key,p.accidental);}
      group.append(node('ellipse',{cx:nx,cy:ny,rx:event.duration===4?9:7,ry:4.7,transform:`rotate(-15 ${nx} ${ny})`,fill:event.duration>=2?'#f3efe5':'#30312f',stroke:'#30312f','stroke-width':1.5,'data-midi':toMidi(pitch)}));
-     if(labels)group.append(node('text',{x,y:(hand==='right'?130:270)+i*11,'text-anchor':'middle','font-size':11,fill:'#655a49','font-family':'system-ui'},pretty(pitch)));
+     if(labels)group.append(node('text',{x,y:(hand==='right'?rightLabels:leftLabels)+i*11,'text-anchor':'middle','font-size':11,fill:'#655a49','font-family':'system-ui'},pretty(pitch)));
     });
     if(event.duration<4){
-     const ys=pitches.map(p=>writtenY(p,hand)),stemX=x+(down?-6:6),start=down?Math.min(...ys):Math.max(...ys),end=down?Math.max(...ys)+30:Math.min(...ys)-30;
+     const ys=pitches.map(p=>writtenY(p,hand)+(hand==='left'?shift:0)),stemX=x+(down?-6:6),start=down?Math.min(...ys):Math.max(...ys),end=down?Math.max(...ys)+30:Math.min(...ys)-30;
      group.append(node('line',{x1:stemX,x2:stemX,y1:start,y2:end,stroke:'#30312f','stroke-width':1.5}));
      if(event.duration===.5)group.append(node('path',{d:down?`M ${stemX} ${end} q -16 -7 -4 -20`:`M ${stemX} ${end} q 17 7 4 21`,fill:'none',stroke:'#30312f','stroke-width':2}));
     }
     svg.append(group);
    }
   }
-  for(const x of [24,562])svg.append(node('line',{x1:x,x2:x,y1:50,y2:230,stroke:'#30312f'}));
+  for(const x of [24,562])svg.append(node('line',{x1:x,x2:x,y1:50,y2:230+shift,stroke:'#30312f'}));
   fragment.append(svg);
  }
  container.replaceChildren(fragment);

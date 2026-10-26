@@ -218,3 +218,10 @@ Physical iPhone testing of this patch remains required, particularly VoiceOver, 
 [Discover & Learn review](docs/v1.3-stage-a.md). Progressions → Browse & Play offers 18 curated sequences with feel/difficulty filters, Hear previews and Play along. My progressions holds personal saves and recoverable unsaved drafts. Explore → Guided studies contains four developing two-hand examples; the Bach-inspired arrangement is labeled as an original simplified study. The existing audio engine/scheduler and saved-data keys remain unchanged.
 
 Run `npm test`, the existing browser suites, and `python3 tests/browser_discover.py`. Current cache: `jlk-studio-v1.3-a`. Close old app windows and reopen online before checking the updated offline version. Physical iPhone verification of this stage remains a manual release check.
+
+
+## Version 1.3 Stage B
+
+[Create & Assisted Composition review](docs/v1.3-stage-b.md). **Create** opens a real two-hand, eight-measure 4/4 editor. Enter notes, rests or simultaneous chords, audition optional **What Comes Next?** suggestions, then explicitly insert your choices. Save locally, reopen, back up as JSON and print a clean score. The original audio engine, scheduler, theory and progression saves are preserved. No runtime dependency or network service was added.
+
+Run `npm test` and all six browser suites (`browser_smoke.py`, `browser_v11.py`, `browser_progression.py`, `browser_design.py`, `browser_discover.py`, `browser_composer.py`). Composer tests additionally use `pdftotext` to inspect Chromium print output. Current full-release cache: `jlk-studio-v1.3-b`. Physical iPhone playback, touch accessibility, Home Screen updates and printing remain manual checks.
