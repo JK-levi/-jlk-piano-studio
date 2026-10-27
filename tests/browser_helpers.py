@@ -39,3 +39,21 @@ def choose_preset(page,value):
     previous=task(page);close_tasks(page);page.click('#browse-open');page.locator('#browse-panel .library-presets summary').click();page.select_option('#preset',value);page.click('#load-preset');close_tasks(page)
     if previous=='save-panel':open_save(page)
     elif previous=='sequence-editor':open_settings(page)
+
+def wait_for_waiting_worker(page):
+    # This Playwright build resolves a Promise returned by wait_for_function
+    # even when it resolves false. Poll the live registration synchronously.
+    page.evaluate('navigator.serviceWorker.getRegistration().then(r=>{window.__upgradeRegistration=r;})')
+    page.wait_for_function('!!window.__upgradeRegistration.waiting')
+
+def wait_for_cache(page,current,previous):
+    page.evaluate('''({current,previous})=>new Promise((resolve,reject)=>{
+      const deadline=Date.now()+10000;
+      async function check(){
+        const keys=await caches.keys();
+        if(keys.includes(current)&&!keys.includes(previous))return resolve();
+        if(Date.now()>deadline)return reject(Error('Cache upgrade did not finish'));
+        setTimeout(check,25);
+      }
+      check().catch(reject);
+    })''',{'current':current,'previous':previous})

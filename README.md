@@ -232,3 +232,9 @@ Run `npm test` and all six browser suites (`browser_smoke.py`, `browser_v11.py`,
 [Review and screenshots](docs/mobile-corrections.md). A centered JLK header separates **Create Sheet Music** and **Settings** from the identity. View Selected Chord adds previous/next navigation, a full scrollable sequence and separate selected/playing indicators. Create loads the existing editor with visible loading and failure feedback; worker lookups are isolated to `jlk-studio-v1.3.1`. Audio, composition and saved-data models are preserved.
 
 Run the six existing browser suites plus `tests/browser_mobile_corrections.py` and `tests/browser_mobile_update.py`. The latter upgrades the actual merged v1.3 fixture, retaining personal data and verifying offline composer use. Physical iPhone Safari/Home Screen, accessibility and printing remain manual release checks.
+
+## Keyboard Progression Book — 1.4
+
+[Source reconciliation, implementation and screenshots](docs/keyboard-book-review.md). **Progressions → Keyboard Progression Book** contains the complete user-uploaded October 13 reference: 38 chord pages, six techniques, 116 blocks and 456 chord rows, including Viva La Vida. Browse by section or search titles/moods/patches; read exact RH/LH parts, follow page links, resume your place and print a clean reference page. Original instructions and both source versions are preserved, with transparent theory corrections.
+
+Book playback is not invented from unspecified octaves/timing. Existing studio playback, practice, composition and saves are retained. Latest reference assets work offline under cache `jlk-studio-v1.4`. Run the existing suites plus `python3 tests/browser_book.py` and `python3 -m unittest discover -s tests -p 'test_keyboard_book_import.py' -v`. ChatGPT’s supplied content-organization checks are incorporated; physical iPhone verification remains a manual release check. Closer-to-recording arrangements are a separate follow-on.
