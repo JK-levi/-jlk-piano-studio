@@ -1,0 +1,3263 @@
+{
+  "format": 1,
+  "provenance": {
+    "label": "Second Edition · October 5 reference",
+    "sha256": "69448b6ab35ca49567dadc66e8a331bc9fdba73c9ecc31afec6199ece4a04730",
+    "bytes": 48613
+  },
+  "counts": {
+    "chordPages": 37,
+    "techniques": 6,
+    "blocks": 113,
+    "rows": 444
+  },
+  "sectionCounts": {
+    "EASY_PAGES": 3,
+    "TECHNIQUE_PAGES": 6,
+    "MORE_PROGRESSIONS": 4,
+    "MOOD_PAGES": 20,
+    "SONG_PAGES": 10
+  },
+  "constants": {
+    "REPEAT_NOTE": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+    "SKETCH_NOTE": "Simplified harmonic sketch — use it as a memory trigger, not a note-for-note arrangement.",
+    "EASY_NOTE": "Plain triads only — no 7ths, 9ths, or slash chords. Good starting point if you're newer to this."
+  },
+  "collections": {
+    "EASY_PAGES": [
+      {
+        "title": "EASY — TWO-CHORD VAMPS",
+        "mood": "simplest possible / just two chords, back and forth",
+        "patch": "PR001 Concert Piano",
+        "note": "Repeat each pair as long as you like. No rush to move on.",
+        "footer": "Plain triads only — no 7ths, 9ths, or slash chords. Good starting point if you're newer to this.",
+        "easy": true,
+        "loops": [
+          [
+            "VAMP 1",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "VAMP 2",
+            [
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "VAMP 3",
+            [
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ]
+            ]
+          ],
+          [
+            "VAMP 4",
+            [
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "EASY — FOUR-CHORD LOOPS",
+        "mood": "the most common progressions in pop music",
+        "patch": "PR001 Concert Piano",
+        "note": "One chord per bar. Plain triads, root position.",
+        "footer": "Plain triads only — no 7ths, 9ths, or slash chords. Good starting point if you're newer to this.",
+        "easy": true,
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ],
+              [
+                "Em",
+                "G - B - E",
+                "E"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP D",
+            [
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "EASY — 50S TURNAROUND (I–vi–IV–V)",
+        "mood": "the ‘every oldies song’ progression",
+        "patch": "PR001 Concert Piano",
+        "note": "Straight quarter notes, one chord per bar. Try singing along — it fits almost anything.",
+        "footer": "Plain triads only — no 7ths, 9ths, or slash chords. Good starting point if you're newer to this.",
+        "easy": true,
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "Em",
+                "G - B - E",
+                "E"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ]
+            ]
+          ]
+        ]
+      }
+    ],
+    "TECHNIQUE_PAGES": [
+      {
+        "title": "BLOCK CHORDS vs. BROKEN CHORDS",
+        "subtitle": "same notes, two different feelings",
+        "bullets": [
+          "BLOCK CHORD — play every RH note at the same time. This is the default in every page of this book.",
+          "BROKEN CHORD (ARPEGGIO) — play the same notes one at a time instead of together, usually low to high.",
+          "Breaking a chord turns a stab of harmony into a flowing line — good for intros, ballads, and quiet sections.",
+          "No new notes needed. Any RH voicing already printed in this book can be broken exactly as written."
+        ],
+        "refTitle": "LATE-NIGHT MELT",
+        "tryIntro": "Cmaj7 from LATE-NIGHT MELT (page {page}) — RH: G - B - C - E, LH: C",
+        "trySteps": [
+          "BLOCK — play G, B, C, E together over LH C.",
+          "BROKEN (UP) — play C, E, G, B one at a time, low to high, holding pedal through all four.",
+          "BROKEN (UP-DOWN) — play C, E, G, B, G, E, C, then move to the next chord."
+        ]
+      },
+      {
+        "title": "INVERSIONS & SMOOTH VOICE LEADING",
+        "subtitle": "why the RH notes almost never start on the root",
+        "bullets": [
+          "An inversion is the same chord with a different note on the bottom — Cmaj7 can be C-E-G-B, E-G-B-C, G-B-C-E, or B-C-E-G. Same four notes, different order.",
+          "Every RH voicing in this book was chosen for smooth voice leading: whichever inversion keeps the most notes in common with the chord before it, so your hand barely has to move.",
+          "When you build your own progression, look for the inversion where the fewest fingers change position between chords — that's what makes a progression feel connected instead of jumpy."
+        ],
+        "refTitle": "LATE-NIGHT MELT",
+        "tryIntro": "Am7 → Cmaj7, both from LATE-NIGHT MELT (page {page})",
+        "trySteps": [
+          "Am7 = A - C - E - G.  Cmaj7 = C - E - G - B.",
+          "Three notes (C, E, G) are shared between them — only one finger has to move, from A to B.",
+          "Play both chords back to back and notice how little your hand shifts. That's the whole trick."
+        ]
+      },
+      {
+        "title": "LEFT-HAND BASS PATTERNS",
+        "subtitle": "the LH note printed in this book is just a starting point",
+        "bullets": [
+          "SINGLE NOTE — exactly what's printed: one sustained bass note per chord. Calm and simple.",
+          "OCTAVE — play the LH note together with the same note an octave higher, or alternate between them. Fuller, more pop/rock.",
+          "OPEN FIFTH — play the LH note together with the note a fifth above it (e.g. C + G). Open and powerful — a little rock, a little gospel.",
+          "WALKING BASS — instead of jumping straight to the next chord's root, fill the gap with one or two passing notes on the way there. Jazzier, more forward motion."
+        ],
+        "refTitle": "BIG POP EMOTION",
+        "tryIntro": "BIG POP EMOTION, Loop A (page {page}) — C, G, Am, F",
+        "trySteps": [
+          "SINGLE — LH: C, G, A, F.",
+          "OCTAVE — LH: C+C', G+G', A+A', F+F' (each note doubled an octave up).",
+          "OPEN FIFTH — LH: C+G, G+D, A+E, F+C.",
+          "WALKING (C to G) — LH: C, D, E, G — then keep connecting each chord to the next the same way."
+        ]
+      },
+      {
+        "title": "PEDALING TECHNIQUES",
+        "subtitle": "the pedal is a mixing tool, not an on/off switch",
+        "bullets": [
+          "DIRECT PEDALING — press the pedal down at the same moment you play the chord. This is the book's default whenever a page says “change pedal with the harmony.”",
+          "LEGATO (SYNCOPATED) PEDALING — lift the pedal right as your fingers land on the new chord, then press back down a fraction of a second later. Removes the clash between old and new harmony while still gluing the two chords together.",
+          "HALF-PEDALING — release the pedal only partway instead of fully. Thins out the sustain without cutting it dead — useful anywhere a page says to “let edges blur” without turning to mud."
+        ],
+        "refTitle": "QUIET HYMN",
+        "tryIntro": "QUIET HYMN, Loop A (page {page}) — F, Bb, F, C7",
+        "trySteps": [
+          "First pass: direct pedaling — press down with each new chord, release fully before the next.",
+          "Second pass: legato pedaling on the same four chords — lift right as you play, press back a beat later.",
+          "Notice how much smoother the join feels on the second pass."
+        ]
+      },
+      {
+        "title": "COMPING RHYTHMS",
+        "subtitle": "one chord can be played a dozen different ways rhythmically",
+        "bullets": [
+          "STRAIGHT HOLD — play the chord once and let it ring for the full bar. What most “playing note” instructions in this book assume by default.",
+          "BACKBEAT PULSE — restrike the same chord softly on beats 2 and 4 instead of just holding it. Adds a pop/rock feel without changing a single note.",
+          "SYNCOPATED PUSH — play the next chord an eighth note early, right before the beat it “belongs” to. Adds forward energy, common in R&B and gospel.",
+          "BROKEN-CHORD PULSE — instead of holding the block chord, arpeggiate it in steady rhythm (see the Block vs. Broken page) so the chord itself becomes the rhythm part."
+        ],
+        "refTitle": "WARM & HOPEFUL",
+        "tryIntro": "WARM & HOPEFUL, Loop A (page {page}) — G, D/F#, Em7, Cadd9",
+        "trySteps": [
+          "Play the same four chords four ways: straight hold, backbeat pulse, syncopated push, broken-chord pulse.",
+          "Same notes every time — only the rhythm changes the feeling."
+        ]
+      },
+      {
+        "title": "TOPPING CHORDS WITH A SIMPLE MELODY",
+        "subtitle": "let one finger sing a tune while the rest of the hand holds still",
+        "bullets": [
+          "Once a loop feels automatic, stop thinking of the RH as one block. Let your pinky (the top note) move to a nearby scale tone while the other fingers hold their notes — that top note becomes a simple melody.",
+          "The reverse works too: keep the top notes still and let the thumb-side note move underneath them for a countermelody in the middle of the texture.",
+          "You don't have to invent a melody from scratch — look at how the top note already changes from chord to chord. Most progressions in this book already have one hiding in plain sight."
+        ],
+        "refTitle": "DREAMY / FLOATING",
+        "tryIntro": "DREAMY / FLOATING, Loop A (page {page}) — Ebmaj7, Bb/D, Cm9, Abmaj9",
+        "trySteps": [
+          "Top notes in order: Eb, D, Eb, Eb — that's already a tiny melody.",
+          "Play that top note slightly louder than the rest of the chord and let it lead."
+        ]
+      }
+    ],
+    "MORE_PROGRESSIONS": [
+      {
+        "title": "12-BAR BLUES",
+        "mood": "walking / gritty / endlessly loopable",
+        "patch": "PR023 Lite Tine EP",
+        "note": "Swing the eighth notes (long-short, not straight) and let the LH walk — this is a shuffle, not a straight quarter-note groove.",
+        "footer": "The classic I7-IV7-V7 blues form — 12 bars, then loop right back to bar 1.",
+        "loops": [
+          [
+            "BARS 1-4",
+            [
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "BARS 5-8",
+            [
+              [
+                "F7",
+                "A - C - Eb - F",
+                "F"
+              ],
+              [
+                "F7",
+                "A - C - Eb - F",
+                "F"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "BARS 9-12 (TURNAROUND)",
+            [
+              [
+                "G7",
+                "G - B - D - F",
+                "G"
+              ],
+              [
+                "F7",
+                "A - C - Eb - F",
+                "F"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ],
+              [
+                "G7",
+                "G - B - D - F",
+                "G"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "ANDALUSIAN CADENCE",
+        "mood": "dramatic / descending / flamenco-adjacent",
+        "patch": "PR038 Mood Azure",
+        "note": "Play it as rolled (broken) chords on every beat, and speed up slightly as you descend — like a flamenco guitarist building tension.",
+        "footer": "i – VII – VI – V, the descending minor pattern behind flamenco, ‘Hit the Road Jack,’ and countless film cues.",
+        "loops": [
+          [
+            "LOOP A (Am)",
+            [
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "E",
+                "E - G# - B",
+                "E"
+              ]
+            ]
+          ],
+          [
+            "LOOP B (Am, stronger pull)",
+            [
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "E7",
+                "G# - B - D - E",
+                "E"
+              ]
+            ]
+          ],
+          [
+            "LOOP C (Dm)",
+            [
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ],
+              [
+                "A7",
+                "G - A - C# - E",
+                "A"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "ii-V-I JAZZ TURNAROUND",
+        "mood": "smooth / functional / the jazz handshake",
+        "patch": "PR025 Soft Stage EP",
+        "note": "Swing feel. The ii and V chords share several notes — keep your hand still and let only what has to move, move (see Inversions, page {tech_page}).",
+        "footer": "ii–V–I is the single most common move in jazz — learn it in one key and the other eleven come almost for free.",
+        "loops": [
+          [
+            "LOOP A (C major)",
+            [
+              [
+                "Dm7",
+                "A - C - D - F",
+                "D"
+              ],
+              [
+                "G7",
+                "G - B - D - F",
+                "G"
+              ],
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ],
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP B (F major)",
+            [
+              [
+                "Gm7",
+                "G - Bb - D - F",
+                "G"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ],
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ],
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "LOOP C (G major)",
+            [
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "D7",
+                "F# - A - C - D",
+                "D"
+              ],
+              [
+                "Gmaj7",
+                "G - B - D - F#",
+                "G"
+              ],
+              [
+                "Gmaj7",
+                "G - B - D - F#",
+                "G"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "CIRCLE-OF-FIFTHS SEQUENCE",
+        "mood": "technical / mechanical / good tempo discipline",
+        "patch": "PR001 Concert Piano",
+        "note": "Use a metronome, one chord per beat. This is a hand-position drill, not a mood — don't stop to think, just move.",
+        "footer": "All 12 major keys, descending in fifths, then back to C. Try it in reverse (ascending fifths) once this feels automatic.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ],
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "E",
+                "E - G# - B",
+                "E"
+              ],
+              [
+                "B",
+                "B - D# - F#",
+                "B"
+              ],
+              [
+                "F#",
+                "F# - A# - C#",
+                "F#"
+              ],
+              [
+                "Db",
+                "Db - F - Ab",
+                "Db"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Ab",
+                "Ab - C - Eb",
+                "Ab"
+              ],
+              [
+                "Eb",
+                "G - Bb - Eb",
+                "Eb"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ]
+            ]
+          ]
+        ]
+      }
+    ],
+    "MOOD_PAGES": [
+      {
+        "title": "LATE-NIGHT MELT",
+        "mood": "warm / intimate / emotional",
+        "patch": "PR002 Mellow Grand",
+        "note": "Slow; 4–8 beats each. Pedal with each chord.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "Em7",
+                "G - B - D - E",
+                "E"
+              ],
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ],
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Dm9",
+                "F - A - C - E",
+                "D"
+              ],
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ],
+              [
+                "G6",
+                "G - B - D - E",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Fmaj9",
+                "G - A - C - E",
+                "F"
+              ],
+              [
+                "Em7",
+                "G - B - D - E",
+                "E"
+              ],
+              [
+                "Dm9",
+                "F - A - C - E",
+                "D"
+              ],
+              [
+                "Cmaj9",
+                "G - B - D - E",
+                "C"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "DARK R&B",
+        "mood": "smoky / heavy / expensive",
+        "patch": "PR025 Soft Stage EP",
+        "note": "Soft attack. Let the bass carry the changes.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Cm9",
+                "G - Bb - D - Eb",
+                "C"
+              ],
+              [
+                "Abmaj9",
+                "G - Bb - C - Eb",
+                "Ab"
+              ],
+              [
+                "Fm9",
+                "G - Ab - C - Eb",
+                "F"
+              ],
+              [
+                "G7sus4",
+                "G - C - D - F",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Fm9",
+                "G - Ab - C - Eb",
+                "F"
+              ],
+              [
+                "Dbmaj7",
+                "Ab - C - Db - F",
+                "Db"
+              ],
+              [
+                "Abmaj7",
+                "G - Ab - C - Eb",
+                "Ab"
+              ],
+              [
+                "Eb",
+                "G - Bb - Eb",
+                "Eb"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Bbm9",
+                "Db - F - Ab - C",
+                "Bb"
+              ],
+              [
+                "Gbmaj7",
+                "Bb - Db - F - Gb",
+                "Gb"
+              ],
+              [
+                "Ebm9",
+                "Gb - Bb - Db - F",
+                "Eb"
+              ],
+              [
+                "Fm7",
+                "Ab - C - Eb - F",
+                "F"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "DREAMY / FLOATING",
+        "mood": "weightless / hazy / open",
+        "patch": "CM011 Piano + Pad 1",
+        "note": "Leave air between changes; don't rush.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Ebmaj7",
+                "G - Bb - D - Eb",
+                "Eb"
+              ],
+              [
+                "Bb/D",
+                "F - Bb - D",
+                "D"
+              ],
+              [
+                "Cm9",
+                "G - Bb - D - Eb",
+                "C"
+              ],
+              [
+                "Abmaj9",
+                "G - Bb - C - Eb",
+                "Ab"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Dbmaj7",
+                "Ab - C - Db - F",
+                "Db"
+              ],
+              [
+                "Ab/C",
+                "Ab - C - Eb",
+                "C"
+              ],
+              [
+                "Bbm7",
+                "Ab - Bb - Db - F",
+                "Bb"
+              ],
+              [
+                "Gbmaj7",
+                "Bb - Db - F - Gb",
+                "Gb"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Dmaj7",
+                "A - C# - D - F#",
+                "D"
+              ],
+              [
+                "A/C#",
+                "A - C# - E",
+                "C#"
+              ],
+              [
+                "Bm9",
+                "A - B - C# - D - F#",
+                "B"
+              ],
+              [
+                "Gmaj7",
+                "G - B - D - F#",
+                "G"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "MELANCHOLY, NOT SAD",
+        "mood": "bittersweet / reflective / tender",
+        "patch": "PR015 Nostalgic Piano",
+        "note": "Play whole chords, then slowly break the RH upward.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Dmaj7",
+                "A - C# - D - F#",
+                "D"
+              ],
+              [
+                "A/C#",
+                "A - C# - E",
+                "C#"
+              ],
+              [
+                "Bm7",
+                "A - B - D - F#",
+                "B"
+              ],
+              [
+                "Gmaj7",
+                "G - B - D - F#",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ],
+              [
+                "G/B",
+                "G - B - D",
+                "B"
+              ],
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "Fm6",
+                "Ab - C - D - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Abmaj7",
+                "G - Ab - C - Eb",
+                "Ab"
+              ],
+              [
+                "Eb/G",
+                "G - Bb - Eb",
+                "G"
+              ],
+              [
+                "Fm9",
+                "G - Ab - C - Eb",
+                "F"
+              ],
+              [
+                "Dbmaj7",
+                "Ab - C - Db - F",
+                "Db"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "ACHING / SUSPENDED",
+        "mood": "unresolved / yearning / hold-your-breath",
+        "patch": "PR009 WarmVoxPiano",
+        "note": "Hold the suspended chords extra long.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Dsus2",
+                "A - D - E",
+                "D"
+              ],
+              [
+                "A/C#",
+                "A - C# - E",
+                "C#"
+              ],
+              [
+                "Bm7",
+                "A - B - D - F#",
+                "B"
+              ],
+              [
+                "Gmaj7",
+                "G - B - D - F#",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Asus2",
+                "A - B - E",
+                "A"
+              ],
+              [
+                "E/G#",
+                "G# - B - E",
+                "G#"
+              ],
+              [
+                "F#m7",
+                "A - C# - E - F#",
+                "F#"
+              ],
+              [
+                "Dsus2",
+                "A - D - E",
+                "D"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ],
+              [
+                "G/B",
+                "G - B - D",
+                "B"
+              ],
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "CINEMATIC RISE",
+        "mood": "wide / emotional / credits rolling",
+        "patch": "PR008 Piano+Str Layer",
+        "note": "Start quiet; repeat each loop progressively louder.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "Bbmaj7",
+                "A - Bb - D - F",
+                "Bb"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "Cadd9",
+                "G - C - D - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Em7",
+                "G - B - D - E",
+                "E"
+              ],
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Bm7",
+                "A - B - D - F#",
+                "B"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ],
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "GOSPEL-ISH GLOW",
+        "mood": "warm / lifted / soulful",
+        "patch": "PR022 70s Suitcase",
+        "note": "Gentle pulse; let the LH lead toward the next root.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ],
+              [
+                "Em7",
+                "G - B - D - E",
+                "E"
+              ],
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ],
+              [
+                "G7sus4",
+                "C - D - F - G",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Abmaj7",
+                "G - Ab - C - Eb",
+                "Ab"
+              ],
+              [
+                "Cm7",
+                "G - Bb - C - Eb",
+                "C"
+              ],
+              [
+                "Dbmaj7",
+                "Ab - C - Db - F",
+                "Db"
+              ],
+              [
+                "Eb7",
+                "G - Bb - Db - Eb",
+                "Eb"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ],
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "Bbmaj7",
+                "A - Bb - D - F",
+                "Bb"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "BLACK-KEY VELVET",
+        "mood": "lush / tactile / black-key heavy",
+        "patch": "PR038 Mood Azure",
+        "note": "Relax into the black keys; no speed goal.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Dbmaj7",
+                "Ab - C - Db - F",
+                "Db"
+              ],
+              [
+                "Bbm7",
+                "Ab - Bb - Db - F",
+                "Bb"
+              ],
+              [
+                "Gbmaj7",
+                "Bb - Db - F - Gb",
+                "Gb"
+              ],
+              [
+                "Ab",
+                "Ab - C - Eb",
+                "Ab"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Ebm9",
+                "Gb - Bb - Db - F",
+                "Eb"
+              ],
+              [
+                "Bbm7",
+                "Ab - Bb - Db - F",
+                "Bb"
+              ],
+              [
+                "Gbmaj7",
+                "Bb - Db - F - Gb",
+                "Gb"
+              ],
+              [
+                "Dbmaj7",
+                "Ab - C - Db - F",
+                "Db"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Abmaj9",
+                "G - Bb - C - Eb",
+                "Ab"
+              ],
+              [
+                "Fm9",
+                "G - Ab - C - Eb",
+                "F"
+              ],
+              [
+                "Dbmaj7",
+                "Ab - C - Db - F",
+                "Db"
+              ],
+              [
+                "Eb7sus4",
+                "Ab - Bb - Db - Eb",
+                "Eb"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "WARM & HOPEFUL",
+        "mood": "sunrise / reassuring / open-hearted",
+        "patch": "PR004 Nice Piano",
+        "note": "2–4 beats each; light pedal and forward motion.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "D/F#",
+                "A - D - F#",
+                "F#"
+              ],
+              [
+                "Em7",
+                "G - B - D - E",
+                "E"
+              ],
+              [
+                "Cadd9",
+                "G - C - D - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ],
+              [
+                "A/C#",
+                "A - C# - E",
+                "C#"
+              ],
+              [
+                "Bm7",
+                "A - B - D - F#",
+                "B"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "C/E",
+                "G - C - E",
+                "E"
+              ],
+              [
+                "Dm7",
+                "A - C - D - F",
+                "D"
+              ],
+              [
+                "Bbmaj7",
+                "A - Bb - D - F",
+                "Bb"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "80S HEARTBREAK",
+        "mood": "glossy / nostalgic / huge feelings",
+        "patch": "PR027 Vintage Phase EP",
+        "note": "Steady 4/4; one chord per bar.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "E/G#",
+                "G# - B - E",
+                "G#"
+              ],
+              [
+                "F#m7",
+                "A - C# - E - F#",
+                "F#"
+              ],
+              [
+                "Dmaj7",
+                "A - C# - D - F#",
+                "D"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Eb",
+                "G - Bb - Eb",
+                "Eb"
+              ],
+              [
+                "Bb/D",
+                "F - Bb - D",
+                "D"
+              ],
+              [
+                "Cm",
+                "G - C - Eb",
+                "C"
+              ],
+              [
+                "Abmaj7",
+                "G - Ab - C - Eb",
+                "Ab"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "G/B",
+                "G - B - D",
+                "B"
+              ],
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "SOFT R&B MORNING",
+        "mood": "clean / mellow / unhurried",
+        "patch": "PR023 Lite Tine EP",
+        "note": "Very soft attack; sit slightly behind the beat.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Fmaj9",
+                "G - A - C - E",
+                "F"
+              ],
+              [
+                "Em7",
+                "G - B - D - E",
+                "E"
+              ],
+              [
+                "Am9",
+                "G - B - C - E",
+                "A"
+              ],
+              [
+                "G6",
+                "G - B - D - E",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Bbmaj7",
+                "A - Bb - D - F",
+                "Bb"
+              ],
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "Dm9",
+                "F - A - C - E",
+                "D"
+              ],
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Ebmaj7",
+                "G - Bb - D - Eb",
+                "Eb"
+              ],
+              [
+                "Dm7",
+                "A - C - D - F",
+                "D"
+              ],
+              [
+                "Cm7",
+                "G - Bb - C - Eb",
+                "C"
+              ],
+              [
+                "F7",
+                "A - C - Eb - F",
+                "F"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "BIG POP EMOTION",
+        "mood": "simple / direct / singable",
+        "patch": "PR001 Concert Piano",
+        "note": "One confident chord per change; minimal pedal.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "E",
+                "G# - B - E",
+                "E"
+              ],
+              [
+                "F#m",
+                "A - C# - F#",
+                "F#"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Eb",
+                "G - Bb - Eb",
+                "Eb"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ],
+              [
+                "Cm",
+                "G - C - Eb",
+                "C"
+              ],
+              [
+                "Ab",
+                "Ab - C - Eb",
+                "Ab"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "MYSTERIOUS / AFTER MIDNIGHT",
+        "mood": "shadowy / unresolved / strange-beautiful",
+        "patch": "PR014 LoFi Ac.Piano",
+        "note": "Sparse. Leave silence between some changes.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Am9",
+                "G - B - C - E",
+                "A"
+              ],
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ],
+              [
+                "Dm9",
+                "F - A - C - E",
+                "D"
+              ],
+              [
+                "E7",
+                "G# - B - D - E",
+                "E"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Cm9",
+                "G - Bb - D - Eb",
+                "C"
+              ],
+              [
+                "Abmaj7",
+                "G - Ab - C - Eb",
+                "Ab"
+              ],
+              [
+                "Fm9",
+                "G - Ab - C - Eb",
+                "F"
+              ],
+              [
+                "G7",
+                "G - B - D - F",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "F#m7",
+                "A - C# - E - F#",
+                "F#"
+              ],
+              [
+                "Dmaj7",
+                "A - C# - D - F#",
+                "D"
+              ],
+              [
+                "Bm9",
+                "A - B - C# - D - F#",
+                "B"
+              ],
+              [
+                "E7",
+                "G# - B - D - E",
+                "E"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "QUIET HYMN",
+        "mood": "still / sincere / spacious",
+        "patch": "PR002 Mellow Grand",
+        "note": "Very even; let every harmony settle.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Dm7",
+                "A - C - D - F",
+                "D"
+              ],
+              [
+                "Bbmaj7",
+                "A - Bb - D - F",
+                "Bb"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ],
+              [
+                "Dm7",
+                "A - C - D - F",
+                "D"
+              ],
+              [
+                "Bbmaj7",
+                "A - Bb - D - F",
+                "Bb"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "DISCO / ABBA-ISH LIFT",
+        "mood": "bright / bouncing / bittersweet",
+        "patch": "PR036 80s FM EP",
+        "note": "Short clean hits; count a clear 1-2-3-4.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "Dsus2/A",
+                "A - D - E",
+                "A"
+              ],
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "E/G#",
+                "G# - B - E",
+                "G#"
+              ],
+              [
+                "D/F#",
+                "A - D - F#",
+                "F#"
+              ],
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ],
+              [
+                "E",
+                "G# - B - E",
+                "E"
+              ],
+              [
+                "C#m7",
+                "G# - B - C# - E",
+                "C#"
+              ],
+              [
+                "F#m7",
+                "A - C# - E - F#",
+                "F#"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "AMBIENT PAD WASH",
+        "mood": "slow / enormous / almost no rhythm",
+        "patch": "PR107 Soft Warm Pad",
+        "note": "Hold each chord 6-10 seconds; let edges blur.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Cmaj9",
+                "G - B - D - E",
+                "C"
+              ],
+              [
+                "Am9",
+                "G - B - C - E",
+                "A"
+              ],
+              [
+                "Fmaj9",
+                "G - A - C - E",
+                "F"
+              ],
+              [
+                "G6",
+                "G - B - D - E",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Dbmaj7",
+                "Ab - C - Db - F",
+                "Db"
+              ],
+              [
+                "Bbm9",
+                "Db - F - Ab - C",
+                "Bb"
+              ],
+              [
+                "Gbmaj7",
+                "Bb - Db - F - Gb",
+                "Gb"
+              ],
+              [
+                "Ab",
+                "Ab - C - Eb",
+                "Ab"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Ebmaj7",
+                "G - Bb - D - Eb",
+                "Eb"
+              ],
+              [
+                "Cm7",
+                "G - Bb - C - Eb",
+                "C"
+              ],
+              [
+                "Abmaj9",
+                "G - Bb - C - Eb",
+                "Ab"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "NEO-SOUL MELT",
+        "mood": "silky / colorful / close-voiced",
+        "patch": "PR025 Soft Stage EP",
+        "note": "Keep the RH compact; let the bass do most of the moving.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Cmaj9",
+                "G - B - D - E",
+                "C"
+              ],
+              [
+                "Bm7",
+                "A - B - D - F#",
+                "B"
+              ],
+              [
+                "Am9",
+                "G - B - C - E",
+                "A"
+              ],
+              [
+                "G6",
+                "G - B - D - E",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Fmaj9",
+                "G - A - C - E",
+                "F"
+              ],
+              [
+                "Em7",
+                "G - B - D - E",
+                "E"
+              ],
+              [
+                "Dm9",
+                "F - A - C - E",
+                "D"
+              ],
+              [
+                "G7sus4",
+                "G - C - D - F",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Abmaj9",
+                "G - Bb - C - Eb",
+                "Ab"
+              ],
+              [
+                "Gm7",
+                "G - Bb - D - F",
+                "G"
+              ],
+              [
+                "Fm9",
+                "G - Ab - C - Eb",
+                "F"
+              ],
+              [
+                "Eb6",
+                "G - Bb - C - Eb",
+                "Eb"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "RAINY WINDOW",
+        "mood": "soft / grey / gently descending",
+        "patch": "PR015 Nostalgic Piano",
+        "note": "Listen to the descending LH line as if it were its own melody.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Cmaj7",
+                "G - B - C - E",
+                "C"
+              ],
+              [
+                "G/B",
+                "G - B - D",
+                "B"
+              ],
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Dmaj7",
+                "A - C# - D - F#",
+                "D"
+              ],
+              [
+                "A/C#",
+                "A - C# - E",
+                "C#"
+              ],
+              [
+                "Bm7",
+                "A - B - D - F#",
+                "B"
+              ],
+              [
+                "Gmaj7",
+                "G - B - D - F#",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Abmaj7",
+                "G - Ab - C - Eb",
+                "Ab"
+              ],
+              [
+                "Eb/G",
+                "G - Bb - Eb",
+                "G"
+              ],
+              [
+                "Fm7",
+                "Ab - C - Eb - F",
+                "F"
+              ],
+              [
+                "Dbmaj7",
+                "Ab - C - Db - F",
+                "Db"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "TENSION → RELEASE",
+        "mood": "restless / dramatic / satisfying",
+        "patch": "PR001 Concert Piano",
+        "note": "Give the dominant chord extra time before resolving.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "Dm7",
+                "A - C - D - F",
+                "D"
+              ],
+              [
+                "E7",
+                "G# - B - D - E",
+                "E"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Cm",
+                "G - C - Eb",
+                "C"
+              ],
+              [
+                "Fm7",
+                "Ab - C - Eb - F",
+                "F"
+              ],
+              [
+                "G7",
+                "G - B - D - F",
+                "G"
+              ],
+              [
+                "Cm",
+                "G - C - Eb",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "Gm7",
+                "G - Bb - D - F",
+                "G"
+              ],
+              [
+                "A7",
+                "G - A - C# - E",
+                "A"
+              ],
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "OPEN ROAD",
+        "mood": "wide / steady / quietly optimistic",
+        "patch": "PR004 Nice Piano",
+        "note": "Moderate pulse; keep the fifths and add9 colors ringing.",
+        "footer": "Repeat any loop as long as you want. Move on only when you want a different feeling.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ],
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "Bm7",
+                "A - B - D - F#",
+                "B"
+              ],
+              [
+                "Gadd9",
+                "A - B - D - G",
+                "G"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "D/F#",
+                "A - D - F#",
+                "F#"
+              ],
+              [
+                "Em7",
+                "G - B - D - E",
+                "E"
+              ],
+              [
+                "Cadd9",
+                "G - C - D - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "Am7",
+                "A - C - E - G",
+                "A"
+              ],
+              [
+                "Fadd9",
+                "A - C - F - G",
+                "F"
+              ]
+            ]
+          ]
+        ]
+      }
+    ],
+    "SONG_PAGES": [
+      {
+        "title": "TIME AFTER TIME",
+        "mood": "Cyndi Lauper / tender / circular / 80s ballad",
+        "patch": "PR025 Soft Stage EP",
+        "note": "Use as a simplified harmonic memory trigger.",
+        "footer": "Simplified harmonic sketch — use it as a memory trigger, not a note-for-note arrangement.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "Em",
+                "G - B - E",
+                "E"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "SOMEONE LIKE YOU",
+        "mood": "Adele / aching / exposed / piano ballad",
+        "patch": "PR001 Concert Piano",
+        "note": "Keep the pulse even; let the bass descent speak.",
+        "footer": "Simplified harmonic sketch — use it as a memory trigger, not a note-for-note arrangement.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "E/G#",
+                "G# - B - E",
+                "G#"
+              ],
+              [
+                "F#m",
+                "A - C# - F#",
+                "F#"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "E",
+                "G# - B - E",
+                "E"
+              ],
+              [
+                "F#m",
+                "A - C# - F#",
+                "F#"
+              ],
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "F#m7",
+                "A - C# - E - F#",
+                "F#"
+              ],
+              [
+                "Dmaj7",
+                "A - C# - D - F#",
+                "D"
+              ],
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "E",
+                "G# - B - E",
+                "E"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "STILL D.R.E. CONNECTION",
+        "mood": "Dr. Dre / Snoop Dogg / hypnotic / clipped / rhythmic — in the record's actual key",
+        "patch": "PR004 Nice Piano",
+        "note": "Steady eighth notes, short dry attack, minimal pedal. The tension is the sus4, not the sustain.",
+        "footer": "Transposed faithfully from the song's actual chord shapes (iv – i(sus4) – i), matching the record's real key of Bb minor — not a generic pop substitute.",
+        "loops": [
+          [
+            "LOOP A (the riff)",
+            [
+              [
+                "Ebm",
+                "Gb - Bb - Eb",
+                "Eb"
+              ],
+              [
+                "Bbsus4",
+                "F - Bb - Eb",
+                "Bb"
+              ],
+              [
+                "Bbm",
+                "F - Bb - Db",
+                "Bb"
+              ],
+              [
+                "Bbsus4",
+                "F - Bb - Eb",
+                "Bb"
+              ]
+            ]
+          ],
+          [
+            "LOOP B (walking LH, see p. {tech_page})",
+            [
+              [
+                "Ebm",
+                "Gb - Bb - Eb",
+                "Eb"
+              ],
+              [
+                "Bbsus4",
+                "F - Bb - Eb",
+                "F"
+              ],
+              [
+                "Bbm",
+                "F - Bb - Db",
+                "Bb"
+              ],
+              [
+                "Bbsus4",
+                "F - Bb - Eb",
+                "Eb"
+              ]
+            ]
+          ],
+          [
+            "LOOP C (octave LH)",
+            [
+              [
+                "Ebm",
+                "Gb - Bb - Eb",
+                "Eb+Eb'"
+              ],
+              [
+                "Bbsus4",
+                "F - Bb - Eb",
+                "Bb+Bb'"
+              ],
+              [
+                "Bbm",
+                "F - Bb - Db",
+                "Bb+Bb'"
+              ],
+              [
+                "Bbsus4",
+                "F - Bb - Eb",
+                "Bb+Bb'"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "ISLANDS IN THE STREAM",
+        "mood": "Kenny Rogers + Dolly Parton / bright / warm / country-pop",
+        "patch": "PR004 Nice Piano",
+        "note": "Keep it buoyant and uncomplicated.",
+        "footer": "Simplified harmonic sketch — use it as a memory trigger, not a note-for-note arrangement.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "F/A",
+                "A - C - F",
+                "A"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ],
+              [
+                "Fm",
+                "Ab - C - F",
+                "F"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "Dm7",
+                "A - C - D - F",
+                "D"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "ROADS UNTRAVELED",
+        "mood": "Linkin Park / folk-like / mournful / resilient",
+        "patch": "PR015 Nostalgic Piano",
+        "note": "Steady pulse; keep the harmony open.",
+        "footer": "Simplified harmonic sketch — use it as a memory trigger, not a note-for-note arrangement.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "E",
+                "G# - B - E",
+                "E"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "DANCING QUEEN VIBE",
+        "mood": "ABBA / bright / disco / bittersweet",
+        "patch": "PR036 80s FM EP",
+        "note": "Short chord hits; clear dance pulse.",
+        "footer": "Simplified harmonic sketch — use it as a memory trigger, not a note-for-note arrangement.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "Dsus2/A",
+                "A - D - E",
+                "A"
+              ],
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "Dsus2/A",
+                "A - D - E",
+                "A"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ],
+              [
+                "E/G#",
+                "G# - B - E",
+                "G#"
+              ],
+              [
+                "D/F#",
+                "A - D - F#",
+                "F#"
+              ],
+              [
+                "A",
+                "A - C# - E",
+                "A"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "D",
+                "A - D - F#",
+                "D"
+              ],
+              [
+                "E",
+                "G# - B - E",
+                "E"
+              ],
+              [
+                "C#m7",
+                "G# - B - C# - E",
+                "C#"
+              ],
+              [
+                "F#m7",
+                "A - C# - E - F#",
+                "F#"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "THE QUIET HEART VIBE",
+        "mood": "The King's Singers / hymn-like / gentle / grounded",
+        "patch": "PR002 Mellow Grand",
+        "note": "Even, chorale-like changes; no rush.",
+        "footer": "Simplified harmonic sketch — use it as a memory trigger, not a note-for-note arrangement.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ],
+              [
+                "Dm7",
+                "A - C - D - F",
+                "D"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ],
+              [
+                "C7",
+                "G - Bb - C - E",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Fmaj7",
+                "A - C - E - F",
+                "F"
+              ],
+              [
+                "Dm7",
+                "A - C - D - F",
+                "D"
+              ],
+              [
+                "Bbmaj7",
+                "A - Bb - D - F",
+                "Bb"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "SORDID AFFAIR",
+        "mood": "Röyksopp / melancholic / synth-pop / borrowed chord",
+        "patch": "PR107 Soft Warm Pad",
+        "note": "Slow, even, held chords — analog-synth patch if you have one layered under piano.",
+        "footer": "The whole track rides this one 4-chord loop. D#m → Bbm is the interesting move — not diatonic to F# major, which is exactly what gives it that melancholic pull.",
+        "loops": [
+          [
+            "THE LOOP (all 4 bars)",
+            [
+              [
+                "F#",
+                "F# - A# - C#",
+                "F#"
+              ],
+              [
+                "D#m",
+                "D# - F# - A#",
+                "D#"
+              ],
+              [
+                "Bbm",
+                "Bb - Db - F",
+                "Bb"
+              ],
+              [
+                "Ab",
+                "Ab - C - Eb",
+                "Ab"
+              ]
+            ]
+          ],
+          [
+            "THE LOOP (repeat)",
+            [
+              [
+                "F#",
+                "F# - A# - C#",
+                "F#"
+              ],
+              [
+                "D#m",
+                "D# - F# - A#",
+                "D#"
+              ],
+              [
+                "Bbm",
+                "Bb - Db - F",
+                "Bb"
+              ],
+              [
+                "Ab",
+                "Ab - C - Eb",
+                "Ab"
+              ]
+            ]
+          ],
+          [
+            "THE LOOP (repeat)",
+            [
+              [
+                "F#",
+                "F# - A# - C#",
+                "F#"
+              ],
+              [
+                "D#m",
+                "D# - F# - A#",
+                "D#"
+              ],
+              [
+                "Bbm",
+                "Bb - Db - F",
+                "Bb"
+              ],
+              [
+                "Ab",
+                "Ab - C - Eb",
+                "Ab"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "O COME, O COME, EMMANUEL",
+        "mood": "traditional hymn / modal / stark / cinematic",
+        "patch": "PR009 WarmVoxPiano",
+        "note": "Very even, unhurried — treat it like a chorale, not a pop song.",
+        "footer": "Natural-minor / Aeolian throughout — no leading tone pulling it to a bright resolution, which is what gives it that ancient, unresolved quality.",
+        "loops": [
+          [
+            "VERSE (“O come, o come, Emmanuel”)",
+            [
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "Em",
+                "G - B - E",
+                "E"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ]
+            ]
+          ],
+          [
+            "VERSE (“and ransom captive Israel”)",
+            [
+              [
+                "C",
+                "G - C - E",
+                "C"
+              ],
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "G",
+                "G - B - D",
+                "G"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ]
+            ]
+          ],
+          [
+            "CADENCE",
+            [
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ],
+              [
+                "Em",
+                "G - B - E",
+                "E"
+              ],
+              [
+                "Dm",
+                "A - D - F",
+                "D"
+              ],
+              [
+                "Am",
+                "A - C - E",
+                "A"
+              ]
+            ]
+          ]
+        ]
+      },
+      {
+        "title": "I DREAMED A DREAM",
+        "mood": "Les Misérables / Fantine / aching / ballad / hope lost",
+        "patch": "PR001 Concert Piano",
+        "note": "Slow, rubato; let the melody breathe over the chords.",
+        "footer": "Simplified harmonic sketch — use it as a memory trigger, not a note-for-note arrangement.",
+        "loops": [
+          [
+            "LOOP A",
+            [
+              [
+                "Gm",
+                "G - Bb - D",
+                "G"
+              ],
+              [
+                "Eb",
+                "G - Bb - Eb",
+                "Eb"
+              ],
+              [
+                "Bb/D",
+                "F - Bb - D",
+                "D"
+              ],
+              [
+                "Cm7",
+                "G - Bb - C - Eb",
+                "C"
+              ]
+            ]
+          ],
+          [
+            "LOOP B",
+            [
+              [
+                "Eb",
+                "G - Bb - Eb",
+                "Eb"
+              ],
+              [
+                "Bb/D",
+                "F - Bb - D",
+                "D"
+              ],
+              [
+                "Cm7",
+                "G - Bb - C - Eb",
+                "C"
+              ],
+              [
+                "F",
+                "A - C - F",
+                "F"
+              ]
+            ]
+          ],
+          [
+            "LOOP C",
+            [
+              [
+                "Gm",
+                "G - Bb - D",
+                "G"
+              ],
+              [
+                "Eb",
+                "G - Bb - Eb",
+                "Eb"
+              ],
+              [
+                "F/A",
+                "A - C - F",
+                "A"
+              ],
+              [
+                "Bb",
+                "F - Bb - D",
+                "Bb"
+              ]
+            ]
+          ]
+        ]
+      }
+    ]
+  },
+  "frontMatterSource": {
+    "renderCover": "<div class=\"center-screen\">\n    <div class=\"cover-h1\">KEYBOARD<br>PROGRESSION BOOK</div>\n    <div class=\"cover-sub\">SECOND EDITION · POCKET VIEW</div>\n    <div class=\"cover-p\">Sit down. Pick a page. Start playing.<br>Every page is self-contained — RH notes and LH bass side by side.</div>\n    <div class=\"cover-stat\">3 EASY + 6 TECHNIQUES + 4 MORE PROGRESSIONS<br>+ 20 MOOD LOOPS + 10 SONG VIBES</div>\n  </div>",
+    "renderHowTo": "<div class=\"center-screen\">\n    <div class=\"title\" style=\"font-size:19px;\">HOW TO USE IT</div>\n    <div class=\"cover-p\" style=\"margin-top:14px;\">No required order. On every chord line, LH (left hand / bass note) sits right next to RH (right hand notes, played together unless you arpeggiate them). Change pedal with the harmony unless a page says otherwise.</div>\n    <div class=\"cover-p2\">Tap <b style=\"color:var(--accent)\">Contents</b> above to jump to any section, or swipe / use Prev·Next to move through the whole book in order.</div>\n  </div>",
+    "renderDivider": "<div class=\"center-screen\">\n    <div class=\"cover-h1\">FAVORITE<br>SONG VIBES</div>\n    <div class=\"cover-p\" style=\"margin-top:14px;\">Familiar harmonic worlds reduced to something you can sit down and play.</div>\n    <div class=\"cover-p2\">These are simplified chord/vibe sketches rather than full transcriptions.</div>\n  </div>",
+    "renderKeepPlaying": "<div class=\"center-screen\">\n    <div class=\"title\" style=\"font-size:19px;\">KEEP PLAYING</div>\n    <div class=\"cover-p\">If one loop grabs you, stay there. Change the rhythm. Move the bass an octave. Break the RH apart. Or do absolutely nothing to it and just enjoy the sound.</div>\n    <div class=\"cover-p2\">GO:KEYS 3 tone names in this booklet are drawn from Roland's GO:KEYS 3 / GO:KEYS 5 Tone List.</div>\n  </div>"
+  }
+}

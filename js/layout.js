@@ -5,7 +5,7 @@ const CONTENT={
   studio:['THE PROGRESSION STUDIO','Let one chord lead.','A sequence, a tempo, a little room to play.'],
   practice:['YOUR PRACTICE SPACE','A little more familiar.','Read the notes. Find each key. Take your time.']
 };
-const TITLES={'chord-editor':'Chord editor','theory-details':'Theory & intervals','bach-panel':'Guided studies','sequence-editor':'Edit progression','save-panel':'Progression library','sound-settings':'Sound settings','voicing-view':'Selected chord','browse-panel':'Browse & Play','composition-panel':'Create sheet music'};
+const TITLES={'book-panel':'Keyboard progression book','chord-editor':'Chord editor','theory-details':'Theory & intervals','bach-panel':'Guided studies','sequence-editor':'Edit progression','save-panel':'Progression library','sound-settings':'Sound settings','voicing-view':'Selected chord','browse-panel':'Browse & Play','composition-panel':'Create sheet music'};
 const $=id=>document.getElementById(id);
 let frames=[],registry=new Map(),serial=0,loans=[],returnScroll=0,returnFocus=null,rootURL,session,closing=false;
 export const currentView=()=>frames.at(-1)?.id||null;
@@ -102,6 +102,7 @@ export function bindLayout(){
   });
   for(const [button,view] of Object.entries({'composer-open':'composition-panel','browse-open':'browse-panel','edit-chord':'chord-editor','theory-open':'theory-details','bach':'bach-panel','toggle-edit':'sequence-editor','open-save':'save-panel','sound-settings-toggle':'sound-settings','view-voicing':'voicing-view','new-progression-chord':'chord-editor','voicing-edit':'chord-editor'}))
     $(button).addEventListener('click',()=>openView(view));
+  document.querySelectorAll('[data-open-book]').forEach(button=>button.addEventListener('click',()=>{$('book-panel').dataset.section=button.dataset.bookSection||'';openView('book-panel');}));
   document.addEventListener('studio-feedback',event=>{
     const region=event.detail.region;
     if(region.id==='audio-feedback')openView('sound-settings');

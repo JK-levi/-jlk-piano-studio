@@ -319,10 +319,21 @@ function openComposer(){
   });
 }
 
+let bookLoad;
+function openBook(){
+  $('book-loading').hidden=false;$('book-content').hidden=true;
+  bookLoad ||= import('./book.js').then(({setupBook})=>setupBook({feedback}));
+  bookLoad.then(book=>{
+    book.open();$('book-content').hidden=false;$('book-loading').hidden=true;feedback.clear('book','initialization');
+  }).catch(()=>{
+    $('book-loading').hidden=true;feedback.show('book',{id:'initialization',kind:'error',text:'Unable to open the progression book. Your music is unchanged. Reopen Studio online to finish its update, then try again.'});
+  });
+}
 renderExercise($('bach-notation'),bachPlan().events);
 document.addEventListener('studio-view-change',event=>{
   const {previous,next}=event.detail;
   if(next==='composition-panel')openComposer();
+  if(next==='book-panel')openBook();
   if(next==='voicing-view')renderChordNavigation({progression,selected,activeIndex});
   if(next==='save-panel')updateSavedActions();
   // Viewing a playing progression's score is observational. Editing and

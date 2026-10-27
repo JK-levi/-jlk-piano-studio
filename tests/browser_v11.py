@@ -1,4 +1,4 @@
-from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression, choose_preset
+from browser_helpers import wait_for_waiting_worker, wait_for_cache, open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression, choose_preset
 """Optional Chromium integration checks; run alongside the static preview server."""
 import functools
 import http.server
@@ -131,17 +131,18 @@ with sync_playwright() as p:
         old.goto(url);old.wait_for_function('!!navigator.serviceWorker.controller')
         legacy=[{'name':'From version 1','chords':[{'root':'C','quality':'major','octave':4,'inversion':0,'voicing':'close'}]}]
         old.evaluate('(saves)=>localStorage.setItem("jlk-studio-v1-progressions",JSON.stringify(saves))',legacy)
-        for name in ['index.html','styles.css','manifest.webmanifest','service-worker.js','js','icons','assets']:
+        for name in ['index.html','styles.css','manifest.webmanifest','service-worker.js','js','icons','assets','data']:
             source=ROOT/name
             if source.is_dir(): shutil.copytree(source,dest/name,dirs_exist_ok=True)
             else: shutil.copy2(source,dest/name)
         with upgrade.expect_event('serviceworker') as worker_event:
             old.evaluate('navigator.serviceWorker.getRegistration().then(r=>r.update())')
         new_worker=worker_event.value
-        old.wait_for_function('navigator.serviceWorker.getRegistration().then(r=>!!r.waiting)')
+        wait_for_waiting_worker(old)
+        new_worker.evaluate('globalThis.__upgradeTarget=self.registration.waiting')
         old.close()
         new_worker.evaluate("""() => new Promise(resolve => {
-          const worker=self.registration.waiting || self.registration.active;
+          const worker=globalThis.__upgradeTarget;
           if(worker.state==='activated') return resolve();
           worker.addEventListener('statechange',()=>{if(worker.state==='activated')resolve();});
         })""")
@@ -149,7 +150,7 @@ with sync_playwright() as p:
           const deadline=Date.now()+10000;
           async function check() {
             const keys=await caches.keys();
-            if(keys.includes('jlk-studio-v1.3.1')&&!keys.includes('jlk-studio-v1'))return resolve();
+            if(keys.includes('jlk-studio-v1.4')&&!keys.includes('jlk-studio-v1'))return resolve();
             if(Date.now()>deadline)return reject(new Error('New worker did not finish cache cleanup'));
             setTimeout(check,25);
           }
@@ -157,7 +158,7 @@ with sync_playwright() as p:
         })""")
         fresh=upgrade.new_page();fresh.goto(url)
         fresh.wait_for_selector('#test-sound',state='attached')
-        fresh.wait_for_function("caches.keys().then(keys=>keys.includes('jlk-studio-v1.3.1')&&!keys.includes('jlk-studio-v1'))")
+        wait_for_cache(fresh,'jlk-studio-v1.4','jlk-studio-v1')
         fresh.get_by_role('button',name='Progressions',exact=True).click()
         assert fresh.locator('#saved option').all_text_contents() == ['Choose a saved progression','From version 1']
         open_save(fresh);fresh.select_option('#saved','0');fresh.click('#load-saved')
