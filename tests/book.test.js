@@ -50,3 +50,7 @@ test('technique clarification preserves alternative voicings and explicitly reso
  assert.match(TECHNIQUE_NOTES[pedal.title],/fraction of a second/);assert.match(TECHNIQUE_NOTES[pedal.title],/full beat/);assert.match(pedal.source.trySteps[1],/a beat later/);
  assert.match(TECHNIQUE_NOTES[block.title],/Alternative voicing/);assert.match(block.source.tryIntro,/G - B - C - E/);assert.match(block.source.trySteps[1],/C, E, G, B/);
 });
+
+test('app-facing edition labels use ordinals while source dates remain internal provenance',()=>{
+ const latest=JSON.parse(readFileSync(new URL('../data/keyboard-book-october-13.json',import.meta.url),'utf8'));assert.equal(buildBook(latest).edition,'Second Edition');assert.equal(buildBook(snapshot).edition,'Second Edition');assert.match(latest.provenance.label,/October 13/);assert.equal(buildBook({...latest,edition:'Third Edition'}).edition,'Third Edition');
+});
