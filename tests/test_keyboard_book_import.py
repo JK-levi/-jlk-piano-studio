@@ -28,7 +28,7 @@ def fixture():
         text += f'const {name} = ' + json.dumps([technique if name == 'TECHNIQUE_PAGES' else page]) + ';\n'
     text += '</script>\n'
     for name in IMPORT.FRONT:
-        text += f'<script>function {name}(){{return `<div>Source front matter.</div>`;}}</script>\n'
+        text += f'<script>function {name}(){{return `<div>SECOND EDITION · Source front matter.</div>`;}}</script>\n'
     return (text + '</html>').encode()
 
 

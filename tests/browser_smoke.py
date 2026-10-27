@@ -86,7 +86,7 @@ with sync_playwright() as p:
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':390,'height':844})
     page.wait_for_function('!!navigator.serviceWorker.controller')
-    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.4' in cache
+    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.5' in cache
     context.set_offline(True);page.reload();page.wait_for_selector('.key');assert page.locator('.key').count()>20
     assert 'OFFLINE' in page.locator('#connection').inner_text()
     context.set_offline(False)

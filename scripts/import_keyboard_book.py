@@ -162,8 +162,12 @@ def audit(raw, label):
         if not match or '${' in match[1]:
             raise SourceError(f'Cannot preserve static front matter: {name}; review the source format.')
         templates[name] = match[1]
+    edition = re.search(r'\b(First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth)\s+Edition\b', templates['renderCover'], re.I)
+    if not edition:
+        raise SourceError('Missing ordinal edition name in source cover.')
     return {
         'format': 1,
+        'edition': edition[1].capitalize() + ' Edition',
         'provenance': {'label': label, 'sha256': hashlib.sha256(raw).hexdigest(), 'bytes': len(raw)},
         'counts': counts,
         'sectionCounts': {name: len(pages) for name, pages in collections.items()},

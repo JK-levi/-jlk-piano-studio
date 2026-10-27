@@ -26,5 +26,5 @@ export function buildBook(snapshot){
  function text(page,value){
   return value.replaceAll('{page}',String(byTitle.get(page.source?.refTitle)?.num??'?')).replaceAll('{tech_page}',String(page.title.startsWith('STILL D.R.E')?bass:inversions));
  }
- return {pages,sections,text,edition:snapshot.provenance.label,provenance:snapshot.provenance,front:snapshot.frontMatterSource};
+ return {pages,sections,text,edition:snapshot.edition||'Second Edition',provenance:snapshot.provenance,front:snapshot.frontMatterSource};
 }

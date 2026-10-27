@@ -13,7 +13,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
  def end_headers(self):self.send_header('Cache-Control','no-store');super().end_headers()
 with tempfile.TemporaryDirectory() as folder,sync_playwright() as p:
  target=Path(folder)/'piano';target.mkdir()
- data=subprocess.check_output(['git','archive',BASELINE,'--',*[name for name in ASSETS if name!='data']],cwd=ROOT)
+ baseline_assets=[name for name in ASSETS if subprocess.check_output(['git','ls-tree','--name-only',BASELINE,'--',name],cwd=ROOT).strip()]
+ data=subprocess.check_output(['git','archive',BASELINE,'--',*baseline_assets],cwd=ROOT)
  with tarfile.open(fileobj=io.BytesIO(data)) as archive:archive.extractall(target,filter='data')
  server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=folder));threading.Thread(target=server.serve_forever,daemon=True).start()
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);context=browser.new_context(viewport={'width':393,'height':852},is_mobile=True,has_touch=True)
@@ -21,6 +22,7 @@ with tempfile.TemporaryDirectory() as folder,sync_playwright() as p:
  spec={'root':'C','quality':'major','octave':3,'inversion':0,'voicing':'close'}
  piece={'version':1,'id':'phone-upgrade','title':'Keep this piece','tempo':80,'key':'C','timeSignature':[4,4],'measures':[{'right':[{'id':'r1','beat':0,'duration':1,'pitches':['C4'],'rest':False}],'left':[{'id':'l1','beat':0,'duration':4,'pitches':['C3'],'rest':False}]}]}
  stored={'progressions':[{'name':'Keep this progression','key':'C','chords':[spec]}],'preferences':{'spec':spec},'session':[spec],'compositions-v1':[piece],'composition-draft-v1':piece}
+ if 'data' in baseline_assets:stored['keyboard-book-position-v1']='song_pages-viva-la-vida'
  values={'jlk-studio-v1-'+k:json.dumps(v) for k,v in stored.items()}
  page.evaluate('(data)=>Object.entries(data).forEach(([k,v])=>localStorage.setItem(k,v))',values)
  for name in ASSETS:
@@ -35,11 +37,11 @@ with tempfile.TemporaryDirectory() as folder,sync_playwright() as p:
  assert page.locator('#composer-open').inner_text().strip()==OLD_CREATE;assert page.locator('.key').count()>20
  page.close()
  worker.evaluate("() => new Promise((resolve,reject)=>{const deadline=Date.now()+10000;function check(){if(globalThis.__upgradeTarget?.state==='activated')return resolve();if(Date.now()>deadline)return reject(Error('activation timeout'));setTimeout(check,25);}check();})")
- fresh=context.new_page();errors=[];fresh.on('pageerror',lambda e:errors.append(str(e)));fresh.goto(url);fresh.wait_for_selector('.key');wait_for_cache(fresh,'jlk-studio-v1.4',OLD_CACHE)
+ fresh=context.new_page();errors=[];fresh.on('pageerror',lambda e:errors.append(str(e)));fresh.goto(url);fresh.wait_for_selector('.key');wait_for_cache(fresh,'jlk-studio-v1.5',OLD_CACHE)
  fresh.tap('#composer-open');fresh.wait_for_selector('#composition-content',state='visible');assert fresh.locator('#composition-title').input_value()=='Keep this piece';assert fresh.locator('#composition-library option').count()==2
  actual=fresh.evaluate('(keys)=>Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)]))',list(values));assert actual==values
  context.set_offline(True);fresh.reload();fresh.wait_for_selector('.key');fresh.tap('#composer-open');fresh.wait_for_selector('#composition-content',state='visible');fresh.tap('#composition-play');fresh.wait_for_selector('#composition-score .score-sounding');fresh.tap('#composition-stop')
  if os.environ.get('JLK_UPGRADE_BOOK')=='1':
-  fresh.click('#task-done');fresh.wait_for_function("!document.querySelector('#task-view').open");fresh.get_by_role('button',name='Progressions',exact=True).click();fresh.click('#book-open');fresh.wait_for_selector('#book-index',state='visible');assert fresh.locator('#book-sections button').count()==44
+  fresh.click('#task-done');fresh.wait_for_function("!document.querySelector('#task-view').open");fresh.get_by_role('button',name='Progressions',exact=True).click();fresh.click('#book-open');fresh.wait_for_selector('#book-index',state='visible');assert fresh.locator('#book-sections button').count()==44;fresh.click('#book-continue');assert fresh.locator('#book-edition').inner_text()=='Second Edition';assert 'October' not in fresh.locator('#book-content').inner_text();assert fresh.locator('#book-page h3').inner_text()==('VIVA LA VIDA' if 'data' in baseline_assets else 'KEYBOARD\nPROGRESSION BOOK')
  assert not errors,errors;print(json.dumps({'upgrade':f'actual baseline {BASELINE} to book review under repository subpath','waiting':'no forced activation while old client is open','data':'compositions, draft, progression, preferences and session byte-for-byte retained','offline':'new lazy composer opens and plays with new cached assets','errors':errors},indent=2))
  browser.close();server.shutdown();server.server_close()
