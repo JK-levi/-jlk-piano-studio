@@ -1,6 +1,6 @@
-# JLK Piano Studio · 1.5
+# JLK Piano Studio · 1.5 + Weekly Practice 1.4
 
-A focused, mobile-first piano studio with charcoal cards, ivory notation, and three dedicated experiences: Explore, Progressions, and Practice. Plain HTML, CSS, and JavaScript modules. No build, runtime dependencies, accounts, tracking, backend, or paid services.
+A focused, mobile-first piano studio with charcoal cards, ivory notation, with Weekly Practice as its home, plus Explore, Progressions, and Note Practice. Plain HTML, CSS, and JavaScript modules. No build, runtime dependencies, accounts, tracking, backend, or paid services.
 
 ## Preview
 
@@ -246,3 +246,12 @@ Book playback is not invented from unspecified octaves/timing. Existing studio p
 Book version labels now use **Second Edition** in the interface, accessibility text and print output. Internal source provenance, reading-position IDs and user-created titles retain their original information. The current offline cache is `jlk-studio-v1.5`; the earlier version sections above describe release history.
 
 Validation: 52 Node tests, seven source-audit tests, all ten browser suites and an additional upgrade from the book-inclusive main passed. Run `python3 tests/browser_meter.py` alongside the existing suites. Physical iPhone Safari/Home Screen audio, touch/accessibility, printing and update behavior still require device checks. Merge and deployment remain user-managed review steps.
+
+
+## Weekly Practice — feature version 1.4
+
+Open Studio to **Start Practice** or **Continue** the latest weekly lesson. November 8, “Week 11 — 80s Synth-Pop,” includes both-hand shapes, individual warm-up notes, exact rhythm playback with count-in, slower tempo/repeat, and the beat-four melody variation. Choose practice octaves explicitly because none were supplied in the source. The original instructions always remain readable.
+
+**Previous Lessons** provides date-based search, style filters, favorites, repeat sessions and an honest 18-date import report. Three authentic records are seeded: November 8 substantially complete, July 12 and 19 partial; 15 originals remain required. **Import a Lesson** accepts pasted text, Markdown and structured JSON, with review and ID-based updates that preserve personal progress. This is a manual, device-local workflow, without an assumed ChatGPT connection.
+
+See [source report, schema and import guide](docs/weekly-practice.md), [example JSON](data/weekly-november-8.example.json), and [screenshots](docs/screenshots/weekly/). Run `python3 tests/browser_weekly.py` alongside the existing tests. The existing app 1.5 meter features and all saved-data namespaces remain; current worker cache: `jlk-studio-v1.5-weekly-1.4`. Do not interpret the feature version as a downgrade of main.

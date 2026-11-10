@@ -29,7 +29,7 @@ with sync_playwright() as p:
     page = context.new_page()
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))
-    page.goto(BASE)
+    page.goto(BASE);page.click('[data-mode=explore]')
     assert page.evaluate('window.__contexts.length') == 0
     open_sound(page)
     page.tap('#test-sound')
@@ -131,7 +131,7 @@ with sync_playwright() as p:
         old.goto(url);old.wait_for_function('!!navigator.serviceWorker.controller')
         legacy=[{'name':'From version 1','chords':[{'root':'C','quality':'major','octave':4,'inversion':0,'voicing':'close'}]}]
         old.evaluate('(saves)=>localStorage.setItem("jlk-studio-v1-progressions",JSON.stringify(saves))',legacy)
-        for name in ['index.html','styles.css','manifest.webmanifest','service-worker.js','js','icons','assets','data']:
+        for name in ['index.html','styles.css','manifest.webmanifest','service-worker.js','js','icons','assets','data','docs']:
             source=ROOT/name
             if source.is_dir(): shutil.copytree(source,dest/name,dirs_exist_ok=True)
             else: shutil.copy2(source,dest/name)
@@ -150,7 +150,7 @@ with sync_playwright() as p:
           const deadline=Date.now()+10000;
           async function check() {
             const keys=await caches.keys();
-            if(keys.includes('jlk-studio-v1.5')&&!keys.includes('jlk-studio-v1'))return resolve();
+            if(keys.includes('jlk-studio-v1.5-weekly-1.4')&&!keys.includes('jlk-studio-v1'))return resolve();
             if(Date.now()>deadline)return reject(new Error('New worker did not finish cache cleanup'));
             setTimeout(check,25);
           }
@@ -158,13 +158,13 @@ with sync_playwright() as p:
         })""")
         fresh=upgrade.new_page();fresh.goto(url)
         fresh.wait_for_selector('#test-sound',state='attached')
-        wait_for_cache(fresh,'jlk-studio-v1.5','jlk-studio-v1')
+        wait_for_cache(fresh,'jlk-studio-v1.5-weekly-1.4','jlk-studio-v1')
         fresh.get_by_role('button',name='Progressions',exact=True).click()
         assert fresh.locator('#saved option').all_text_contents() == ['Choose a saved progression','From version 1']
         open_save(fresh);fresh.select_option('#saved','0');fresh.click('#load-saved')
         assert fresh.locator('.chord-select').count() == 1
         upgrade.set_offline(True);fresh.reload();fresh.wait_for_selector('#test-sound',state='attached')
-        open_sound(fresh);fresh.click('#test-sound');fresh.wait_for_selector('.key.sounding')
+        fresh.wait_for_selector('.key',state='attached');fresh.click('[data-mode=explore]');open_sound(fresh);fresh.click('#test-sound');fresh.wait_for_selector('.key.sounding')
         upgrade.close();server.shutdown();server.server_close()
     browser.close()
     print(json.dumps({'audio':'nonzero waveform, suspend/resume, rejected interrupted state and recovery', 'visuals':'staff/keyboard synchronized, repeat and stop cleanup', 'practice':'octave attempts, duplicate rejection, hints and reset', 'layout':'320/390/768/1440 px without page overflow', 'offline':'old worker update, new cache, legacy saves and offline audio', 'page_errors':errors},indent=2))

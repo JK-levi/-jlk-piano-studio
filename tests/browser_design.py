@@ -14,7 +14,7 @@ with sync_playwright() as p:
     context.add_init_script("window.__contexts=[];const Native=window.AudioContext;window.AudioContext=class extends Native{constructor(...args){super(...args);window.__contexts.push(this);}};")
     page=context.new_page();errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
-    page.goto(BASE);page.wait_for_selector('.key');page.wait_for_function('!!navigator.serviceWorker.controller')
+    page.goto(BASE);page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key');page.wait_for_function('!!navigator.serviceWorker.controller')
     assert page.locator('#task-view').evaluate('(n)=>!n.open')
     for selector in ['#chord-editor','#theory-details','#bach-panel','#save-panel','#sound-settings']:
         assert page.locator(selector).is_hidden(),selector
@@ -130,13 +130,13 @@ with sync_playwright() as p:
         close_tasks(page)
     # One DOM owner for every existing field, visual, graph control and state.
     assert page.evaluate("""() => {const ids=[...document.querySelectorAll('[id]')].map(n=>n.id);return ids.length===new Set(ids).size;}""")
-    context.set_offline(True);page.reload();page.wait_for_selector('.key')
+    context.set_offline(True);page.reload();page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key')
     open_chord_editor(page);page.select_option('#root','Bb');page.select_option('#quality','minor9');close_tasks(page)
     page.tap('#play-chord');page.wait_for_selector('.key.sounding');page.tap('#study-stop')
     open_save(page);assert 'Saved for tomorrow' in page.locator('#saved').inner_text();page.select_option('#saved','0');page.tap('#load-saved');close_tasks(page)
     page.get_by_role('button',name='Explore',exact=True).click();page.tap('#bach');page.select_option('#study-picker','bach');page.tap('#play-bach');page.wait_for_selector('#bach-notation .score-sounding');page.tap('#stop-bach');close_tasks(page)
-    page.reload();page.wait_for_selector('.key');assert page.locator('#root').input_value()=='Bb' and page.locator('#quality').input_value()=='minor9'
-    assert page.evaluate("caches.keys().then(keys=>keys.includes('jlk-studio-v1.5'))")
+    page.reload();page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key');assert page.locator('#root').input_value()=='Bb' and page.locator('#quality').input_value()=='minor9'
+    assert page.evaluate("caches.keys().then(keys=>keys.includes('jlk-studio-v1.5-weekly-1.4'))")
     assert not errors,errors
     print(json.dumps({'navigation':'full-screen tasks, Back/Done, Escape, browser Back/Forward, nested recovery and editor return','state':'focus/scroll/chord/preferences/attempts and legacy saves preserved; single DOM owners','playback':'block/arpeggio/loop, Bach, progression inspection/pause/resume/stop, offline audio','screenshots':'Explore, Chord Editor, Progressions, Practice, Bach Study at 390px','layout':'320/390/430/768/1440px without page or task overflow','page_errors':errors},indent=2))
     context.close();browser.close()

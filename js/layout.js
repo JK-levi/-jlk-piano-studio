@@ -1,6 +1,7 @@
 // Lightweight task navigation. Panels and musical controls are moved, never
 // cloned; all application state and audio handlers keep their original owners.
 const CONTENT={
+  home:['YOUR WEEKLY PRACTICE','Make room for music.','A familiar rhythm. A little discovery. Time at the keys.'],
   explore:['THE CHORD EXPLORER','See the harmony.','A note on the page. A key beneath your fingers.'],
   studio:['THE PROGRESSION STUDIO','Let one chord lead.','A sequence, a tempo, a little room to play.'],
   practice:['YOUR PRACTICE SPACE','A little more familiar.','Read the notes. Find each key. Take your time.']
@@ -74,7 +75,7 @@ export function closeView(){if(frames.length&&!closing){closing=true;history.bac
 export function setExperience(mode){
   document.body.dataset.experience=mode;
   document.querySelectorAll('[data-modes]').forEach(node=>{node.hidden=!node.dataset.modes.split(' ').includes(mode);});
-  $('workspace').hidden=mode==='studio';
+  $('workspace').hidden=mode==='studio'||mode==='home';
   document.querySelectorAll('[data-mode]').forEach(button=>{
     const active=button.dataset.mode===mode;button.classList.toggle('active',active);button.setAttribute('aria-pressed',active);
     if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');
