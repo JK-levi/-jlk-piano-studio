@@ -1,4 +1,4 @@
-# JLK Piano Studio · 1.2.1
+# JLK Piano Studio · 1.5
 
 A focused, mobile-first piano studio with charcoal cards, ivory notation, and three dedicated experiences: Explore, Progressions, and Practice. Plain HTML, CSS, and JavaScript modules. No build, runtime dependencies, accounts, tracking, backend, or paid services.
 
@@ -235,6 +235,14 @@ Run the six existing browser suites plus `tests/browser_mobile_corrections.py` a
 
 ## Keyboard Progression Book — 1.4
 
-[Source reconciliation, implementation and screenshots](docs/keyboard-book-review.md). **Progressions → Keyboard Progression Book** contains the complete user-uploaded October 13 reference: 38 chord pages, six techniques, 116 blocks and 456 chord rows, including Viva La Vida. Browse by section or search titles/moods/patches; read exact RH/LH parts, follow page links, resume your place and print a clean reference page. Original instructions and both source versions are preserved, with transparent theory corrections.
+[Source reconciliation, implementation and screenshots](docs/keyboard-book-review.md). **Progressions → Keyboard Progression Book** contains the complete user-uploaded **Second Edition**: 38 chord pages, six techniques, 116 blocks and 456 chord rows, including Viva La Vida. Browse by section or search titles/moods/patches; read exact RH/LH parts, follow page links, resume your place and print a clean reference page. Original instructions and both source versions are preserved, with transparent theory corrections.
 
 Book playback is not invented from unspecified octaves/timing. Existing studio playback, practice, composition and saves are retained. Latest reference assets work offline under cache `jlk-studio-v1.4`. Run the existing suites plus `python3 tests/browser_book.py` and `python3 -m unittest discover -s tests -p 'test_keyboard_book_import.py' -v`. ChatGPT’s supplied content-organization checks are incorporated; physical iPhone verification remains a manual release check. Closer-to-recording arrangements are a separate follow-on.
+
+## Meter support — 1.5
+
+[Behavior, validation and review screenshots](docs/meter-support.md). **Create Sheet Music** now supports 4/4, 3/4, 6/8 and 12/8, with dotted notes/rests, meter-aware notation, counting, optional metronome, playback and printing. Tempo counts quarter notes in simple meters and dotted quarters in compound meters. Changing a written or saved piece creates an editable copy, preserves the original and keeps every existing measure and duration. Overfilled copies remain recoverable drafts until repaired; they cannot be played, printed as music or exported as valid scores.
+
+Book version labels now use **Second Edition** in the interface, accessibility text and print output. Internal source provenance, reading-position IDs and user-created titles retain their original information. The current offline cache is `jlk-studio-v1.5`; the earlier version sections above describe release history.
+
+Validation: 52 Node tests, seven source-audit tests, all ten browser suites and an additional upgrade from the book-inclusive main passed. Run `python3 tests/browser_meter.py` alongside the existing suites. Physical iPhone Safari/Home Screen audio, touch/accessibility, printing and update behavior still require device checks. Merge and deployment remain user-managed review steps.

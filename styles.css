@@ -1714,3 +1714,15 @@ body[data-input=pointer] .task-header button:focus-visible{outline:none}
 }
 
 #book-numbering{margin:12px 0 18px}.book-discovery{margin-bottom:20px}.book-discovery summary{cursor:pointer;min-height:44px;line-height:1.8}#book-techniques{margin:14px 0}
+
+/* Meter-aware composition and visibly invalid editable copies. */
+#composition-score{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+#composition-score>svg[data-wide=true]{min-width:760px;width:760px;max-width:none}
+#composition-score>svg[data-overflow=true]{outline:2px solid #9d6b55;outline-offset:-2px}
+.meter-issues{padding:0;list-style:none}.meter-issues li{margin:10px 0}.meter-issues button{width:100%;text-align:left;border-color:#b8967f}
+#composition-copy-origin,#composition-counting{margin:10px 0}#composition-tempo-unit{font-size:.75rem}
+@media print{
+ #composition-score>svg[data-wide=true]{min-width:0!important;width:100%!important;max-width:100%!important}
+ body[data-composition-valid=false] #composition-print-area>*:not(#composition-print-warning){display:none!important}
+ #composition-print-warning{color:black!important;background:white!important;border:2px solid black!important;padding:16px}
+}

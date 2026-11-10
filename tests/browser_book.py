@@ -7,12 +7,12 @@ ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs/screenshots/keyboard-boo
 snapshot=json.loads((ROOT/'data/keyboard-book-october-13.json').read_text());BASE=os.environ.get('JLK_BASE_URL','http://127.0.0.1:8000/')
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);c=b.new_context(viewport={'width':393,'height':852},has_touch=True,is_mobile=True);c.add_init_script("window.__bookAudioContexts=0;const Native=window.AudioContext;window.AudioContext=class extends Native{constructor(...args){super(...args);__bookAudioContexts++;}};");page=c.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto(BASE);page.wait_for_selector('.key')
- page.get_by_role('button',name='Progressions',exact=True).tap();page.evaluate('localStorage.setItem("jlk-studio-v1-compositions-v1",JSON.stringify([{version:1,id:"keep",title:"My saved piece",tempo:80,key:"C",timeSignature:[4,4],measures:[{right:[],left:[]}]}]))');before=page.evaluate('JSON.stringify(localStorage)');page.tap('#book-open');page.wait_for_selector('#book-index',state='visible');assert page.locator('#book-sections button').count()==44;assert '48 screens' in page.locator('#book-numbering').inner_text()
+ page.get_by_role('button',name='Progressions',exact=True).tap();page.evaluate('localStorage.setItem("jlk-studio-v1-compositions-v1",JSON.stringify([{version:1,id:"keep",title:"My saved piece",tempo:80,key:"C",timeSignature:[4,4],measures:[{right:[],left:[]}]}]))');before=page.evaluate('JSON.stringify(localStorage)');page.tap('#book-open');page.wait_for_selector('#book-index',state='visible');assert page.locator('#book-sections button').count()==44;assert 'October' not in page.locator('#book-content').inner_text();assert 'October' not in page.locator('#book-content').aria_snapshot();assert '48 screens' in page.locator('#book-numbering').inner_text()
  page.select_option('#book-section','Mood Loops');page.fill('#book-search','late-night');assert page.locator('#book-sections button:visible').count()==1;page.fill('#book-search','missing-reference-title');assert 'No matches' in page.locator('#book-matches').inner_text();page.fill('#book-search','');page.select_option('#book-section','');page.screenshot(path=str(OUT/'contents-iphone.png'));counts={'rows':0,'blocks':0,'techniques':0};number=4
  for key in ['EASY_PAGES','TECHNIQUE_PAGES','MORE_PROGRESSIONS','MOOD_PAGES','SONG_PAGES']:
   if key=='SONG_PAGES':number+=1
   for source in snapshot['collections'][key]:
-   page.locator(f'#book-sections button[data-page="{number}"]').tap();assert page.locator('#book-page h3').inner_text()==source['title'];assert f'Book page {number} ' in page.locator('#book-page-label').inner_text()
+   page.locator(f'#book-sections button[data-page="{number}"]').tap();assert page.locator('#book-page h3').inner_text()==source['title'];assert page.locator('#book-edition').inner_text()=='Second Edition';assert f'Book page {number} ' in page.locator('#book-page-label').inner_text()
    if key=='TECHNIQUE_PAGES':
     assert page.locator('#book-page>ul>li').all_text_contents()==source['bullets'];assert page.locator('#book-page>ol>li').all_text_contents()==source['trySteps'];counts['techniques']+=1
     if source['title'] in ['BLOCK CHORDS vs. BROKEN CHORDS','INVERSIONS & SMOOTH VOICE LEADING','PEDALING TECHNIQUES']:assert page.locator('.book-technique-note').is_visible()
@@ -46,7 +46,7 @@ with sync_playwright() as p:
  swipe(200,300,190,100);assert 'Book page 17 ' in page.locator('#book-page-label').inner_text();page.tap('#book-previous')
  # Print includes source notes/footer and excludes navigation/controls.
  page.evaluate('() => {window.__prints=0;window.print=()=>window.__prints++;}');page.tap('#book-print');assert page.evaluate('__prints')==1
- pdf=Path(tempfile.gettempdir())/'jlk-book-print.pdf';page.pdf(path=str(pdf),format='A4',print_background=False);text=subprocess.check_output(['pdftotext',str(pdf),'-'],text=True);assert 'CIRCLE-OF-FIFTHS' in text and 'ascending fifths' in text and 'descending in fifths' in text;assert 'Print this page' not in text and 'Settings' not in text
+ pdf=Path(tempfile.gettempdir())/'jlk-book-print.pdf';page.pdf(path=str(pdf),format='A4',print_background=False);text=subprocess.check_output(['pdftotext',str(pdf),'-'],text=True);assert 'CIRCLE-OF-FIFTHS' in text and 'ascending fifths' in text and 'descending in fifths' in text;assert 'Print this page' not in text and 'Settings' not in text and 'October' not in text
  for width,height in [(320,844),(375,812),(390,844),(393,852),(430,932),(844,390),(1440,900)]:
   page.set_viewport_size({'width':width,'height':height})
   for scale in [1,2]:

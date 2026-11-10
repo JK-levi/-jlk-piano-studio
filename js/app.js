@@ -297,11 +297,11 @@ $('save-progression').addEventListener('click',()=>{
 });
 $('load-saved').addEventListener('click',()=>{const p=$('saved').value===''?null:saved[Number($('saved').value)];if(!p)return message('Choose a saved progression first.',{scope:'save',kind:'warning',id:'selection'});stop({silent:true});progression=structuredClone(p.chords);sequenceName=p.name;setKey(p.key||'');spec={...progression[0]};selected=0;$('save-name').value=p.name;persistSession();render();renderProgression();feedback.clear('save','selection');message(`Opened “${p.name}”.`,{scope:'save',kind:'success'});});
 $('delete-saved').addEventListener('click',()=>{if($('saved').value==='')return message('Choose a saved progression first.',{scope:'save',kind:'warning',id:'selection'});const index=Number($('saved').value),updated=saved.filter((_,i)=>i!==index);if(write('progressions',updated)){saved=updated;renderSaved();feedback.clear('save','storage');feedback.clear('save','selection');message('Saved progression deleted. The current progression remains available.',{scope:'save',kind:'success'});}else feedback.show('save',{id:'storage',kind:'error',text:'Unable to delete the saved progression. Allow local storage and try again.'});});
-function audition({plan,bpm,loop=false,scope,onFrame=()=>{}}){
+function audition({plan,bpm,loop=false,scope,onFrame=()=>{},describeBeat,completionDetail}){
  withAudio(()=>{activeScope=scope;activePlayback=scope;player.start(plan,{bpm,loop,
   onScheduled:()=>{feedback.clear(scope,'audio');playbackStatus(scope,'Playing');},
-  onFrame:(events,beat)=>{onFrame(events,beat);if(beat!==null)playbackStatus(scope,'Playing',`Beat ${Math.floor(beat%4)+1}`);},
-  onEnd:()=>{activeScope=null;activePlayback=null;playbackStatus(scope,'Complete');},onError:error=>playbackFailure(error,scope)
+  onFrame:(events,beat)=>{onFrame(events,beat);if(beat!==null)playbackStatus(scope,'Playing',describeBeat?describeBeat(beat):`Beat ${Math.floor(beat%4)+1}`);},
+  onEnd:()=>{activeScope=null;activePlayback=null;playbackStatus(scope,'Complete',completionDetail);},onError:error=>playbackFailure(error,scope)
  });},{scope});
 }
 function stopExternal(scope){stop();playbackStatus(scope,'Stopped');}

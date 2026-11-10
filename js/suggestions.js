@@ -1,3 +1,4 @@
+import {meter} from './meter.js';
 // Deterministic tonal suggestions, not probability claims or an AI service.
 import {chord,QUALITIES,ROOTS,parseNote,toMidi,midiName,mod} from './theory.js';
 import {compositionEvents,usedBeats} from './composition-model.js';
@@ -18,7 +19,7 @@ function candidates(key){
  return names.map((root,i)=>({root,quality:qualities[i]}));
 }
 export function contextAt(doc,{measure,hand}){
- const beat=measure*4+usedBeats(doc,measure,hand),events=compositionEvents(doc);
+ const beat=measure*meter(doc.timeSignature).quarters+usedBeats(doc,measure,hand),events=compositionEvents(doc);
  const prior=events.filter(e=>e.beat<beat||(e.hand!==hand&&e.beat===beat));
  const underlying=prior.filter(e=>e.pitches.length>=3&&e.hand!==hand&&e.beat<=beat&&e.beat+e.duration>beat).at(-1)||prior.filter(e=>e.pitches.length>=3).at(-1);
  const melody=prior.filter(e=>e.hand===hand&&e.pitches.length).at(-1);

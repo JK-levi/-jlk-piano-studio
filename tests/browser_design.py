@@ -136,7 +136,7 @@ with sync_playwright() as p:
     open_save(page);assert 'Saved for tomorrow' in page.locator('#saved').inner_text();page.select_option('#saved','0');page.tap('#load-saved');close_tasks(page)
     page.get_by_role('button',name='Explore',exact=True).click();page.tap('#bach');page.select_option('#study-picker','bach');page.tap('#play-bach');page.wait_for_selector('#bach-notation .score-sounding');page.tap('#stop-bach');close_tasks(page)
     page.reload();page.wait_for_selector('.key');assert page.locator('#root').input_value()=='Bb' and page.locator('#quality').input_value()=='minor9'
-    assert page.evaluate("caches.keys().then(keys=>keys.includes('jlk-studio-v1.4'))")
+    assert page.evaluate("caches.keys().then(keys=>keys.includes('jlk-studio-v1.5'))")
     assert not errors,errors
     print(json.dumps({'navigation':'full-screen tasks, Back/Done, Escape, browser Back/Forward, nested recovery and editor return','state':'focus/scroll/chord/preferences/attempts and legacy saves preserved; single DOM owners','playback':'block/arpeggio/loop, Bach, progression inspection/pause/resume/stop, offline audio','screenshots':'Explore, Chord Editor, Progressions, Practice, Bach Study at 390px','layout':'320/390/430/768/1440px without page or task overflow','page_errors':errors},indent=2))
     context.close();browser.close()
