@@ -1726,3 +1726,43 @@ body[data-input=pointer] .task-header button:focus-visible{outline:none}
  body[data-composition-valid=false] #composition-print-area>*:not(#composition-print-warning){display:none!important}
  #composition-print-warning{color:black!important;background:white!important;border:2px solid black!important;padding:16px}
 }
+
+/* Weekly Practice: the existing palette and surfaces, without motion. */
+#weekly-home { max-width: 900px; margin: 0 auto; }
+#weekly-home h2 { font-family: Georgia,serif; font-size: clamp(1.5rem,4vw,2.2rem); }
+#weekly-home h3 { font-family: Georgia,serif; font-size: 1.5rem; }
+.weekly-card,.weekly-section,.weekly-tools { padding: clamp(18px,4vw,32px); margin: 18px 0; }
+.weekly-actions,.weekly-tools,.weekly-steps { display:flex; flex-wrap:wrap; gap:12px; margin:18px 0; }
+.weekly-tools h2 { flex-basis:100%; margin:0; }
+.weekly-actions label,.weekly-import-meta label { display:flex; flex-direction:column; gap:6px; }
+.weekly-steps button[aria-current=step] { border-color:var(--accent,#c7b594); color:var(--accent,#c7b594); }
+.weekly-original { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; line-height:1.75; }
+.weekly-row { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:14px 0; border-bottom:1px solid #ffffff20; }
+.weekly-row>div { flex:1; min-width:170px; line-height:1.8; }
+.weekly-count { display:grid; grid-template-columns:repeat(8,1fr); gap:4px; margin:20px 0; }
+.weekly-count span { text-align:center; padding:12px 0; border:1px solid #ffffff30; border-radius:5px; }
+.weekly-count .active { background:#c7b594; color:#242423; }
+.weekly-keys { display:flex; overflow:auto; max-width:100%; padding:12px 0; }
+.weekly-key { border-radius:0 0 5px 5px; flex:0 0 34px; height:100px; padding:60px 0 0; background:#ece6d9; color:#242423; border:1px solid #555; }
+.weekly-key.black { background:#242423; color:#eee; height:72px; padding:32px 0 0; flex-basis:25px; }
+.weekly-key.selected { border-bottom:7px solid #b6a17a; }
+.weekly-key.sounding { background:#b6a17a; color:#111; }
+#weekly-score { background:#f4f0e6; border-radius:8px; margin:12px 0; }
+#weekly-score:empty { display:none; }
+#weekly-score svg { width:100%; height:auto; }
+#weekly-home textarea { width:100%; min-height:230px; }
+.weekly-import-meta { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin:20px 0; }
+#weekly-home input,#weekly-home select { max-width:100%; min-width:0; }
+#weekly-home>a,#weekly-home a { color:#dfceb0; }
+#weekly-status { white-space:pre-wrap; padding:12px 0; }
+@media(max-width:480px){.tabs .tab { padding:12px 4px; font-size:12px; }.tabs .tab span { display:none; }.weekly-row>div { min-width:150px; } }
+.tabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); }
+.weekly-keybed { position:relative; flex-shrink:0; height:108px; }
+.weekly-key { position:absolute; width:38px; }
+.weekly-key.black { width:24px; z-index:1; }
+#weekly-home { color:var(--ink); }
+#weekly-home .panel { color:var(--text); }
+#weekly-home>.eyebrow { color:#53504b; }
+#weekly-home>p,#weekly-home>details { color:var(--ink); }
+#weekly-home a { color:#665238; }
+#weekly-home .panel a { color:var(--accent); }

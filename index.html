@@ -20,6 +20,7 @@
     <div id="app-feedback" class="feedback"></div>
     <main id="main" tabindex="-1">
       <nav class="tabs" aria-label="Studio modes">
+        <button class="tab" data-mode="home" aria-pressed="false">Weekly Practice</button>
         <button class="tab active" data-mode="explore" aria-pressed="true" aria-controls="experience"><span aria-hidden="true">01</span> Explore</button>
         <button class="tab" data-mode="studio" aria-pressed="false" aria-controls="experience"><span aria-hidden="true">02</span> Progressions</button>
         <button class="tab" data-mode="practice" aria-pressed="false" aria-controls="experience"><span aria-hidden="true">03</span> Practice</button>
@@ -28,6 +29,7 @@
         <div class="intro"><div><p id="experience-kicker" class="eyebrow">THE CHORD EXPLORER</p><h1 id="experience-title">See the harmony.</h1><p id="experience-description" class="subtle">A note on the page. A key beneath your fingers.</p></div><span class="edition">YOUR PERSONAL STUDIO <span id="connection">ONLINE</span></span></div>
 
 
+        <section id="weekly-home" data-modes="home" aria-label="Weekly Practice"><p>Opening weekly practice…</p></section>
         <section id="studio-panel" class="panel studio-panel" hidden aria-labelledby="studio-title">
           <div class="section-top"><div><p class="eyebrow">YOUR SEQUENCE</p><h2 id="studio-title">The familiar</h2><p id="progression-key" class="subtle">C major · 4 chords</p></div><button id="toggle-edit" aria-expanded="false" aria-controls="sequence-editor">Edit sequence</button></div>
           <div class="sequence-choices"><button id="browse-open" class="primary">Browse &amp; Play</button><button id="open-save" aria-expanded="false" aria-controls="save-panel">My progressions</button><button id="view-voicing" aria-controls="voicing-view">View selected chord</button></div>

@@ -26,7 +26,7 @@ with sync_playwright() as p:
     page.on('pageerror',lambda e:errors.append(str(e)))
     response=page.goto(os.environ.get('JLK_BASE_URL','http://127.0.0.1:8000/'))
     assert response.status==200
-    page.wait_for_selector('.key.selected')
+    page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key.selected')
     assert page.locator('.key.selected').count()==3
     assert page.locator('#note-summary').inner_text()=='C4 · E4 · G4'
     page.screenshot(path=str(Path(tempfile.gettempdir())/'jlk-mobile.png'),full_page=True)
@@ -76,7 +76,7 @@ with sync_playwright() as p:
     open_settings(page)
     page.click('#clear-progression');open_chord_editor(page);page.click('#add-chord');close_tasks(page);page.click('#sequence-play')
     page.wait_for_function("document.querySelector('#position').textContent==='Complete'",timeout=5000)
-    page.reload();page.wait_for_selector('.key');assert page.locator('.chord-select').count()==1
+    page.reload();page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key');assert page.locator('.chord-select').count()==1
     page.get_by_role('button',name='Progressions',exact=True).click();open_save(page);page.select_option('#saved','0');page.click('#load-saved');assert page.locator('.chord-select').count()==5
     close_tasks(page)
     page.get_by_role('button',name='Explore',exact=True).click()
@@ -86,11 +86,11 @@ with sync_playwright() as p:
     assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
     page.set_viewport_size({'width':390,'height':844})
     page.wait_for_function('!!navigator.serviceWorker.controller')
-    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.5' in cache
-    context.set_offline(True);page.reload();page.wait_for_selector('.key');assert page.locator('.key').count()>20
+    cache=page.evaluate('caches.keys()');assert 'jlk-studio-v1.5-weekly-1.4' in cache
+    context.set_offline(True);page.reload();page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key');assert page.locator('.key').count()>20
     assert 'OFFLINE' in page.locator('#connection').inner_text()
     context.set_offline(False)
-    page.set_viewport_size({'width':1440,'height':1100});page.reload();page.wait_for_selector('.key')
+    page.set_viewport_size({'width':1440,'height':1100});page.reload();page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key')
     page.screenshot(path=str(Path(tempfile.gettempdir())/'jlk-desktop.png'),full_page=True)
     assert not errors,errors
     print(json.dumps({'browser':'Chromium','mobile':'390px, no overflow','playback':'chord/arpeggio/sequence/pause/resume/stop/complete','storage':'save/load/reload','PWA':'service worker controls page, offline reload works','page_errors':errors,'cache':cache},indent=2))

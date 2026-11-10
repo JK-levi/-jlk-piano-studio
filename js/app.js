@@ -1,3 +1,4 @@
+import {setupWeekly} from './weekly.js';
 import { ROOTS, QUALITIES, chord, transpose, voiceLead, pretty, midiName, INTERVALS } from './theory.js';
 import { renderNotation, renderExercise } from './notation.js';
 import * as audio from './audio.js';
@@ -359,3 +360,6 @@ if('serviceWorker' in navigator)navigator.serviceWorker.register(new URL('../ser
   notify();registration.addEventListener('updatefound',()=>registration.installing?.addEventListener('statechange',notify));
 }).catch(()=>message('Offline caching is unavailable. Stay online or reload this page to retry installation.',{scope:'app',kind:'warning'}));
 setExperience(mode);render();renderProgression();renderSaved();
+
+setupWeekly({audio,stopStudio:stop,go:destination=>{if(destination==='guided'){setMode('explore');openView('bach-panel');}else if(destination==='create')$('composer-open').click();else setMode(destination);}});
+setMode('home');

@@ -9,7 +9,7 @@ with sync_playwright() as p:
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
  context=browser.new_context(viewport={'width':393,'height':852},has_touch=True,is_mobile=True)
  context.add_init_script("window.__toneStarts=0;const Native=window.AudioContext;window.AudioContext=class extends Native{createOscillator(){const o=super.createOscillator(),start=o.start.bind(o);o.start=(...a)=>{__toneStarts++;return start(...a)};return o}};")
- page=context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto(BASE);page.wait_for_selector('.key')
+ page=context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto(BASE);page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key')
  assert page.locator('.header-motto').count()==0 and page.locator('.app-header button').count()==0
  assert page.locator('#composer-open').inner_text().startswith('Create Sheet Music')
  for width,height in [(320,844),(375,812),(390,844),(393,852),(430,932),(844,390),(1440,900)]:
@@ -51,7 +51,7 @@ with sync_playwright() as p:
  page.fill('#composition-title','Phone sketch');page.locator('#composition-title').dispatch_event('change');page.tap('#composition-insert-note');page.tap('#composition-save');assert 'saved' in page.locator('#composition-feedback').inner_text()
  page.tap('#composition-play');page.wait_for_selector('#composition-score .score-sounding');page.tap('#composition-stop');page.locator('#composition-print-area').scroll_into_view_if_needed();page.screenshot(path=str(OUT/'create-iphone.png'))
  page.tap('#task-back');page.wait_for_function("!document.querySelector('#task-view').open");assert page.locator('#studio-panel').is_visible();page.go_forward();page.wait_for_selector('#composition-content',state='visible');assert page.locator('#composition-title').input_value()=='Phone sketch';close_tasks(page)
- page.wait_for_function('!!navigator.serviceWorker.controller');context.set_offline(True);page.reload();page.wait_for_selector('.key');page.tap('#composer-open');page.wait_for_selector('#composition-content',state='visible');assert page.locator('#composition-title').input_value()=='Phone sketch';assert page.locator('#composition-library option').count()==2
+ page.wait_for_function('!!navigator.serviceWorker.controller');context.set_offline(True);page.reload();page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key');page.tap('#composer-open');page.wait_for_selector('#composition-content',state='visible');assert page.locator('#composition-title').input_value()=='Phone sketch';assert page.locator('#composition-library option').count()==2
  assert not errors,errors;context.close()
  # Initialization/import failures are caught inside the existing editor; no data writes.
  for fixture in ['init','module','stale-layout','bad-draft','app-start']:
@@ -65,7 +65,7 @@ with sync_playwright() as p:
   if fixture=='app-start':q.route('**/js/app.js',lambda route:route.fulfill(content_type='application/javascript',body='throw Error("startup fixture")'))
   q.goto(BASE)
   if fixture=='app-start':q.wait_for_selector('#startup-error',state='visible')
-  else:q.wait_for_selector('.key');q.tap('#composer-open')
+  else:q.wait_for_selector('.key',state='attached');q.click('[data-mode=explore]');q.wait_for_selector('.key');q.tap('#composer-open')
   if fixture in ['init','module']:
    q.wait_for_selector('#composition-feedback [role=alert]');assert 'have not been deleted' in q.locator('#composition-feedback').inner_text();assert q.locator('#composition-content').is_hidden();close_tasks(q);assert q.locator('#workspace').is_visible()
   elif fixture=='stale-layout':q.wait_for_selector('#startup-error',state='visible');assert not q.locator('#task-view').evaluate('(n)=>n.open')
@@ -74,5 +74,5 @@ with sync_playwright() as p:
  # A generic browser-wide cache entry must not supply another version's module.
  c=browser.new_context(has_touch=True);q=c.new_page();q.route(BASE,lambda route:route.fulfill(content_type='text/html',body='<title>cache fixture</title>'));q.goto(BASE)
  q.evaluate("async()=>{const cache=await caches.open('legacy-module-fixture');await cache.put(new URL('./js/composer.js',location.href),new Response('throw Error(\"wrong cached version\")',{headers:{'Content-Type':'application/javascript'}}));}")
- q.unroute(BASE);q.goto(BASE);q.wait_for_selector('.key');q.wait_for_function('!!navigator.serviceWorker.controller');q.tap('#composer-open');q.wait_for_selector('#composition-content',state='visible');assert q.locator('#composition-feedback [role=alert]').count()==0;c.close()
+ q.unroute(BASE);q.goto(BASE);q.wait_for_selector('.key',state='attached');q.click('[data-mode=explore]');q.wait_for_selector('.key');q.wait_for_function('!!navigator.serviceWorker.controller');q.tap('#composer-open');q.wait_for_selector('#composition-content',state='visible');assert q.locator('#composition-feedback [role=alert]').count()==0;c.close()
  browser.close();print(json.dumps({'chords':'manual selection and synchronized score/keys, independent playing marker, transport, 12-card strip','header':'320/375/390/393/430, landscape, desktop and 150/200% text','create':'entry/save/play, Back/Done/Forward, draft and offline reopening','failures':'init/import/stale navigation visibly explained, corrupt draft retained','focus':'touch quiet, keyboard visible','cache':'worker-local lookup excludes wrong-version generic cache'},indent=2))
