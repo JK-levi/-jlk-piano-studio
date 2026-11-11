@@ -11,20 +11,20 @@ with sync_playwright() as p:
  assert page.locator('body').get_attribute('data-experience')=='home'
  page.evaluate("localStorage.setItem('jlk-studio-v1-preservation-sentinel','keep')")
  page.click('[data-lesson="weekly-2026-11-08"]');page.click('[data-action=favorite]')
- page.click('[data-note="0,0"]');assert 'Choose a practice register' in page.locator('#weekly-status').inner_text()
+ page.click('[data-note="0,0"]');assert 'Playing' in page.locator('#weekly-status').inner_text();page.locator('.weekly-play-settings summary').click()
  page.select_option('[data-register=rh]','4');page.select_option('[data-register=lh]','3');page.click('[data-note="0,0"]');page.click('[data-action=stop]')
  page.click('[data-action=next]');assert 'LH: C + G' in page.locator('.weekly-row').first.inner_text();page.click('[data-score="0"]');assert 'undefined' not in page.locator('#weekly-score').inner_text()
  page.screenshot(path=str(OUT/'lesson.png'),full_page=True)
  page.click('[data-action=next]');page.fill('#weekly-tempo','180');page.click('[data-action=rhythm]');page.wait_for_function("document.querySelector('#weekly-beat').textContent.includes('Chord')")
  page.screenshot(path=str(OUT/'rhythm.png'),full_page=True);page.click('[data-action=stop]')
- page.reload();page.wait_for_selector('[data-lesson]');page.click('[data-lesson="weekly-2026-11-08"]');assert page.locator('[aria-current=step]').inner_text().startswith('3.')
+ page.reload();page.wait_for_selector('[data-lesson]');page.click('[data-lesson="weekly-2026-11-08"]');assert page.locator('#weekly-step').input_value()=='2'
  for _ in range(4):page.click('[data-action=next]')
  assert 'Practice complete' in page.locator('#weekly-status').inner_text()
- page.click('[data-action=restart]');assert '1 completed practice' in page.locator('#weekly-home').inner_text()
+ page.get_by_text('Lesson options & full text',exact=True).click();page.click('[data-action=restart]');page.get_by_text('Lesson options & full text',exact=True).click();assert '1 completed practice' in page.locator('#weekly-home').inner_text()
  page.click('[data-action=archive]');page.screenshot(path=str(OUT/'archive.png'),full_page=True)
  page.fill('#weekly-search','July');assert page.locator('[data-lesson]').count()==0
  page.fill('#weekly-search','2026-07');assert page.locator('[data-lesson]').count()==3
- page.fill('#weekly-search','');page.click('[data-action=import]');page.screenshot(path=str(OUT/'import.png'),full_page=True)
+ page.fill('#weekly-search','');page.get_by_text('Manage lessons',exact=True).click();page.click('[data-action=import]');page.screenshot(path=str(OUT/'import.png'),full_page=True)
  source=(ROOT/'data/weekly-november-8.example.json').read_text();page.fill('#weekly-import-text',source);page.click('[data-action=validate]');assert 'Updates this existing ID' in page.locator('#weekly-preview').inner_text();page.click('[data-action=save-import]');assert page.locator('[data-lesson]').count()==12
  assert page.evaluate("JSON.parse(localStorage.getItem('jlk-weekly-progress-v1'))['weekly-2026-11-08'].favorite")
  assert page.evaluate("localStorage.getItem('jlk-studio-v1-preservation-sentinel')")=='keep'
