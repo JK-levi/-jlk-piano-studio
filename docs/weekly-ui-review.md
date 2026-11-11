@@ -14,7 +14,7 @@
 
 These are actual Chromium screenshots of current main before changes and this branch after changes, at 390×844 (iPhone) and 820×1180 (iPad). Lesson views scroll to the practice area on entry so a deep archive position cannot hide the notes. Header and archive captures include the page header. The separate generated concept was illustrative, not verification or lesson data.
 
-The four referenced new iPad attachments were not present in this chat turn. This review therefore uses direct inspection of the current application and the user's written issue list, rather than claiming to have inspected those images.
+The four iPad photographs arrived after the initial PR. They confirm the oversized archive entries, date/week/source labels, unknown-duration placeholders, giant lesson tabs and Drumbeat text overflow. The third photograph confirms the existing JLK/glint header and separate Create/Settings controls. The supplied Drumbeat photograph prompted a further check: beat-4 melody note lines must not be removed as duplicate full-chord lines. Those variation instructions are now explicitly retained, and each chord row also shows its beat-4 melody note.
 
 ### Ipad — Previous Lessons
 
@@ -90,7 +90,7 @@ The four referenced new iPad attachments were not present in this chat turn. Thi
 
 ## Interactions and automated checks
 
-- 63 Node tests: lesson validation/source equality, untouched November rhythm, archive identity/progress handling, register fallback/validation, presentation-only title cleanup, composition, audio scheduling, playback and theory.
+- 64 Node tests: lesson validation/source equality, untouched November rhythm, archive identity/progress handling, register fallback/validation, presentation-only title cleanup, composition, audio scheduling, playback and theory.
 - 7 Python unit tests: existing keyboard-book import coverage.
 - All 13 browser suites: weekly UI, weekly practice, recovered archive, mobile corrections, composer, design/navigation, discovery, meter, service-worker update, progression, smoke, v1.1 regressions and keyboard book.
 - New UI coverage taps Hear without opening settings and observes actual Web Audio oscillator starts, restores changed LH/RH registers after reload, verifies archive density, and expands every section of every lesson at 390 and 820 pixels to check wrapping and descriptive links. Phone widths 320/375/390/393/430, tablet portrait and landscape, and 200% text are checked.
@@ -101,6 +101,12 @@ The four referenced new iPad attachments were not present in this chat turn. Thi
 
 Reviewed the actual after captures for the archive, chord lesson, rhythm screen, header, chord viewer and composer. Corrected faint archive labels, oversized phone rows, stale scroll position and redundant headings during that review. The iPad archive capture shows six complete lesson entries; the phone chord exercise shows all four paired shapes and Hear controls together. Tests supplement this visual review; they are not its substitute.
 
-The four referenced supplied screenshots were unavailable, so their exact contents cannot be individually verified. Actual iPhone/iPad Safari speaker/Bluetooth audio, installed Home Screen updates, safe-area behavior and OS text sizing still require physical-device checks. Browser Web Audio starts do not establish audible output. No merge or deployment was performed.
+Actual iPhone/iPad Safari speaker/Bluetooth audio, installed Home Screen updates, safe-area behavior and OS text sizing still require physical-device checks. Browser Web Audio starts do not establish audible output. No merge or deployment was performed.
 
 Reproduce screenshots against the desired checkout with `JLK_BASE_URL=http://127.0.0.1:8000/ python3 tests/capture_weekly_ui.py after` (or `before`).
+
+## Follow-up: supplied Drumbeat photograph
+
+The exact Drumbeat section was checked at 320, 390, 820 and 1024 pixels. Its beat-4 melody notes (E, D, E, F), held LH assignments and backing-track recommendation are retained. The long instruction wraps and the URL displays as a descriptive link.
+
+![Expanded Drumbeat guidance on iPad](screenshots/ui-cleanup/after/ipad-drumbeat-guidance.png)
