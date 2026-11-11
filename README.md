@@ -255,3 +255,9 @@ Open Studio to **Start Practice** or **Continue** the latest weekly lesson. Nove
 **Previous Lessons** provides date-based search, style filters, favorites, repeat sessions and an honest 18-date import report. Three authentic records are seeded: November 8 substantially complete, July 12 and 19 partial; 15 originals remain required. **Import a Lesson** accepts pasted text, Markdown and structured JSON, with review and ID-based updates that preserve personal progress. This is a manual, device-local workflow, without an assumed ChatGPT connection.
 
 See [source report, schema and import guide](docs/weekly-practice.md), [example JSON](data/weekly-november-8.example.json), and [screenshots](docs/screenshots/weekly/). Run `python3 tests/browser_weekly.py` alongside the existing tests. The existing app 1.5 meter features and all saved-data namespaces remain; current worker cache: `jlk-studio-v1.5-weekly-1.4`. Do not interpret the feature version as a downgrade of main.
+
+### Expanded weekly archive
+
+Twelve recovered original lessons (July 12–November 8, 2026) are now bundled with exact source text, grouped LH/RH notes, practice-register choices, note auditions and a compact keyboard cheat sheet. November 8 retains its existing interactive rhythm. The six unavailable dates remain explicitly marked as requiring original content. Custom imports, progress, favorites and completion history are retained.
+
+See [the import report](docs/weekly-expanded-import-report.md) for source mappings, musical ambiguities, migration behavior and physical-iPhone checks. Original files and the separate undated sample are preserved in `data/weekly-sources/`. Run `npm test`, `python3 -m unittest discover -s tests -p 'test_*.py'`, and the `tests/browser_*.py` browser suites (excluding the helper module) against `npm run serve`; Playwright and Chromium are required.

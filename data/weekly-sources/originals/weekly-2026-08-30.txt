@@ -1,0 +1,128 @@
+This week: Warm R&B / late-night groove
+Time: about 25 minutes
+Goal: get one smooth 4-chord loop into your hands, then stop “practicing” it and start making it your own.
+1. Black-key warm-up — 4 minutes
+Use only these right-hand notes:
+
+D♭ – E♭ – G♭ – A♭ – B♭
+
+Start with this little phrase:
+
+RH: A♭ → B♭ → G♭ → E♭
+
+Then answer it with:
+
+RH: G♭ → E♭ → D♭
+
+Play slowly. Leave space between the two phrases. After a minute or two, forget my pattern and just wander around those five notes.
+
+Your only job: when you accidentally play something you like, repeat it.
+2. Your main 4-chord loop — 7 minutes
+Play these in order.
+
+1. LH: D♭ + A♭ | RH: D♭ + F + A♭
+
+2. LH: B♭ + F | RH: D♭ + F + A♭
+
+3. LH: G♭ + D♭ | RH: D♭ + F + B♭
+
+4. LH: A♭ + E♭ | RH: C + E♭ + A♭
+
+Then go straight back to #1.
+
+Notice something important: from chord 1 to chord 2, your right hand doesn't move at all. Only the left hand changes.
+
+For the first few minutes, don't add rhythm. Press both hands together and hold each chord for four counts:
+
+1 – 2 – 3 – 4
+
+Change on the next 1.
+
+Keep looping until you no longer have to hunt for every note.
+3. Give it a groove — 5 minutes
+Now count:
+
+1 & 2 & 3 & 4 &
+
+For every chord:
+
+1: press BOTH hands
+2: keep holding
+3: lift and replay the RIGHT hand only
+4: let everything ring
+
+Think:
+
+BOTH — hold — RH — hold
+
+Then move to the next chord on the next 1.
+
+Don't try to make it fancy yet. The slight right-hand hit on beat 3 is enough to turn the progression from “four chords” into something that starts feeling like music.
+One optional variation
+Once the basic rhythm feels automatic, move that second RH hit from 3 to the & after 2:
+
+1 & 2 & 3 & 4 &
+BOTH — — RH — — — —
+
+That little early hit creates much more of an R&B pocket.
+4. Put it over a beat — 7–8 minutes
+Find a beat-only track around 76–84 BPM.
+
+For the first couple minutes, simply play the four-chord loop exactly as above.
+
+Then simplify the left hand to one note:
+
+LH: D♭ | RH: D♭ + F + A♭
+LH: B♭ | RH: D♭ + F + A♭
+LH: G♭ | RH: D♭ + F + B♭
+LH: A♭ | RH: C + E♭ + A♭
+
+Once that feels secure, occasionally skip the RH chord and use your black-key notes instead:
+
+D♭ – E♭ – G♭ – A♭ – B♭
+
+Don't try to solo continuously. Play a few notes, then leave space while the beat continues.
+
+That's where I want the lesson to turn into your music.
+5. Optional GO:KEYS 3 sound experiment — 3 minutes
+The GO:KEYS 3 supports both Split and Dual, so use Split this week: low keyboard for one sound, upper keyboard for another. Roland lists more than 1,100 ZEN-Core tones on the instrument. Roland
+
+Keep it simple:
+
+Left: choose a soft synth-bass tone.
+Right: choose an electric-piano tone.
+
+You don't need a pad this week—the bass + EP combination makes it much easier to hear exactly what each hand is contributing.
+
+Keep the LH extremely simple:
+
+D♭ → B♭ → G♭ → A♭
+
+Let the electric piano handle the chords and little melodic answers above it.
+🎧 Listen for the feeling
+“Damage” — H.E.R. is on Apple Music. Apple Music - Web Player
+
+Don't try to copy the song. Listen specifically to how the keyboard harmony sits behind the groove instead of constantly demanding attention. The chords feel relaxed because there's room around them.
+
+For a more electronic interpretation of the same lesson, try “A Walk” — Tycho, also on Apple Music. Apple Music - Web Player Listen for how a relatively simple repeating idea becomes interesting through pulse, layering, and gradual changes, rather than lots of new notes. Apple Music describes Dive as pairing arpeggiated keys and atmospheric textures with a strong bass foundation, which is very close to what you're experimenting with here. Apple Music - Web Player
+What I want you to get out of this one
+By the end, you should be able to turn on a beat and play:
+
+D♭ → B♭ → G♭ → A♭
+
+without needing to stop and calculate what comes next.
+
+Once your hands know the loop, that's when the actual musical exploration starts.
+
+
+
+
+
+
+      
+
+
+
+
+
+

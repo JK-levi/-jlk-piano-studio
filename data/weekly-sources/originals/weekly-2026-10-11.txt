@@ -1,0 +1,217 @@
+🎹 Week 7 — Brazilian-Inspired Pop
+A little bossa nova, a little jazz, and a relaxed summer-evening groove
+Time: 25 minutes | Tempo: 80 BPM | Difficulty: Easy–Intermediate
+
+This week we're changing direction. Instead of the driving rhythms of disco or electronic music, we're going for something lighter, almost like a conversation between your hands.
+
+Bossa nova is a Brazilian musical style with a gentle, swaying rhythm. The interesting part is that the low notes and higher chords don't always land together.
+
+Today's goal: Learn four smooth hand shapes, then make them dance around each other.
+
+① Warm-up — 3 minutes
+Five notes, one hand, no pressure.
+
+Start somewhere around the middle of your keyboard.
+
+LH: — | RH: C → D → E → G → A
+
+Come back down:
+
+LH: — | RH: A → G → E → D → C
+
+Now play this little melody:
+
+LH: — | RH: E → G → A → G → E
+
+Pause.
+
+LH: — | RH: D → E → C
+
+Play these slowly. Don't count yet.
+
+After a minute, experiment with those five notes. Make up little phrases and repeat anything you like.
+
+Listen for: Which notes sound like they're asking a question? Which ones sound like they've finished a sentence?
+
+② Four chords — 6 minutes
+We're using four slightly richer sounds than we've played in some previous weeks. A couple of extra notes give them that warm, sophisticated feel.
+
+Play them in this exact order.
+
+①
+LH: A + E | RH: G + C + E
+
+②
+LH: D + A | RH: F + A + C
+
+③
+LH: G + D | RH: F + B + D
+
+④
+LH: C + G | RH: E + G + B
+
+Repeat: ① → ② → ③ → ④
+
+For now, forget rhythm.
+
+Press both hands together on 1.
+
+Count 1 – 2 – 3 – 4, holding everything down.
+
+Release just before the next 1, then move to the next shape.
+
+Notice how the right-hand notes don't move very far between chords. That's intentional.
+
+Spend the full six minutes just getting these four shapes comfortable.
+
+③ The rhythm — 5 minutes
+Here's where things get interesting.
+
+Previously, we've played chords directly on the numbered beats. Today your right hand will occasionally play between them.
+
+That's called syncopation: emphasizing a moment between the main beats.
+
+Count out loud
+1 & 2 & 3 & 4 &
+
+Think of the numbers as your footsteps and the & as the moments between them.
+
+Here's the pattern:
+
+Count	1	&	2	&	3	&	4	&
+LH	●	—	—	—	●	—	—	—
+RH	—	—	—	●	—	—	●	—
+● = Press the notes.
+
+For chord ①:
+
+LH: A + E | RH: G + C + E
+
+Follow these exact instructions:
+
+1: Press LH. Release on the following &.
+& after 2: Press RH. Release on 3.
+3: Press LH again. Release on the following &.
+4: Press RH again. Release on the following &.
+Then move to chord ② and repeat.
+
+Every note should be fairly short, but don't make it aggressive.
+
+You're going for:
+
+BOOM ... cha ... BOOM ... cha
+
+Except that first little cha arrives slightly later than you might expect.
+
+Once this clicks, you'll hear that relaxed Brazilian-inspired sway.
+
+④ Over a drum track — 8 minutes
+Let's actually make music.
+
+Try this 80 BPM drum-only backing track on YouTube. It's a general groove rather than a dedicated bossa rhythm, but it's slow enough to work with today's pattern. 
+
+First 3 minutes: Just play
+Keep cycling through:
+
+① LH: A + E | RH: G + C + E
+② LH: D + A | RH: F + A + C
+③ LH: G + D | RH: F + B + D
+④ LH: C + G | RH: E + G + B
+
+One full count of 1 & 2 & 3 & 4 & for each chord.
+
+Don't stop if you miss something. Get back into the groove.
+
+Next 5 minutes: Make it yours
+Keep the same four-chord loop, but occasionally replace a right-hand chord with a little melody.
+
+Use only:
+
+C – D – E – G – A
+
+Here's something to try:
+
+LH: A + E | RH: E → G → A
+
+Then return to your usual chord playing.
+
+LH: D + A | RH: F + A + C
+
+Play a little more.
+
+LH: G + D | RH: D → E → G
+
+Then:
+
+LH: C + G | RH: E + G + B
+
+Don't worry about fitting every melody note perfectly into the rhythm yet.
+
+Play a phrase, listen to the drums, and answer yourself.
+
+Try to find one short melody that you genuinely enjoy hearing repeated.
+
+⑤ Optional: GO:KEYS 3 sound experiment — 3 minutes
+Let's make your keyboard sound like two different musicians.
+
+This week, use Split.
+
+Split means the lower and upper areas of your keyboard play different instrument sounds.
+
+Set up your sounds
+LOWER: Acoustic Bass
+UPPER: Nylon Gtr 1
+
+Both are actual factory tones on the Roland GO:KEYS 3, in the acoustic bass and acoustic guitar categories. 
+
+To activate them:
+
+Press [split/dual] until the display shows Split.
+Select LOWER using [f1] and choose Acoustic Bass.
+Select UPPER using [f2] and choose Nylon Gtr 1.
+These controls follow Roland's GO:KEYS 3 reference instructions. 
+
+One optional variation
+Because you're now playing a bass instrument with your left hand, let's simplify those notes.
+
+Play just one low note instead of two:
+
+① LH: A | RH: G + C + E
+② LH: D | RH: F + A + C
+③ LH: G | RH: F + B + D
+④ LH: C | RH: E + G + B
+
+Use exactly the same rhythm you practiced earlier.
+
+Now you've got a bass player and a guitarist playing together.
+
+🎧 Apple Music — This week's inspiration
+The Girl from Ipanema — Stan Getz & João Gilberto, featuring Astrud Gilberto
+Listen for the guitar.
+
+Notice how gently the chords arrive, and how the bass creates a steady foundation underneath them.
+
+Pay attention to the space between the chord hits. Nothing feels rushed, even though the rhythm is constantly moving. 
+
+Banana Pancakes — Jack Johnson
+This isn't traditional bossa nova, but it has a similarly relaxed, conversational quality.
+
+Listen for the way the guitar moves around the vocal. Some notes are short, others ring out, and the entire song feels almost effortless.
+
+That's a great example of the kind of musical freedom we're working toward. 
+
+⭐ Today's takeaway
+We've been building different rhythmic habits over the last several practices.
+
+With disco, you learned to hit the right-hand chords between the beats.
+
+With country, you learned to alternate left and right hands.
+
+With electronic music, you practiced repeating individual notes while holding the harmony underneath.
+
+Today, we're combining some of those skills into a more relaxed, independent rhythm.
+
+The important thing isn't memorizing four more chord names. It's discovering how much the feeling of a piece changes simply by choosing when each hand plays.
+
+And if you find yourself enjoying a particular melody during the last eight minutes, stay with it. That's the part worth developing.
+

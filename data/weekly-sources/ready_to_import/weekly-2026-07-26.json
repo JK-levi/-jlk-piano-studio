@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "id": "weekly-2026-07-26",
+  "date": "2026-07-26",
+  "title": "Layers That Breathe",
+  "durationMinutes": null,
+  "bpm": null,
+  "style": "Layered textures",
+  "goal": "This week, focus on making your music feel wide and cinematic without adding lots of notes. The exercise is about restraint—letting harmony, texture, and timing create interest.",
+  "source": {
+    "description": "Complete user-supplied original lesson; publication date verified against earlier conversation record",
+    "completeness": "complete"
+  },
+  "originalText": "Weekly Keyboard Practice (20–30 minutes)\nTheme: Layers That Breathe\nThis week, focus on making your music feel wide and cinematic without adding lots of notes. The exercise is about restraint—letting harmony, texture, and timing create interest.\n\n1. Black-Key Exploration (5 minutes)\nStart a beat-only track around 82–90 BPM.\n\nFor the first five minutes, stay entirely on the black keys.\n\nRules:\n\nPlay only 2–4 notes at a time.\nLeave at least one measure of silence after every phrase.\nRepeat each idea before changing it.\nListen for which motifs naturally invite a chord underneath.\n\n2. Chord Voicing Study (7 minutes)\nThis week, explore quartal-inspired (stacked fourths) and suspended sounds.\n\nTry these left-hand shapes:\n\nE♭ – A♭ – D♭\nB♭ – E♭ – A♭\nD♭ – G♭ – B♭\nDon't worry about naming every chord. Instead, notice how they create openness and avoid sounding overly \"major\" or \"minor.\"\n\nWhile holding each voicing, improvise gently on the black keys with your right hand.\n\n3. Split/Dual Voice Exercise (6 minutes)\nOn your Roland GO:KEYS 3:\n\nLeft hand: Warm synth pad or soft strings.\nRight hand: Felt piano layered lightly with a bell or airy synth.\nTry this approach:\n\nSustain a chord for four measures.\nPlay a simple melody.\nInstead of changing the melody, change only the underlying chord.\nObserve how the emotional character shifts even though the notes stay similar.\n4. Develop an Original Idea (8–10 minutes)\nKeep the beat running.\n\nCreate a one-minute sketch using this structure:\n\n0:00–0:20 — Introduce a motif.\n0:20–0:40 — Repeat it with a new bass note or voicing.\n0:40–1:00 — Strip it back to almost nothing, then end with a sustained chord.\nRecord the entire take. When you listen back, don't evaluate the performance—identify the single phrase that has the strongest emotional pull. That's the idea worth developing next week.\n\nListening Inspiration (Apple Music)\nA Walk — Tycho\nListen for:\n\nThe gradual layering of sounds.\nHow repetition creates momentum instead of monotony.\nThe balance between rhythmic pulse and spacious harmony.\nSherbrooke — Thylacine\nListen for:\n\nEvolving textures that never feel crowded.\nSubtle harmonic movement over a steady groove.\nHow small changes in timbre and rhythm keep the music engaging.\nCreative Challenge\nBefore you finish, choose one chord voicing from today's session that surprised you. Build your next original piece around that harmony instead of starting with a melody. Often, an unusual harmonic color is what gives a piece its unique identity.",
+  "sections": [
+    {
+      "id": "introduction",
+      "title": "Introduction",
+      "instructions": "Weekly Keyboard Practice (20–30 minutes)\nTheme: Layers That Breathe\nThis week, focus on making your music feel wide and cinematic without adding lots of notes. The exercise is about restraint—letting harmony, texture, and timing create interest.",
+      "rows": []
+    },
+    {
+      "id": "section-1",
+      "title": "1. Black-Key Exploration (5 minutes)",
+      "instructions": "Start a beat-only track around 82–90 BPM.\n\nFor the first five minutes, stay entirely on the black keys.\n\nRules:\n\nPlay only 2–4 notes at a time.\nLeave at least one measure of silence after every phrase.\nRepeat each idea before changing it.\nListen for which motifs naturally invite a chord underneath.",
+      "rows": []
+    },
+    {
+      "id": "section-2",
+      "title": "2. Chord Voicing Study (7 minutes)",
+      "instructions": "This week, explore quartal-inspired (stacked fourths) and suspended sounds.\n\nTry these left-hand shapes:\n\nE♭ – A♭ – D♭\nB♭ – E♭ – A♭\nD♭ – G♭ – B♭\nDon't worry about naming every chord. Instead, notice how they create openness and avoid sounding overly \"major\" or \"minor.\"\n\nWhile holding each voicing, improvise gently on the black keys with your right hand.",
+      "rows": []
+    },
+    {
+      "id": "section-3",
+      "title": "3. Split/Dual Voice Exercise (6 minutes)",
+      "instructions": "On your Roland GO:KEYS 3:\n\nLeft hand: Warm synth pad or soft strings.\nRight hand: Felt piano layered lightly with a bell or airy synth.\nTry this approach:\n\nSustain a chord for four measures.\nPlay a simple melody.\nInstead of changing the melody, change only the underlying chord.\nObserve how the emotional character shifts even though the notes stay similar.",
+      "rows": []
+    },
+    {
+      "id": "section-4",
+      "title": "4. Develop an Original Idea (8–10 minutes)",
+      "instructions": "Keep the beat running.\n\nCreate a one-minute sketch using this structure:\n\n0:00–0:20 — Introduce a motif.\n0:20–0:40 — Repeat it with a new bass note or voicing.\n0:40–1:00 — Strip it back to almost nothing, then end with a sustained chord.\nRecord the entire take. When you listen back, don't evaluate the performance—identify the single phrase that has the strongest emotional pull. That's the idea worth developing next week.",
+      "rows": []
+    },
+    {
+      "id": "section-5",
+      "title": "Listening Inspiration (Apple Music)",
+      "instructions": "A Walk — Tycho\nListen for:\n\nThe gradual layering of sounds.\nHow repetition creates momentum instead of monotony.\nThe balance between rhythmic pulse and spacious harmony.\nSherbrooke — Thylacine\nListen for:\n\nEvolving textures that never feel crowded.\nSubtle harmonic movement over a steady groove.\nHow small changes in timbre and rhythm keep the music engaging.",
+      "rows": []
+    },
+    {
+      "id": "section-6",
+      "title": "Creative Challenge",
+      "instructions": "Before you finish, choose one chord voicing from today's session that surprised you. Build your next original piece around that harmony instead of starting with a melody. Often, an unusual harmonic color is what gives a piece its unique identity.",
+      "rows": []
+    }
+  ]
+}

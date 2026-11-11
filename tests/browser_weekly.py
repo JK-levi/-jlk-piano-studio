@@ -23,9 +23,9 @@ with sync_playwright() as p:
  page.click('[data-action=restart]');assert '1 completed practice' in page.locator('#weekly-home').inner_text()
  page.click('[data-action=archive]');page.screenshot(path=str(OUT/'archive.png'),full_page=True)
  page.fill('#weekly-search','July');assert page.locator('[data-lesson]').count()==0
- page.fill('#weekly-search','2026-07');assert page.locator('[data-lesson]').count()==2
+ page.fill('#weekly-search','2026-07');assert page.locator('[data-lesson]').count()==3
  page.fill('#weekly-search','');page.click('[data-action=import]');page.screenshot(path=str(OUT/'import.png'),full_page=True)
- source=(ROOT/'data/weekly-november-8.example.json').read_text();page.fill('#weekly-import-text',source);page.click('[data-action=validate]');assert 'Updates this existing ID' in page.locator('#weekly-preview').inner_text();page.click('[data-action=save-import]');assert page.locator('[data-lesson]').count()==3
+ source=(ROOT/'data/weekly-november-8.example.json').read_text();page.fill('#weekly-import-text',source);page.click('[data-action=validate]');assert 'Updates this existing ID' in page.locator('#weekly-preview').inner_text();page.click('[data-action=save-import]');assert page.locator('[data-lesson]').count()==12
  assert page.evaluate("JSON.parse(localStorage.getItem('jlk-weekly-progress-v1'))['weekly-2026-11-08'].favorite")
  assert page.evaluate("localStorage.getItem('jlk-studio-v1-preservation-sentinel')")=='keep'
  for width in [320,390,768,1280]:

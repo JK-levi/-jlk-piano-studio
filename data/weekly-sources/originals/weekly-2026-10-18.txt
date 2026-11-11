@@ -1,0 +1,252 @@
+🎹 Week 8 — Retro Funk & Soul
+Think Stevie Wonder meets modern funky keyboard grooves.
+Time: 25 minutes | Tempo: 95 BPM | Difficulty: Easy–Intermediate
+
+This week we're going for something a little dirtier, funkier, and more playful.
+
+Last week you practiced making your hands move independently with a relaxed Brazilian rhythm. Today we're keeping that independence but making everything short, punchy, and rhythmic.
+
+The secret to funk is often what you don't play.
+
+Today's goal: Get three chord shapes comfortable, learn one funky rhythm, and spend eight minutes making your own groove.
+
+① Warm-up — 3 minutes
+Five notes, a little attitude
+Start around the middle of your keyboard.
+
+LH: — | RH: C → E♭ → F → G → B♭
+
+Come back down:
+
+LH: — | RH: B♭ → G → F → E♭ → C
+
+Now play this little phrase:
+
+LH: — | RH: C → E♭ → F
+
+Pause.
+
+LH: — | RH: G → F → E♭ → C
+
+Repeat it a few times.
+
+Then start changing the rhythm. Make some notes short, others longer.
+
+Don't worry about timing yet. Just get comfortable with those five notes.
+
+② Your three chord shapes — 6 minutes
+We're using three warm, slightly bluesy sounds.
+
+Play them in this order:
+
+①
+LH: F + C | RH: A♭ + C + E♭
+
+②
+LH: B♭ + F | RH: A♭ + D + F
+
+③
+LH: C + G | RH: B♭ + E♭ + G
+
+④ Back to shape ②
+LH: B♭ + F | RH: A♭ + D + F
+
+Then repeat from ①.
+
+Your complete loop: ① → ② → ③ → ②
+
+First, play them slowly.
+Count:
+
+1 – 2 – 3 – 4
+
+Press both hands together on 1.
+
+Hold everything through 2, 3, 4.
+
+Release just before the next 1, then change chords.
+
+Keep repeating until your fingers start remembering where to go.
+
+Notice the darker sound of chord ① compared with the brighter chord ②.
+
+③ Learn the funk rhythm — 5 minutes
+This is today's main exercise.
+
+We're going to make the left hand sound like a bass player and the right hand sound like a funky rhythm guitarist.
+
+Count out loud:
+
+1 & 2 & 3 & 4 &
+
+Count	1	&	2	&	3	&	4	&
+LH	●	—	—	—	●	—	—	—
+RH	—	●	—	—	—	●	—	—
+● = Press. A dash means don't press anything new.
+
+Here's exactly what to do for chord ①:
+
+LH: F + C | RH: A♭ + C + E♭
+
+1: Press LH.
+& after 1: Release LH and press RH.
+2: Release RH.
+& after 2: Silence.
+3: Press LH again.
+& after 3: Release LH and press RH.
+4: Release RH.
+& after 4: Silence.
+
+Then change to chord ② on the next 1.
+
+The silence is important!
+
+Don't hold the notes. Each hit should be short.
+
+Think:
+
+BASS-chuck ... BASS-chuck ...
+
+This is a form of syncopation, which simply means placing musical accents between the main numbered beats.
+
+Practice the whole loop
+① LH: F + C | RH: A♭ + C + E♭
+② LH: B♭ + F | RH: A♭ + D + F
+③ LH: C + G | RH: B♭ + E♭ + G
+④ LH: B♭ + F | RH: A♭ + D + F
+
+Use the exact same rhythm for each.
+
+Once you can do that without stopping, you're ready for the fun part.
+
+④ Play over a real funk drum groove — 8 minutes
+I found a 95 BPM funk backing track with drums only.
+
+Funk Drum Groove — 95 BPM, Drums Only (JunzBass Backing Tracks)
+Funk Drum Groove — 95 BPM, Drums Only (JunzBass Backing Tracks)
+youtube.com
+It's just the drums, so there's no bass or keyboard competing with what you're playing.
+
+First 4 minutes: Lock in
+Play your three shapes with the rhythm you just learned.
+
+LH: F + C | RH: A♭ + C + E♭
+LH: B♭ + F | RH: A♭ + D + F
+LH: C + G | RH: B♭ + E♭ + G
+LH: B♭ + F | RH: A♭ + D + F
+
+Keep repeating.
+
+Try to get your LH notes lined up with the drumbeat.
+
+Your RH should feel like little rhythmic answers.
+
+Don't speed up when something sounds exciting.
+
+Listen to the drummer, not just yourself.
+
+Next 4 minutes: Make something of your own
+Keep the drum track going.
+
+For the first couple of loops, simplify the left hand:
+
+① LH: F | RH: A♭ + C + E♭
+② LH: B♭ | RH: A♭ + D + F
+③ LH: C | RH: B♭ + E♭ + G
+④ LH: B♭ | RH: A♭ + D + F
+
+Then occasionally stop playing the RH chords and use these notes to invent a melody:
+
+C – E♭ – F – G – B♭
+
+Try this simple phrase:
+
+LH: F | RH: C → E♭ → F
+
+Pause.
+
+LH: B♭ | RH: G → F → E♭
+
+Then return to playing the full chords.
+
+Don't try to fill every moment.
+
+If you find a little melody you like, repeat it several times.
+
+That's exactly how a lot of great funk grooves develop: one short, memorable musical idea repeated with slight changes.
+
+⑤ Optional GO:KEYS 3 experiment — 3 minutes
+This week, use Split.
+
+Split means assigning a different instrument sound to the lower and upper sections of your keyboard.
+
+We're going for a classic funk combination.
+
+LOWER: Fingered Bass
+UPPER: Clav 1
+
+Both are actual Roland GO:KEYS 3 factory tones. Fingered Bass is in the E.Bass category and Clav 1 is in the Clav category. 
+
+A clavinet is an electric keyboard instrument with a short, bright, almost plucked sound. It's particularly associated with 1970s funk.
+
+Set up Split
+Press [split/dual] until the screen shows Split.
+Select LOWER with [f1] and choose Fingered Bass.
+Select UPPER with [f2] and choose Clav 1.
+Those controls are documented in Roland's GO:KEYS 3 reference manual. 
+
+Now play the simplified version:
+
+① LH: F | RH: A♭ + C + E♭
+② LH: B♭ | RH: A♭ + D + F
+③ LH: C | RH: B♭ + E♭ + G
+④ LH: B♭ | RH: A♭ + D + F
+
+Keep LH below the keyboard's split point and RH above it.
+
+Use the same rhythm as before.
+
+The sound should immediately become punchier and more like two musicians playing together.
+
+🎧 Apple Music — This week's inspiration
+1. Stevie Wonder — Superstition
+Listen on Apple Music
+
+Listen specifically to the clavinet.
+
+That incredibly recognizable repeating keyboard part is a fantastic example of funky, rhythmic playing.
+
+Notice how the little notes and chords seem to bounce around the drumbeat.
+
+Also pay attention to how much silence exists between those short keyboard sounds.
+
+You're not learning the song's actual notes today, but you're practicing the same kind of rhythmic coordination.
+
+2. Vulfpeck — Back Pocket
+Listen on Apple Music
+
+This is a more modern approach to that funky, laid-back sound.
+
+Listen for the interaction between bass, keyboards, and drums.
+
+Nothing needs to be particularly complicated because every part has its own place.
+
+Notice how the little musical phrases repeat until they become almost hypnotic.
+
+That's exactly what I want you trying to create during your improvisation time.
+
+⭐ What to remember this week
+Your entire practice revolves around just three shapes:
+
+① LH: F + C | RH: A♭ + C + E♭
+② LH: B♭ + F | RH: A♭ + D + F
+③ LH: C + G | RH: B♭ + E♭ + G
+
+Play them in this order: ① → ② → ③ → ②.
+
+The new skill isn't another complicated chord. It's making your playing sound more intentional by shortening notes and leaving rhythmic space.
+
+And when you get to the drum track, resist the urge to keep adding notes.
+
+Find a groove you like. Stay with it. Enjoy how it feels.
+
