@@ -9,6 +9,6 @@ export function practiceRegisters(raw){
 export function instructionBlocks(section){
  // Exact instructions remain accessible in the full lesson. Suppress only explicit
  // LH/RH lines duplicated by the paired playable rows, never narrative guidance.
- const text=section.instructions.split('\n').filter(line=>!(section.rows?.length&&/^\s*(?:\d+[.)]\s*)?(?:LH|RH):/.test(line))).join('\n');
+ const text=section.instructions.split('\n').filter(line=>!(section.rows?.length&&!section.rows.some(row=>row.variation)&&/^\s*(?:\d+[.)]\s*)?(?:LH|RH):/.test(line))).join('\n');
  return text.split(/\n\s*\n/).map(s=>s.trim()).filter(Boolean);
 }

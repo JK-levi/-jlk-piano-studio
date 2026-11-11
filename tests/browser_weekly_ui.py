@@ -42,6 +42,9 @@ with sync_playwright() as p:
     for summary in page.locator('.weekly-instructions details>summary').all():summary.click()
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),(date,i,width)
     assert 'https://' not in page.locator('.weekly-instructions').inner_text()
+    if date=='2026-11-08' and i==3:
+     assert page.locator('.weekly-variation-notes').all_text_contents()==['Beat 4 melody: E','Beat 4 melody: D','Beat 4 melody: E','Beat 4 melody: F']
+     assert '1. LH: C + G (held) | RH: E' in page.locator('.weekly-instructions').inner_text()
  assert not errors,errors
  b.close()
 print('Weekly UI: immediate audio, remembered registers, compact archive and all-section wrapping passed')
