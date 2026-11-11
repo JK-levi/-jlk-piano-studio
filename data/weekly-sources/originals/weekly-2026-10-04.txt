@@ -1,0 +1,134 @@
+Weekly Keyboard Practice
+
+
+This week: Melodic house / electronic pulse
+Time: ~25 minutes. This week is about getting a repeating pattern into your fingers so the keyboard starts sounding like a synth part rather than a piano playing block chords.
+
+1. Five-note warm-up — 3 minutes
+Use only these right-hand notes:
+
+F – A♭ – B♭ – C – E♭
+
+Play:
+
+RH: F → A♭ → B♭ → C → E♭ → C → B♭ → A♭
+
+Then:
+
+RH: C → B♭ → A♭ → F
+
+Repeat slowly. After a minute, stop following my exact order and make little 3–5 note phrases using only those five notes.
+
+Leave gaps. A short phrase followed by silence will sound much more musical than constantly filling every beat.
+
+2. Learn these four shapes — 6 minutes
+Don't worry about their chord names. Learn where your hands go.
+
+① LH: F + C | RH: A♭ + C + E♭
+② LH: D♭ + A♭ | RH: A♭ + D♭ + F
+③ LH: A♭ + E♭ | RH: A♭ + C + E♭
+④ LH: E♭ + B♭ | RH: G + B♭ + E♭
+
+Then back to ①.
+
+At first, press both hands together:
+
+1 – 2 – 3 – 4
+
+Press on 1, hold through 4, release just before the next 1.
+
+Do that until you can move through all four without stopping.
+
+3. Turn the chords into a synth pattern — 5 minutes
+Now we're going to arpeggiate them. Arpeggiate simply means playing the notes of a chord one at a time instead of all together.
+
+For every chord, your LH holds while your RH cycles through its three notes.
+
+Count:
+
+1 & 2 & 3 & 4 &
+
+For chord ①:
+
+LH: F + C — press on 1 and HOLD the entire measure.
+RH: A♭ → C → E♭ → C → A♭ → C → E♭ → C
+
+Match the notes exactly to the count:
+
+Count: 1 | & | 2 | & | 3 | & | 4 | &
+RH: A♭ | C | E♭ | C | A♭ | C | E♭ | C
+
+Play each RH note separately. Release it as you move to the next one.
+
+Then use exactly the same low → middle → high → middle movement for the other chords:
+
+② LH: D♭ + A♭ | RH: A♭ → D♭ → F → D♭ → A♭ → D♭ → F → D♭
+
+③ LH: A♭ + E♭ | RH: A♭ → C → E♭ → C → A♭ → C → E♭ → C
+
+④ LH: E♭ + B♭ | RH: G → B♭ → E♭ → B♭ → G → B♭ → E♭ → B♭
+
+One measure each. Then repeat.
+
+Don't speed it up until the RH motion starts feeling almost mindless.
+
+4. Put drums underneath it — 8 minutes
+Aim for about 108–112 BPM.
+
+You can actually do this entirely on the GO:KEYS 3: start a Style whose drums you like, then use Part Mute to remove the bass and backing parts so you're essentially left with the rhythm section. Roland specifically supports muting accompaniment parts and lists separate drums, bass, and backing elements. 
+
+For the first 4 minutes, play exactly what you learned:
+
+LH: F + C | RH: A♭ → C → E♭ → C…
+LH: D♭ + A♭ | RH: A♭ → D♭ → F → D♭…
+LH: A♭ + E♭ | RH: A♭ → C → E♭ → C…
+LH: E♭ + B♭ | RH: G → B♭ → E♭ → B♭…
+
+Keep the drums going and loop it.
+
+For the last 4 minutes, stop the repeating RH pattern.
+
+Play only one LH note at the beginning of each measure:
+
+LH: F → D♭ → A♭ → E♭
+
+Now use your five warm-up notes for the RH:
+
+RH: F – A♭ – B♭ – C – E♭
+
+Try a tiny phrase, wait, then answer it.
+
+If you stumble onto something that sounds good, repeat it for several loops instead of immediately inventing something new. That's how the exercise starts turning into an actual song idea.
+
+5. Optional GO:KEYS 3 sound experiment — 3 minutes
+Try Dual this week.
+
+Main tone: Heartbeat Pluck
+Dual tone: Soft Warm Pad
+
+Those are both actual factory tones on the GO:KEYS 3: Heartbeat Pluck is in Synth Pluck, and Soft Warm Pad is in Synth Pad/Str. 
+
+That combination should suit this exercise really well: the pluck makes every individual RH note obvious, while the pad leaves a soft tail underneath it.
+
+Try the repeating pattern again:
+
+LH: F + C | RH: A♭ → C → E♭ → C…
+
+With the new sound, you'll probably hear why electronic keyboard parts so often use individual repeating notes instead of full chord hits.
+
+🎧 Listen for this
+I checked Apple Music; both of these are available there.
+
+Disclosure — “Latch (feat. Sam Smith)”
+Don't worry about learning its actual chords. Listen for the short synth/keyboard sounds and the rhythmic spaces between them. Notice how little attacks can create movement without a pianist hammering full chords constantly.
+
+RÜFÜS DU SOL — “Innerbloom (Radio Edit)”
+Listen for something different: repetition. A musical idea can stay around for a long time while the arrangement slowly changes around it. That's exactly the habit I want you experimenting with today.
+
+The thing to get comfortable with today
+By the end, I want this physical motion to feel natural:
+
+LH holds → RH low / middle / high / middle → repeat
+
+You don't need another chord progression, scale, or technique today. If that one movement starts feeling automatic over a beat, you've got plenty to play with.
+

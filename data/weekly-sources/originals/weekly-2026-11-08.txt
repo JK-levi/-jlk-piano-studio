@@ -1,0 +1,241 @@
+🎹 Week 11 — 80s Synth-Pop
+25 minutes · 90 BPM · Roland GO:KEYS 3
+
+This week we're going for the warm, nostalgic keyboard sound of 1980s pop — think Cyndi Lauper and Tears for Fears.
+
+Last week you practiced letting notes rise slowly over a sustained left hand. Today we'll keep that steady left hand, but give the right hand a little rhythmic bounce.
+
+Today's goal: Four easy shapes, one repeating rhythm, and a few minutes making your own little synth-pop song.
+
+1. Warm-up — 3 minutes
+Start near the middle of your keyboard, using only your right hand.
+
+LH: — | RH: C → D → E → G → A
+
+Come back down:
+
+LH: — | RH: A → G → E → D → C
+
+Now play this little phrase:
+
+LH: — | RH: E → G → A → G
+
+Pause, then:
+
+LH: — | RH: E → D → C
+
+Play it slowly a few times. Then try making the first note louder and the last note softer. Listen to how even that tiny change makes the phrase feel more expressive.
+
+2. Your four chord shapes — 6 minutes
+Keep your left hand below middle C and your right hand near middle C.
+
+1
+LH: C + G | RH: G + C + E
+
+Bright, settled
+
+2
+LH: G + D | RH: G + B + D
+
+A little anticipation
+
+3
+LH: A + E | RH: A + C + E
+
+More emotional
+
+4
+LH: F + C | RH: A + C + F
+
+Warm, ready to start again
+
+Play 1 → 2 → 3 → 4, then return to 1.
+
+For now, press both hands together on 1, hold through 2, 3, 4, and release just before the next 1.
+
+Don't rush the transitions. Keep going until your fingers start finding the next shape without having to search for every key.
+
+3. Give it an 80s pop rhythm — 5 minutes
+Here's the whole rhythm. You're going to hold the LH while tapping the RH chord three times.
+
+Count: 1 & 2 & 3 & 4 &
+
+1
+
+RH
+
+&
+
+·
+
+2
+
+·
+
+&
+
+RH
+
+3
+
+·
+
+&
+
+·
+
+4
+
+RH
+
+&
+
+·
+
+Highlighted counts are your right-hand chord hits.
+Practice on shape 1:
+
+LH: C + G | RH: G + C + E
+
+Count
+
+Exactly what to do
+
+1
+
+Press LH and RH together
+
+&
+
+Release RH; keep LH held
+
+2
+
+Keep holding LH
+
+& after 2
+
+Press RH again
+
+3
+
+Release RH
+
+& after 3
+
+Keep holding LH
+
+4
+
+Press RH again
+
+Final &
+
+Release everything
+
+Move to shape 2 on the next 1, then 3, then 4.
+
+The little hit between beats 2 and 3 is called an offbeat: a note played halfway between the main numbered beats.
+
+Don't hit the chords aggressively. Aim for a gentle pulse with a little spring to it.
+
+4. Play over a drumbeat — 8 minutes
+90 BPM — Simple Straight Beat
+
+Lumbeat · Drum-only backing track
+
+A steady, uncomplicated beat with no competing keyboard harmony. 
+
+Jamtrack 964
+
+First 4 minutes: Play the same four shapes, using the exact rhythm above.
+
+① LH: C + G | RH: G + C + E
+
+② LH: G + D | RH: G + B + D
+
+③ LH: A + E | RH: A + C + E
+
+④ LH: F + C | RH: A + C + F
+
+One full 1 & 2 & 3 & 4 & for each shape. Let the drummer keep you in time.
+
+Next 4 minutes — one optional variation: Keep the first two right-hand chord hits exactly the same. But on beat 4, play only one higher note instead of the full chord.
+
+For that last hit, use:
+
+① LH: C + G (held) | RH: E
+
+② LH: G + D (held) | RH: D
+
+③ LH: A + E (held) | RH: E
+
+④ LH: F + C (held) | RH: F
+
+This gives you a tiny melody on top of the repeating chords.
+
+Once that sounds comfortable, try choosing your own note for beat 4. Don't change anything else.
+
+5. Optional GO:KEYS 3 sound experiment — 3 minutes
+Let's make this feel like a real 1980s keyboard part.
+
+Use Dual mode, which plays two instrument sounds together from the same keys.
+
+UPPER: 80s FM EP
+
+E.Piano2 · Bright, bell-like electric piano
+
+LOWER: JP8 Strings 1
+
+Synth Pad/Str · Vintage-style synthesizer strings
+
+Both sounds are on Roland's official GO:KEYS 3 factory tone list. 
+
+Roland
+
+Press [split/dual] until the display shows Dual. From the Home screen, choose [f2] UPPER and select 80s FM EP; then choose [f1] LOWER and select JP8 Strings 1.
+
+If the strings are too loud, use [f4] SETTING, select LOWER, and reduce its Level. 
+
+Roland
+
+Now play your original four-shape loop again. Listen for the clear electric-piano attack with soft strings filling the spaces behind it.
+
+🎧 Listen on Apple Music
+Versión y original: "Time After Time", de Cyndi Lauper
+Time After Time — Cyndi Lauper
+
+Listen to how the gentle keyboard sounds support the vocal rather than filling every moment. Notice the contrast between repeating notes and sustained textures.
+
+Apple Music
+
+Tears For Fears - Songs From The Big Chair, Vinyl Record Album LP – Joe's Albums
+Everybody Wants to Rule the World — Tears for Fears
+
+Listen for the bright keyboard textures and the movement of the bass underneath them. Hear how different musical layers create energy without constant chord changes.
+
+Apple Music
+
+These are inspiration for the sound and feel, not the exact chords we're practicing.
+
+Your quick keyboard cheat sheet
+Four shapes. One rhythm.
+① LH: C + G | RH: G + C + E
+
+② LH: G + D | RH: G + B + D
+
+③ LH: A + E | RH: A + C + E
+
+④ LH: F + C | RH: A + C + F
+
+LH: Press on 1, hold all the way through 4, release on the final &.
+
+RH: Press on 1, the & after 2, and 4. Release between hits.
+
+This week's skill is making a repeating chord pattern feel alive. You're combining the held notes from last week's cinematic session with the short rhythmic hits you've practiced in disco and funk. The real progress happens when the rhythm starts feeling automatic and you're listening to the sound instead of concentrating on which finger goes where.
+
+
+
+
+
+===============================================================================

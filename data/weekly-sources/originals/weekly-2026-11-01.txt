@@ -1,0 +1,201 @@
+🎹 Week 10 — Cinematic Piano
+25 minutes · 80 BPM · Roland GO:KEYS 3
+
+This week we're going for something spacious and emotional, like a film soundtrack. Think Ludovico Einaudi or the quiet beginning of a dramatic movie scene.
+
+Last week was about smooth R&B chords. This week we'll build on that by playing the right-hand notes one at a time, letting them rise over a sustained left hand.
+
+Today's goal: Make four simple shapes sound like the beginning of your own soundtrack.
+
+1. Warm up — 3 minutes
+Start with a piano sound. Play these notes around the middle of your keyboard.
+
+LH: — | RH: E → G → A → B → D
+
+Then come back down.
+
+LH: — | RH: D → B → A → G → E
+
+Now try a small musical phrase:
+
+LH: — | RH: E → G → B
+
+Pause for two seconds.
+
+LH: — | RH: D → B → G → E
+
+Play this three or four times. Make the last E softer than the first note. Hear how it creates a feeling of coming home.
+
+2. Four shapes — 6 minutes
+1
+LH: E + B | RH: G + B + E
+
+Dark, thoughtful
+
+2
+LH: C + G | RH: G + C + E
+
+Warmer, opening up
+
+3
+LH: G + D | RH: G + B + D
+
+Bright, hopeful
+
+4
+LH: D + A | RH: F♯ + A + D
+
+Suspended, wanting to return
+
+Play 1 → 2 → 3 → 4 → repeat.
+
+For the first few minutes, press all five notes together on count 1, hold through 2, 3, 4, and release just before the next 1.
+
+Notice the right hand hardly has to move between shapes. That's what makes this progression feel connected.
+
+3. Make the notes roll upward — 5 minutes
+Now we're going to turn those block chords into a gentle, rising piano pattern.
+
+Instead of pressing all three right-hand notes together, play them one at a time from lowest to highest.
+
+Count slowly: 1 & 2 & 3 & 4 &
+
+1
+
+&
+
+2
+
+&
+
+3
+
+&
+
+4
+
+&
+
+The three highlighted beats are where you press new notes.
+
+For shape 1:
+
+LH: E + B | RH: G → B → E
+
+1: Press LH E + B and RH G.
+
+2: Release RH G and press B.
+
+3: Release RH B and press E.
+
+4: Hold RH E.
+
+Final &: Release everything, ready for the next shape.
+
+Your LH stays down for the entire measure.
+
+Now repeat the same motion for all four shapes:
+
+① LH: E + B | RH: G → B → E
+
+② LH: C + G | RH: G → C → E
+
+③ LH: G + D | RH: G → B → D
+
+④ LH: D + A | RH: F♯ → A → D
+
+This is called a broken chord: the notes that make up a chord are played separately instead of simultaneously.
+
+Play softly at first. Let each rising note feel like it's leading toward something.
+
+4. Play with drums — 8 minutes
+Chill Groove Drum Track 80 BPM Guitar Backing Beat #303 - song and lyrics by Guitar Maps Drum Tracks | Spotify
+Chill Groove Drum Track — 80 BPM
+
+Guitar Maps Drum Tracks · Drums only
+
+This relaxed drum track works as a steady foundation beneath your cinematic chords. Play it twice for roughly eight minutes. 
+
+YouTube
+
+First 4 minutes: Repeat your rising-note pattern exactly as written. Keep one shape per 1 & 2 & 3 & 4 &. Try to make every chord change land with the beginning of the next drum measure.
+
+Next 4 minutes: Keep holding the LH notes, but occasionally replace the RH rising pattern with a little melody using just:
+
+E – G – A – B – D
+
+For example:
+
+LH: E + B | RH: B → A → G → E
+
+Then play the normal second shape:
+
+LH: C + G | RH: G → C → E
+
+Don't try to write a whole song. Find one short melody you like and repeat it. Let the drums guide how long you leave between notes.
+
+5. Optional GO:KEYS 3 sound — 3 minutes
+Try a soft piano layered with a cinematic background sound.
+
+Dual mode means each key plays two instrument sounds together.
+
+Use these two verified factory tones:
+
+UPPER
+Concert Piano — Ac.Piano
+
+LOWER
+Soft Warm Pad — Synth Pad/Str
+
+Press [split/dual] until you see Dual. Select UPPER with [f2] and choose Concert Piano; select LOWER with [f1] and choose Soft Warm Pad. In Dual mode these are overlapping sound layers, not separate halves of the keyboard.
+
+If the pad overwhelms the piano, open [f4] SETTING for the lower layer and reduce its Level. These are available GO:KEYS 3 tones and controls. 
+
+Manualzz
++2
+
+Play your original four shapes again. The piano gives you clear individual notes, while the pad provides that long, atmospheric background.
+
+🎧 Listen on Apple Music
+Arrival of the Birds Song von The Cinematic Orchestra & London Metropolitan Orchestra aus dem Album The Crimson Wing: Mystery of the Flamingos (Original Soundtrack) auf Amazon Music
+Arrival of the Birds
+
+The Cinematic Orchestra
+
+Listen for how a small repeating idea gradually becomes larger as more instruments join. Apple Music 
+
+Apple Music
+
+Ludovico Einaudi - In a Time Lapse - Reviews - Album of The Year
+Experience
+
+Ludovico Einaudi
+
+Listen to the piano's repeating figures and how the emotional intensity builds without needing constant new melodies. Apple Music 
+
+Apple Music
+
+These are listening references for the sound and development, not songs with the same four chords.
+
+Your quick keyboard cheat sheet
+Repeat this loop
+① LH: E + B | RH: G → B → E
+
+② LH: C + G | RH: G → C → E
+
+③ LH: G + D | RH: G → B → D
+
+④ LH: D + A | RH: F♯ → A → D
+
+1: LH + first RH note
+
+2: Second RH note
+
+3: Third RH note
+
+4: Hold
+
+Final &: Release
+
+The thing to listen for this week is how repetition, softness, and small changes in volume can make a very simple progression feel dramatic. You don't need more chords. See how much emotion you can get out of just these four.
+

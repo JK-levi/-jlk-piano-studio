@@ -1,0 +1,141 @@
+Weekly Keyboard PracticeThis week: Cinematic / slightly melancholy
+Time: about 25 minutes
+Goal: get comfortable with a very simple three-chord loop, then use just a few black keys to make it feel like the beginning of a film score.
+1. Black-key warm-up — 4 minutes
+Use only:
+
+RH: D♭ – E♭ – G♭ – A♭ – B♭
+
+Start with this:
+
+RH: A♭ → G♭ → E♭ → D♭
+
+Pause.
+
+Then:
+
+RH: E♭ → G♭ → A♭
+
+Play those like two little sentences.
+
+After a couple of minutes, stop following my exact notes. Stay on those five black keys and make your own short phrases.
+
+The important part is the space. You do not need to keep playing continuously.
+2. Your three chords — 7 minutes
+Play these slowly in order:
+
+① LH: E♭ + B♭ | RH: D♭ + G♭ + B♭
+
+② LH: G♭ + D♭ | RH: D♭ + F + B♭
+
+③ LH: D♭ + A♭ | RH: D♭ + F + A♭
+
+Then go back to ①.
+
+For now:
+
+1 – 2 – 3 – 4
+
+Press both hands on 1.
+Hold everything through 2, 3, 4.
+Release just before the next 1.
+
+So you’re simply doing:
+
+E♭ chord → G♭ chord → D♭ chord → repeat
+
+Don't worry about the names. Learn the shapes and the sound.
+3. Make it breathe — 5 minutes
+Now we're going to make exactly the same three chords feel less blocky.
+
+Count:
+
+1 & 2 & 3 & 4 &
+
+For each chord:
+
+1: press LH + RH together
+2: keep holding
+3: release RH and press it again
+4: hold
+
+Your left hand stays down the whole measure.
+
+So:
+
+LH: PRESS ───────────── HOLD
+RH: PRESS ─── PRESS ─── HOLD
+
+Then change everything together on the next 1.
+
+Don't play harder on that second RH hit. Think of it more like the harmony breathing again.
+4. Over a beat — 7–8 minutes
+Find a very simple beat-only track around 70–78 BPM.
+
+Play your three chords for a few loops:
+
+LH: E♭ + B♭ | RH: D♭ + G♭ + B♭
+LH: G♭ + D♭ | RH: D♭ + F + B♭
+LH: D♭ + A♭ | RH: D♭ + F + A♭
+
+Once that feels automatic, simplify.
+
+Left hand plays only:
+
+E♭ → G♭ → D♭
+
+Right hand stops playing full chords and goes back to:
+
+D♭ – E♭ – G♭ – A♭ – B♭
+
+Now make little melodies.
+
+One useful rule:
+
+Play 3–5 notes → stop → let the beat continue → answer yourself.
+
+You can still occasionally return to the full RH chord whenever you want the music to feel bigger.
+
+That's your composition section. There isn't a “correct” melody hiding in the exercise.
+5. Optional GO:KEYS 3 setup — 3 minutes
+For this one, try Dual rather than Split so both sounds respond to the same keys.
+
+Use:
+
+Main tone: Piano
+Dual tone: Soft Warm Pad
+
+Soft Warm Pad is an actual GO:KEYS 3 tone in Roland's Synth Pad/Strings category. Roland also gives you options including Air Pad, Boreal Pad, Warm Pad, and Soft Pad, so those are worth exploring later. Roland
+
+Keep the pad quieter than the piano. You should mostly hear piano, with the pad appearing behind it like a soft haze.
+
+Don't start tweaking a bunch of settings today. Just hear what layering those two sounds does to the same three chords.
+🎧 Two things to listen to
+“Near Light” — Ólafur Arnalds is on Apple Music. Apple Music - Web Player
+
+Listen to how little information is actually required to establish the mood. Pay attention to repetition, silence, and notes ringing into one another. That's very close to what you're practicing today.
+
+Then listen to “On the Nature of Daylight” — Max Richter. Apple Music - Web Player
+
+Ignore the orchestration for a moment and listen to the underlying idea: slow harmonic movement + repetition + gradual emotional build. The music gets bigger without suddenly becoming complicated.
+The one thing I want you to notice
+When you play:
+
+E♭ → G♭ → D♭
+
+don't immediately ask yourself “what do I play next?”
+
+Stay there.
+
+Play it again.
+
+Change the melody slightly.
+
+Leave more silence.
+
+Play it an octave higher.
+
+The exercise this week is partly learning that three chords can already be enough material to make something worth exploring.
+
+
+

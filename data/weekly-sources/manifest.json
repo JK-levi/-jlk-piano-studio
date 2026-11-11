@@ -1,0 +1,183 @@
+{
+  "historicalDates": [
+    "2026-07-12",
+    "2026-07-19",
+    "2026-07-26",
+    "2026-08-02",
+    "2026-08-09",
+    "2026-08-16",
+    "2026-08-23",
+    "2026-08-30",
+    "2026-09-06",
+    "2026-09-13",
+    "2026-09-20",
+    "2026-09-27",
+    "2026-10-04",
+    "2026-10-11",
+    "2026-10-18",
+    "2026-10-25",
+    "2026-11-01",
+    "2026-11-08"
+  ],
+  "fullOriginals": 12,
+  "missingDates": [
+    "2026-08-09",
+    "2026-08-16",
+    "2026-08-23",
+    "2026-09-13",
+    "2026-09-20",
+    "2026-09-27"
+  ],
+  "records": [
+    {
+      "date": "2026-07-12",
+      "id": "weekly-2026-07-12",
+      "title": "Finding an Idea and Letting It Evolve",
+      "source": "Pasted text.txt",
+      "sourceLines": null,
+      "sections": 7,
+      "interactiveRows": 0,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-07-19",
+      "id": "weekly-2026-07-19",
+      "title": "Movement Through Suspended Harmony",
+      "source": "Pasted text.txt",
+      "sourceLines": null,
+      "sections": 7,
+      "interactiveRows": 0,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-07-26",
+      "id": "weekly-2026-07-26",
+      "title": "Layers That Breathe",
+      "source": "Pasted text.txt",
+      "sourceLines": null,
+      "sections": 7,
+      "interactiveRows": 0,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-08-02",
+      "id": "weekly-2026-08-02",
+      "title": "Tension, Release, and Long Lines",
+      "source": "Pasted text.txt",
+      "sourceLines": null,
+      "sections": 7,
+      "interactiveRows": 0,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-08-30",
+      "id": "weekly-2026-08-30",
+      "title": "Warm R&B / Late-Night Groove",
+      "source": "Absolutely. Here's what I think the.md",
+      "sourceLines": [
+        155,
+        282
+      ],
+      "sections": 7,
+      "interactiveRows": 4,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-09-06",
+      "id": "weekly-2026-09-06",
+      "title": "Cinematic / Slightly Melancholy",
+      "source": "Absolutely. Here's what I think the.md",
+      "sourceLines": [
+        283,
+        423
+      ],
+      "sections": 8,
+      "interactiveRows": 3,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-10-04",
+      "id": "weekly-2026-10-04",
+      "title": "Melodic House / Electronic Pulse",
+      "source": "Absolutely. Here's what I think the.md",
+      "sourceLines": [
+        424,
+        557
+      ],
+      "sections": 8,
+      "interactiveRows": 4,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-10-11",
+      "id": "weekly-2026-10-11",
+      "title": "Week 7 — Brazilian-Inspired Pop",
+      "source": "Absolutely. Here's what I think the.md",
+      "sourceLines": [
+        558,
+        774
+      ],
+      "sections": 8,
+      "interactiveRows": 8,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-10-18",
+      "id": "weekly-2026-10-18",
+      "title": "Week 8 — Retro Funk & Soul",
+      "source": "Absolutely. Here's what I think the.md",
+      "sourceLines": [
+        775,
+        1026
+      ],
+      "sections": 8,
+      "interactiveRows": 8,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-10-25",
+      "id": "weekly-2026-10-25",
+      "title": "Week 9 — Late-Night R&B / Neo-Soul",
+      "source": "Absolutely. Here's what I think the.md",
+      "sourceLines": [
+        1027,
+        1283
+      ],
+      "sections": 8,
+      "interactiveRows": 8,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-11-01",
+      "id": "weekly-2026-11-01",
+      "title": "Week 10 — Cinematic Piano",
+      "source": "Absolutely. Here's what I think the.md",
+      "sourceLines": [
+        1284,
+        1484
+      ],
+      "sections": 8,
+      "interactiveRows": 8,
+      "action": "UPSERT"
+    },
+    {
+      "date": "2026-11-08",
+      "id": "weekly-2026-11-08",
+      "title": "Week 11 — 80s Synth-Pop",
+      "source": "Absolutely. Here's what I think the.md",
+      "sourceLines": [
+        1485,
+        1725
+      ],
+      "sections": 8,
+      "interactiveRows": 8,
+      "action": "PATCH EXISTING - preserve interactive sections and rhythm"
+    }
+  ],
+  "notes": [
+    "The two new attachments substantially overlap; do not import duplicate copies.",
+    "The undated Warm, Groovy R&B sample differs in specific voicings from the actual Aug 30 lesson. Treat it as a sample, not the archive source.",
+    "Preserve the currently interactive Nov 8 lesson: patch only originalText/details rather than replacing its validated rhythm and row structures.",
+    "Do not invent source octaves or infer new timed playback from explanatory prose."
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "id": "weekly-2026-07-19",
+  "date": "2026-07-19",
+  "title": "Movement Through Suspended Harmony",
+  "durationMinutes": null,
+  "bpm": null,
+  "style": "Suspended harmony",
+  "goal": "This week, focus on creating music that feels like it's always moving forward without needing a dramatic melody. Think shimmering, suspended, and patient.",
+  "source": {
+    "description": "Complete user-supplied original lesson; publication date verified against earlier conversation record",
+    "completeness": "complete"
+  },
+  "originalText": "Weekly Keyboard Practice (20–30 minutes)\nTheme: Movement Through Suspended Harmony\nThis week, focus on creating music that feels like it's always moving forward without needing a dramatic melody. Think shimmering, suspended, and patient.\n\n1. Black-Key Exploration (5 minutes)\nSet a beat-only track between 78–88 BPM.\n\nStay entirely on the black keys. Instead of running up and down the scale, limit yourself to four notes for the first few minutes.\n\nTry this idea:\n\nPlay a short motif.\nRepeat it three times.\nOn the fourth repetition, change only one note.\nAmazing ideas often come from tiny changes rather than brand-new phrases.\n\n2. Chord Voicing Exploration (7 minutes)\nThis week, experiment with open voicings that leave lots of space.\n\nTry these left-hand shapes:\n\nD♭maj9 (no 3rd) → D♭ – A♭ – E♭\nA♭add9 → A♭ – E♭ – B♭\nG♭maj7 → G♭ – D♭ – F\nHold each chord while your right hand improvises only on the black keys.\n\nNotice how changing the bass note underneath the same melody completely changes the emotional color.\n\n3. Split/Dual Voice Experiment (6 minutes)\nOn your Roland GO:KEYS 3:\n\nLeft hand: Warm analog pad or soft synth strings.\nRight hand: Electric piano or a mellow bell/felt piano layer.\nKeep the pad sustaining underneath while your right hand plays lightly. Aim for contrast: broad, slow harmony below and delicate movement above.\n\nIf your keyboard supports it, add just a touch of reverb to let notes bloom into each other.\n\n4. Build Your Own Piece (10 minutes)\nContinue over the beat-only track.\n\nStructure your improvisation like this:\n\n30 seconds: Introduce one motif.\n30 seconds: Repeat it with a different chord underneath.\n30 seconds: Strip it back to almost nothing.\n30 seconds: Bring the full texture back with both hands.\nRecord the session. Afterwards, listen back once and identify one moment that made you stop and think, \"I'd like to hear that again.\" That's your starting point for your next original piece.\n\nListening Inspiration (Apple Music)\nGlue — Bicep\nListen for:\n\nThe hypnotic repetition.\nHow tiny harmonic and textural changes keep the track evolving.\nThe way space is used between layers instead of filling every moment.\nSkulls — Röyksopp\nListen for:\n\nShimmering analog synth textures.\nWide, suspended harmonies that feel cinematic.\nHow the arrangement gradually unfolds without relying on flashy solos.\nCreative Challenge\nBefore you finish, give your new idea a working title—even if it's something simple like \"Rain on Glass,\" \"Late Drive,\" or \"Static Bloom.\" Naming an idea helps your brain treat it as something worth returning to, rather than just another improvisation.",
+  "sections": [
+    {
+      "id": "introduction",
+      "title": "Introduction",
+      "instructions": "Weekly Keyboard Practice (20–30 minutes)\nTheme: Movement Through Suspended Harmony\nThis week, focus on creating music that feels like it's always moving forward without needing a dramatic melody. Think shimmering, suspended, and patient.",
+      "rows": []
+    },
+    {
+      "id": "section-1",
+      "title": "1. Black-Key Exploration (5 minutes)",
+      "instructions": "Set a beat-only track between 78–88 BPM.\n\nStay entirely on the black keys. Instead of running up and down the scale, limit yourself to four notes for the first few minutes.\n\nTry this idea:\n\nPlay a short motif.\nRepeat it three times.\nOn the fourth repetition, change only one note.\nAmazing ideas often come from tiny changes rather than brand-new phrases.",
+      "rows": []
+    },
+    {
+      "id": "section-2",
+      "title": "2. Chord Voicing Exploration (7 minutes)",
+      "instructions": "This week, experiment with open voicings that leave lots of space.\n\nTry these left-hand shapes:\n\nD♭maj9 (no 3rd) → D♭ – A♭ – E♭\nA♭add9 → A♭ – E♭ – B♭\nG♭maj7 → G♭ – D♭ – F\nHold each chord while your right hand improvises only on the black keys.\n\nNotice how changing the bass note underneath the same melody completely changes the emotional color.",
+      "rows": []
+    },
+    {
+      "id": "section-3",
+      "title": "3. Split/Dual Voice Experiment (6 minutes)",
+      "instructions": "On your Roland GO:KEYS 3:\n\nLeft hand: Warm analog pad or soft synth strings.\nRight hand: Electric piano or a mellow bell/felt piano layer.\nKeep the pad sustaining underneath while your right hand plays lightly. Aim for contrast: broad, slow harmony below and delicate movement above.\n\nIf your keyboard supports it, add just a touch of reverb to let notes bloom into each other.",
+      "rows": []
+    },
+    {
+      "id": "section-4",
+      "title": "4. Build Your Own Piece (10 minutes)",
+      "instructions": "Continue over the beat-only track.\n\nStructure your improvisation like this:\n\n30 seconds: Introduce one motif.\n30 seconds: Repeat it with a different chord underneath.\n30 seconds: Strip it back to almost nothing.\n30 seconds: Bring the full texture back with both hands.\nRecord the session. Afterwards, listen back once and identify one moment that made you stop and think, \"I'd like to hear that again.\" That's your starting point for your next original piece.",
+      "rows": []
+    },
+    {
+      "id": "section-5",
+      "title": "Listening Inspiration (Apple Music)",
+      "instructions": "Glue — Bicep\nListen for:\n\nThe hypnotic repetition.\nHow tiny harmonic and textural changes keep the track evolving.\nThe way space is used between layers instead of filling every moment.\nSkulls — Röyksopp\nListen for:\n\nShimmering analog synth textures.\nWide, suspended harmonies that feel cinematic.\nHow the arrangement gradually unfolds without relying on flashy solos.",
+      "rows": []
+    },
+    {
+      "id": "section-6",
+      "title": "Creative Challenge",
+      "instructions": "Before you finish, give your new idea a working title—even if it's something simple like \"Rain on Glass,\" \"Late Drive,\" or \"Static Bloom.\" Naming an idea helps your brain treat it as something worth returning to, rather than just another improvisation.",
+      "rows": []
+    }
+  ]
+}

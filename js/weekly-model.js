@@ -53,3 +53,13 @@ export function completeSection(record,lesson,index,now=new Date().toISOString()
  if(lesson.sections.every(s=>next.completed.includes(s.id))&&!next.finished){next.runs=[...(next.runs||[]),{at:now,sections:[...next.completed]}];next.finished=true;}return next;
 }
 export function restart(record){return {...record,index:0,completed:[],finished:false};}
+
+// Retire only unchanged copies of older bundled lessons saved by the old importer.
+// Custom imports remain authoritative; personal progress uses a separate store.
+export function mergeLessonContent(bundled, local, previousBundled=[]){
+ return local.reduce((all,lesson)=>{
+  const previous=previousBundled.find(old=>old.id===lesson.id);
+  const unchanged=previous && JSON.stringify(previous)===JSON.stringify(lesson);
+  return unchanged && bundled.some(current=>current.id===lesson.id)?all:upsert(all,lesson);
+ },bundled);
+}

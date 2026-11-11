@@ -69,7 +69,7 @@ with sync_playwright() as p:
  for _ in range(6):click('add-measure')
  assert page.locator('#composition-add-measure').is_disabled()
  assert len(doc()['measures'])==8
- close_tasks(page);page.wait_for_function('!!navigator.serviceWorker.controller');context.set_offline(True);page.reload();page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key');page.click('#composer-open');assert len(doc()['measures'])==8
+ close_tasks(page);page.wait_for_function('!!navigator.serviceWorker.controller');context.set_offline(True);page.reload();page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key');page.click('#composer-open');page.wait_for_selector('#composition-content',state='visible');assert len(doc()['measures'])==8
  assert page.locator('#composition-library option').count()==2
  page.select_option('#composition-key','F#m');snapshot=doc();page.locator('#composition-note-suggestions article').first.get_by_role('button',name='Listen',exact=True).click();assert doc()==snapshot
  page.locator('#composition-chord-suggestions article').first.get_by_role('button',name='Choose chord').click();select('duration','0.5');select('measure','7');click('suggestion-whole');assert doc()['measures'][7]['right'][0]['duration']==.5
