@@ -1,3 +1,4 @@
+import {setupStudioShell} from './studio-shell.js';
 import {setupWeekly} from './weekly.js';
 import { ROOTS, QUALITIES, chord, transpose, voiceLead, pretty, midiName, INTERVALS } from './theory.js';
 import { renderNotation, renderExercise } from './notation.js';
@@ -361,5 +362,18 @@ if('serviceWorker' in navigator)navigator.serviceWorker.register(new URL('../ser
 }).catch(()=>message('Offline caching is unavailable. Stay online or reload this page to retry installation.',{scope:'app',kind:'warning'}));
 setExperience(mode);render();renderProgression();renderSaved();
 
-setupWeekly({audio,stopStudio:stop,go:destination=>{if(destination==='guided'){setMode('explore');openView('bach-panel');}else if(destination==='create')$('composer-open').click();else setMode(destination);}});
+let studioArea='home',studioRouting=false;
+async function studioNavigate(destination,remember=true){
+ document.dispatchEvent(new Event('studio-area-change'));
+ stop({silent:true});
+ if(currentView()){studioRouting=true;await new Promise(resolve=>{const ready=e=>{if(!e.detail.next){document.removeEventListener('studio-view-change',ready);resolve();}};document.addEventListener('studio-view-change',ready);returnToWorkspace();});setTimeout(()=>studioRouting=false,0);}
+ studioArea=destination;
+ if(remember)history.pushState({...history.state,studioArea:destination,jlkTasks:[]},'');
+ if(['home','latest','archive'].includes(destination)){setMode('home');document.dispatchEvent(new CustomEvent('weekly-navigate',{detail:destination}));return;}
+ const tasks={browse:'browse-panel',saved:'save-panel',guided:'bach-panel',create:'composition-panel',sound:'sound-settings',book:'book-panel'};
+ if(tasks[destination]){setMode(['browse','saved'].includes(destination)?'studio':'explore');openView(tasks[destination]);}else setMode(destination);
+}
+window.addEventListener('popstate',e=>{if(!studioRouting&&!e.state?.jlkTasks?.length&&(e.state?.studioArea||'home')!==studioArea)studioNavigate(e.state?.studioArea||'home',false);});
+setupStudioShell({navigate:studioNavigate,recover:async()=>{stop({silent:true});document.dispatchEvent(new Event('studio-audio-recover'));await audio.unlock({reset:true});}});
+setupWeekly({audio,stopStudio:stop,go:studioNavigate});
 setMode('home');
