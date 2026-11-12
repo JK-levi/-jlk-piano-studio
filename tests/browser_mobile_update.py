@@ -38,7 +38,7 @@ with tempfile.TemporaryDirectory() as folder,sync_playwright() as p:
  assert page.locator('#studio-menu-open').is_visible();assert page.locator('.key').count()>20
  page.close()
  worker.evaluate("() => new Promise((resolve,reject)=>{const deadline=Date.now()+10000;function check(){if(globalThis.__upgradeTarget?.state==='activated')return resolve();if(Date.now()>deadline)return reject(Error('activation timeout'));setTimeout(check,25);}check();})")
- fresh=context.new_page();errors=[];fresh.on('pageerror',lambda e:errors.append(str(e)));fresh.goto(url);fresh.wait_for_selector('.key',state='attached');studio_destination(fresh,'explore');fresh.wait_for_selector('.key');wait_for_cache(fresh,'jlk-studio-v2-2',OLD_CACHE)
+ fresh=context.new_page();errors=[];fresh.on('pageerror',lambda e:errors.append(str(e)));fresh.goto(url);fresh.wait_for_selector('.key',state='attached');studio_destination(fresh,'explore');fresh.wait_for_selector('.key');wait_for_cache(fresh,'jlk-studio-v2-3',OLD_CACHE)
  studio_destination(fresh,'create');fresh.wait_for_selector('#composition-content',state='visible');assert fresh.locator('#composition-title').input_value()=='Keep this piece';assert fresh.locator('#composition-library option').count()==2
  actual=fresh.evaluate('(keys)=>Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)]))',list(values));assert actual==values
  context.set_offline(True);fresh.reload();fresh.wait_for_selector('.key',state='attached');studio_destination(fresh,'explore');fresh.wait_for_selector('.key');studio_destination(fresh,'create');fresh.wait_for_selector('#composition-content',state='visible');fresh.tap('#composition-play');fresh.wait_for_selector('#composition-score .score-sounding');fresh.tap('#composition-stop')

@@ -15,7 +15,14 @@ export function setupComposer({audition,stop,feedback}){
  const report=(text,kind='error',id='edit')=>{feedback.show('composition',{text,kind,id});if(kind==='error'){stop('composition');$('position').textContent='Failed';$('position').dataset.state='Failed';document.getElementById('composition-feedback').scrollIntoView({block:'nearest',behavior:'instant'});}};
  const clear=()=>feedback.clear('composition','edit');
  function guard(fn){try{return fn();}catch(error){report(error.message);return false;}}
- function metadata(){const next={...doc,title:$('title').value.trim(),tempo:Number($('tempo').value),key:$('key').value};if(doc.metronome!==undefined||$('metronome').checked)next.metronome=$('metronome').checked;validateEditableComposition(next);doc=next;saveWorking();}
+ function metadata(){const next={...doc,title:$('title').value.trim(),tempo:Number($('tempo').value),key:$('key').value};if(doc.metronome!==undefined||$('metronome').checked)next.metronome=$('metronome').checked;acceptMetadata(next);}
+ // Metadata edits branch history without creating an Undo entry per keystroke.
+ // Reads by Play/Save and accepted-but-unchanged form values preserve Redo.
+ function acceptMetadata(next){
+  validateEditableComposition(next);
+  if(['title','tempo','key','metronome'].some(key=>next[key]!==doc[key])){redo=[];$('redo').disabled=true;}
+  doc=next;saveWorking();
+ }
  function saveWorking(){if(!saveDraft(doc))report('Working changes could not be stored. Keep this view open and allow local storage before leaving.','warning','storage');else feedback.clear('composition','storage');}
  function commit(next){stop('composition');redo=[];undo.push(structuredClone(doc));if(undo.length>100)undo.shift();doc=next;saveWorking();clear();feedback.clear('composition','saved');draw();}
  function insert(pitches){return guard(()=>{metadata();const p=position();commit(insertEvent(doc,{...p,pitches,duration:duration()}));feedback.clear('composition','inserted');return true;});}
@@ -77,7 +84,7 @@ export function setupComposer({audition,stop,feedback}){
  for(const key of Object.keys(METERS))$('meter').append(option(key));$('duration').replaceChildren(...Object.entries(NOTE_VALUES).sort((a,b)=>Number(a[0])-Number(b[0])).map(([value,meta])=>option(value,meta.name)));$('duration').value='1';
  for(const letter of 'CDEFGAB')$('letter').append(option(letter));for(const root of ROOTS)$('chord-root').append(option(root,pretty(root)));for(const [key,q]of Object.entries(QUALITIES))$('chord-quality').append(option(key,q.name));
  for(const key of ROOTS.flatMap(root=>[root,root+'m']))$('key').append(option(key,pretty(key)));
- $('title').addEventListener('input',()=>{const title=$('title').value.trim();if(title){doc={...doc,title};saveWorking();feedback.clear('composition','saved');}});
+ $('title').addEventListener('input',()=>{const title=$('title').value.trim();if(title)guard(()=>{acceptMetadata({...doc,title});feedback.clear('composition','saved');})});
  for(const id of ['title','tempo','key','metronome'])$(id).addEventListener('change',()=>guard(()=>{stop('composition');metadata();clear();draw();}));
  for(const id of ['measure','duration','octave','labels','write-taps','show-all'])$(id).addEventListener('change',()=>{if(id==='octave')octaves[$('hand').value]=Number($('octave').value);stop('composition');draw();});
  $('meter').addEventListener('change',()=>{

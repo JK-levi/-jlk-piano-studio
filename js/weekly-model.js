@@ -58,12 +58,16 @@ export function completeSection(record,lesson,index,now=new Date().toISOString()
 }
 export function restart(record){return {...record,index:0,completed:[],finished:false};}
 
-// Retire only unchanged copies of older bundled lessons saved by the old importer.
-// Custom imports remain authoritative; personal progress uses a separate store.
+// Startup reconciles identity, not publication-date uniqueness. A personal lesson
+// may predate a newly bundled lesson on the same date. Keep both IDs (and their
+// independent progress); reserve duplicate-date rejection for ordinary imports.
 export function mergeLessonContent(bundled, local, previousBundled=[]){
- return local.reduce((all,lesson)=>{
+ const byId=new Map(bundled.map(lesson=>[lesson.id,lesson]));
+ for(const lesson of local){
+  const report=validateLesson(lesson);if(report.errors.length)throw Error(report.errors.join('\n'));
   const previous=previousBundled.find(old=>old.id===lesson.id);
   const unchanged=previous && JSON.stringify(previous)===JSON.stringify(lesson);
-  return unchanged && bundled.some(current=>current.id===lesson.id)?all:upsert(all,lesson);
- },bundled);
+  if(!(unchanged && byId.has(lesson.id)))byId.set(lesson.id,lesson);
+ }
+ return [...byId.values()];
 }

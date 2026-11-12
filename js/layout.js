@@ -16,7 +16,12 @@ export function navigateRoute(next,{replace=false}={}){
  replace=replace||!!overlay;document.dispatchEvent(new Event('studio-area-change'));route=typeof next==='string'?{area:next}:next;overlay=null;if(!replace)depth++;store([],replace);applyRoute();mount([]);
 }
 export function openOverlay(id){const replace=!!overlay;overlay=id;if(!replace)depth++;store(frames,replace);document.dispatchEvent(new CustomEvent('studio-overlay',{detail:id}));}
-export function back(){if(closing)return;if(depth>0){closing=true;history.back();}else navigateRoute('home',{replace:true});}
+// Awaiting Back resumes after popstate's shared route restoration has rendered.
+export function back(){
+ if(closing)return Promise.resolve();
+ if(depth>0){closing=true;return new Promise(resolve=>{window.addEventListener('popstate',()=>resolve(),{once:true});history.back();});}
+ navigateRoute('home',{replace:true});return Promise.resolve();
+}
 function applyRoute(){document.dispatchEvent(new CustomEvent('studio-route',{detail:route}));}
 export function restoreNavigation(){
  const state=history.state;
