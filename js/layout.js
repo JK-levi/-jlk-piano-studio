@@ -8,7 +8,33 @@ const CONTENT={
 };
 const TITLES={'book-panel':'Keyboard progression book','chord-editor':'Chord editor','theory-details':'Theory & intervals','bach-panel':'Guided studies','sequence-editor':'Edit progression','save-panel':'Progression library','sound-settings':'Sound settings','voicing-view':'Selected chord','browse-panel':'Browse & Play','composition-panel':'Create sheet music'};
 const $=id=>document.getElementById(id);
-let frames=[],registry=new Map(),serial=0,loans=[],returnScroll=0,returnFocus=null,rootURL,session,closing=false;
+let frames=[],serial=0,loans=[],returnScroll=0,returnFocus=null,rootURL,closing=false;
+let route={area:'home'},depth=0,overlay=null,restored=false;
+function snapshot(next=frames){return {jlkNavigation:2,route,depth,overlay,frames:next.map(({id,key,scroll})=>({id,key,scroll}))};}
+function store(next=frames,replace=false){history[replace?'replaceState':'pushState'](snapshot(next),'',rootURL+(next.length?'#'+next.at(-1).id:''));}
+export function navigateRoute(next,{replace=false}={}){
+ replace=replace||!!overlay;document.dispatchEvent(new Event('studio-area-change'));route=typeof next==='string'?{area:next}:next;overlay=null;if(!replace)depth++;store([],replace);applyRoute();mount([]);
+}
+export function openOverlay(id){const replace=!!overlay;overlay=id;if(!replace)depth++;store(frames,replace);document.dispatchEvent(new CustomEvent('studio-overlay',{detail:id}));}
+// Awaiting Back resumes after popstate's shared route restoration has rendered.
+export function back(){
+ if(closing)return Promise.resolve();
+ if(depth>0){closing=true;return new Promise(resolve=>{window.addEventListener('popstate',()=>resolve(),{once:true});history.back();});}
+ navigateRoute('home',{replace:true});return Promise.resolve();
+}
+function applyRoute(){document.dispatchEvent(new CustomEvent('studio-route',{detail:route}));}
+export function restoreNavigation(){
+ const state=history.state;
+ if(state?.jlkNavigation===2){
+  const next=(state.frames||[]).filter(f=>TITLES[f.id]);
+  const same=restored&&JSON.stringify(route)===JSON.stringify(state.route)&&JSON.stringify(frames.map(f=>[f.id,f.key]))===JSON.stringify(next.map(f=>[f.id,f.key]));
+  route=state.route;depth=state.depth;overlay=state.overlay;
+  if(!same){applyRoute();mount(next);}
+  document.dispatchEvent(new CustomEvent('studio-overlay',{detail:overlay}));
+ }else{route={area:'home'};depth=0;store([],true);applyRoute();}
+ restored=true;
+}
+
 export const currentView=()=>frames.at(-1)?.id||null;
 function loan(id,parent,prepend=false){
   const node=$(id);loans.push({node,parent:node.parentNode,next:node.nextSibling,hidden:node.hidden});node.hidden=false;
@@ -60,18 +86,13 @@ function mount(next){
 }
 export function openView(id){
   if(!TITLES[id])throw new Error(`Unknown task: ${id}`);
-  if(currentView()===id||closing)return;
-  const retained=new Set(frames.map(frame=>frame.key));
-  for(const key of registry.keys())if(!retained.has(key))registry.delete(key);
+  if(closing)return;if(currentView()===id){if(overlay)back();return;}
   if(!frames.length){returnScroll=window.scrollY;returnFocus=document.activeElement;}
-  else frames.at(-1).focus=document.activeElement;
-  const frame={id,key:++serial,scroll:0,focus:null};registry.set(frame.key,frame);
-  const next=[...frames,frame];
-  history.pushState({...history.state,jlkTaskSession:session,jlkTasks:next.map(f=>f.key)},'',`${rootURL}#${id}`);
-  mount(next);
+  else {frames.at(-1).focus=document.activeElement;frames.at(-1).scroll=$('task-body').scrollTop;store(frames,true);}
+  const frame={id,key:++serial,scroll:0,focus:null},next=[...frames,frame];
+  const replace=!!overlay;overlay=null;if(!replace)depth++;store(next,replace);mount(next);
 }
-export function returnToWorkspace(){if(frames.length&&!closing){closing=true;history.go(-frames.length);}}
-export function closeView(){if(frames.length&&!closing){closing=true;history.back();}}
+export function closeView(){if(frames.length)back();}
 export function setExperience(mode){
   document.body.dataset.experience=mode;
   document.querySelectorAll('[data-modes]').forEach(node=>{node.hidden=!node.dataset.modes.split(' ').includes(mode);});
@@ -85,13 +106,8 @@ export function setExperience(mode){
 export function bindLayout(){
   document.addEventListener('pointerdown',()=>{document.body.dataset.input='pointer';},true);
   document.addEventListener('keydown',event=>{if(!event.metaKey&&!event.ctrlKey&&!event.altKey)document.body.dataset.input='keyboard';},true);
-  session=`jlk-${Date.now()}`;rootURL=location.pathname+location.search;
-  history.replaceState({...history.state,jlkTaskSession:session,jlkTasks:[]},'',rootURL);
-  window.addEventListener('popstate',event=>{
-    closing=false;
-    const keys=event.state?.jlkTaskSession===session?event.state.jlkTasks:[];
-    mount((keys||[]).map(key=>registry.get(key)).filter(Boolean));
-  });
+  rootURL=location.pathname+location.search;
+  window.addEventListener('popstate',()=>{closing=false;restoreNavigation();});
   $('task-back').addEventListener('click',closeView);$('task-done').addEventListener('click',closeView);
   $('task-view').addEventListener('cancel',event=>{event.preventDefault();closeView();});
   $('task-view').addEventListener('keydown',event=>{

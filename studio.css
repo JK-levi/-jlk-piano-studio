@@ -29,3 +29,74 @@ body:has(#weekly-home[data-screen=home])[data-experience=home] .app-footer{displ
 @media(min-width:700px){.studio-global #studio-recover{left:calc(50vw - 100px)}}
 #task-body{padding-bottom:110px;scroll-padding-bottom:110px}
 #task-body button,#task-body summary,#task-body input{scroll-margin-bottom:110px}
+/* iPad corrections: the root canvas must match the Home safe-area and overscroll. */
+html{min-height:100%;background:#cac6c0}
+body{min-height:100dvh;box-sizing:border-box;margin:0}
+html[data-surface=home]:has(body[data-experience=home]){background:#252524}
+.brand{color:#292928}
+body[data-experience=home]:has(#weekly-home[data-screen=home]) .brand{color:#ede6d9}
+#area-back{position:absolute;top:max(16px,env(safe-area-inset-top));left:max(16px,env(safe-area-inset-left));color:#292928;background:#e8e3da;z-index:1}
+body[data-experience=home] #area-back{display:none}
+.app-footer{display:none}
+.studio-global #studio-recover{bottom:auto;top:calc(-100dvh + 100px)}
+#composition-content{min-width:0}
+.composer-title label{display:flex;align-items:center;gap:12px;font-size:.8rem;color:#c9c2b5}
+.composer-title input{flex:1;min-width:0;max-width:480px;padding:8px 12px;font-size:1rem}
+.composer-tabs{display:flex;gap:6px;overflow-x:auto;margin:12px 0 16px;padding-bottom:2px}
+.composer-tabs button{flex:1;white-space:nowrap;padding:8px 12px;font-size:.85rem}
+.composer-tabs [aria-pressed=true]{background:#e4d9c7;color:#252524;border-color:#e4d9c7}
+.composer-workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,1fr);gap:18px;align-items:start}
+.composer-score-column,.composer-editor{min-width:0}
+#composition-score-title,#composition-score-meta{display:none}
+#composition-score{margin:0;overflow-x:auto}
+#composition-score svg{max-height:310px;width:100%}
+#composition-score svg[data-wide=true]{width:760px;min-width:760px;max-width:none;max-height:none}
+#composition-score [data-score-event]{cursor:pointer}
+#composition-score .score-selected ellipse{fill:#866128;stroke:#3e2b12;stroke-width:2}
+#composition-score [data-score-event]:focus-visible{outline:2px solid #866128}
+.composer-toolbar{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.composer-toolbar button{flex:1;min-width:56px;padding:8px;font-size:.85rem}
+#composition-play{flex:1.5}
+#composition-content .entry-panel{padding:12px;margin:0;border-radius:12px}
+#composition-content h3{font:1rem system-ui;margin:0 0 12px}
+#composition-content .settings-grid{gap:8px;margin:8px 0}
+#composition-content label{font-size:.8rem}
+#composition-content select,#composition-content input{min-height:44px;max-width:100%}
+#composition-content .catalogue-actions{gap:6px;margin-top:10px}
+#composition-content .catalogue-actions button{padding:8px;font-size:.85rem}
+#composition-keyboard{height:110px;margin:12px 0}
+#composition-cursor{font-size:.75rem;margin:8px 0}
+#composition-content .switch{margin:8px 0;line-height:1.4}
+#composition-content .composer-selection{margin-top:12px;display:grid;gap:8px;grid-template-columns:1fr 1fr}
+.composer-selection>.catalogue-actions,.composer-selection>label:first-of-type{grid-column:1/-1}
+.composer-selection>.catalogue-actions{margin-top:0!important}
+.composer-selection .selection-help{grid-column:1/-1;order:4;font-size:.75rem}
+.composer-selection #composition-clear-measure{font-size:.8rem;padding:8px;grid-column:1/-1}
+#composition-delete-event:not(:disabled){border-color:#d8c3a2;background:#433b30}
+#composition-content .suggestions{display:grid;grid-template-columns:1fr;gap:8px}
+#composition-content .suggestion-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;border:1px solid #706a60;border-radius:10px;padding:8px}
+#composition-content .suggestion-card>strong{display:none}
+#composition-content .suggestion-card button{padding:8px;font-size:.9rem;margin:0}
+#composition-content .suggestion-card details{grid-column:1/-1;font-size:.75rem;color:#c9c2b5}
+#composition-content .suggestion-card details p{margin:6px 0}
+#composition-content h4{font: .85rem system-ui;margin:16px 0 8px}
+.composer-settings,.composer-pieces{max-width:680px;margin:0 auto}
+.composer-settings>.settings-grid,.composer-pieces>.settings-grid{margin:20px 0!important}
+#composition-position:empty,#composition-meter-issues:empty{display:none}
+@media(max-width:740px){.composer-workspace{grid-template-columns:1fr}.composer-tabs button{flex:0 0 auto}#composition-score svg{max-height:235px}.composer-title label{display:block}.composer-title input{width:100%}#composition-content .composer-selection{gap:6px}.composer-selection .selection-help{display:none}#task-body:has(#composition-panel){padding:12px 12px 100px}}
+@media print{#composition-score-title,#composition-score-meta{display:block}.composer-tabs,.composer-title,.composer-editor,.composer-selection,.composer-toolbar,.composer-settings,.composer-pieces{display:none!important}.composer-workspace{display:block}#composition-score svg{max-height:none}}
+
+@media print{#composition-content>#composition-workspace{display:block!important}.composer-score-column{display:block!important}.composer-score-column>*:not(#composition-print-area){display:none!important}}
+/* Fixed controls belong to the viewport, not a translated containing block. */
+.studio-global{display:contents;position:static;transform:none;padding:0;background:none;box-shadow:none}
+.studio-global #studio-menu-open{position:fixed;left:50%;transform:translateX(-50%);bottom:max(16px,env(safe-area-inset-bottom));background:#292928;box-shadow:0 4px 15px #0004}
+.studio-global #studio-recover{position:fixed;top:max(16px,env(safe-area-inset-top));right:max(24px,env(safe-area-inset-right));bottom:auto;left:auto}
+.studio-global [role=status]{position:fixed;bottom:80px;max-width:280px;padding:4px 8px}
+.composer-selection-drawer{border:1px solid #6d675e;border-radius:10px;margin:12px 0;padding:0 10px}
+.composer-selection-drawer>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-size:.8rem}
+.composer-selection-drawer>summary:before{content:'▸';margin-right:8px}
+.composer-selection-drawer[open]>summary:before{content:'▾'}
+#composition-content .composer-selection{border:0;padding:0 0 10px;margin:0}
+@media(max-width:699px){.task-header{padding-right:76px;gap:8px}.task-header h2{font-size:1rem}.task-header button{padding:8px 10px}.studio-global #studio-recover{right:max(12px,env(safe-area-inset-right));top:max(12px,env(safe-area-inset-top))}.task-header #task-done{min-width:44px}.composer-workspace{gap:12px}}
+@media print{.composer-selection-drawer{display:none!important}}
+@media(min-width:700px){.task-view:has(#task-body>#composition-panel){width:min(1120px,calc(100% - 48px))}#composition-content .composer-title label{display:flex;text-align:left}.composer-title input{max-width:none}.composer-workspace{grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr)}}

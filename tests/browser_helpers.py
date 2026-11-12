@@ -18,16 +18,16 @@ def open_chord_editor(page):
     page.wait_for_function("document.body.dataset.task==='chord-editor'")
 def open_sound(page):
     if task(page)=='sound-settings':return
-    close_tasks(page);page.click('#sound-settings-toggle')
+    close_tasks(page);studio_destination(page,'settings');page.click('#studio-sound-details')
 def open_settings(page):
     if task(page)=='sequence-editor':return
     close_tasks(page)
-    if page.locator('body').get_attribute('data-experience')!='studio':page.get_by_role('button',name='Progressions',exact=True).click()
+    if page.locator('body').get_attribute('data-experience')!='studio':studio_destination(page,'studio')
     page.click('#toggle-edit')
 def open_save(page):
     if task(page)=='save-panel':return
     close_tasks(page)
-    if page.locator('body').get_attribute('data-experience')!='studio':page.get_by_role('button',name='Progressions',exact=True).click()
+    if page.locator('body').get_attribute('data-experience')!='studio':studio_destination(page,'studio')
     page.click('#open-save')
 
 def edit_sequence(page):open_settings(page)
@@ -57,3 +57,20 @@ def wait_for_cache(page,current,previous):
       }
       check().catch(reject);
     })''',{'current':current,'previous':previous})
+
+def studio_destination(page,destination):
+    page.click('#studio-menu-open');page.click(f'[data-destination="{destination}"]')
+
+def composer_control(page,id):
+    """Reveal a control through the same tabs/disclosures a player uses."""
+    settings={'meter','tempo','metronome','print','labels','show-all','clear-piece'}
+    pieces={'library','new','open','duplicate','delete','export','import'}
+    suggestions={'suggestion-whole','choose-tone','tone','tone-octave','tone-listen','tone-insert','chord-suggestions','note-suggestions'}
+    area='settings' if id in settings else 'pieces' if id in pieces else 'suggestions' if id in suggestions else 'write'
+    page.click(f'[data-composer-tab="{area}"]')
+    if id=='see-score':
+        page.locator('#composition-score').scroll_into_view_if_needed();return
+    target=page.locator('#composition-'+id)
+    for detail in target.locator('xpath=ancestor::details').all():
+        if detail.get_attribute('open') is None:detail.locator(':scope > summary').click()
+    return target

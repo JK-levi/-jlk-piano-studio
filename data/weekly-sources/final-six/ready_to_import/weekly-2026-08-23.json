@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "id": "weekly-2026-08-23",
+  "date": "2026-08-23",
+  "title": "Make the bass change the meaning",
+  "durationMinutes": null,
+  "bpm": null,
+  "style": "Make the bass change the meaning",
+  "goal": "",
+  "source": {
+    "description": "Full user-provided original weekly lesson: Weekly_Keyboard_Lessons_Aug_Sep_2026(2).md",
+    "completeness": "complete"
+  },
+  "originalText": "# August 23, 2026\n\n## This week: **Make the bass change the meaning**\n\nLast week was rhythmic; this week I’d go back toward harmony—but with a trick that’s especially useful when you’re writing your own stuff: **keep the upper chord nearly identical while moving the bass underneath it.** You get dramatic harmonic movement without having to think up four completely different chords.\n\n### 0:00–5:00 — Black keys, one little shape\n\nPut on a beat-only track around **86–94 BPM**.\n\nRight hand only. Make this tiny shape your home base:\n\n**G♭ – A♭ – D♭**\n\nPlay those notes together, broken apart, backwards, repeated rhythmically—whatever starts feeling musical. Then freely add **E♭ and B♭**, but stay on black keys.\n\nThe goal isn't a scale exercise. Find **one rhythm/phrase that sounds like something *you'd actually use*.**\n\n### 5:00–12:00 — Here's the fun part\n\nKeep your RH playing:\n\n**G♭ – A♭ – D♭**\n\nNow move single bass notes underneath it:\n\n**D♭ → E♭ → B♭ → G♭**\n\nListen to what happens.\n\nThen expand those into these voicings:\n\n**D♭sus4**  \nLH: D♭ – A♭  \nRH: G♭ – A♭ – D♭\n\n**E♭m11**  \nLH: E♭ – B♭  \nRH: G♭ – A♭ – D♭\n\n**B♭m7(add♭7/11 color)**  \nLH: B♭ – F  \nRH: G♭ – A♭ – D♭\n\n**G♭add9**  \nLH: G♭ – D♭  \nRH: G♭ – A♭ – D♭\n\nDon't get hung up on the chord labels. **The important discovery is that your right hand barely moved.**\n\nPlay the progression:\n\n**D♭ → E♭m → B♭m → G♭**\n\nFour beats each at first. Then try **2 / 2 / 4 / 8 beats** and hear how much more intentional it suddenly sounds.\n\n### 12:00–18:00 — Dual voice: separate the jobs\n\nTry something different from our usual piano + pad setup:\n\n**Voice 1:** warm electric piano  \n**Voice 2:** very soft synth/strings\n\nIf you can adjust their balance, make the synth considerably quieter.\n\nPlay the RH voicing on the layered sound, but let your **left hand play only bass notes**.\n\nThen deliberately lift your RH while the bass keeps moving.\n\nYou'll hear something useful: sometimes the *absence* of the chord creates more tension than changing to another chord.\n\nBring the RH back on G♭ and it'll feel much larger than it actually is.\n\n### 18:00–27:00 — Turn it into your own thing\n\nStart the beat again and record.\n\nDon't predetermine a melody. Instead:\n\n**First pass:** bass + your three-note RH shape.\n\n**Second pass:** start breaking G♭–A♭–D♭ into a rhythmic pattern.\n\n**Third pass:** let one of those broken patterns accidentally become a melody. Follow it.\n\nThen here's your challenge: when you reach the **B♭ bass**, introduce **E♭** into your RH melody.\n\nThat one extra black key gives you a gorgeous B♭m11-ish color.\n\nIf your ear goes, *oooh, THAT*—stop thinking about the exercise. Stay there and explore it. That's exactly what we're looking for.\n\n## Two listens\n\nentity[\"song\",\"Everything In Its Right Place\",\"Radiohead song\"] — entity[\"musical_artist\",\"Radiohead\",\"English rock band\"]\n\nThis one is almost a masterclass for today's exercise. Listen less to the “song” and more to the keyboard. **Very limited harmonic material + repetition + voicing + changing context = an enormous atmosphere.** Notice how little conventional melodic activity is actually necessary.\n\nAnd for something with more movement:\n\nentity[\"song\",\"Apricots\",\"Bicep song\"] — entity[\"musical_artist\",\"Bicep\",\"Northern Irish electronic duo\"]\n\nListen to how a relatively simple repeating harmonic/melodic figure becomes emotional because **the world around it changes**—bass, percussion, density, filtering, entrances and exits.\n\nThat’s the idea I want in your fingers this week: **you don't always need another chord. Sometimes you just need another bass note.**\n\n---",
+  "sections": [
+    {
+      "id": "introduction",
+      "title": "Introduction",
+      "instructions": "# August 23, 2026",
+      "rows": []
+    },
+    {
+      "id": "overview",
+      "title": "Overview",
+      "instructions": "Last week was rhythmic; this week I’d go back toward harmony—but with a trick that’s especially useful when you’re writing your own stuff: **keep the upper chord nearly identical while moving the bass underneath it.** You get dramatic harmonic movement without having to think up four completely different chords.",
+      "rows": []
+    },
+    {
+      "id": "section-2",
+      "title": "0:00–5:00 — Black keys, one little shape",
+      "instructions": "Put on a beat-only track around **86–94 BPM**.\n\nRight hand only. Make this tiny shape your home base:\n\n**G♭ – A♭ – D♭**\n\nPlay those notes together, broken apart, backwards, repeated rhythmically—whatever starts feeling musical. Then freely add **E♭ and B♭**, but stay on black keys.\n\nThe goal isn't a scale exercise. Find **one rhythm/phrase that sounds like something *you'd actually use*.**",
+      "rows": []
+    },
+    {
+      "id": "section-3",
+      "title": "5:00–12:00 — Here's the fun part",
+      "instructions": "Keep your RH playing:\n\n**G♭ – A♭ – D♭**\n\nNow move single bass notes underneath it:\n\n**D♭ → E♭ → B♭ → G♭**\n\nListen to what happens.\n\nThen expand those into these voicings:\n\n**D♭sus4**  \nLH: D♭ – A♭  \nRH: G♭ – A♭ – D♭\n\n**E♭m11**  \nLH: E♭ – B♭  \nRH: G♭ – A♭ – D♭\n\n**B♭m7(add♭7/11 color)**  \nLH: B♭ – F  \nRH: G♭ – A♭ – D♭\n\n**G♭add9**  \nLH: G♭ – D♭  \nRH: G♭ – A♭ – D♭\n\nDon't get hung up on the chord labels. **The important discovery is that your right hand barely moved.**\n\nPlay the progression:\n\n**D♭ → E♭m → B♭m → G♭**\n\nFour beats each at first. Then try **2 / 2 / 4 / 8 beats** and hear how much more intentional it suddenly sounds.",
+      "rows": []
+    },
+    {
+      "id": "section-4",
+      "title": "12:00–18:00 — Dual voice: separate the jobs",
+      "instructions": "Try something different from our usual piano + pad setup:\n\n**Voice 1:** warm electric piano  \n**Voice 2:** very soft synth/strings\n\nIf you can adjust their balance, make the synth considerably quieter.\n\nPlay the RH voicing on the layered sound, but let your **left hand play only bass notes**.\n\nThen deliberately lift your RH while the bass keeps moving.\n\nYou'll hear something useful: sometimes the *absence* of the chord creates more tension than changing to another chord.\n\nBring the RH back on G♭ and it'll feel much larger than it actually is.",
+      "rows": []
+    },
+    {
+      "id": "section-5",
+      "title": "18:00–27:00 — Turn it into your own thing",
+      "instructions": "Start the beat again and record.\n\nDon't predetermine a melody. Instead:\n\n**First pass:** bass + your three-note RH shape.\n\n**Second pass:** start breaking G♭–A♭–D♭ into a rhythmic pattern.\n\n**Third pass:** let one of those broken patterns accidentally become a melody. Follow it.\n\nThen here's your challenge: when you reach the **B♭ bass**, introduce **E♭** into your RH melody.\n\nThat one extra black key gives you a gorgeous B♭m11-ish color.\n\nIf your ear goes, *oooh, THAT*—stop thinking about the exercise. Stay there and explore it. That's exactly what we're looking for.",
+      "rows": []
+    },
+    {
+      "id": "section-6",
+      "title": "Two listens",
+      "instructions": "entity[\"song\",\"Everything In Its Right Place\",\"Radiohead song\"] — entity[\"musical_artist\",\"Radiohead\",\"English rock band\"]\n\nThis one is almost a masterclass for today's exercise. Listen less to the “song” and more to the keyboard. **Very limited harmonic material + repetition + voicing + changing context = an enormous atmosphere.** Notice how little conventional melodic activity is actually necessary.\n\nAnd for something with more movement:\n\nentity[\"song\",\"Apricots\",\"Bicep song\"] — entity[\"musical_artist\",\"Bicep\",\"Northern Irish electronic duo\"]\n\nListen to how a relatively simple repeating harmonic/melodic figure becomes emotional because **the world around it changes**—bass, percussion, density, filtering, entrances and exits.\n\nThat’s the idea I want in your fingers this week: **you don't always need another chord. Sometimes you just need another bass note.**\n\n---",
+      "rows": []
+    }
+  ]
+}

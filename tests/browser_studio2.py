@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-OUT=Path(__file__).resolve().parents[1]/'docs/screenshots/studio2';OUT.mkdir(parents=True,exist_ok=True)
+OUT=Path('/tmp/jlk-review/studio2-regression');OUT.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
  for device,w,h in [('iphone',390,844),('ipad',820,1180)]:
@@ -16,8 +16,8 @@ with sync_playwright() as p:
   page.locator('.weekly-play-settings summary').click();page.select_option('#weekly-view','score');assert page.locator('#selected-hands').is_hidden();shot('score-only')
   page.select_option('#weekly-view','notes');assert page.locator('#lesson-score').is_hidden();page.select_option('#weekly-view','score-notes')
   menu('settings');shot('settings');page.locator('#studio-settings [data-close]').click()
-  menu('archive');assert page.locator('#weekly-results .weekly-card').count()==12;shot('archive')
-  menu('create');page.wait_for_selector('#composition-content',state='visible');page.click('#studio-recover');page.wait_for_function("document.querySelector('#studio-audio-status').textContent==='Audio ready'");assert page.locator('#composition-content').is_visible()
+  menu('archive');assert page.locator('#weekly-results .weekly-card').count()==18;shot('archive')
+  menu('create');page.wait_for_selector('#composition-content',state='visible');page.click('#studio-recover');page.wait_for_function("document.querySelector('#studio-audio-status').textContent==='Audio recovered'");assert page.locator('#composition-content').is_visible()
   page.fill('#composition-title','Studio 2 preserved');page.locator('#composition-title').dispatch_event('change');page.click('#composition-insert-note');page.click('#composition-save')
   menu('home');page.wait_for_selector('.record-label');menu('studio');page.click('#view-voicing');page.click('#detail-next');assert page.locator('#detail-position').inner_text()=='2 of 4';page.click('#task-done');page.wait_for_function('!document.querySelector("#task-view").open');menu('home');page.wait_for_selector('.record-label');page.go_back();page.wait_for_function('document.body.dataset.experience==="studio"');menu('home');page.wait_for_selector('.record-label')
   for width in [320,375,390,430,820,1024]:

@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "id": "weekly-2026-09-20",
+  "date": "2026-09-20",
+  "title": "Disco / ABBA-style pulse",
+  "durationMinutes": 25,
+  "bpm": null,
+  "style": "Disco / ABBA-style pulse",
+  "goal": "",
+  "source": {
+    "description": "Full user-provided original weekly lesson: Weekly_Keyboard_Lessons_Aug_Sep_2026(2).md",
+    "completeness": "complete"
+  },
+  "originalText": "# September 20, 2026\n\n## This week: **Disco / ABBA-style pulse**\n\n**Time:** about 25 minutes  \n**Goal:** keep the harmony simple, but make the **rhythm** do more of the work. This week is about short, crisp right-hand chord hits against a steady left hand.\n\n### 1. Black-key warm-up — 4 minutes\n\nUse only these right-hand notes:\n\n**A♭ – B♭ – D♭ – E♭**\n\nPlay this:\n\n**RH: A♭ → B♭ → D♭ → E♭ → D♭ → B♭**\n\nRepeat it a few times.\n\nThen change the order however you want, but keep the notes short and fairly rhythmic rather than dreamy.\n\nThink more:\n\n**da-da / da-da / da-da**\n\nand less:\n\n**loooooong floating notes**\n\n---\n\n## 2. Your four main chord shapes — 6 minutes\n\nPlay these in order:\n\n**①** LH: **A♭ + E♭** | RH: **C + E♭ + A♭**\n\n**②** LH: **E♭ + B♭** | RH: **B♭ + E♭ + G**\n\n**③** LH: **F + C** | RH: **C + F + A♭**\n\n**④** LH: **D♭ + A♭** | RH: **D♭ + F + A♭**\n\nThen repeat from ①.\n\nFor the first few minutes, just hold each shape for four counts:\n\n**1 – 2 – 3 – 4**\n\nPress everything on **1**, hold, and move to the next shape on the next **1**.\n\nDon't worry about groove yet. Get the hand positions comfortable first.\n\n---\n\n## 3. Now give it the disco rhythm — 5 minutes\n\nThis is the main skill this week.\n\nCount out loud:\n\n**1 & 2 & 3 & 4 &**\n\nYour **left hand** presses the chord on **1** and holds it for the whole measure.\n\nYour **right hand** plays short chord hits on every **&**.\n\nSo:\n\n**Count:** 1 **&** 2 **&** 3 **&** 4 **&**  \n**LH:** PRESS————————————HOLD  \n**RH:** — HIT — HIT — HIT — HIT\n\nFor chord ①, that means:\n\n**LH:** hold **A♭ + E♭**\n\nwhile the RH repeatedly taps:\n\n**RH:** **C + E♭ + A♭**\n\nFour short hits.\n\nRelease the RH immediately after each one. Think **tap**, not **hold**.\n\nThen change both hands to chord ② on the next **1**.\n\nThis may feel strange for a minute because your RH is deliberately playing **between** the numbered beats. That's called playing **offbeats**.\n\nOnce it clicks, it'll suddenly sound much more like actual disco/pop accompaniment.\n\n---\n\n## 4. Beat-only section — 7–8 minutes\n\nFind a **disco or four-on-the-floor drum loop around 110–118 BPM**.\n\n“Four-on-the-floor” just means the kick drum hits on:\n\n**1 – 2 – 3 – 4**\n\nStart by playing the exact pattern above:\n\n**LH: A♭ + E♭ | RH: C + E♭ + A♭**  \n**LH: E♭ + B♭ | RH: B♭ + E♭ + G**  \n**LH: F + C | RH: C + F + A♭**  \n**LH: D♭ + A♭ | RH: D♭ + F + A♭**\n\nOne measure each.\n\nAfter a few loops, simplify the LH to single notes:\n\n**A♭ → E♭ → F → D♭**\n\nKeep the RH offbeat chord hits going.\n\nThen for the last couple of minutes, occasionally **skip one RH hit**.\n\nInstead of:\n\n**& & & &**\n\ntry:\n\n**& & — &**\n\nThat tiny missing hit can make the groove feel much more musical.\n\nDon't add anything else yet.\n\n---\n\n## 5. Optional GO:KEYS 3 sound setup — 3 minutes\n\nThis week I'd use **Dual**.\n\nFor the main sound, try the actual GO:KEYS 3 tone:\n\n**70s Suitcase**\n\nThen layer underneath it:\n\n**JP8 Strings 1**\n\nBoth are included in the GO:KEYS 3 tone list, and the keyboard supports Dual mode. citeturn420330search15turn420330search0turn433212search5\n\nKeep **JP8 Strings 1 quieter** than the electric piano.\n\nThe electric piano gives you the crisp attack for those short offbeat hits, while the synth strings fill out the space behind them.\n\nIf the strings make everything too mushy, turn the Dual layer down rather than changing your playing.\n\n---\n\n## 🎧 Listen this week\n\n**“Gimme! Gimme! Gimme! (A Man After Midnight)” — ABBA** is on Apple Music. citeturn278249search0\n\nListen specifically to the **constant pulse underneath everything**. Even when the melody is doing something dramatic, the rhythm section stays relentlessly steady. Also listen for how the keyboard/synth parts are often rhythmic patterns rather than big sustained chords.\n\nThen try **“Voulez-Vous” — ABBA**. citeturn278249search10\n\nPay attention to how much of the excitement comes from **short chord attacks and gaps between them**. That's what you're practicing here.\n\nThe main win this week is not playing the progression faster. It's getting to where your **left hand can stay calm while the right hand goes “&… &… &… &…” without you having to think hard about it.**\n\n---",
+  "sections": [
+    {
+      "id": "introduction",
+      "title": "Introduction",
+      "instructions": "# September 20, 2026",
+      "rows": []
+    },
+    {
+      "id": "overview",
+      "title": "Overview",
+      "instructions": "**Time:** about 25 minutes  \n**Goal:** keep the harmony simple, but make the **rhythm** do more of the work. This week is about short, crisp right-hand chord hits against a steady left hand.",
+      "rows": []
+    },
+    {
+      "id": "section-2",
+      "title": "1. Black-key warm-up — 4 minutes",
+      "instructions": "Use only these right-hand notes:\n\n**A♭ – B♭ – D♭ – E♭**\n\nPlay this:\n\n**RH: A♭ → B♭ → D♭ → E♭ → D♭ → B♭**\n\nRepeat it a few times.\n\nThen change the order however you want, but keep the notes short and fairly rhythmic rather than dreamy.\n\nThink more:\n\n**da-da / da-da / da-da**\n\nand less:\n\n**loooooong floating notes**\n\n---",
+      "rows": []
+    },
+    {
+      "id": "section-3",
+      "title": "2. Your four main chord shapes — 6 minutes",
+      "instructions": "Play these in order:\n\n**①** LH: **A♭ + E♭** | RH: **C + E♭ + A♭**\n\n**②** LH: **E♭ + B♭** | RH: **B♭ + E♭ + G**\n\n**③** LH: **F + C** | RH: **C + F + A♭**\n\n**④** LH: **D♭ + A♭** | RH: **D♭ + F + A♭**\n\nThen repeat from ①.\n\nFor the first few minutes, just hold each shape for four counts:\n\n**1 – 2 – 3 – 4**\n\nPress everything on **1**, hold, and move to the next shape on the next **1**.\n\nDon't worry about groove yet. Get the hand positions comfortable first.\n\n---",
+      "rows": [
+        {
+          "lh": [
+            "A♭",
+            "E♭"
+          ],
+          "rh": [
+            "C",
+            "E♭",
+            "A♭"
+          ]
+        },
+        {
+          "lh": [
+            "E♭",
+            "B♭"
+          ],
+          "rh": [
+            "B♭",
+            "E♭",
+            "G"
+          ]
+        },
+        {
+          "lh": [
+            "F",
+            "C"
+          ],
+          "rh": [
+            "C",
+            "F",
+            "A♭"
+          ]
+        },
+        {
+          "lh": [
+            "D♭",
+            "A♭"
+          ],
+          "rh": [
+            "D♭",
+            "F",
+            "A♭"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "3. Now give it the disco rhythm — 5 minutes",
+      "instructions": "This is the main skill this week.\n\nCount out loud:\n\n**1 & 2 & 3 & 4 &**\n\nYour **left hand** presses the chord on **1** and holds it for the whole measure.\n\nYour **right hand** plays short chord hits on every **&**.\n\nSo:\n\n**Count:** 1 **&** 2 **&** 3 **&** 4 **&**  \n**LH:** PRESS————————————HOLD  \n**RH:** — HIT — HIT — HIT — HIT\n\nFor chord ①, that means:\n\n**LH:** hold **A♭ + E♭**\n\nwhile the RH repeatedly taps:\n\n**RH:** **C + E♭ + A♭**\n\nFour short hits.\n\nRelease the RH immediately after each one. Think **tap**, not **hold**.\n\nThen change both hands to chord ② on the next **1**.\n\nThis may feel strange for a minute because your RH is deliberately playing **between** the numbered beats. That's called playing **offbeats**.\n\nOnce it clicks, it'll suddenly sound much more like actual disco/pop accompaniment.\n\n---",
+      "rows": []
+    },
+    {
+      "id": "section-5",
+      "title": "4. Beat-only section — 7–8 minutes",
+      "instructions": "Find a **disco or four-on-the-floor drum loop around 110–118 BPM**.\n\n“Four-on-the-floor” just means the kick drum hits on:\n\n**1 – 2 – 3 – 4**\n\nStart by playing the exact pattern above:\n\n**LH: A♭ + E♭ | RH: C + E♭ + A♭**  \n**LH: E♭ + B♭ | RH: B♭ + E♭ + G**  \n**LH: F + C | RH: C + F + A♭**  \n**LH: D♭ + A♭ | RH: D♭ + F + A♭**\n\nOne measure each.\n\nAfter a few loops, simplify the LH to single notes:\n\n**A♭ → E♭ → F → D♭**\n\nKeep the RH offbeat chord hits going.\n\nThen for the last couple of minutes, occasionally **skip one RH hit**.\n\nInstead of:\n\n**& & & &**\n\ntry:\n\n**& & — &**\n\nThat tiny missing hit can make the groove feel much more musical.\n\nDon't add anything else yet.\n\n---",
+      "rows": [
+        {
+          "lh": [
+            "A♭",
+            "E♭"
+          ],
+          "rh": [
+            "C",
+            "E♭",
+            "A♭"
+          ]
+        },
+        {
+          "lh": [
+            "E♭",
+            "B♭"
+          ],
+          "rh": [
+            "B♭",
+            "E♭",
+            "G"
+          ]
+        },
+        {
+          "lh": [
+            "F",
+            "C"
+          ],
+          "rh": [
+            "C",
+            "F",
+            "A♭"
+          ]
+        },
+        {
+          "lh": [
+            "D♭",
+            "A♭"
+          ],
+          "rh": [
+            "D♭",
+            "F",
+            "A♭"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "5. Optional GO:KEYS 3 sound setup — 3 minutes",
+      "instructions": "This week I'd use **Dual**.\n\nFor the main sound, try the actual GO:KEYS 3 tone:\n\n**70s Suitcase**\n\nThen layer underneath it:\n\n**JP8 Strings 1**\n\nBoth are included in the GO:KEYS 3 tone list, and the keyboard supports Dual mode. citeturn420330search15turn420330search0turn433212search5\n\nKeep **JP8 Strings 1 quieter** than the electric piano.\n\nThe electric piano gives you the crisp attack for those short offbeat hits, while the synth strings fill out the space behind them.\n\nIf the strings make everything too mushy, turn the Dual layer down rather than changing your playing.\n\n---",
+      "rows": []
+    },
+    {
+      "id": "section-7",
+      "title": "🎧 Listen this week",
+      "instructions": "**“Gimme! Gimme! Gimme! (A Man After Midnight)” — ABBA** is on Apple Music. citeturn278249search0\n\nListen specifically to the **constant pulse underneath everything**. Even when the melody is doing something dramatic, the rhythm section stays relentlessly steady. Also listen for how the keyboard/synth parts are often rhythmic patterns rather than big sustained chords.\n\nThen try **“Voulez-Vous” — ABBA**. citeturn278249search10\n\nPay attention to how much of the excitement comes from **short chord attacks and gaps between them**. That's what you're practicing here.\n\nThe main win this week is not playing the progression faster. It's getting to where your **left hand can stay calm while the right hand goes “&… &… &… &…” without you having to think hard about it.**\n\n---",
+      "rows": []
+    }
+  ]
+}
