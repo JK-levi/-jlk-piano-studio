@@ -2,11 +2,37 @@
 
 Built from main `7e8a2bc` on `feat/ipad-composer-archive`. PR #17 was merged; PR #16 was closed, and its work was included in #17. There were no open PRs when implementation began. No merge or deployment is part of this change.
 
+## Same-date lesson re-import follow-up
+
+The existing PR branch was clean at reviewed head `4624f47dd7b39f75895d7ff384cedd3ba3039d3d`; the remote head matched, so no subsequent work needed reconciliation. The extended `browser_personal_upgrade.py` reproduced the remaining issue against that exact commit: after a valid base-app import and upgrade, **Review Import** rejected the personal revision with `This date already uses ID weekly-2026-08-09. Use that ID to update it.` The new model regression failed with the same error before the fix.
+
+`upsert` now validates the submitted lesson first, then allows an existing ID to replace only its own record when its publication date is unchanged. Both members of a same-date pair remain editable. A brand-new ID on an occupied date, or an existing ID moved onto another lesson's occupied date, is still rejected. Normal additions/moves to unused dates and invalid-record validation remain covered. The service-worker cache advances to **`jlk-studio-v2-4`**, with the upgrade test and current documentation updated.
+
+The browser regression retains all earlier byte-for-byte read-only upgrade/reload assertions **before** the intentional edit. It then uses **Review Import → Import Reviewed Lesson** to revise `weekly-my-august-practice` to “My August bass study, revised” and change its second instruction to “Hold LH and repeat RH slowly.” Reopening confirms the original ID/date, revised content, favorite and completed first section. The canonical lesson retains its original full text and independent progress. These UI and per-record storage checks pass again after offline reload. The archive stays at **19**; clean installs remain **18**, with November 8 latest.
+
+Only the personal record changes in the merged archive; all eighteen bundled records remain equal to their originals. As with any successful import, the merged archive is persisted, so six bundled additions previously loaded only from the bundle also enter local content storage. The complete progress string, including both lesson IDs, remains byte-for-byte identical across the revision and offline reload. See the `reimport_review` section of [captured evidence](pr18-review-upgrade-evidence.json) for the exact changes and matching progress hashes.
+
+Commands for the focused checks and reproduction:
+
+```sh
+# Expected failure against the reviewed commit; actual base UI creates the fixture.
+JLK_REVIEW_OUTPUT=/tmp/jlk-pr18-reimport/before JLK_UPGRADE_TARGET=4624f47dd7b39f75895d7ff384cedd3ba3039d3d python3 tests/browser_personal_upgrade.py
+
+# Passing focused checks against the fix.
+node --test tests/pr18-review.test.js
+JLK_REVIEW_OUTPUT=/tmp/jlk-pr18-reimport/after python3 tests/browser_personal_upgrade.py
+JLK_BASE_URL=http://127.0.0.1:8003/ python3 tests/browser_review_regressions.py
+```
+
+Results: **77 Node tests**, **7 Python source audits**, **all eight existing browser suites**, the **four import/history/Redo browser tests with their subcases**, and the **extended real upgrade/re-import regression** pass. The worker waits for the old client to close, retains saved data and opens/plays the composer offline with the new cache. `git diff --check` passes. No requested automated suite was left unrun. Physical iPad/iPhone Safari audio, Home Screen appearance, VoiceOver and AirPrint were not tested on hardware and remain device checks.
+
+Full validation uses the `npm test`, Python source-audit and eight browser commands listed below. Logs for this follow-up are under `/tmp/jlk-pr18-reimport`; raw captures include `after/personal-before-upgrade.json`, `after/personal-after-offline.json` (before revision), `after/personal-after-reimport.json` and `after/personal-revised-after-offline.json`.
+
 ## PR #18 review follow-up
 
 Rechecked remote `feat/ipad-composer-archive` before editing: its head was the reviewed `7888a8fa5a8a887da6123d1bdb5fe14b333ee243`, with no subsequent changes. The base remains `7e8a2bc8948f82c29928723e77805436986d35d6`. These fixes update the existing PR; nothing was merged or deployed.
 
-- **Personal lessons on newly bundled dates:** startup now reconciles by stable ID. A personal August 9 lesson and canonical `weekly-2026-08-09` both remain openable, with independent progress. Ordinary imports still reject conflicting IDs on a date. Same-ID customizations stay authoritative; unchanged older bundled copies still upgrade. No content migration or progress rewrite occurs at startup.
+- **Personal lessons on newly bundled dates:** startup now reconciles by stable ID. A personal August 9 lesson and canonical `weekly-2026-08-09` both remain openable, with independent progress. New IDs and date moves still reject collisions; same-ID, same-date revisions are permitted as described above. Same-ID customizations stay authoritative; unchanged older bundled copies still upgrade. No content migration or progress rewrite occurs at startup.
 - **Redo after metadata edits:** accepting an actually changed title, tempo, key or metronome value clears Redo immediately. Title input branches history before blur without adding an Undo step per character. Unchanged metadata reads, score selection, settings, preview and Save preserve Redo. Meter changes retain their existing copy/history behavior.
 - **Import navigation:** successful save awaits the shared Back transition to the invoking archive, then displays success feedback. It neither pushes nor replaces another archive entry. Refresh restores the archive; one app Back or browser Back returns Home. Validation/storage failures leave the form and entered text in place.
 
@@ -75,7 +101,7 @@ Environment: local HTTP (`127.0.0.1:8003`), system Chromium through the reposito
 | Page errors during tested journeys | None |
 | Visible before/after changes | Reviewed Home, logo contrast, composer, suggestions, selection, settings and archive |
 | Horizontal overflow / long scores | Page and task containers fit; wide 12/8 measures scroll inside the score |
-| Unit/source tests | 75 Node tests; 7 Python source-audit tests pass |
+| Unit/source tests | 77 Node tests; 7 Python source-audit tests pass |
 | Requested journeys | Pass at all three primary viewports |
 | Composer regression | Manual entry, rests/chords, fit errors, Undo/delete, two hands, preview/insert distinction, storage/backups and actual PDF output pass |
 | Meter regression | 3/4, 6/8, 12/8, exact oscillator starts, score highlights, invalid-copy safety, explicit repairs and offline playback pass |
@@ -83,7 +109,7 @@ Environment: local HTTP (`127.0.0.1:8003`), system Chromium through the reposito
 | Discovery / guided studies | 18 catalogue progressions, four studies, recoverable progression draft and offline use pass |
 | Book regression | All 44 content pages, four front/back pages, nested Back/Done/Forward, printing and reading-place preservation pass |
 | Studio 2 regression | Vinyl entry, score modes, selected-chord navigation, settings and offline load pass |
-| Real worker upgrade | Main `jlk-studio-v2-1` → `jlk-studio-v2-3` under `/piano/`; waits for old client to close, preserves local storage byte-for-byte, reopens composer offline |
+| Real worker upgrade | Main `jlk-studio-v2-1` → `jlk-studio-v2-4` under `/piano/`; waits for old client to close, preserves local storage byte-for-byte, reopens composer offline |
 
 Commands (run a local server first):
 

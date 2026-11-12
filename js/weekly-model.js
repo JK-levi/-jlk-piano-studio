@@ -39,7 +39,17 @@ export function parseImport(text,meta={}){
  const report=validateLesson(lesson);if(report.errors.length)throw Error(report.errors.join('\n'));
  return {lesson,warnings:report.warnings};
 }
-export function upsert(lessons,lesson){const report=validateLesson(lesson);if(report.errors.length)throw Error(report.errors.join('\n'));const collision=lessons.find(l=>l.date===lesson.date&&l.id!==lesson.id);if(collision)throw Error(`This date already uses ID ${collision.id}. Use that ID to update it.`);return [...lessons.filter(l=>l.id!==lesson.id),lesson].sort((a,b)=>b.date.localeCompare(a.date));}
+export function upsert(lessons,lesson){
+ const report=validateLesson(lesson);if(report.errors.length)throw Error(report.errors.join('\n'));
+ const existing=lessons.find(l=>l.id===lesson.id);
+ // An upgrade can leave multiple IDs on a date. Each remains editable under its
+ // own identity; only a new ID or a date change needs the collision check.
+ if(!existing||existing.date!==lesson.date){
+  const collision=lessons.find(l=>l.date===lesson.date&&l.id!==lesson.id);
+  if(collision)throw Error(`This date already uses ID ${collision.id}. Use that ID to update it.`);
+ }
+ return [...lessons.filter(l=>l.id!==lesson.id),lesson].sort((a,b)=>b.date.localeCompare(a.date));
+}
 export function noteForPractice(text,octave){const m=pitch.exec(text);if(!m)throw Error('Invalid note.');if(!m[3]&&!Number.isInteger(octave))throw Error('Choose a practice register. Source octaves are unspecified.');const accidental=[...m[2]].reduce((n,c)=>n+('#♯'.includes(c)?1:-1),0),o=m[3]?Number(m[3]):octave;return {letter:m[1],accidental,octave:o,midi:(o+1)*12+({C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1]])+accidental,name:text,fullName:m[1]+m[2]+o};}
 export function rhythmPlan(section,registers,{variation=false,countIn=true}={}){
  if(!['synth-pop','country'].includes(section.pattern))throw Error('This source has no exact playable rhythm.');

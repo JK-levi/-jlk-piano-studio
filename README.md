@@ -9,7 +9,7 @@ A personal piano studio with a vinyl-record Home, compact score-first lessons, C
 - Create Sheet Music puts the score beside note entry on iPad. Notes, Suggestions, Piece Settings, and My Pieces / Backups separate the working areas. Select a written event to delete it, or remove one chord tone. Undo/Redo, confirmed Clear Hand/Measure and confirmed Clear Working Piece retain saved copies.
 - All **18 historical originals** are bundled. The original 12, including November 8, are unchanged. New verified shapes and September 27's exact country rhythm use the existing notation and audio scheduler.
 
-See the [visual and functional review](docs/ipad-usability-review.md) and [complete import report](docs/complete-weekly-import-report.md). Worker cache: `jlk-studio-v2-3`. No new dependencies or storage migrations. The versioned sections below document earlier releases.
+See the [visual and functional review](docs/ipad-usability-review.md) and [complete import report](docs/complete-weekly-import-report.md). Worker cache: `jlk-studio-v2-4`. No new dependencies or storage migrations. The versioned sections below document earlier releases.
 
 ## Preview
 

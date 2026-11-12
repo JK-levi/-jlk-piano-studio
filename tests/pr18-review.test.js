@@ -27,3 +27,29 @@ test('startup still upgrades old bundled copies and retains same-ID custom conte
  assert.throws(()=>mergeLessonContent(current,[{...personal,sections:[]}],previous),/ordered sections/);
  for(const original of base)assert.deepEqual(current.find(l=>l.id===original.id),original);
 });
+test('same-date pair members can each be revised under their own unchanged ID and date',()=>{
+ const archive=mergeLessonContent(current,upsert(base,personal),previous),before=structuredClone(archive);
+ for(const id of [personal.id,'weekly-2026-08-09']){
+  const original=archive.find(l=>l.id===id),revision=structuredClone(original);
+  revision.title+=' — revised';revision.sections[0].instructions+=' Play slowly.';
+  const updated=upsert(archive,revision);
+  assert.equal(updated.length,19);assert.equal(new Set(updated.map(l=>l.id)).size,19);
+  for(const record of archive)assert.deepEqual(updated.find(l=>l.id===record.id),record.id===id?revision:record);
+ }
+ assert.deepEqual(archive,before);
+});
+test('import still rejects new IDs and date moves onto occupied dates, validates revisions and accepts unused dates',()=>{
+ const archive=mergeLessonContent(current,upsert(base,personal),previous),before=structuredClone(archive);
+ assert.throws(()=>upsert(archive,{...personal,id:'weekly-new-collision'}),/already uses ID/);
+ assert.throws(()=>upsert(archive,{...personal,date:'2026-08-16'}),/already uses ID/);
+ const other=archive.find(l=>l.id==='weekly-2026-08-16');
+ assert.throws(()=>upsert(archive,{...other,date:personal.date}),/already uses ID/);
+ assert.throws(()=>upsert(archive,{...personal,title:''}),/title is required/);
+ assert.throws(()=>upsert(archive,{...personal,sections:[]}),/ordered sections/);
+ const moved={...personal,date:'2026-11-15'},added={...personal,id:'weekly-new-unused',date:'2026-11-22'};
+ assert.equal(upsert(archive,moved).length,19);
+ assert.deepEqual(upsert(archive,moved).find(l=>l.id===personal.id),moved);
+ assert.equal(upsert(archive,added).length,20);
+ assert.deepEqual(upsert(archive,added).find(l=>l.id===added.id),added);
+ assert.deepEqual(archive,before);
+});

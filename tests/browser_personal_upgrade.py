@@ -44,8 +44,8 @@ with tempfile.TemporaryDirectory() as folder,sync_playwright() as p:
  assert 'could not fully load' not in fresh.locator('#weekly-home').inner_text(),fresh.locator('#weekly-home').inner_text()
  fresh.wait_for_selector('.record-label');wait_for_cache(fresh,cache,'jlk-studio-v2-1');assert stored(fresh)==before
  studio_destination(fresh,'archive');assert fresh.locator('#weekly-results .weekly-card').count()==19
- def open_personal():
-  fresh.click('[data-lesson="weekly-my-august-practice"]');assert fresh.locator('#weekly-home>h2').inner_text()==PERSONAL['title'];assert fresh.locator('#weekly-step').input_value()=='1';assert '✓' in fresh.locator('#weekly-step option').first.inner_text();assert fresh.locator('[data-action=favorite]').get_attribute('aria-pressed')=='true';assert 'E♭3' in fresh.locator('#selected-hands').inner_text();fresh.click('[data-action=back]');fresh.wait_for_selector('#weekly-search')
+ def open_personal(expected=PERSONAL):
+  fresh.click('[data-lesson="weekly-my-august-practice"]');assert fresh.locator('#weekly-home>h2').inner_text()==expected['title'];assert fresh.locator('#weekly-step').input_value()=='1';assert '✓' in fresh.locator('#weekly-step option').first.inner_text();assert fresh.locator('[data-action=favorite]').get_attribute('aria-pressed')=='true';assert 'E♭3' in fresh.locator('#selected-hands').inner_text();fresh.click('[data-action=back]');fresh.wait_for_selector('#weekly-search')
  open_personal();fresh.click('[data-lesson="weekly-2026-08-09"]');assert fresh.locator('#weekly-home>h2').inner_text()=='One melody, changing ground';assert fresh.locator('[data-action=favorite]').get_attribute('aria-pressed')=='false';assert '✓' not in fresh.locator('#weekly-step').inner_text();assert 'G♭' in fresh.locator('#selected-hands').inner_text();fresh.click('[data-action=back]');fresh.wait_for_selector('#weekly-search')
  assert stored(fresh)==before
  fresh.reload();fresh.wait_for_selector('#weekly-search');assert fresh.locator('#weekly-results .weekly-card').count()==19;open_personal();assert stored(fresh)==before
@@ -55,7 +55,47 @@ with tempfile.TemporaryDirectory() as folder,sync_playwright() as p:
  fresh.click('[data-action=back]');fresh.wait_for_selector('#weekly-search');fresh.screenshot(path=str(OUT/'personal-and-canonical-archive.png'))
  context.set_offline(True);fresh.reload();fresh.wait_for_selector('#weekly-search');assert fresh.locator('#weekly-results .weekly-card').count()==19;open_personal();fresh.click('[data-lesson="weekly-2026-08-09"]');assert fresh.locator('#weekly-step').input_value()==canonical_step;assert fresh.locator('[data-action=favorite]').get_attribute('aria-pressed')=='true';assert stored(fresh)==after
  (OUT/'personal-after-offline.json').write_text(json.dumps(after,indent=2));assert not errors,errors
+ # Revise the personal member of the same-date pair through the real import form.
+ # The raw read-only upgrade assertions above remain before this intentional edit.
+ fresh.get_by_text('Lesson options & full text',exact=True).click();fresh.get_by_text('Full original lesson & source',exact=True).click()
+ canonical_display=fresh.locator('.weekly-original').inner_text();assert canonical_display.strip()
+ context.set_offline(False);fresh.click('[data-action=back]');fresh.wait_for_selector('#weekly-search')
+ revised=json.loads(json.dumps(PERSONAL));revised['title']='My August bass study, revised';revised['sections'][1]['instructions']='Hold LH and repeat RH slowly.'
+ bundled=json.loads((target/'data/weekly-lessons.json').read_text());canonical=next(l for l in bundled if l['id']=='weekly-2026-08-09')
+ expected_records={l['id']:l for l in bundled};expected_records.update({l['id']:l for l in json.loads(after[CONTENT])});expected_records[PERSONAL['id']]=revised
+ fresh.locator('.weekly-extra>summary').click();fresh.click('[data-action=import]');fresh.fill('#weekly-import-text',json.dumps(revised));fresh.get_by_role('button',name='Review Import',exact=True).click()
+ assert fresh.locator('[data-action=save-import]').count()==1,fresh.locator('#weekly-status').inner_text()
+ assert 'Updates this existing ID' in fresh.locator('#weekly-preview').inner_text()
+ fresh.get_by_role('button',name='Import Reviewed Lesson',exact=True).click();fresh.wait_for_selector('#weekly-search')
+ assert 'Lesson imported' in fresh.locator('#weekly-status').inner_text()
+ def check_revised_storage():
+  saved=stored(fresh);records=json.loads(saved[CONTENT])
+  assert len(records)==19;assert {l['id']:l for l in records}==expected_records
+  assert saved[PROGRESS]==after[PROGRESS] # Both independent progress records untouched.
+  assert next(l for l in records if l['id']==canonical['id'])==canonical
+  return saved
+ def check_revised_ui():
+  assert fresh.locator('#weekly-results .weekly-card').count()==19
+  open_personal(revised)
+  fresh.click('[data-lesson="weekly-my-august-practice"]');fresh.locator('.lesson-tips>summary').click()
+  assert revised['sections'][1]['instructions'] in fresh.locator('.weekly-instructions').inner_text()
+  assert fresh.evaluate('history.state.route.lessonId')==PERSONAL['id']
+  fresh.click('[data-action=back]');fresh.wait_for_selector('#weekly-search')
+  fresh.click('[data-lesson="weekly-2026-08-09"]')
+  assert fresh.evaluate('history.state.route.lessonId')==canonical['id']
+  assert fresh.locator('#weekly-home>h2').inner_text()=='One melody, changing ground'
+  assert fresh.locator('#weekly-step').input_value()==canonical_step
+  assert fresh.locator('[data-action=favorite]').get_attribute('aria-pressed')=='true'
+  assert '✓' in fresh.locator('#weekly-step').inner_text()
+  fresh.get_by_text('Lesson options & full text',exact=True).click();fresh.get_by_text('Full original lesson & source',exact=True).click()
+  # The complete original remains the same; source-export tokens are presentation-only.
+  assert fresh.locator('.weekly-original').inner_text()==canonical_display
+  fresh.click('[data-action=back]');fresh.wait_for_selector('#weekly-search')
+ check_revised_ui();reimported=check_revised_storage()
+ (OUT/'personal-after-reimport.json').write_text(json.dumps(reimported,indent=2))
+ context.set_offline(True);fresh.reload();fresh.wait_for_selector('#weekly-search');check_revised_ui();assert check_revised_storage()==reimported
+ (OUT/'personal-revised-after-offline.json').write_text(json.dumps(stored(fresh),indent=2));assert not errors,errors
  context.close()
  clean=browser.new_context();pg=clean.new_page();pg.goto(url);pg.wait_for_selector('.record-label');studio_destination(pg,'archive');assert pg.locator('#weekly-results .weekly-card').count()==18;assert pg.locator('[data-lesson]').first.get_attribute('data-lesson')=='weekly-2026-11-08';clean.close()
  browser.close();server.shutdown();server.server_close()
- print('Base UI accepts 13; upgrade/reload/offline retain 19; clean install has 18. Personal content/progress unchanged; canonical progress independent.')
+ print('Base UI accepts 13; upgrade/reload/offline retain 19; clean install has 18. Read-only storage unchanged; personal revision imported; bundled content and both progress records intact offline.')

@@ -83,5 +83,48 @@
     "runs": [],
     "favorite": true
   },
-  "readonly_checks": "Before deliberately editing the canonical progress, both raw content and the entire raw progress string remained identical through upgrade, opening both lessons and online reload."
+  "readonly_checks": "Before deliberately editing the canonical progress, both raw content and the entire raw progress string remained identical through upgrade, opening both lessons and online reload.",
+  "reimport_review": {
+    "reviewed": "4624f47dd7b39f75895d7ff384cedd3ba3039d3d",
+    "reproduction": "Actual base UI import → upgrade → Review Import rejects personal revision at reviewed head; fixed version accepts Review Import → Import Reviewed Lesson.",
+    "archive_count_before_and_after": 19,
+    "changed_record_ids": [
+      "weekly-my-august-practice"
+    ],
+    "personal_title_before": "My August bass study",
+    "personal_title_after": "My August bass study, revised",
+    "personal_instructions_before": "Repeat gently.",
+    "personal_instructions_after": "Hold LH and repeat RH slowly.",
+    "unchanged_bundled_records": 18,
+    "newly_stored_bundled_ids": [
+      "weekly-2026-08-09",
+      "weekly-2026-08-16",
+      "weekly-2026-08-23",
+      "weekly-2026-09-13",
+      "weekly-2026-09-20",
+      "weekly-2026-09-27"
+    ],
+    "storage_note": "Successful import persists the merged archive, including six bundled additions not previously stored locally. Only the personal title and second section instructions differ from the pre-import merged records.",
+    "progress_sha256_before": "a4d152aee80892aeda60fc227360725b380bd1399993aa3cf7cc017a2b4d3399",
+    "progress_sha256_after_offline": "a4d152aee80892aeda60fc227360725b380bd1399993aa3cf7cc017a2b4d3399",
+    "progress_unchanged": true,
+    "personal_progress_after_offline": {
+      "index": 1,
+      "completed": [
+        "my-shape"
+      ],
+      "runs": [],
+      "favorite": true
+    },
+    "canonical_progress_after_offline": {
+      "index": 2,
+      "completed": [
+        "practice-1"
+      ],
+      "runs": [],
+      "favorite": true
+    },
+    "offline_checks": "Both records opened through the UI after offline reload, retaining revised personal content, unchanged bundled full text, original IDs, favorites and completion state.",
+    "read_only_checks": "Original byte-for-byte upgrade and reload checks still run before any intentional content revision."
+  }
 }

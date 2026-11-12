@@ -1,6 +1,6 @@
 # Weekly Practice 1.4
 
-The current library contains all **18 complete originals**, July 12–November 8, 2026. See the [complete import report](complete-weekly-import-report.md) for file mappings, new structured exercises and unresolved source details. The original twelve records and November 8’s interactive rhythm are unchanged. Cache: `jlk-studio-v2-3`.
+The current library contains all **18 complete originals**, July 12–November 8, 2026. See the [complete import report](complete-weekly-import-report.md) for file mappings, new structured exercises and unresolved source details. The original twelve records and November 8’s interactive rhythm are unchanged. Cache: `jlk-studio-v2-4`.
 
 ## Add a lesson without changing code
 
