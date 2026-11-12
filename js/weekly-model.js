@@ -18,7 +18,7 @@ export function validateLesson(value){
  for(const s of Array.isArray(l.sections)?l.sections:[]){
   if(!s||typeof s.id!=='string'||!s.id||ids.has(s.id)){errors.push('Section IDs must be unique.');continue;}ids.add(s.id);
   if(typeof s.title!=='string'||typeof s.instructions!=='string')errors.push(`${s.id}: title and instructions must be text.`);
-  if(s.pattern&&!['sequence','synth-pop'].includes(s.pattern))errors.push(`${s.id}: unsupported rhythm; preserve it as readable instructions.`);
+  if(s.pattern&&!['sequence','synth-pop','country'].includes(s.pattern))errors.push(`${s.id}: unsupported rhythm; preserve it as readable instructions.`);
   if(s.rows!=null&&!Array.isArray(s.rows))errors.push(`${s.id}: rows must be an array.`);
   for(const r of Array.isArray(s.rows)?s.rows:[]){
    for(const hand of ['lh','rh',...(r?.variation?['variation']:[])]){
@@ -42,9 +42,13 @@ export function parseImport(text,meta={}){
 export function upsert(lessons,lesson){const report=validateLesson(lesson);if(report.errors.length)throw Error(report.errors.join('\n'));const collision=lessons.find(l=>l.date===lesson.date&&l.id!==lesson.id);if(collision)throw Error(`This date already uses ID ${collision.id}. Use that ID to update it.`);return [...lessons.filter(l=>l.id!==lesson.id),lesson].sort((a,b)=>b.date.localeCompare(a.date));}
 export function noteForPractice(text,octave){const m=pitch.exec(text);if(!m)throw Error('Invalid note.');if(!m[3]&&!Number.isInteger(octave))throw Error('Choose a practice register. Source octaves are unspecified.');const accidental=[...m[2]].reduce((n,c)=>n+('#♯'.includes(c)?1:-1),0),o=m[3]?Number(m[3]):octave;return {letter:m[1],accidental,octave:o,midi:(o+1)*12+({C:0,D:2,E:4,F:5,G:7,A:9,B:11}[m[1]])+accidental,name:text,fullName:m[1]+m[2]+o};}
 export function rhythmPlan(section,registers,{variation=false,countIn=true}={}){
- if(section.pattern!=='synth-pop')throw Error('This source has no exact playable rhythm.');
+ if(!['synth-pop','country'].includes(section.pattern))throw Error('This source has no exact playable rhythm.');
  const events=[],offset=countIn?4:0;
  if(countIn)for(let i=0;i<4;i++)events.push({beat:i,duration:0.1,click:true,accent:i===0});
+ if(section.pattern==='country'){
+  section.rows.forEach((row,i)=>{for(let step=0;step<4;step++){const hand=step%2?'rh':'lh';events.push({beat:offset+i*4+step,duration:.5,notes:row[hand].map(n=>noteForPractice(n,registers[hand])),hand});}});
+  return {beats:offset+section.rows.length*4,events};
+ }
  section.rows.forEach((row,i)=>{const beat=offset+i*4,notes=(hand)=>row[hand].map(n=>noteForPractice(n,registers[hand]));if(row.lh.length)events.push({beat,duration:3.5,notes:notes('lh'),hand:'lh'});[0,1.5,3].forEach((hit,j)=>{const ns=variation&&j===2&&row.variation?row.variation.map(n=>noteForPractice(n,registers.rh)):notes('rh');if(ns.length)events.push({beat:beat+hit,duration:0.5,notes:ns,hand:'rh'});});});
  return {beats:offset+section.rows.length*4,events:events.sort((a,b)=>a.beat-b.beat)};
 }

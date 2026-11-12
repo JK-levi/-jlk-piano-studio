@@ -1,0 +1,38 @@
+[
+  {
+    "date": "2026-08-09",
+    "title": "One melody, changing ground",
+    "sections": 3,
+    "explicitPairedNoteRows": 0
+  },
+  {
+    "date": "2026-08-16",
+    "title": "Make the rhythm part of the composition",
+    "sections": 3,
+    "explicitPairedNoteRows": 0
+  },
+  {
+    "date": "2026-08-23",
+    "title": "Make the bass change the meaning",
+    "sections": 7,
+    "explicitPairedNoteRows": 0
+  },
+  {
+    "date": "2026-09-13",
+    "title": "80s synth-pop / open-road feeling",
+    "sections": 9,
+    "explicitPairedNoteRows": 8
+  },
+  {
+    "date": "2026-09-20",
+    "title": "Disco / ABBA-style pulse",
+    "sections": 8,
+    "explicitPairedNoteRows": 8
+  },
+  {
+    "date": "2026-09-27",
+    "title": "Country / Americana — steady “boom-chuck” groove",
+    "sections": 8,
+    "explicitPairedNoteRows": 12
+  }
+]

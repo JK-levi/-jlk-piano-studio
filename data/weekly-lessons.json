@@ -343,6 +343,244 @@
   },
   {
     "schemaVersion": 1,
+    "id": "weekly-2026-08-09",
+    "date": "2026-08-09",
+    "title": "One melody, changing ground",
+    "durationMinutes": 27,
+    "bpm": null,
+    "style": "One melody, changing ground",
+    "goal": "This week I want you to get away from “new melody = new section.” Instead, keep **one recognizable melodic idea** and make it feel different by changing what happens *underneath* it. That’s a very useful composition trick for the atmospheric/electronic direction you’ve been exploring.",
+    "source": {
+      "description": "Full user-provided original weekly lesson: Weekly_Keyboard_Lessons_Aug_Sep_2026(2).md",
+      "completeness": "complete"
+    },
+    "originalText": "# August 9, 2026\n\n## This week: **One melody, changing ground**\n\nThis week I want you to get away from “new melody = new section.” Instead, keep **one recognizable melodic idea** and make it feel different by changing what happens *underneath* it. That’s a very useful composition trick for the atmospheric/electronic direction you’ve been exploring.\n\n**0:00–5:00 — Black keys, but with a bass anchor.** Put on a beat-only track around **84–92 BPM**. Right hand: black keys only. Left hand: alternate just **G♭ and E♭**, low on the keyboard, holding each for 2–4 bars. Find a little 4–6 note phrase you like and deliberately repeat it. Notice how the exact same black-key melody feels different over G♭ versus E♭.\n\n**5:00–12:00 — Turn those bass notes into harmony.** Try this progression slowly:\n\n**G♭maj9** → G♭ – D♭ – F – A♭  \n**E♭m9** → E♭ – B♭ – D♭ – F  \n**B♭m7** → B♭ – F – A♭ – D♭  \n**D♭sus2/add6** → D♭ – A♭ – B♭ – E♭\n\nThe nice thing here is that your right hand can continue living almost entirely on the **black keys**, while the left hand supplies the notes that define the harmony. Play your original motif over all four chords rather than inventing something new for each one.\n\nThen start breaking the chords apart. Instead of *G♭–D♭–F–A♭* simultaneously, try **G♭ → D♭ → A♭ → F** as a slow repeating pattern. Suddenly you've got the beginning of an accompaniment rather than just chord practice.\n\n**12:00–18:00 — Split voices.** Try **mellow/felt piano on the right** and a **warm pad on the left**. Don't let the pad play full four-note chords; that's likely to get muddy. Give it only the root + fifth — G♭/D♭, E♭/B♭, etc. Let the piano provide all the interesting extensions above it.\n\nExperiment with register too. Move your melody **an octave higher than feels natural**. That separation between low pad and high, intimate piano can make a very simple idea sound enormous.\n\n**18:00–27:00 — Make it into something.** Restart your beat and record one uninterrupted pass. Begin with only the G♭ bass and your motif. Introduce the full progression. Add the pad. Then, about halfway through, **remove the beat mentally from your playing**: hold notes across the bar lines rather than hitting everything neatly on beats 1 and 3.\n\nFor the ending, return to G♭maj9—but **don't resolve the A♭ down to G♭**. Leave that 9th hanging. See whether you prefer the slightly unresolved feeling.\n\n### Listen before—or after—you play\n\nentity[\"song\",\"Ascend\"] by entity[\"musical_artist\",\"TWO LANES\"] — pay particular attention to the relationship between the **repeating keyboard language and the electronic pulse**. The musical material isn't constantly reinventing itself; arrangement and texture do a lot of the development.\n\nentity[\"song\",\"Says\"] by entity[\"musical_artist\",\"Nils Frahm\"] — this is the more extreme version of today's idea. Listen to how long Frahm is willing to let a pattern exist before altering it. When something finally *does* change, a relatively small harmonic or textural move feels huge.\n\nFor your own playing this week, that's the thing I'd steal: **don't abandon an idea just because you've played it four times.** If you actually like the phrase, keep it and change its surroundings.\n\n---",
+    "sections": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "instructions": "This week I want you to get away from “new melody = new section.” Instead, keep **one recognizable melodic idea** and make it feel different by changing what happens *underneath* it. That’s a very useful composition trick for the atmospheric/electronic direction you’ve been exploring.",
+        "rows": []
+      },
+      {
+        "id": "practice-1",
+        "title": "0:00–5:00 — Black keys, but with a bass anchor",
+        "instructions": "Put on a beat-only track around **84–92 BPM**. Right hand: black keys only. Left hand: alternate just **G♭ and E♭**, low on the keyboard, holding each for 2–4 bars. Find a little 4–6 note phrase you like and deliberately repeat it. Notice how the exact same black-key melody feels different over G♭ versus E♭.",
+        "rows": [
+          {
+            "lh": [
+              "G♭"
+            ],
+            "rh": []
+          },
+          {
+            "lh": [
+              "E♭"
+            ],
+            "rh": []
+          }
+        ]
+      },
+      {
+        "id": "practice-2",
+        "title": "5:00–12:00 — Turn those bass notes into harmony",
+        "instructions": "Try this progression slowly:\n\n**G♭maj9** → G♭ – D♭ – F – A♭  \n**E♭m9** → E♭ – B♭ – D♭ – F  \n**B♭m7** → B♭ – F – A♭ – D♭  \n**D♭sus2/add6** → D♭ – A♭ – B♭ – E♭\n\nThe nice thing here is that your right hand can continue living almost entirely on the **black keys**, while the left hand supplies the notes that define the harmony. Play your original motif over all four chords rather than inventing something new for each one.\n\nThen start breaking the chords apart. Instead of *G♭–D♭–F–A♭* simultaneously, try **G♭ → D♭ → A♭ → F** as a slow repeating pattern. Suddenly you've got the beginning of an accompaniment rather than just chord practice.",
+        "rows": []
+      },
+      {
+        "id": "practice-3",
+        "title": "12:00–18:00 — Split voices",
+        "instructions": "Try **mellow/felt piano on the right** and a **warm pad on the left**. Don't let the pad play full four-note chords; that's likely to get muddy. Give it only the root + fifth — G♭/D♭, E♭/B♭, etc. Let the piano provide all the interesting extensions above it.\n\nExperiment with register too. Move your melody **an octave higher than feels natural**. That separation between low pad and high, intimate piano can make a very simple idea sound enormous.",
+        "rows": []
+      },
+      {
+        "id": "practice-4",
+        "title": "18:00–27:00 — Make it into something",
+        "instructions": "Restart your beat and record one uninterrupted pass. Begin with only the G♭ bass and your motif. Introduce the full progression. Add the pad. Then, about halfway through, **remove the beat mentally from your playing**: hold notes across the bar lines rather than hitting everything neatly on beats 1 and 3.\n\nFor the ending, return to G♭maj9—but **don't resolve the A♭ down to G♭**. Leave that 9th hanging. See whether you prefer the slightly unresolved feeling.",
+        "rows": []
+      },
+      {
+        "id": "section-2",
+        "title": "Listen before—or after—you play",
+        "instructions": "entity[\"song\",\"Ascend\"] by entity[\"musical_artist\",\"TWO LANES\"] — pay particular attention to the relationship between the **repeating keyboard language and the electronic pulse**. The musical material isn't constantly reinventing itself; arrangement and texture do a lot of the development.\n\nentity[\"song\",\"Says\"] by entity[\"musical_artist\",\"Nils Frahm\"] — this is the more extreme version of today's idea. Listen to how long Frahm is willing to let a pattern exist before altering it. When something finally *does* change, a relatively small harmonic or textural move feels huge.\n\nFor your own playing this week, that's the thing I'd steal: **don't abandon an idea just because you've played it four times.** If you actually like the phrase, keep it and change its surroundings.\n\n---",
+        "rows": []
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "weekly-2026-08-16",
+    "date": "2026-08-16",
+    "title": "Make the rhythm part of the composition",
+    "durationMinutes": 27,
+    "bpm": null,
+    "style": "Make the rhythm part of the composition",
+    "goal": "We’ve spent several weeks making harmony and texture do the heavy lifting. This time, keep that atmospheric quality but make your **keyboard itself participate in the groove**. Think less “piano floating over a beat” and more “piano is one of the percussion instruments.”",
+    "source": {
+      "description": "Full user-provided original weekly lesson: Weekly_Keyboard_Lessons_Aug_Sep_2026(2).md",
+      "completeness": "complete"
+    },
+    "originalText": "# August 16, 2026\n\n## This week: **Make the rhythm part of the composition**\n\nWe’ve spent several weeks making harmony and texture do the heavy lifting. This time, keep that atmospheric quality but make your **keyboard itself participate in the groove**. Think less “piano floating over a beat” and more “piano is one of the percussion instruments.”\n\n**0:00–5:00 — Black-key rhythm game.** Put on a beat-only track around **92–100 BPM**. Pick only three black keys with your right hand—try **G♭, A♭, B♭**. For the first minute, play just one note and find a rhythm that locks with the beat. Then gradually introduce the other two notes without changing that rhythmic identity.\n\nThe important bit: **don't play on every obvious beat.** Try entering just after the kick or leaving beat 1 completely empty. You’re looking for something that makes your head move before it makes you think “nice melody.”\n\n**5:00–12:00 — New chords, tighter shapes.** Here’s your progression:\n\n**E♭m9** → E♭ – G♭ – B♭ – D♭ – F  \n**B♭m7** → B♭ – D♭ – F – A♭  \n**G♭maj9** → G♭ – B♭ – D♭ – F – A♭  \n**A♭sus4 → A♭** → A♭ – D♭ – E♭ → A♭ – C – E♭\n\nBut don't try grabbing all five notes with one hand. Start with a low **root or root + fifth in your left hand**, then put just the upper 2–3 notes in your right.\n\nFor example, on E♭m9:\n\n**LH:** E♭ – B♭  \n**RH:** D♭ – F – G♭\n\nThat's the sound I want you to notice this week. It's much richer than a basic E♭ minor, but your hands aren't doing anything particularly difficult.\n\n**12:00–18:00 — Make those chords groove.** Instead of holding each chord for four beats, try:\n\n**HIT — rest — HIT ——— rest**\n\nThen move the second hit around. Put it slightly earlier. Put it later. Skip it entirely once.\n\nThis is where you're composing. A chord progression gives you harmony; **where you choose to place those chords gives the piece personality.**\n\nFor split voices, try **electric piano on the right + a rounded synth bass on the left** this week rather than another pad. Keep the bass extremely simple—roots are enough. If that starts sounding like you're playing in a hotel lobby, simplify the EP part and make it more rhythmic.\n\n**18:00–27:00 — Your piece.** Take whichever little rhythmic figure you found in the first five minutes and bring it back over the full progression. Don't write a new melody yet.\n\nDo three passes:\n\n**Pass 1:** bass + rhythmic chords only.  \n**Pass 2:** add your three-note black-key motif.  \n**Pass 3:** start sparse, build into everything, then abruptly remove everything except the motif.\n\nRecord Pass 3.\n\nAnd one slightly weird experiment: on the final time through the progression, **keep your right-hand pattern identical but stop playing the bass notes.** You'll hear how much your ear has been using the bass to interpret what those upper notes “mean.”\n\n### Your two listens this week\n\nentity[\"song\",\"Kerala\",\"Bonobo song\"] — entity[\"musical_artist\",\"Bonobo\",\"British electronic musician\"]\n\nThis is the main reference. Don't focus on copying the notes. Listen to how **small melodic fragments behave rhythmically**—repetition, little gaps, and syncopation make simple material hypnotic. Also notice how layers enter without the original idea needing to become more complicated.\n\nentity[\"song\",\"Opal (Four Tet Remix)\",\"Bicep song remix\"] — entity[\"musical_artist\",\"Bicep\",\"Northern Irish electronic duo\"] / entity[\"musical_artist\",\"Four Tet\",\"British electronic musician\"]\n\nListen for the opposite of “keyboard player showing you chords.” Harmonic material arrives as **texture and pulse**. Parts repeat for much longer than you'd probably allow yourself when improvising—and that's precisely why the tiny changes feel so satisfying.\n\n**One thing to carry away this week:** when you find yourself adding notes because the music feels boring, try changing the **rhythm of the notes you already have** first. That's a completely different compositional muscle, and I think it'll open up some interesting territory for your own pieces.\n\n---",
+    "sections": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "instructions": "We’ve spent several weeks making harmony and texture do the heavy lifting. This time, keep that atmospheric quality but make your **keyboard itself participate in the groove**. Think less “piano floating over a beat” and more “piano is one of the percussion instruments.”",
+        "rows": []
+      },
+      {
+        "id": "practice-1",
+        "title": "0:00–5:00 — Black-key rhythm game",
+        "instructions": "Put on a beat-only track around **92–100 BPM**. Pick only three black keys with your right hand—try **G♭, A♭, B♭**. For the first minute, play just one note and find a rhythm that locks with the beat. Then gradually introduce the other two notes without changing that rhythmic identity.\n\nThe important bit: **don't play on every obvious beat.** Try entering just after the kick or leaving beat 1 completely empty. You’re looking for something that makes your head move before it makes you think “nice melody.”",
+        "rows": []
+      },
+      {
+        "id": "practice-2",
+        "title": "5:00–12:00 — New chords, tighter shapes",
+        "instructions": "Here’s your progression:\n\n**E♭m9** → E♭ – G♭ – B♭ – D♭ – F  \n**B♭m7** → B♭ – D♭ – F – A♭  \n**G♭maj9** → G♭ – B♭ – D♭ – F – A♭  \n**A♭sus4 → A♭** → A♭ – D♭ – E♭ → A♭ – C – E♭\n\nBut don't try grabbing all five notes with one hand. Start with a low **root or root + fifth in your left hand**, then put just the upper 2–3 notes in your right.\n\nFor example, on E♭m9:\n\n**LH:** E♭ – B♭  \n**RH:** D♭ – F – G♭\n\nThat's the sound I want you to notice this week. It's much richer than a basic E♭ minor, but your hands aren't doing anything particularly difficult.",
+        "rows": [
+          {
+            "lh": [
+              "E♭",
+              "B♭"
+            ],
+            "rh": [
+              "D♭",
+              "F",
+              "G♭"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "practice-3",
+        "title": "12:00–18:00 — Make those chords groove",
+        "instructions": "Instead of holding each chord for four beats, try:\n\n**HIT — rest — HIT ——— rest**\n\nThen move the second hit around. Put it slightly earlier. Put it later. Skip it entirely once.\n\nThis is where you're composing. A chord progression gives you harmony; **where you choose to place those chords gives the piece personality.**\n\nFor split voices, try **electric piano on the right + a rounded synth bass on the left** this week rather than another pad. Keep the bass extremely simple—roots are enough. If that starts sounding like you're playing in a hotel lobby, simplify the EP part and make it more rhythmic.",
+        "rows": []
+      },
+      {
+        "id": "practice-4",
+        "title": "18:00–27:00 — Your piece",
+        "instructions": "Take whichever little rhythmic figure you found in the first five minutes and bring it back over the full progression. Don't write a new melody yet.\n\nDo three passes:\n\n**Pass 1:** bass + rhythmic chords only.  \n**Pass 2:** add your three-note black-key motif.  \n**Pass 3:** start sparse, build into everything, then abruptly remove everything except the motif.\n\nRecord Pass 3.\n\nAnd one slightly weird experiment: on the final time through the progression, **keep your right-hand pattern identical but stop playing the bass notes.** You'll hear how much your ear has been using the bass to interpret what those upper notes “mean.”",
+        "rows": []
+      },
+      {
+        "id": "section-2",
+        "title": "Your two listens this week",
+        "instructions": "entity[\"song\",\"Kerala\",\"Bonobo song\"] — entity[\"musical_artist\",\"Bonobo\",\"British electronic musician\"]\n\nThis is the main reference. Don't focus on copying the notes. Listen to how **small melodic fragments behave rhythmically**—repetition, little gaps, and syncopation make simple material hypnotic. Also notice how layers enter without the original idea needing to become more complicated.\n\nentity[\"song\",\"Opal (Four Tet Remix)\",\"Bicep song remix\"] — entity[\"musical_artist\",\"Bicep\",\"Northern Irish electronic duo\"] / entity[\"musical_artist\",\"Four Tet\",\"British electronic musician\"]\n\nListen for the opposite of “keyboard player showing you chords.” Harmonic material arrives as **texture and pulse**. Parts repeat for much longer than you'd probably allow yourself when improvising—and that's precisely why the tiny changes feel so satisfying.\n\n**One thing to carry away this week:** when you find yourself adding notes because the music feels boring, try changing the **rhythm of the notes you already have** first. That's a completely different compositional muscle, and I think it'll open up some interesting territory for your own pieces.\n\n---",
+        "rows": []
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "weekly-2026-08-23",
+    "date": "2026-08-23",
+    "title": "Make the bass change the meaning",
+    "durationMinutes": 27,
+    "bpm": null,
+    "style": "Make the bass change the meaning",
+    "goal": "Last week was rhythmic; this week I’d go back toward harmony—but with a trick that’s especially useful when you’re writing your own stuff: **keep the upper chord nearly identical while moving the bass underneath it.** You get dramatic harmonic movement without having to think up four completely different chords.",
+    "source": {
+      "description": "Full user-provided original weekly lesson: Weekly_Keyboard_Lessons_Aug_Sep_2026(2).md",
+      "completeness": "complete"
+    },
+    "originalText": "# August 23, 2026\n\n## This week: **Make the bass change the meaning**\n\nLast week was rhythmic; this week I’d go back toward harmony—but with a trick that’s especially useful when you’re writing your own stuff: **keep the upper chord nearly identical while moving the bass underneath it.** You get dramatic harmonic movement without having to think up four completely different chords.\n\n### 0:00–5:00 — Black keys, one little shape\n\nPut on a beat-only track around **86–94 BPM**.\n\nRight hand only. Make this tiny shape your home base:\n\n**G♭ – A♭ – D♭**\n\nPlay those notes together, broken apart, backwards, repeated rhythmically—whatever starts feeling musical. Then freely add **E♭ and B♭**, but stay on black keys.\n\nThe goal isn't a scale exercise. Find **one rhythm/phrase that sounds like something *you'd actually use*.**\n\n### 5:00–12:00 — Here's the fun part\n\nKeep your RH playing:\n\n**G♭ – A♭ – D♭**\n\nNow move single bass notes underneath it:\n\n**D♭ → E♭ → B♭ → G♭**\n\nListen to what happens.\n\nThen expand those into these voicings:\n\n**D♭sus4**  \nLH: D♭ – A♭  \nRH: G♭ – A♭ – D♭\n\n**E♭m11**  \nLH: E♭ – B♭  \nRH: G♭ – A♭ – D♭\n\n**B♭m7(add♭7/11 color)**  \nLH: B♭ – F  \nRH: G♭ – A♭ – D♭\n\n**G♭add9**  \nLH: G♭ – D♭  \nRH: G♭ – A♭ – D♭\n\nDon't get hung up on the chord labels. **The important discovery is that your right hand barely moved.**\n\nPlay the progression:\n\n**D♭ → E♭m → B♭m → G♭**\n\nFour beats each at first. Then try **2 / 2 / 4 / 8 beats** and hear how much more intentional it suddenly sounds.\n\n### 12:00–18:00 — Dual voice: separate the jobs\n\nTry something different from our usual piano + pad setup:\n\n**Voice 1:** warm electric piano  \n**Voice 2:** very soft synth/strings\n\nIf you can adjust their balance, make the synth considerably quieter.\n\nPlay the RH voicing on the layered sound, but let your **left hand play only bass notes**.\n\nThen deliberately lift your RH while the bass keeps moving.\n\nYou'll hear something useful: sometimes the *absence* of the chord creates more tension than changing to another chord.\n\nBring the RH back on G♭ and it'll feel much larger than it actually is.\n\n### 18:00–27:00 — Turn it into your own thing\n\nStart the beat again and record.\n\nDon't predetermine a melody. Instead:\n\n**First pass:** bass + your three-note RH shape.\n\n**Second pass:** start breaking G♭–A♭–D♭ into a rhythmic pattern.\n\n**Third pass:** let one of those broken patterns accidentally become a melody. Follow it.\n\nThen here's your challenge: when you reach the **B♭ bass**, introduce **E♭** into your RH melody.\n\nThat one extra black key gives you a gorgeous B♭m11-ish color.\n\nIf your ear goes, *oooh, THAT*—stop thinking about the exercise. Stay there and explore it. That's exactly what we're looking for.\n\n## Two listens\n\nentity[\"song\",\"Everything In Its Right Place\",\"Radiohead song\"] — entity[\"musical_artist\",\"Radiohead\",\"English rock band\"]\n\nThis one is almost a masterclass for today's exercise. Listen less to the “song” and more to the keyboard. **Very limited harmonic material + repetition + voicing + changing context = an enormous atmosphere.** Notice how little conventional melodic activity is actually necessary.\n\nAnd for something with more movement:\n\nentity[\"song\",\"Apricots\",\"Bicep song\"] — entity[\"musical_artist\",\"Bicep\",\"Northern Irish electronic duo\"]\n\nListen to how a relatively simple repeating harmonic/melodic figure becomes emotional because **the world around it changes**—bass, percussion, density, filtering, entrances and exits.\n\nThat’s the idea I want in your fingers this week: **you don't always need another chord. Sometimes you just need another bass note.**\n\n---",
+    "sections": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "instructions": "Last week was rhythmic; this week I’d go back toward harmony—but with a trick that’s especially useful when you’re writing your own stuff: **keep the upper chord nearly identical while moving the bass underneath it.** You get dramatic harmonic movement without having to think up four completely different chords.",
+        "rows": []
+      },
+      {
+        "id": "section-2",
+        "title": "0:00–5:00 — Black keys, one little shape",
+        "instructions": "Put on a beat-only track around **86–94 BPM**.\n\nRight hand only. Make this tiny shape your home base:\n\n**G♭ – A♭ – D♭**\n\nPlay those notes together, broken apart, backwards, repeated rhythmically—whatever starts feeling musical. Then freely add **E♭ and B♭**, but stay on black keys.\n\nThe goal isn't a scale exercise. Find **one rhythm/phrase that sounds like something *you'd actually use*.**",
+        "rows": [
+          {
+            "lh": [],
+            "rh": [
+              "G♭",
+              "A♭",
+              "D♭"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section-3",
+        "title": "5:00–12:00 — Here's the fun part",
+        "instructions": "Keep your RH playing:\n\n**G♭ – A♭ – D♭**\n\nNow move single bass notes underneath it:\n\n**D♭ → E♭ → B♭ → G♭**\n\nListen to what happens.\n\nThen expand those into these voicings:\n\n**D♭sus4**  \nLH: D♭ – A♭  \nRH: G♭ – A♭ – D♭\n\n**E♭m11**  \nLH: E♭ – B♭  \nRH: G♭ – A♭ – D♭\n\n**B♭m7(add♭7/11 color)**  \nLH: B♭ – F  \nRH: G♭ – A♭ – D♭\n\n**G♭add9**  \nLH: G♭ – D♭  \nRH: G♭ – A♭ – D♭\n\nDon't get hung up on the chord labels. **The important discovery is that your right hand barely moved.**\n\nPlay the progression:\n\n**D♭ → E♭m → B♭m → G♭**\n\nFour beats each at first. Then try **2 / 2 / 4 / 8 beats** and hear how much more intentional it suddenly sounds.",
+        "rows": [
+          {
+            "lh": [
+              "D♭",
+              "A♭"
+            ],
+            "rh": [
+              "G♭",
+              "A♭",
+              "D♭"
+            ]
+          },
+          {
+            "lh": [
+              "E♭",
+              "B♭"
+            ],
+            "rh": [
+              "G♭",
+              "A♭",
+              "D♭"
+            ]
+          },
+          {
+            "lh": [
+              "B♭",
+              "F"
+            ],
+            "rh": [
+              "G♭",
+              "A♭",
+              "D♭"
+            ]
+          },
+          {
+            "lh": [
+              "G♭",
+              "D♭"
+            ],
+            "rh": [
+              "G♭",
+              "A♭",
+              "D♭"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section-4",
+        "title": "12:00–18:00 — Dual voice: separate the jobs",
+        "instructions": "Try something different from our usual piano + pad setup:\n\n**Voice 1:** warm electric piano  \n**Voice 2:** very soft synth/strings\n\nIf you can adjust their balance, make the synth considerably quieter.\n\nPlay the RH voicing on the layered sound, but let your **left hand play only bass notes**.\n\nThen deliberately lift your RH while the bass keeps moving.\n\nYou'll hear something useful: sometimes the *absence* of the chord creates more tension than changing to another chord.\n\nBring the RH back on G♭ and it'll feel much larger than it actually is.",
+        "rows": []
+      },
+      {
+        "id": "section-5",
+        "title": "18:00–27:00 — Turn it into your own thing",
+        "instructions": "Start the beat again and record.\n\nDon't predetermine a melody. Instead:\n\n**First pass:** bass + your three-note RH shape.\n\n**Second pass:** start breaking G♭–A♭–D♭ into a rhythmic pattern.\n\n**Third pass:** let one of those broken patterns accidentally become a melody. Follow it.\n\nThen here's your challenge: when you reach the **B♭ bass**, introduce **E♭** into your RH melody.\n\nThat one extra black key gives you a gorgeous B♭m11-ish color.\n\nIf your ear goes, *oooh, THAT*—stop thinking about the exercise. Stay there and explore it. That's exactly what we're looking for.",
+        "rows": []
+      },
+      {
+        "id": "section-6",
+        "title": "Two listens",
+        "instructions": "entity[\"song\",\"Everything In Its Right Place\",\"Radiohead song\"] — entity[\"musical_artist\",\"Radiohead\",\"English rock band\"]\n\nThis one is almost a masterclass for today's exercise. Listen less to the “song” and more to the keyboard. **Very limited harmonic material + repetition + voicing + changing context = an enormous atmosphere.** Notice how little conventional melodic activity is actually necessary.\n\nAnd for something with more movement:\n\nentity[\"song\",\"Apricots\",\"Bicep song\"] — entity[\"musical_artist\",\"Bicep\",\"Northern Irish electronic duo\"]\n\nListen to how a relatively simple repeating harmonic/melodic figure becomes emotional because **the world around it changes**—bass, percussion, density, filtering, entrances and exits.\n\nThat’s the idea I want in your fingers this week: **you don't always need another chord. Sometimes you just need another bass note.**\n\n---",
+        "rows": []
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
     "id": "weekly-2026-08-30",
     "date": "2026-08-30",
     "title": "Warm R&B / Late-Night Groove",
@@ -540,6 +778,618 @@
         "id": "section-7",
         "title": "The one thing I want you to notice",
         "instructions": "When you play:\n\nE♭ → G♭ → D♭\n\ndon't immediately ask yourself “what do I play next?”\n\nStay there.\n\nPlay it again.\n\nChange the melody slightly.\n\nLeave more silence.\n\nPlay it an octave higher.\n\nThe exercise this week is partly learning that three chords can already be enough material to make something worth exploring.",
+        "rows": []
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "weekly-2026-09-13",
+    "date": "2026-09-13",
+    "title": "80s synth-pop / open-road feeling",
+    "durationMinutes": 25,
+    "bpm": null,
+    "style": "80s synth-pop / open-road feeling",
+    "goal": "**Time:** about 25 minutes  \n**Goal:** get one bright, slightly nostalgic 4-chord loop comfortable enough that you can play it without thinking, then start adding your own melody over it.",
+    "source": {
+      "description": "Full user-provided original weekly lesson: Weekly_Keyboard_Lessons_Aug_Sep_2026(2).md",
+      "completeness": "complete"
+    },
+    "originalText": "# September 13, 2026\n\n## This week: **80s synth-pop / open-road feeling**\n\n**Time:** about 25 minutes  \n**Goal:** get one bright, slightly nostalgic 4-chord loop comfortable enough that you can play it without thinking, then start adding your own melody over it.\n\n### 1. Black-key warm-up — 4 minutes\n\nUse only:\n\n**RH: D♭ – E♭ – G♭ – A♭ – B♭**\n\nStart with this simple shape:\n\n**RH: D♭ → E♭ → G♭ → E♭**\n\nPause.\n\nThen answer it with:\n\n**RH: A♭ → G♭ → E♭ → D♭**\n\nPlay it slowly a few times.\n\nThen keep the same notes but change the rhythm however you want. The point is to get your ear involved before the chord loop starts.\n\n---\n\n## 2. Main 4-chord loop — 7 minutes\n\nPlay these in order:\n\n**①** LH: **D♭ + A♭** | RH: **F + A♭ + D♭**\n\n**②** LH: **A♭ + E♭** | RH: **E♭ + A♭ + C**\n\n**③** LH: **B♭ + F** | RH: **D♭ + F + B♭**\n\n**④** LH: **G♭ + D♭** | RH: **D♭ + G♭ + B♭**\n\nThen go back to **①**.\n\nFor now, use no fancy rhythm.\n\nCount:\n\n**1 – 2 – 3 – 4**\n\nOn **1**: press both hands.  \nHold through **2, 3, 4**.  \nRelease just before the next **1**.\n\nKeep looping:\n\n**D♭ → A♭ → B♭ → G♭**\n\nYou do not need to memorize those names. Just learn the four hand shapes and the order.\n\n---\n\n## 3. Give it the 80s pulse — 5 minutes\n\nNow count:\n\n**1 & 2 & 3 & 4 &**\n\nFor each chord:\n\n**1:** press BOTH hands  \n**& after 2:** release and replay RH only  \n**3:** keep holding  \n**4:** keep holding\n\nSo the feel is:\n\n**BOTH — — — — RH — — —**\n\nThat second RH hit arriving a little early gives you a more driving pop feel.\n\nDo this on every chord.\n\n### One optional variation\n\nOnce that feels easy, play the RH again on the **& after 4** too.\n\nThat means the right hand gives you a little push into the next chord.\n\n---\n\n## 4. Beat-only section — 7–8 minutes\n\nFind a beat-only track around **90–100 BPM**.\n\nStart with the full loop:\n\n**LH: D♭ + A♭ | RH: F + A♭ + D♭**  \n**LH: A♭ + E♭ | RH: E♭ + A♭ + C**  \n**LH: B♭ + F | RH: D♭ + F + B♭**  \n**LH: G♭ + D♭ | RH: D♭ + G♭ + B♭**\n\nPlay several loops until the rhythm feels automatic.\n\nThen simplify the left hand:\n\n**LH: D♭ → A♭ → B♭ → G♭**\n\nNow let your RH stop playing full chords and go back to:\n\n**D♭ – E♭ – G♭ – A♭ – B♭**\n\nTry this rule:\n\n**Play 4–6 notes → stop for a full bar → answer yourself.**\n\nYou are not trying to “solo.” You are trying to find one little melody that feels like it belongs over the loop.\n\nIf you land on something good, repeat it instead of immediately changing it.\n\n---\n\n## 5. Optional GO:KEYS 3 setup — 3 minutes\n\nThe GO:KEYS 3 supports Split/Dual and has an extensive ZEN-Core tone library, so this week I'd use **Dual** with a keyboard tone plus a synth layer. citeturn659563search24\n\nTry:\n\n**Main:** Electric Piano  \n**Dual:** Warm synth pad\n\nKeep the synth quieter than the electric piano.\n\nYou want the attack of the piano to remain clear while the synth hangs behind it.\n\nPlay the exact same four-chord loop and notice how much bigger it feels without actually adding more notes.\n\n---\n\n## 🎧 Listen for this sound\n\n**“Everybody Wants to Rule the World” — Tears for Fears** is available on Apple Music. citeturn659563search0turn659563search3\n\nListen specifically for the feeling of **constant forward motion without heaviness**. The harmony is smooth, the rhythm keeps moving, and the keyboard/guitar textures leave plenty of room.\n\nThen try **“Time After Time” — Cyndi Lauper**, also on Apple Music. citeturn659563search5 Listen for the opposite side of the same era: **simple harmony, lots of space, and emotion coming from texture and restraint rather than complicated playing.**\n\nThe main thing this week is getting comfortable enough with those four shapes that you stop watching your fingers constantly. Once that happens, the beat and your ear can start taking over.\n\n---",
+    "sections": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "instructions": "**Time:** about 25 minutes  \n**Goal:** get one bright, slightly nostalgic 4-chord loop comfortable enough that you can play it without thinking, then start adding your own melody over it.",
+        "rows": []
+      },
+      {
+        "id": "section-2",
+        "title": "1. Black-key warm-up — 4 minutes",
+        "instructions": "Use only:\n\n**RH: D♭ – E♭ – G♭ – A♭ – B♭**\n\nStart with this simple shape:\n\n**RH: D♭ → E♭ → G♭ → E♭**\n\nPause.\n\nThen answer it with:\n\n**RH: A♭ → G♭ → E♭ → D♭**\n\nPlay it slowly a few times.\n\nThen keep the same notes but change the rhythm however you want. The point is to get your ear involved before the chord loop starts.\n\n---",
+        "rows": [
+          {
+            "lh": [],
+            "rh": [
+              "D♭",
+              "E♭",
+              "G♭",
+              "E♭"
+            ]
+          },
+          {
+            "lh": [],
+            "rh": [
+              "A♭",
+              "G♭",
+              "E♭",
+              "D♭"
+            ]
+          }
+        ],
+        "pattern": "sequence"
+      },
+      {
+        "id": "section-3",
+        "title": "2. Main 4-chord loop — 7 minutes",
+        "instructions": "Play these in order:\n\n**①** LH: **D♭ + A♭** | RH: **F + A♭ + D♭**\n\n**②** LH: **A♭ + E♭** | RH: **E♭ + A♭ + C**\n\n**③** LH: **B♭ + F** | RH: **D♭ + F + B♭**\n\n**④** LH: **G♭ + D♭** | RH: **D♭ + G♭ + B♭**\n\nThen go back to **①**.\n\nFor now, use no fancy rhythm.\n\nCount:\n\n**1 – 2 – 3 – 4**\n\nOn **1**: press both hands.  \nHold through **2, 3, 4**.  \nRelease just before the next **1**.\n\nKeep looping:\n\n**D♭ → A♭ → B♭ → G♭**\n\nYou do not need to memorize those names. Just learn the four hand shapes and the order.\n\n---",
+        "rows": [
+          {
+            "lh": [
+              "D♭",
+              "A♭"
+            ],
+            "rh": [
+              "F",
+              "A♭",
+              "D♭"
+            ]
+          },
+          {
+            "lh": [
+              "A♭",
+              "E♭"
+            ],
+            "rh": [
+              "E♭",
+              "A♭",
+              "C"
+            ]
+          },
+          {
+            "lh": [
+              "B♭",
+              "F"
+            ],
+            "rh": [
+              "D♭",
+              "F",
+              "B♭"
+            ]
+          },
+          {
+            "lh": [
+              "G♭",
+              "D♭"
+            ],
+            "rh": [
+              "D♭",
+              "G♭",
+              "B♭"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section-4",
+        "title": "3. Give it the 80s pulse — 5 minutes",
+        "instructions": "Now count:\n\n**1 & 2 & 3 & 4 &**\n\nFor each chord:\n\n**1:** press BOTH hands  \n**& after 2:** release and replay RH only  \n**3:** keep holding  \n**4:** keep holding\n\nSo the feel is:\n\n**BOTH — — — — RH — — —**\n\nThat second RH hit arriving a little early gives you a more driving pop feel.\n\nDo this on every chord.",
+        "rows": []
+      },
+      {
+        "id": "section-5",
+        "title": "One optional variation",
+        "instructions": "Once that feels easy, play the RH again on the **& after 4** too.\n\nThat means the right hand gives you a little push into the next chord.\n\n---",
+        "rows": []
+      },
+      {
+        "id": "section-6",
+        "title": "4. Beat-only section — 7–8 minutes",
+        "instructions": "Find a beat-only track around **90–100 BPM**.\n\nStart with the full loop:\n\n**LH: D♭ + A♭ | RH: F + A♭ + D♭**  \n**LH: A♭ + E♭ | RH: E♭ + A♭ + C**  \n**LH: B♭ + F | RH: D♭ + F + B♭**  \n**LH: G♭ + D♭ | RH: D♭ + G♭ + B♭**\n\nPlay several loops until the rhythm feels automatic.\n\nThen simplify the left hand:\n\n**LH: D♭ → A♭ → B♭ → G♭**\n\nNow let your RH stop playing full chords and go back to:\n\n**D♭ – E♭ – G♭ – A♭ – B♭**\n\nTry this rule:\n\n**Play 4–6 notes → stop for a full bar → answer yourself.**\n\nYou are not trying to “solo.” You are trying to find one little melody that feels like it belongs over the loop.\n\nIf you land on something good, repeat it instead of immediately changing it.\n\n---",
+        "rows": [
+          {
+            "lh": [
+              "D♭",
+              "A♭"
+            ],
+            "rh": [
+              "F",
+              "A♭",
+              "D♭"
+            ]
+          },
+          {
+            "lh": [
+              "A♭",
+              "E♭"
+            ],
+            "rh": [
+              "E♭",
+              "A♭",
+              "C"
+            ]
+          },
+          {
+            "lh": [
+              "B♭",
+              "F"
+            ],
+            "rh": [
+              "D♭",
+              "F",
+              "B♭"
+            ]
+          },
+          {
+            "lh": [
+              "G♭",
+              "D♭"
+            ],
+            "rh": [
+              "D♭",
+              "G♭",
+              "B♭"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section-7",
+        "title": "5. Optional GO:KEYS 3 setup — 3 minutes",
+        "instructions": "The GO:KEYS 3 supports Split/Dual and has an extensive ZEN-Core tone library, so this week I'd use **Dual** with a keyboard tone plus a synth layer. citeturn659563search24\n\nTry:\n\n**Main:** Electric Piano  \n**Dual:** Warm synth pad\n\nKeep the synth quieter than the electric piano.\n\nYou want the attack of the piano to remain clear while the synth hangs behind it.\n\nPlay the exact same four-chord loop and notice how much bigger it feels without actually adding more notes.\n\n---",
+        "rows": []
+      },
+      {
+        "id": "section-8",
+        "title": "🎧 Listen for this sound",
+        "instructions": "**“Everybody Wants to Rule the World” — Tears for Fears** is available on Apple Music. citeturn659563search0turn659563search3\n\nListen specifically for the feeling of **constant forward motion without heaviness**. The harmony is smooth, the rhythm keeps moving, and the keyboard/guitar textures leave plenty of room.\n\nThen try **“Time After Time” — Cyndi Lauper**, also on Apple Music. citeturn659563search5 Listen for the opposite side of the same era: **simple harmony, lots of space, and emotion coming from texture and restraint rather than complicated playing.**\n\nThe main thing this week is getting comfortable enough with those four shapes that you stop watching your fingers constantly. Once that happens, the beat and your ear can start taking over.\n\n---",
+        "rows": []
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "weekly-2026-09-20",
+    "date": "2026-09-20",
+    "title": "Disco / ABBA-style pulse",
+    "durationMinutes": 25,
+    "bpm": null,
+    "style": "Disco / ABBA-style pulse",
+    "goal": "**Time:** about 25 minutes  \n**Goal:** keep the harmony simple, but make the **rhythm** do more of the work. This week is about short, crisp right-hand chord hits against a steady left hand.",
+    "source": {
+      "description": "Full user-provided original weekly lesson: Weekly_Keyboard_Lessons_Aug_Sep_2026(2).md",
+      "completeness": "complete"
+    },
+    "originalText": "# September 20, 2026\n\n## This week: **Disco / ABBA-style pulse**\n\n**Time:** about 25 minutes  \n**Goal:** keep the harmony simple, but make the **rhythm** do more of the work. This week is about short, crisp right-hand chord hits against a steady left hand.\n\n### 1. Black-key warm-up — 4 minutes\n\nUse only these right-hand notes:\n\n**A♭ – B♭ – D♭ – E♭**\n\nPlay this:\n\n**RH: A♭ → B♭ → D♭ → E♭ → D♭ → B♭**\n\nRepeat it a few times.\n\nThen change the order however you want, but keep the notes short and fairly rhythmic rather than dreamy.\n\nThink more:\n\n**da-da / da-da / da-da**\n\nand less:\n\n**loooooong floating notes**\n\n---\n\n## 2. Your four main chord shapes — 6 minutes\n\nPlay these in order:\n\n**①** LH: **A♭ + E♭** | RH: **C + E♭ + A♭**\n\n**②** LH: **E♭ + B♭** | RH: **B♭ + E♭ + G**\n\n**③** LH: **F + C** | RH: **C + F + A♭**\n\n**④** LH: **D♭ + A♭** | RH: **D♭ + F + A♭**\n\nThen repeat from ①.\n\nFor the first few minutes, just hold each shape for four counts:\n\n**1 – 2 – 3 – 4**\n\nPress everything on **1**, hold, and move to the next shape on the next **1**.\n\nDon't worry about groove yet. Get the hand positions comfortable first.\n\n---\n\n## 3. Now give it the disco rhythm — 5 minutes\n\nThis is the main skill this week.\n\nCount out loud:\n\n**1 & 2 & 3 & 4 &**\n\nYour **left hand** presses the chord on **1** and holds it for the whole measure.\n\nYour **right hand** plays short chord hits on every **&**.\n\nSo:\n\n**Count:** 1 **&** 2 **&** 3 **&** 4 **&**  \n**LH:** PRESS————————————HOLD  \n**RH:** — HIT — HIT — HIT — HIT\n\nFor chord ①, that means:\n\n**LH:** hold **A♭ + E♭**\n\nwhile the RH repeatedly taps:\n\n**RH:** **C + E♭ + A♭**\n\nFour short hits.\n\nRelease the RH immediately after each one. Think **tap**, not **hold**.\n\nThen change both hands to chord ② on the next **1**.\n\nThis may feel strange for a minute because your RH is deliberately playing **between** the numbered beats. That's called playing **offbeats**.\n\nOnce it clicks, it'll suddenly sound much more like actual disco/pop accompaniment.\n\n---\n\n## 4. Beat-only section — 7–8 minutes\n\nFind a **disco or four-on-the-floor drum loop around 110–118 BPM**.\n\n“Four-on-the-floor” just means the kick drum hits on:\n\n**1 – 2 – 3 – 4**\n\nStart by playing the exact pattern above:\n\n**LH: A♭ + E♭ | RH: C + E♭ + A♭**  \n**LH: E♭ + B♭ | RH: B♭ + E♭ + G**  \n**LH: F + C | RH: C + F + A♭**  \n**LH: D♭ + A♭ | RH: D♭ + F + A♭**\n\nOne measure each.\n\nAfter a few loops, simplify the LH to single notes:\n\n**A♭ → E♭ → F → D♭**\n\nKeep the RH offbeat chord hits going.\n\nThen for the last couple of minutes, occasionally **skip one RH hit**.\n\nInstead of:\n\n**& & & &**\n\ntry:\n\n**& & — &**\n\nThat tiny missing hit can make the groove feel much more musical.\n\nDon't add anything else yet.\n\n---\n\n## 5. Optional GO:KEYS 3 sound setup — 3 minutes\n\nThis week I'd use **Dual**.\n\nFor the main sound, try the actual GO:KEYS 3 tone:\n\n**70s Suitcase**\n\nThen layer underneath it:\n\n**JP8 Strings 1**\n\nBoth are included in the GO:KEYS 3 tone list, and the keyboard supports Dual mode. citeturn420330search15turn420330search0turn433212search5\n\nKeep **JP8 Strings 1 quieter** than the electric piano.\n\nThe electric piano gives you the crisp attack for those short offbeat hits, while the synth strings fill out the space behind them.\n\nIf the strings make everything too mushy, turn the Dual layer down rather than changing your playing.\n\n---\n\n## 🎧 Listen this week\n\n**“Gimme! Gimme! Gimme! (A Man After Midnight)” — ABBA** is on Apple Music. citeturn278249search0\n\nListen specifically to the **constant pulse underneath everything**. Even when the melody is doing something dramatic, the rhythm section stays relentlessly steady. Also listen for how the keyboard/synth parts are often rhythmic patterns rather than big sustained chords.\n\nThen try **“Voulez-Vous” — ABBA**. citeturn278249search10\n\nPay attention to how much of the excitement comes from **short chord attacks and gaps between them**. That's what you're practicing here.\n\nThe main win this week is not playing the progression faster. It's getting to where your **left hand can stay calm while the right hand goes “&… &… &… &…” without you having to think hard about it.**\n\n---",
+    "sections": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "instructions": "**Time:** about 25 minutes  \n**Goal:** keep the harmony simple, but make the **rhythm** do more of the work. This week is about short, crisp right-hand chord hits against a steady left hand.",
+        "rows": []
+      },
+      {
+        "id": "section-2",
+        "title": "1. Black-key warm-up — 4 minutes",
+        "instructions": "Use only these right-hand notes:\n\n**A♭ – B♭ – D♭ – E♭**\n\nPlay this:\n\n**RH: A♭ → B♭ → D♭ → E♭ → D♭ → B♭**\n\nRepeat it a few times.\n\nThen change the order however you want, but keep the notes short and fairly rhythmic rather than dreamy.\n\nThink more:\n\n**da-da / da-da / da-da**\n\nand less:\n\n**loooooong floating notes**\n\n---",
+        "rows": [
+          {
+            "lh": [],
+            "rh": [
+              "A♭",
+              "B♭",
+              "D♭",
+              "E♭",
+              "D♭",
+              "B♭"
+            ]
+          }
+        ],
+        "pattern": "sequence"
+      },
+      {
+        "id": "section-3",
+        "title": "2. Your four main chord shapes — 6 minutes",
+        "instructions": "Play these in order:\n\n**①** LH: **A♭ + E♭** | RH: **C + E♭ + A♭**\n\n**②** LH: **E♭ + B♭** | RH: **B♭ + E♭ + G**\n\n**③** LH: **F + C** | RH: **C + F + A♭**\n\n**④** LH: **D♭ + A♭** | RH: **D♭ + F + A♭**\n\nThen repeat from ①.\n\nFor the first few minutes, just hold each shape for four counts:\n\n**1 – 2 – 3 – 4**\n\nPress everything on **1**, hold, and move to the next shape on the next **1**.\n\nDon't worry about groove yet. Get the hand positions comfortable first.\n\n---",
+        "rows": [
+          {
+            "lh": [
+              "A♭",
+              "E♭"
+            ],
+            "rh": [
+              "C",
+              "E♭",
+              "A♭"
+            ]
+          },
+          {
+            "lh": [
+              "E♭",
+              "B♭"
+            ],
+            "rh": [
+              "B♭",
+              "E♭",
+              "G"
+            ]
+          },
+          {
+            "lh": [
+              "F",
+              "C"
+            ],
+            "rh": [
+              "C",
+              "F",
+              "A♭"
+            ]
+          },
+          {
+            "lh": [
+              "D♭",
+              "A♭"
+            ],
+            "rh": [
+              "D♭",
+              "F",
+              "A♭"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section-4",
+        "title": "3. Now give it the disco rhythm — 5 minutes",
+        "instructions": "This is the main skill this week.\n\nCount out loud:\n\n**1 & 2 & 3 & 4 &**\n\nYour **left hand** presses the chord on **1** and holds it for the whole measure.\n\nYour **right hand** plays short chord hits on every **&**.\n\nSo:\n\n**Count:** 1 **&** 2 **&** 3 **&** 4 **&**  \n**LH:** PRESS————————————HOLD  \n**RH:** — HIT — HIT — HIT — HIT\n\nFor chord ①, that means:\n\n**LH:** hold **A♭ + E♭**\n\nwhile the RH repeatedly taps:\n\n**RH:** **C + E♭ + A♭**\n\nFour short hits.\n\nRelease the RH immediately after each one. Think **tap**, not **hold**.\n\nThen change both hands to chord ② on the next **1**.\n\nThis may feel strange for a minute because your RH is deliberately playing **between** the numbered beats. That's called playing **offbeats**.\n\nOnce it clicks, it'll suddenly sound much more like actual disco/pop accompaniment.\n\n---",
+        "rows": []
+      },
+      {
+        "id": "section-5",
+        "title": "4. Beat-only section — 7–8 minutes",
+        "instructions": "Find a **disco or four-on-the-floor drum loop around 110–118 BPM**.\n\n“Four-on-the-floor” just means the kick drum hits on:\n\n**1 – 2 – 3 – 4**\n\nStart by playing the exact pattern above:\n\n**LH: A♭ + E♭ | RH: C + E♭ + A♭**  \n**LH: E♭ + B♭ | RH: B♭ + E♭ + G**  \n**LH: F + C | RH: C + F + A♭**  \n**LH: D♭ + A♭ | RH: D♭ + F + A♭**\n\nOne measure each.\n\nAfter a few loops, simplify the LH to single notes:\n\n**A♭ → E♭ → F → D♭**\n\nKeep the RH offbeat chord hits going.\n\nThen for the last couple of minutes, occasionally **skip one RH hit**.\n\nInstead of:\n\n**& & & &**\n\ntry:\n\n**& & — &**\n\nThat tiny missing hit can make the groove feel much more musical.\n\nDon't add anything else yet.\n\n---",
+        "rows": [
+          {
+            "lh": [
+              "A♭",
+              "E♭"
+            ],
+            "rh": [
+              "C",
+              "E♭",
+              "A♭"
+            ]
+          },
+          {
+            "lh": [
+              "E♭",
+              "B♭"
+            ],
+            "rh": [
+              "B♭",
+              "E♭",
+              "G"
+            ]
+          },
+          {
+            "lh": [
+              "F",
+              "C"
+            ],
+            "rh": [
+              "C",
+              "F",
+              "A♭"
+            ]
+          },
+          {
+            "lh": [
+              "D♭",
+              "A♭"
+            ],
+            "rh": [
+              "D♭",
+              "F",
+              "A♭"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section-6",
+        "title": "5. Optional GO:KEYS 3 sound setup — 3 minutes",
+        "instructions": "This week I'd use **Dual**.\n\nFor the main sound, try the actual GO:KEYS 3 tone:\n\n**70s Suitcase**\n\nThen layer underneath it:\n\n**JP8 Strings 1**\n\nBoth are included in the GO:KEYS 3 tone list, and the keyboard supports Dual mode. citeturn420330search15turn420330search0turn433212search5\n\nKeep **JP8 Strings 1 quieter** than the electric piano.\n\nThe electric piano gives you the crisp attack for those short offbeat hits, while the synth strings fill out the space behind them.\n\nIf the strings make everything too mushy, turn the Dual layer down rather than changing your playing.\n\n---",
+        "rows": []
+      },
+      {
+        "id": "section-7",
+        "title": "🎧 Listen this week",
+        "instructions": "**“Gimme! Gimme! Gimme! (A Man After Midnight)” — ABBA** is on Apple Music. citeturn278249search0\n\nListen specifically to the **constant pulse underneath everything**. Even when the melody is doing something dramatic, the rhythm section stays relentlessly steady. Also listen for how the keyboard/synth parts are often rhythmic patterns rather than big sustained chords.\n\nThen try **“Voulez-Vous” — ABBA**. citeturn278249search10\n\nPay attention to how much of the excitement comes from **short chord attacks and gaps between them**. That's what you're practicing here.\n\nThe main win this week is not playing the progression faster. It's getting to where your **left hand can stay calm while the right hand goes “&… &… &… &…” without you having to think hard about it.**\n\n---",
+        "rows": []
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "weekly-2026-09-27",
+    "date": "2026-09-27",
+    "title": "Country / Americana — steady “boom-chuck” groove",
+    "durationMinutes": 25,
+    "bpm": 85,
+    "style": "Country / Americana — steady “boom-chuck” groove",
+    "goal": "**Time:** about 25 minutes  \n**Goal:** keep the left hand steady, make the right hand answer it, and get comfortable enough with the loop that you can start adding your own little melody.",
+    "source": {
+      "description": "Full user-provided original weekly lesson: Weekly_Keyboard_Lessons_Aug_Sep_2026(2).md",
+      "completeness": "complete"
+    },
+    "originalText": "# September 27, 2026\n\n## This week: **Country / Americana — steady “boom-chuck” groove**\n\n**Time:** about 25 minutes  \n**Goal:** keep the left hand steady, make the right hand answer it, and get comfortable enough with the loop that you can start adding your own little melody.\n\nThis week builds on the same hand-independence you were using with the disco offbeats, but slower and much more relaxed.\n\n### 1. Warm-up — 4 minutes\n\nUse just these five right-hand notes:\n\n**LH: — | RH: G → A → B → D → E**\n\nThen come back down:\n\n**LH: — | RH: E → D → B → A → G**\n\nPlay that slowly a few times.\n\nThen try this:\n\n**LH: — | RH: G → B → A → D**\n\nPause.\n\nThen:\n\n**LH: — | RH: E → D → B → G**\n\nDon’t worry about speed. Try to make each little group sound like a sentence rather than an exercise.\n\n---\n\n## 2. Your four chord shapes — 6 minutes\n\nPlay these in order:\n\n**①** LH: **G + D** | RH: **B + D + G**  \n**②** LH: **D + A** | RH: **A + D + F♯**  \n**③** LH: **E + B** | RH: **G + B + E**  \n**④** LH: **C + G** | RH: **G + C + E**\n\nThen go back to ①.\n\nFor the first few minutes, just press both hands together and hold:\n\n**1 – 2 – 3 – 4**\n\nPress on **1**.  \nHold through **2, 3, 4**.  \nRelease just before the next **1**.\n\nKeep looping until the order feels familiar.\n\n---\n\n## 3. The country rhythm — 5 minutes\n\nNow count:\n\n**1 & 2 & 3 & 4 &**\n\nThis is the whole groove:\n\n**1:** press LH  \n**&:** release LH  \n**2:** press RH  \n**&:** release RH  \n**3:** press LH  \n**&:** release LH  \n**4:** press RH  \n**&:** release RH\n\nSo it alternates:\n\n**LH — RH — LH — RH**\n\nFor chord ①:\n\n**1:** LH: **G + D**  \n**2:** RH: **B + D + G**  \n**3:** LH: **G + D**  \n**4:** RH: **B + D + G**\n\nEverything is short. Don’t hold anything down.\n\nThen do the same pattern on the other three shapes.\n\nThis style is often called **“boom-chuck”**: the low notes are the “boom,” and the chord is the “chuck.”\n\n---\n\n## 4. Play it over drums — 7–8 minutes\n\nThis **85 BPM country drum track** is right in the pocket for this:\n\nvideoCountry drum backing 85bpmturn724377youtube12\n\nStart by playing exactly:\n\n**LH: G + D | RH: B + D + G**  \n**LH: D + A | RH: A + D + F♯**  \n**LH: E + B | RH: G + B + E**  \n**LH: C + G | RH: G + C + E**\n\nOne full measure on each shape.\n\nKeep the rhythm:\n\n**LH — RH — LH — RH**\n\nAfter a few loops, make the left hand simpler:\n\n**LH: G | RH: B + D + G**  \n**LH: D | RH: A + D + F♯**  \n**LH: E | RH: G + B + E**  \n**LH: C | RH: G + C + E**\n\nNow the left hand sounds more like a bass player.\n\nFor the final couple of minutes, occasionally stop playing the RH chord and use your warm-up notes instead:\n\n**G – A – B – D – E**\n\nPlay only 2–4 melody notes, then go back to the chord groove.\n\nThat back-and-forth is the important part.\n\n---\n\n## 5. Optional GO:KEYS 3 setup — 3 minutes\n\nTry **Split** this week.\n\n**Left side:** `Acoustic Bass`  \n**Right side:** `Steel-str.Gtr`\n\nBoth are actual GO:KEYS 3 tones, and the keyboard supports an adjustable Split function. Roland’s tone list includes `Acoustic Bass` and `Steel-str.Gtr`. citeturn574194view0turn473623search0\n\nThen simplify your playing:\n\n**LH: G → D → E → C**\n\nwhile RH plays the three-note shapes:\n\n**RH: B + D + G**  \n**RH: A + D + F♯**  \n**RH: G + B + E**  \n**RH: G + C + E**\n\nIt’ll suddenly feel less like “keyboard practice” and more like two players.\n\n---\n\n## 🎧 Listen this week\n\n**“Starting Over” — Chris Stapleton** is on Apple Music. citeturn441395search14\n\nListen for the **steady acoustic pulse**. The playing is not busy; the groove and repetition carry the song.\n\nThen try **“Slow Burn” — Kacey Musgraves**. Apple Music describes its acoustic-guitar opening and broader atmospheric textures, which is a good example of keeping the basic musical idea simple while the sound around it creates the mood. citeturn441395search4turn441395search1\n\nThe main win this week is getting to where:\n\n**LH → RH → LH → RH**\n\nkeeps happening automatically while your brain starts listening to the music instead of telling each hand what to do.",
+    "sections": [
+      {
+        "id": "overview",
+        "title": "Overview",
+        "instructions": "**Time:** about 25 minutes  \n**Goal:** keep the left hand steady, make the right hand answer it, and get comfortable enough with the loop that you can start adding your own little melody.\n\nThis week builds on the same hand-independence you were using with the disco offbeats, but slower and much more relaxed.",
+        "rows": []
+      },
+      {
+        "id": "section-2",
+        "title": "1. Warm-up — 4 minutes",
+        "instructions": "Use just these five right-hand notes:\n\n**LH: — | RH: G → A → B → D → E**\n\nThen come back down:\n\n**LH: — | RH: E → D → B → A → G**\n\nPlay that slowly a few times.\n\nThen try this:\n\n**LH: — | RH: G → B → A → D**\n\nPause.\n\nThen:\n\n**LH: — | RH: E → D → B → G**\n\nDon’t worry about speed. Try to make each little group sound like a sentence rather than an exercise.\n\n---",
+        "rows": [
+          {
+            "lh": [],
+            "rh": [
+              "G",
+              "A",
+              "B",
+              "D",
+              "E"
+            ]
+          },
+          {
+            "lh": [],
+            "rh": [
+              "E",
+              "D",
+              "B",
+              "A",
+              "G"
+            ]
+          },
+          {
+            "lh": [],
+            "rh": [
+              "G",
+              "B",
+              "A",
+              "D"
+            ]
+          },
+          {
+            "lh": [],
+            "rh": [
+              "E",
+              "D",
+              "B",
+              "G"
+            ]
+          }
+        ],
+        "pattern": "sequence"
+      },
+      {
+        "id": "section-3",
+        "title": "2. Your four chord shapes — 6 minutes",
+        "instructions": "Play these in order:\n\n**①** LH: **G + D** | RH: **B + D + G**  \n**②** LH: **D + A** | RH: **A + D + F♯**  \n**③** LH: **E + B** | RH: **G + B + E**  \n**④** LH: **C + G** | RH: **G + C + E**\n\nThen go back to ①.\n\nFor the first few minutes, just press both hands together and hold:\n\n**1 – 2 – 3 – 4**\n\nPress on **1**.  \nHold through **2, 3, 4**.  \nRelease just before the next **1**.\n\nKeep looping until the order feels familiar.\n\n---",
+        "rows": [
+          {
+            "lh": [
+              "G",
+              "D"
+            ],
+            "rh": [
+              "B",
+              "D",
+              "G"
+            ]
+          },
+          {
+            "lh": [
+              "D",
+              "A"
+            ],
+            "rh": [
+              "A",
+              "D",
+              "F♯"
+            ]
+          },
+          {
+            "lh": [
+              "E",
+              "B"
+            ],
+            "rh": [
+              "G",
+              "B",
+              "E"
+            ]
+          },
+          {
+            "lh": [
+              "C",
+              "G"
+            ],
+            "rh": [
+              "G",
+              "C",
+              "E"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section-4",
+        "title": "3. The country rhythm — 5 minutes",
+        "instructions": "Now count:\n\n**1 & 2 & 3 & 4 &**\n\nThis is the whole groove:\n\n**1:** press LH  \n**&:** release LH  \n**2:** press RH  \n**&:** release RH  \n**3:** press LH  \n**&:** release LH  \n**4:** press RH  \n**&:** release RH\n\nSo it alternates:\n\n**LH — RH — LH — RH**\n\nFor chord ①:\n\n**1:** LH: **G + D**  \n**2:** RH: **B + D + G**  \n**3:** LH: **G + D**  \n**4:** RH: **B + D + G**\n\nEverything is short. Don’t hold anything down.\n\nThen do the same pattern on the other three shapes.\n\nThis style is often called **“boom-chuck”**: the low notes are the “boom,” and the chord is the “chuck.”\n\n---",
+        "rows": [
+          {
+            "lh": [
+              "G",
+              "D"
+            ],
+            "rh": [
+              "B",
+              "D",
+              "G"
+            ]
+          },
+          {
+            "lh": [
+              "D",
+              "A"
+            ],
+            "rh": [
+              "A",
+              "D",
+              "F♯"
+            ]
+          },
+          {
+            "lh": [
+              "E",
+              "B"
+            ],
+            "rh": [
+              "G",
+              "B",
+              "E"
+            ]
+          },
+          {
+            "lh": [
+              "C",
+              "G"
+            ],
+            "rh": [
+              "G",
+              "C",
+              "E"
+            ]
+          }
+        ],
+        "pattern": "country"
+      },
+      {
+        "id": "section-5",
+        "title": "4. Play it over drums — 7–8 minutes",
+        "instructions": "This **85 BPM country drum track** is right in the pocket for this:\n\nvideoCountry drum backing 85bpmturn724377youtube12\n\nStart by playing exactly:\n\n**LH: G + D | RH: B + D + G**  \n**LH: D + A | RH: A + D + F♯**  \n**LH: E + B | RH: G + B + E**  \n**LH: C + G | RH: G + C + E**\n\nOne full measure on each shape.\n\nKeep the rhythm:\n\n**LH — RH — LH — RH**\n\nAfter a few loops, make the left hand simpler:\n\n**LH: G | RH: B + D + G**  \n**LH: D | RH: A + D + F♯**  \n**LH: E | RH: G + B + E**  \n**LH: C | RH: G + C + E**\n\nNow the left hand sounds more like a bass player.\n\nFor the final couple of minutes, occasionally stop playing the RH chord and use your warm-up notes instead:\n\n**G – A – B – D – E**\n\nPlay only 2–4 melody notes, then go back to the chord groove.\n\nThat back-and-forth is the important part.\n\n---",
+        "rows": [
+          {
+            "lh": [
+              "G",
+              "D"
+            ],
+            "rh": [
+              "B",
+              "D",
+              "G"
+            ]
+          },
+          {
+            "lh": [
+              "D",
+              "A"
+            ],
+            "rh": [
+              "A",
+              "D",
+              "F♯"
+            ]
+          },
+          {
+            "lh": [
+              "E",
+              "B"
+            ],
+            "rh": [
+              "G",
+              "B",
+              "E"
+            ]
+          },
+          {
+            "lh": [
+              "C",
+              "G"
+            ],
+            "rh": [
+              "G",
+              "C",
+              "E"
+            ]
+          },
+          {
+            "lh": [
+              "G"
+            ],
+            "rh": [
+              "B",
+              "D",
+              "G"
+            ]
+          },
+          {
+            "lh": [
+              "D"
+            ],
+            "rh": [
+              "A",
+              "D",
+              "F♯"
+            ]
+          },
+          {
+            "lh": [
+              "E"
+            ],
+            "rh": [
+              "G",
+              "B",
+              "E"
+            ]
+          },
+          {
+            "lh": [
+              "C"
+            ],
+            "rh": [
+              "G",
+              "C",
+              "E"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section-6",
+        "title": "5. Optional GO:KEYS 3 setup — 3 minutes",
+        "instructions": "Try **Split** this week.\n\n**Left side:** `Acoustic Bass`  \n**Right side:** `Steel-str.Gtr`\n\nBoth are actual GO:KEYS 3 tones, and the keyboard supports an adjustable Split function. Roland’s tone list includes `Acoustic Bass` and `Steel-str.Gtr`. citeturn574194view0turn473623search0\n\nThen simplify your playing:\n\n**LH: G → D → E → C**\n\nwhile RH plays the three-note shapes:\n\n**RH: B + D + G**  \n**RH: A + D + F♯**  \n**RH: G + B + E**  \n**RH: G + C + E**\n\nIt’ll suddenly feel less like “keyboard practice” and more like two players.\n\n---",
+        "rows": []
+      },
+      {
+        "id": "section-7",
+        "title": "🎧 Listen this week",
+        "instructions": "**“Starting Over” — Chris Stapleton** is on Apple Music. citeturn441395search14\n\nListen for the **steady acoustic pulse**. The playing is not busy; the groove and repetition carry the song.\n\nThen try **“Slow Burn” — Kacey Musgraves**. Apple Music describes its acoustic-guitar opening and broader atmospheric textures, which is a good example of keeping the basic musical idea simple while the sound around it creates the mood. citeturn441395search4turn441395search1\n\nThe main win this week is getting to where:\n\n**LH → RH → LH → RH**\n\nkeeps happening automatically while your brain starts listening to the music instead of telling each hand what to do.",
         "rows": []
       }
     ]

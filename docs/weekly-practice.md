@@ -1,35 +1,10 @@
 # Weekly Practice 1.4
 
-This additive feature starts from main 074541a (app 1.5). Meter support and all earlier tools remain. The app release number is not downgraded; the worker is `jlk-studio-v1.5-weekly-1.4`.
-
-## Historical import report
-
-No complete original exports were supplied. November 8 is substantially complete verified material; July 12 and July 19 are partial verified records. Their original supplied excerpts remain readable verbatim alongside structured data. No access to private ChatGPT conversations or automation history is claimed.
-
-| Publication date | Imported content |
-|---|---|
-| 2026-07-12 | Partial: Finding an Idea and Letting It Evolve |
-| 2026-07-19 | Partial: Movement Through Suspended Harmony |
-| 2026-07-26 | Original content required |
-| 2026-08-02 | Original content required |
-| 2026-08-09 | Original content required |
-| 2026-08-16 | Original content required |
-| 2026-08-23 | Original content required |
-| 2026-08-30 | Original content required |
-| 2026-09-06 | Original content required |
-| 2026-09-13 | Original content required |
-| 2026-09-20 | Original content required |
-| 2026-09-27 | Original content required |
-| 2026-10-04 | Original content required |
-| 2026-10-11 | Original content required |
-| 2026-10-18 | Original content required |
-| 2026-10-25 | Original content required |
-| 2026-11-01 | Original content required |
-| 2026-11-08 | Substantially complete: Week 11 — 80s Synth-Pop |
+The current library contains all **18 complete originals**, July 12–November 8, 2026. See the [complete import report](complete-weekly-import-report.md) for file mappings, new structured exercises and unresolved source details. The original twelve records and November 8’s interactive rhythm are unchanged. Cache: `jlk-studio-v2-2`.
 
 ## Add a lesson without changing code
 
-Open Weekly Practice → Import a Lesson. Paste authentic text or select `.md`, `.txt` or `.json` (up to 1 MB). For plain text/Markdown, supply the publication date, exact original title, source description and completeness. The stable ID defaults to `weekly-YYYY-MM-DD`. Review, then import. Markdown is retained and displayed as safe readable text, not executable HTML. Text imports do not guess notes or timing.
+Open Studio Menu → Previous Lessons → Manage lessons → Import a Lesson. Paste authentic text or select `.md`, `.txt` or `.json` (up to 1 MB). For plain text/Markdown, supply the publication date, exact original title, source description and completeness. The stable ID defaults to `weekly-YYYY-MM-DD`. Review, then import. Markdown is retained and displayed as safe readable text, not executable HTML. Text imports do not guess notes or timing.
 
 For interactive data, download `data/weekly-november-8.example.json` from the import screen. Edit a copy with authentic source data. Required version-1 fields:
 
@@ -39,16 +14,16 @@ For interactive data, download `data/weekly-november-8.example.json` from the im
 - `sections`: ordered array with unique `id`, `title`, `instructions`, and optional `rows`.
 - Optional `durationMinutes`, `bpm` (40–180 or null), `style`, `goal`. Keep ranges and unknown details in the original text.
 - Each row: `lh` and `rh` arrays of spelled pitches such as `B♭`, `C#4`, `F3`; empty array means no notes. Note order, spellings, octaves and hand assignments are retained. Optional `variation` holds beat-four RH notes.
-- Supported `pattern`: `sequence` for individual note audition without inferred timing; `synth-pop` for the exact November 8 eight-count rhythm. Other rhythms stay readable until a future schema explicitly supports them. No generic chord-symbol-to-voicing conversion occurs.
+- Supported `pattern`: `sequence` for individual note audition without inferred timing; `synth-pop` for the exact November 8 eight-count rhythm; `country` for September 27’s alternating LH/RH beat hits released on each following &. Other rhythms stay readable until a future schema explicitly supports them. No generic chord-symbol-to-voicing conversion occurs.
 - Voice/settings guidance, drum links, listening links, optional variations and arbitrary original instructions remain in section instructions and originalText. Unknown fields survive JSON storage.
 
-Validation rejects invalid dates, duplicate section IDs, malformed pitches, unsupported patterns and invalid tempos. Missing octaves generate review warnings and require explicit practice-register selection before audition. An existing ID updates content without deleting favorites or completed sessions; conflicting IDs for one date are rejected. Preserve section IDs when revising a lesson. Content and progress use dedicated keys, never existing progression/composition keys. Imports are device-local, work offline and do not publish to other devices. Keep original files as backups. Browser storage failure is shown; no successful import is claimed.
+Validation rejects invalid dates, duplicate section IDs, malformed pitches, unsupported patterns and invalid tempos. Missing octaves generate import-review warnings. Audition uses remembered practice registers (LH 3 / RH 4 by default), adjustable in Settings; these never change source pitches. An existing ID updates content without deleting favorites or completed sessions; conflicting IDs for one date are rejected. Preserve section IDs when revising a lesson. Content and progress use dedicated keys, never existing progression/composition keys. Imports are device-local, work offline and do not publish to other devices. Keep original files as backups. Browser storage failure is shown; no successful import is claimed.
 
 ## Playback and source uncertainty
 
 November 8 timing uses the existing audio engine and look-ahead scheduler: LH on at beat 1/off at final &, RH on at 1, & after 2, 4, each held for half a beat. Four clicks count in; Repeat includes the count-in on each cycle. Melody variation changes only the third RH hit. Slower tempo does not change beat proportions. Backgrounding and navigation cancel pending and active playback.
 
-No source octaves were provided. Users explicitly choose practice octaves per hand. Each pitch class is placed in that chosen octave; the app does not invent an ascending voicing across octave boundaries. The notation is an audition reference, not an authenticated source score. Warm-up has individual note audition only. The chord-shape hold instruction remains readable; its imprecise “just before” release is not converted into a fabricated precise rhythm. Partial historical sections have no generated playback.
+No source octaves were provided. Remembered practice octaves default to LH 3 / RH 4 and can be changed in Settings. Each pitch class is placed in that chosen octave; the app does not invent an ascending voicing across octave boundaries. The notation is an audition reference, not an authenticated source score. Warm-up has individual note audition only. The chord-shape hold instruction remains readable; its imprecise “just before” release is not converted into a fabricated precise rhythm. Partial historical sections have no generated playback.
 
 The GO:KEYS 3 tone names and historical instructions are preserved. Device-specific steps are visibly labeled unverified, with a link to official manuals; no claim of technical verification is made. External YouTube/Apple Music media requires connectivity; lessons, local progress and synthesized playback work offline after cache installation.
 

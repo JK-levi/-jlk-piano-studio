@@ -12,7 +12,7 @@ import { chordNavigation } from './chord-navigation.js';
 import { setupDiscover } from './discover.js';
 import { preserveSequence,latestDraft } from './sequence-drafts.js';
 import { Feedback, validTempo } from './feedback.js';
-import { bindLayout, setExperience, openView, closeView, currentView, returnToWorkspace } from './layout.js';
+import { bindLayout, setExperience, openView, closeView, currentView, navigateRoute, restoreNavigation, back } from './layout.js';
 const $ = id => document.getElementById(id);
 const base = {root:'C',quality:'major',octave:4,inversion:0,voicing:'close'};
 const prefs=read('preferences',{});
@@ -220,7 +220,7 @@ for(const id of ['root','quality','inversion','octave','voicing'])$(id).addEvent
 for(const id of ['staff-labels','key-labels'])$(id).addEventListener('change',()=>{stop({silent:true});persistPrefs();render();renderExercise($('bach-notation'),bachPlan().events,{labels:$('staff-labels').checked});});
 for(const id of ['tempo','pattern','metronome','voice-leading'])$(id).addEventListener('change',()=>{stop({silent:true});if(id!=='tempo'||checkTempo('tempo','sequence'))persistPrefs();});
 function setMode(value){stop({silent:true});mode=value;revealed=false;studyKind='chord';practiceSignature='';setExperience(mode);$('practice-banner').hidden=mode!=='practice';$('studio-panel').hidden=mode!=='studio';if(mode==='studio'&&progression[selected])spec={...progression[selected]};render();}
-document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>navigateRoute(b.dataset.mode)));
 $('reveal').addEventListener('click',()=>{revealed=!revealed;render();});
 $('next-chord').addEventListener('click',()=>{stop({silent:true});practiceSignature='';const keys=Object.keys(QUALITIES);spec={...spec,root:ROOTS[Math.floor(Math.random()*ROOTS.length)],quality:keys[Math.floor(Math.random()*keys.length)],inversion:0};revealed=false;persistPrefs();render();});
 $('play-chord').addEventListener('click',()=>requestStudy('chord'));
@@ -248,7 +248,7 @@ function renderProgression(){
   if(!progression.length){const li=document.createElement('li');li.textContent='Choose a chord above, then add it here.';li.style.padding='16px';li.style.gridColumn='1 / -1';$('progression').append(li);}
   renderChordNavigation({progression,selected,activeIndex});transport();
 }
-$('add-chord').addEventListener('click',()=>{if(progression.length>=64)return message('A progression can contain up to 64 chords. Remove a chord before adding another.',{scope:'studio',kind:'warning',id:'limit'});stop({silent:true});progression.push({...spec});selected=progression.length-1;persistSession();setMode('studio');if(currentView()==='chord-editor')closeView();renderProgression();message(`${pretty(chord(spec).symbol)} added to your progression.`,{scope:'studio',kind:'success'});});
+$('add-chord').addEventListener('click',()=>{if(progression.length>=64)return message('A progression can contain up to 64 chords. Remove a chord before adding another.',{scope:'studio',kind:'warning',id:'limit'});stop({silent:true});progression.push({...spec});selected=progression.length-1;persistSession();navigateRoute('studio');renderProgression();message(`${pretty(chord(spec).symbol)} added to your progression.`,{scope:'studio',kind:'success'});});
 function loadBuiltIn(index){
  const backup=preserveSequence(progression,sequenceName,$('analysis-key').value,PRESETS,saved);
  if(!backup.ok){feedback.show('studio',{id:'draft',kind:'error',text:'Your unsaved sequence could not be backed up. Save it in My progressions before loading another.'});return false;}
@@ -265,7 +265,7 @@ $('restore-draft').addEventListener('click',()=>{const draft=latestDraft();if(!d
 document.addEventListener('studio-use-preset',event=>withAudio(()=>{
  if(!loadBuiltIn(event.detail.index))return;
  document.addEventListener('studio-view-change',function ready(e){if(e.detail.next===null){document.removeEventListener('studio-view-change',ready);$('sequence-play').click();}});
- returnToWorkspace();
+ navigateRoute('studio');
 },{scope:'browse'}));
 $('clear-progression').addEventListener('click',()=>{stop({silent:true});progression=[];sequenceName='Your progression';selected=0;persistSession();renderProgression();});
 function transposition(amount){stop({silent:true});const key=$('analysis-key').value;if(key){const minor=key.endsWith('m');setKey(transpose({...base,root:minor?key.slice(0,-1):key},amount).root+(minor?'m':''));}let previous=null;progression=progression.map(s=>{let next=transpose(s,amount);if($('voice-leading').checked)next=voiceLead(next,previous);previous=chord(next).notes;return next;});spec={...(progression[selected]||transpose(spec,amount))};persistSession();persistPrefs();render();renderProgression();message(`Progression transposed ${amount>0?'up':'down'} one semitone.`);}
@@ -313,9 +313,10 @@ function openComposer(){
   $('composition-loading').hidden=false;$('composition-content').hidden=true;
   composerLoad ||= import('./composer.js').then(({setupComposer})=>setupComposer({audition,stop:stopExternal,feedback}));
   composerLoad.then(composer=>{
-    composer.open();$('composition-content').hidden=false;$('composition-loading').hidden=true;
+    $('composition-content').hidden=false;composer.open();$('composition-loading').hidden=true;
     feedback.clear('composition','initialization');
-  }).catch(()=>{
+  }).catch(error=>{
+    console.error('Composer initialization failed',error);
     $('composition-loading').hidden=true;
     feedback.show('composition',{id:'initialization',kind:'error',text:'Unable to open Create Sheet Music. Your saved pieces and drafts have not been deleted. Close this view, save any other work, then reopen Studio online to finish its update and try again.'});
   });
@@ -362,18 +363,18 @@ if('serviceWorker' in navigator)navigator.serviceWorker.register(new URL('../ser
 }).catch(()=>message('Offline caching is unavailable. Stay online or reload this page to retry installation.',{scope:'app',kind:'warning'}));
 setExperience(mode);render();renderProgression();renderSaved();
 
-let studioArea='home',studioRouting=false;
-async function studioNavigate(destination,remember=true){
- document.dispatchEvent(new Event('studio-area-change'));
- stop({silent:true});
- if(currentView()){studioRouting=true;await new Promise(resolve=>{const ready=e=>{if(!e.detail.next){document.removeEventListener('studio-view-change',ready);resolve();}};document.addEventListener('studio-view-change',ready);returnToWorkspace();});setTimeout(()=>studioRouting=false,0);}
- studioArea=destination;
- if(remember)history.pushState({...history.state,studioArea:destination,jlkTasks:[]},'');
- if(['home','latest','archive'].includes(destination)){setMode('home');document.dispatchEvent(new CustomEvent('weekly-navigate',{detail:destination}));return;}
+function studioNavigate(destination){
  const tasks={browse:'browse-panel',saved:'save-panel',guided:'bach-panel',create:'composition-panel',sound:'sound-settings',book:'book-panel'};
- if(tasks[destination]){setMode(['browse','saved'].includes(destination)?'studio':'explore');openView(tasks[destination]);}else setMode(destination);
+ if(tasks[destination])openView(tasks[destination]);
+ else if(destination==='latest'){navigateRoute('archive');navigateRoute({area:'lesson'});}
+ else navigateRoute(destination);
 }
-window.addEventListener('popstate',e=>{if(!studioRouting&&!e.state?.jlkTasks?.length&&(e.state?.studioArea||'home')!==studioArea)studioNavigate(e.state?.studioArea||'home',false);});
+document.addEventListener('studio-route',e=>{
+ const route=e.detail;
+ setMode(['home','archive','lesson','import'].includes(route.area)?'home':route.area);
+ document.dispatchEvent(new CustomEvent('weekly-navigate',{detail:route}));
+ document.getElementById('area-back').hidden=route.area==='home';
+});
+const areaBack=document.createElement('button');areaBack.id='area-back';areaBack.textContent='← Back';areaBack.onclick=back;document.querySelector('.app-header').before(areaBack);
 setupStudioShell({navigate:studioNavigate,recover:async()=>{stop({silent:true});document.dispatchEvent(new Event('studio-audio-recover'));await audio.unlock({reset:true});}});
-setupWeekly({audio,stopStudio:stop,go:studioNavigate});
-setMode('home');
+setupWeekly({audio,stopStudio:stop,go:studioNavigate}).then(restoreNavigation);

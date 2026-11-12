@@ -1,6 +1,15 @@
-# JLK Piano Studio · 1.5 + Weekly Practice 1.4
+# JLK Piano Studio
 
-A focused, mobile-first piano studio with charcoal cards, ivory notation, with Weekly Practice as its home, plus Explore, Progressions, and Note Practice. Plain HTML, CSS, and JavaScript modules. No build, runtime dependencies, accounts, tracking, backend, or paid services.
+A personal piano studio with a vinyl-record Home, compact score-first lessons, Chord Explorer, Progressions, Note Practice and a two-hand composer. Plain HTML, CSS, and JavaScript modules. No build, runtime dependencies, accounts, tracking, backend, or paid services.
+
+## Current update — iPad usability and complete archive
+
+- Home fills the viewport and safe-area canvas; JLK stays legible on light and dark screens. The recovery icon remains global, with temporary feedback only after use.
+- Central history records the invoking page and task stack. Back, Done, browser Back/Forward and refresh use that same history; closing Studio Menu preserves the current selection.
+- Create Sheet Music puts the score beside note entry on iPad. Notes, Suggestions, Piece Settings, and My Pieces / Backups separate the working areas. Select a written event to delete it, or remove one chord tone. Undo/Redo, confirmed Clear Hand/Measure and confirmed Clear Working Piece retain saved copies.
+- All **18 historical originals** are bundled. The original 12, including November 8, are unchanged. New verified shapes and September 27's exact country rhythm use the existing notation and audio scheduler.
+
+See the [visual and functional review](docs/ipad-usability-review.md) and [complete import report](docs/complete-weekly-import-report.md). Worker cache: `jlk-studio-v2-2`. No new dependencies or storage migrations. The versioned sections below document earlier releases.
 
 ## Preview
 
@@ -258,7 +267,7 @@ See [source report, schema and import guide](docs/weekly-practice.md), [example 
 
 ### Expanded weekly archive
 
-Twelve recovered original lessons (July 12–November 8, 2026) are now bundled with exact source text, grouped LH/RH notes, practice-register choices, note auditions and a compact keyboard cheat sheet. November 8 retains its existing interactive rhythm. The six unavailable dates remain explicitly marked as requiring original content. Custom imports, progress, favorites and completion history are retained.
+Twelve recovered original lessons (July 12–November 8, 2026) are now bundled with exact source text, grouped LH/RH notes, practice-register choices, note auditions and a compact keyboard cheat sheet. November 8 retains its existing interactive rhythm. The six dates missing in that release have since been recovered; see the current complete import report above. Custom imports, progress, favorites and completion history are retained.
 
 See [the import report](docs/weekly-expanded-import-report.md) for source mappings, musical ambiguities, migration behavior and physical-iPhone checks. Original files and the separate undated sample are preserved in `data/weekly-sources/`. Run `npm test`, `python3 -m unittest discover -s tests -p 'test_*.py'`, and the `tests/browser_*.py` browser suites (excluding the helper module) against `npm run serve`; Playwright and Chromium are required.
 

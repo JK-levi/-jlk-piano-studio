@@ -1,3 +1,4 @@
+from browser_helpers import studio_destination
 from browser_helpers import open_chord_editor, open_sound, open_settings, open_save, edit_sequence, close_tasks, inspect_progression, choose_preset
 """Full default-progression graph/transport and scoped-feedback regression test."""
 import json
@@ -26,7 +27,7 @@ with sync_playwright() as p:
     page=context.new_page();errors=[]
     page.on('pageerror',lambda error:errors.append(str(error)))
     page.goto(os.environ.get('JLK_BASE_URL','http://127.0.0.1:8000/'))
-    page.get_by_role('button',name='Progressions',exact=True).tap()
+    studio_destination(page,'studio')
     assert page.locator('.chord-select').count()==4
     assert page.evaluate('__contexts.length')==0
     page.fill('#tempo','180');page.locator('#tempo').dispatch_event('change')
@@ -127,10 +128,10 @@ with sync_playwright() as p:
     assert 'saved on this device' in page.locator('#save-feedback').inner_text()
     # Reuse the same severity/message semantics beside study and practice actions.
     close_tasks(page)
-    page.get_by_role('button',name='Explore',exact=True).tap()
+    studio_destination(page,'explore')
     page.fill('#study-tempo','0');page.tap('#play-arpeggio')
     assert 'Invalid tempo' in page.locator('#study-feedback [role=alert]').inner_text()
-    page.get_by_role('button',name='Practice',exact=True).tap()
+    studio_destination(page,'practice')
     page.tap('#play-chord');assert page.locator('#practice-feedback [role=alert]').is_visible()
     for width in [320,390]:
         page.set_viewport_size({'width':width,'height':844})

@@ -56,3 +56,16 @@ export function compositionPlan(doc){
 }
 export function incompleteMeasures(doc){const span=meter(doc.timeSignature).quarters;return doc.measures.flatMap((m,i)=>HANDS.filter(hand=>usedBeats(doc,i,hand)<span).map(hand=>({measure:i,hand,remaining:span-usedBeats(doc,i,hand)})));}
 export function importComposition(text){if(text.length>200000)throw Error('Choose a composition JSON file smaller than 200 KB.');return validateComposition(JSON.parse(text));}
+
+// A chord-tone deletion leaves its event's timing and all other voices intact.
+export function deletePitch(doc,measure,hand,id,pitch){
+ const next=structuredClone(doc),event=next.measures[measure]?.[hand]?.find(e=>e.id===id);
+ if(!event||!event.pitches.includes(pitch))throw Error('Select a note in this chord.');
+ if(event.pitches.length===1)return deleteEvent(doc,measure,hand,id);
+ event.pitches=event.pitches.filter(n=>n!==pitch);return validateEditableComposition(next);
+}
+export function clearHandMeasure(doc,measure,hand){
+ const next=structuredClone(doc);if(!HANDS.includes(hand)||!next.measures[measure])throw Error('Choose a hand and measure.');
+ next.measures[measure][hand]=[];return validateEditableComposition(next);
+}
+export function clearPiece(doc){const next=structuredClone(doc);for(const m of next.measures){m.left=[];m.right=[];}return validateEditableComposition(next);}
