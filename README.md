@@ -265,3 +265,9 @@ See [the import report](docs/weekly-expanded-import-report.md) for source mappin
 ### Weekly Practice UI cleanup
 
 The archive now uses compact entries, and lesson views put paired hand shapes before supporting guidance. Hear starts immediately with remembered practice registers; optional settings and full source text remain available without crowding the exercise. Source lessons, progress keys and November 8's written rhythm are unchanged. See the [before/after visual review](docs/weekly-ui-review.md) for iPhone/iPad screenshots, interaction checks and remaining device limitations. `tests/browser_weekly_ui.py` checks immediate audition, register persistence, archive density and every lesson section's wrapping.
+
+### Studio Experience 2.0
+
+Home now centers on a vinyl record that opens the latest lesson without starting audio. The triangular-dot Studio Menu reaches every existing tool. Weekly exercises offer persistent score/notes modes, paired hand references and optional keyboard/guidance; verified November rhythms share the existing audio scheduler with score highlighting. Global Settings stores lesson view and practice registers. Audio recovery is available without leaving a task.
+
+See [implementation, screenshots and validation](docs/studio-experience-2.md). Run `npm test` and `python3 tests/browser_studio2.py` against a local server (`JLK_BASE_URL` overrides its URL). Physical Apple-device audio/PWA checks remain separate from browser automation.

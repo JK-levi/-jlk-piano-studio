@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'docs/screenshots/v1.3-b';OUT.
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']);context=browser.new_context(viewport={'width':390,'height':844},has_touch=True,is_mobile=True,accept_downloads=True)
  context.add_init_script("""window.__tones=[];window.__contexts=[];const Native=window.AudioContext;window.AudioContext=class extends Native{constructor(...args){super(...args);__contexts.push(this);}createOscillator(){const osc=super.createOscillator(),start=osc.start.bind(osc);osc.start=at=>{__tones.push({frequency:osc.frequency.value,at});start(at);};return osc;}};""")
- page=context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto(os.environ.get('JLK_BASE_URL','http://127.0.0.1:8000/'));page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key');page.click('#composer-open');assert page.locator('#task-title').inner_text()=='Create sheet music'
+ page=context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto(os.environ.get('JLK_BASE_URL','http://127.0.0.1:8000/'));page.wait_for_selector('.key',state='attached');page.click('#studio-menu-open');page.click('[data-destination=explore]');page.wait_for_selector('.key');page.click('#studio-menu-open');page.click('[data-destination=create]');assert page.locator('#task-title').inner_text()=='Create sheet music'
  def doc():return page.evaluate("JSON.parse(localStorage.getItem('jlk-studio-v1-composition-draft-v1'))")
  def select(id,value):page.select_option('#composition-'+id,value)
  def click(id):page.click('#composition-'+id)
@@ -69,7 +69,7 @@ with sync_playwright() as p:
  for _ in range(6):click('add-measure')
  assert page.locator('#composition-add-measure').is_disabled()
  assert len(doc()['measures'])==8
- close_tasks(page);page.wait_for_function('!!navigator.serviceWorker.controller');context.set_offline(True);page.reload();page.wait_for_selector('.key',state='attached');page.click('[data-mode=explore]');page.wait_for_selector('.key');page.click('#composer-open');page.wait_for_selector('#composition-content',state='visible');assert len(doc()['measures'])==8
+ close_tasks(page);page.wait_for_function('!!navigator.serviceWorker.controller');context.set_offline(True);page.reload();page.wait_for_selector('.key',state='attached');page.click('#studio-menu-open');page.click('[data-destination=explore]');page.wait_for_selector('.key');page.click('#studio-menu-open');page.click('[data-destination=create]');page.wait_for_selector('#composition-content',state='visible');assert len(doc()['measures'])==8
  assert page.locator('#composition-library option').count()==2
  page.select_option('#composition-key','F#m');snapshot=doc();page.locator('#composition-note-suggestions article').first.get_by_role('button',name='Listen',exact=True).click();assert doc()==snapshot
  page.locator('#composition-chord-suggestions article').first.get_by_role('button',name='Choose chord').click();select('duration','0.5');select('measure','7');click('suggestion-whole');assert doc()['measures'][7]['right'][0]['duration']==.5

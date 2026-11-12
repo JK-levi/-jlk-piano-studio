@@ -1,0 +1,31 @@
+/* Studio Experience: lightweight instrument surfaces, no ambient animation. */
+body{background:#cac6c0;color:#eee9df;padding-bottom:100px}
+.app-header{padding:16px 0 24px}.brand{color:#ede6d9}.brand-mark{font-size:3.8rem}
+body:has(#weekly-home[data-screen=home])[data-experience=home]{background:#252524}
+.destination-bar,.tabs,#experience>.intro{display:none}
+#weekly-home{color:#eee9df;max-width:900px;background:#292928;border:1px solid #a29b8d;border-radius:24px;padding:24px!important;margin:0 auto}
+#weekly-home[data-screen=home]{max-width:520px;border:0;background:transparent;padding-top:0!important}
+#weekly-home h2{font-size:1.65rem}.weekly-goal,#weekly-home .weekly-filters label,#weekly-home>details,#weekly-home>p{color:#d6d0c6}
+#weekly-results .weekly-card,.weekly-section{background:linear-gradient(135deg,#333332,#242423);border:1px solid #817b70;box-shadow:inset 0 1px #ffffff20!important}
+#weekly-results .weekly-card>button{border-radius:24px}.weekly-card .weekly-description{color:#ddd8cf}
+.record-room{text-align:center}.vinyl{width:min(78vw,360px);aspect-ratio:1;border-radius:50%;margin:10px auto 20px;display:grid;place-items:center;background:repeating-radial-gradient(circle,#1d1d1c 0 1px,#353534 2px,#161615 3px);box-shadow:0 10px 24px #0008,inset 0 0 0 1px #a69e8f;position:relative}
+.vinyl:before{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 30deg,transparent,#ffffff18,transparent 35%,#d7c6a820,transparent 80%);pointer-events:none}
+.record-label{width:33.33%;aspect-ratio:1;border-radius:50%;background:#e4d9c7;color:#252524;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5px;font-size:.65rem;letter-spacing:.08em;line-height:1.5;z-index:1;border:1px solid #fff6}
+.record-label>span:first-child{font-size:1.3rem}.record-label:active{transform:rotate(4deg) scale(.98)}.record-caption{font-size:.85rem;color:#d5cdbc;margin:10px auto 20px}
+.studio-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}.studio-tiles button{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px;font-size:1.5rem;border-color:#817b70;border-radius:18px}.studio-tiles span{font-size:.9rem}.archive-link{margin-top:14px;background:transparent;border:0}
+.studio-global{position:fixed;bottom:max(16px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:12px;align-items:center;z-index:30;padding:6px;border-radius:40px;background:#292928f5;box-shadow:0 4px 15px #0004}
+.studio-global button{border-radius:50%;width:48px;height:48px;min-height:48px;padding:12px;border:1px solid #c9b99c}.studio-global svg{width:24px;height:24px;fill:#e7dac3}.studio-global [role=status]{position:absolute;bottom:68px;left:50%;transform:translateX(-50%);min-width:150px;text-align:center;background:#292928;color:ivory;border-radius:8px}.studio-global [role=status]:empty{display:none}
+#studio-menu,#studio-settings{color:#eee9df;background:#292928;border:1px solid #b4a58b;border-radius:22px;width:min(92vw,560px);max-height:85dvh;padding:24px;overflow:auto}
+#studio-menu::backdrop,#studio-settings::backdrop{background:#0009}#studio-menu header,#studio-settings header{display:flex;justify-content:space-between;align-items:center;gap:12px}#studio-menu h2,#studio-settings h2{font:1.8rem Georgia;margin:0}#studio-menu h3{font: .75rem system-ui;letter-spacing:.15em;text-transform:uppercase;color:#c9b99c;margin:22px 0 8px}#studio-menu section{display:flex;flex-wrap:wrap;gap:8px}#studio-menu h3{width:100%}#studio-menu section button{flex:1 1 44%;text-align:left;padding:12px}#studio-settings label{display:grid;gap:6px;margin:18px 0}.studio-registers{display:flex;gap:20px}.studio-registers label{flex:1}
+.score-workspace{min-width:0}.score-kind{font-size:.72rem;color:#c7bda9;margin:4px 0 10px}.lesson-score{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;border-radius:12px;background:#f0e8dc;color:#292928}.lesson-score[hidden]{display:none}.lesson-score>svg{flex:0 0 100%;width:100%;min-width:280px;max-height:300px;scroll-snap-align:start}.lesson-score .active-measure{outline:3px solid #b8a17c;outline-offset:-3px}.score-sounding ellipse{fill:#b48a42!important}
+#selected-hands{border:1px solid #847966;border-radius:10px;padding:12px;margin:12px 0;line-height:1.6;white-space:pre-wrap;font-size:.9rem}.score-workspace[data-view=score] #selected-hands{display:none}.measure-strip{display:flex;gap:6px;overflow:auto}.measure-strip button{flex:1;min-width:44px;padding:8px}.measure-strip [aria-pressed=true]{background:#dfd0b7;color:#272624;box-shadow:0 0 8px #d7c6a822}.weekly-play-controls{gap:8px}.weekly-play-controls label{font-size:.8rem}.weekly-play-controls input[type=number]{max-width:68px}.lesson-tips{margin-top:14px}.weekly-lesson-heading{gap:8px}.weekly-stepper{margin:12px 0}.weekly-section{padding:16px!important}.weekly-goal{display:none}.weekly-extra{margin-top:12px}#weekly-home .weekly-extra{color:#d8d1c5}#weekly-home[data-screen=lesson]>h2{font:1.2rem system-ui}.weekly-next{margin-top:12px}.mini-keyboard summary{font-size:.8rem}.weekly-original{max-width:100%}
+body:has(#weekly-home[data-screen=lesson])[data-experience=home] .app-header,body:has(#weekly-home[data-screen=archive])[data-experience=home] .app-header{display:none}
+@media(max-width:600px){#weekly-home{padding:16px!important;border-radius:18px}.lesson-score>svg{max-height:240px}.weekly-play-controls button{padding:8px 10px}.app-header{padding-top:8px}.studio-global{bottom:max(10px,env(safe-area-inset-bottom))}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+body:has(#weekly-home[data-screen=home])[data-experience=home]:before{opacity:.07}
+body:has(#weekly-home[data-screen=home])[data-experience=home] .app-footer{display:none}
+.record-play{width:0;height:0;border-left:12px solid #292928;border-top:8px solid transparent;border-bottom:8px solid transparent;margin-bottom:8px}
+.studio-global #studio-recover{position:fixed;bottom:calc(100dvh - 90px);left:calc(50vw - 78px);background:#292928}
+@media(min-width:700px){.studio-global #studio-recover{left:calc(50vw - 100px)}}
+#task-body{padding-bottom:110px;scroll-padding-bottom:110px}
+#task-body button,#task-body summary,#task-body input{scroll-margin-bottom:110px}
